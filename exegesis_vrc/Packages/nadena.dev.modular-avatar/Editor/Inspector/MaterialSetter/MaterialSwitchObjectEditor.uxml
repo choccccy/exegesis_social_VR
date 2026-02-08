@@ -1,0 +1,16 @@
+﻿<UXML xmlns:ui="UnityEngine.UIElements" xmlns:ed="UnityEditor.UIElements">
+    <ui:VisualElement class="horizontal">
+        <ed:PropertyField name="f-object" binding-path="Object" label=""/>
+    </ui:VisualElement>
+
+    <ui:VisualElement class="horizontal">
+        <ed:IntegerField name="f-material-index" binding-path="MaterialIndex"/>
+        <ui:DropdownField name="f-material-index-dropdown"/>
+        <ed:ObjectField name="f-material-index-original"/>
+    </ui:VisualElement>
+
+    <ui:VisualElement class="horizontal">
+        <ui:Label text="reactive_object.material-setter.set-to" class="ndmf-tr"/>
+        <ed:PropertyField name="f-material" binding-path="Material" label=""/>
+    </ui:VisualElement>
+</UXML>

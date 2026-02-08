@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -340790334, guid: 67cc4cb7839cd3741b63733d5adf0442, type: 3}
+  m_Name: ncho_main_menu
+  m_EditorClassIdentifier: 
+  Parameters: {fileID: 11400000, guid: 5eb2d188b49a6d54e958fc21205ea0d3, type: 2}
+  controls:
+  - name: Tools
+    icon: {fileID: 2800000, guid: 26f932c4382052a44bd754e68d59d7db, type: 3}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: snub
+    icon: {fileID: 0}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Panels
+    icon: {fileID: 2800000, guid: 0e730f53ba35ed74ca658804ae26afc2, type: 3}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 11400000, guid: 5eaee6c87db340e479cc2ae345956ffc, type: 2}
+    subParameters: []
+    labels: []
+  - name: Config
+    icon: {fileID: 2800000, guid: 0d0739cfbad6a81458615a294fc58f74, type: 3}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 11400000, guid: 287df70274cf4814f83b94ecdf432bf0, type: 2}
+    subParameters: []
+    labels: []
+  - name: Expression
+    icon: {fileID: 2800000, guid: 634fc8bb78cc4f442b42578437cd8188, type: 3}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 11400000, guid: 2b0ae8404d45c2e4ab4c92efd9c9a6ed, type: 2}
+    subParameters: []
+    labels: []

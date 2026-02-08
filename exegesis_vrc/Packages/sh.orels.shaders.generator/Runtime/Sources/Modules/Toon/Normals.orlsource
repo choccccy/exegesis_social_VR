@@ -1,0 +1,137 @@
+%Properties()
+{
+    UI_NormalsHeader("# Normals", Int) = 0
+    _BumpMap("Normal Map > %SetKeyword(_BumpMap, NORMALS_SET)", 2D) = "bump" {}
+    [Enum(Synced With Albedo, 0, Independent, 1)]_BumpMapTilingMode("Normal Tiling Mode %ShowIf(_BumpMap)", Int) = 0
+    _BumpMapTiling("Normal Tiling %ShowIf(_BumpMap)", Float) = 1
+    UI_BumpMapTilingSyncedNote("> Will scale UVs based on the Albedo texture Tiling and Offset settings %ShowIf(_BumpMapTilingMode == 0 && _BumpMap)", Int) = 0
+    UI_BumpMapTilingIndependentNote("> Will scale UVs on its own %ShowIf(_BumpMapTilingMode == 1 && _BumpMap)", Int) = 0
+    _BumpScale("Normal Map Scale %ShowIf(_BumpMap)", Range(-2, 2)) = 1
+    [ToggleUI]_FlipBumpY ("Flip Y (UE Mode) %ShowIf(_BumpMap)", Int) = 0
+    [ToggleUI]_NormalBicubicSampling("Use Bicubic Sampling %ShowIf(_BumpMap)", Int) = 0
+
+    _DetailNormalMap("Detail Normal > %SetKeyword(_DetailNormalMap, DETAIL_NORMALS_SET)", 2D) = "bump" {}
+    [Enum(UV1, 0, UV2, 1, UV3, 2, UV4, 3)]_DetailNormalsUVSet("UV Set %ShowIf(_DetailNormalMap)", Int) = 0
+    _DetailNormalTiling("Tiling %ShowIf(_DetailNormalMap)", Float) = 1
+    _DetailNormalScale("Detail Normal Map Scale %ShowIf(_DetailNormalMap)", Range(-2, 2)) = 1
+    [ToggleUI]_FlipDetailNormalY("Flip Y (UE Mode) %ShowIf(_DetailNormalMap)", Int) = 0
+    _DetailNormalMask("Detail Normal Mask > %ShowIf(_DetailNormalMap)", 2D) = "white" {}
+    [Enum(UV1, 0, UV2, 1, UV3, 2, UV4, 3)]_DetailNormalMaskUVSet("UV Set %ShowIf(_DetailNormalMask && _DetailNormalMap)", Int) = 0
+    _DetailNormalMaskTiling("Tiling %ShowIf(_DetailNormalMask && _DetailNormalMap)", Float) = 1
+}
+
+%ShaderFeatures()
+{
+    #pragma shader_feature_local_fragment NORMALS_SET
+    #pragma shader_feature_local_fragment DETAIL_NORMALS_SET
+}
+
+%ShaderDefines()
+{
+    #define PIXEL_NORMAL_SET
+}
+
+%Variables()
+{
+    int _BumpMapTilingMode;
+    float _BumpMapTiling;
+    half _BumpScale;
+
+    int _FlipBumpY;
+    int _NormalBicubicSampling;
+    half4 _DetailNormalMap_ST;
+    int _DetailNormalsUVSet;
+    half _DetailNormalTiling;
+    half _DetailNormalScale;
+    half _FlipDetailNormalY;
+    int _DetailNormalMaskUVSet;
+    half _DetailNormalMaskTiling;
+
+    half3 GLOBAL_pixelNormal;
+}
+
+%Textures()
+{
+    TEXTURE2D(_BumpMap);
+    SAMPLER(sampler_BumpMap);
+    TEXTURE2D(_DetailNormalMap);
+    SAMPLER(sampler_DetailNormalMap);
+    TEXTURE2D(_DetailNormalMask);
+    SAMPLER(sampler_DetailNormalMask);
+}
+
+
+%Fragment("ToonNormalsFragment")
+{
+    void ToonNormalsFragment(inout MeshData d, inout SurfaceData o) {
+        half2 globalUv = 0;
+
+        #if defined(GLOBAL_UV_SET)
+        globalUv = GLOBAL_uv;
+        #else
+        globalUv = d.uv0;
+        #endif
+
+        #if defined(NORMALS_SET)
+        float4 normalTex = 0;
+        if (_NormalBicubicSampling) {
+            normalTex = tex2DFastBicubicSampleNoChecks(TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap), lerp(globalUv, d.uv0.xy, _BumpMapTilingMode) * _BumpMapTiling);
+        } else {
+            normalTex = SAMPLE_TEXTURE2D(_BumpMap, sampler_BumpMap, lerp(globalUv, d.uv0.xy, _BumpMapTilingMode) * _BumpMapTiling);
+        }
+        if (_FlipBumpY)
+        {
+            normalTex.y = 1 - normalTex.y;
+        }
+        half3 normal = UnpackNormalScale(normalTex, _BumpScale);
+
+        o.Normal = BlendNormals(o.Normal, normal);
+        #endif
+        
+        #if defined(DETAIL_NORMALS_SET)
+        
+        half2 detailUV = 0;
+        switch (_DetailNormalsUVSet) {
+            case 0: detailUV = d.uv0; break;
+            case 1: detailUV = d.uv1; break;
+            case 2: detailUV = d.uv2; break;
+            case 3: detailUV = d.uv3; break;
+        }
+        detailUV = detailUV * _DetailNormalTiling;
+        half4 detailNormalTex = SAMPLE_TEXTURE2D(_DetailNormalMap, sampler_DetailNormalMap, detailUV);
+        if (_FlipDetailNormalY)
+        {
+            detailNormalTex.y = 1 - detailNormalTex.y;
+        }
+
+        half2 detailMaskUV = 0;
+        switch (_DetailNormalMaskUVSet) {
+            case 0: detailMaskUV = d.uv0; break;
+            case 1: detailMaskUV = d.uv1; break;
+            case 2: detailMaskUV = d.uv2; break;
+            case 3: detailMaskUV = d.uv3; break;
+        }
+        detailMaskUV *= _DetailNormalMaskTiling;
+        half detailMask = SAMPLE_TEXTURE2D(_DetailNormalMask, sampler_DetailNormalMask, detailMaskUV).r;
+
+        half3 detailNormal = UnpackNormalScale(detailNormalTex, _DetailNormalScale);
+        
+        o.Normal = lerp(o.Normal, BlendNormals(o.Normal, detailNormal), detailMask);
+
+        #endif
+
+        #if defined(NORMALS_SET) || defined(DETAIL_NORMALS_SET)
+
+        half3 properNormal = normalize(mul(o.Normal, d.TBNMatrix));
+        d.worldSpaceTangent.xyz = cross(d.bitangent.xyz, properNormal);
+        d.bitangent.xyz = cross(properNormal, d.worldSpaceTangent.xyz);
+        d.TBNMatrix = float3x3(normalize(d.worldSpaceTangent.xyz), d.bitangent, d.worldNormal);
+        GLOBAL_pixelNormal = properNormal;
+
+        #else
+
+        GLOBAL_pixelNormal = normalize(mul(o.Normal, d.TBNMatrix));
+
+        #endif
+    }
+}

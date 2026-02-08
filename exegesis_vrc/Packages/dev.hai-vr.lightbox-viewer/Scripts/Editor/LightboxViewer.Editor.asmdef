@@ -1,0 +1,24 @@
+{
+    "name": "LightboxViewer",
+    "rootNamespace": "",
+    "references": [
+        "LightboxViewer.Runtime"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "red.sim.lightvolumes",
+            "expression": "0.7.2",
+            "define": "LIGHTBOXVIEWER_LIGHTVOLUMES_SUPPORTED"
+        }
+    ],
+    "noEngineReferences": false
+}

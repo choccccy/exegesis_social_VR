@@ -1,0 +1,751 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &76101505280462375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4045226219705695630}
+  - component: {fileID: 1072013341549017936}
+  - component: {fileID: 9038225406795898265}
+  m_Layer: 0
+  m_Name: bottom_socket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4045226219705695630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76101505280462375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.66180265, y: 0.000000025500011, z: -0.000000020603649, w: 0.74967813}
+  m_LocalPosition: {x: 0, y: 4.3257155, z: 0.020341396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6286868615558654814}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1072013341549017936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76101505280462375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703106f8586c4f64b5aa39b6b4676684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 8
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  addLight: 1
+  name: Bottom Socket
+  enableHandTouchZone2: 0
+  length: 0
+  unitsInMeters: 1
+  addMenuItem: 1
+  menuIcon:
+    version: 1
+    fileID: 0
+    guid: 
+    id: 329e815f85576e44693b8fe50397fa0f|Assets/_ChoccyMk3/icons/icons8-bottom-96.png
+    objRef: {fileID: 2800000, guid: 329e815f85576e44693b8fe50397fa0f, type: 3}
+  enableAuto: 1
+  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  depthActions2:
+  - actionSet:
+      actions:
+      - rid: 3453823788001525765
+    range: {x: -0.05, y: 0.1}
+    units: 0
+    enableSelf: 0
+    smoothingSeconds: 0
+    reverseClip: 0
+  - actionSet:
+      actions:
+      - rid: 3453823811985604608
+    range: {x: -0.5, y: 0}
+    units: 0
+    enableSelf: 0
+    smoothingSeconds: 0
+    reverseClip: 0
+  activeActions:
+    actions:
+    - rid: 3453823788001525775
+  useHipAvoidance: 1
+  enablePlugLengthParameter: 0
+  plugLengthParameterName: 
+  enablePlugWidthParameter: 0
+  plugWidthParameterName: 
+  enableDepthAnimations: 0
+  depthActions: []
+  enableActiveAnimation: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 3453823788001525765
+      type: {class: FxFloatAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 0
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        name: evil_heat
+        value: 1
+    - rid: 3453823788001525775
+      type: {class: AnimationClipAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 0
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        clip:
+          version: 1
+          fileID: 0
+          guid: 
+          id: f85c2cbe81f94034b89e60c64d9b4ef9|Assets/_exegesis/[panels]_groin_off.anim
+          objRef: {fileID: 7400000, guid: f85c2cbe81f94034b89e60c64d9b4ef9, type: 2}
+    - rid: 3453823811985604608
+      type: {class: BlendShapeAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 0
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        blendShape: expand_tanks
+        blendShapeValue: 100
+        renderer: {fileID: 0}
+        allRenderers: 1
+--- !u!114 &9038225406795898265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 76101505280462375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 2589806632127955208
+  references:
+    version: 2
+    RefIds:
+    - rid: 2589806632127955208
+      type: {class: ArmatureLink, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 7
+        propBone: {fileID: 76101505280462375}
+        linkTo:
+        - useBone: 1
+          bone: 0
+          useObj: 0
+          obj: {fileID: 0}
+          offset: Hips_fix
+        removeBoneSuffix: 
+        removeParentConstraints: 1
+        forceMergedName: 
+        forceOneWorldScale: 0
+        recursive: 0
+        alignPosition: 0
+        alignRotation: 0
+        alignScale: 0
+        autoScaleFactor: 1
+        scalingFactorPowersOf10Only: 1
+        skinRewriteScalingFactor: 1
+        useOptimizedUpload: 0
+        useBoneMerging: 0
+        keepBoneOffsets: 0
+        physbonesOnAvatarBones: 0
+        boneOnAvatar: 0
+        bonePathOnAvatar: 
+        fallbackBones: 
+        keepBoneOffsets2: 0
+        linkMode: 4
+--- !u!1 &4757313380666425150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6286868615558654814}
+  - component: {fileID: 8292009495500843615}
+  m_Layer: 0
+  m_Name: rober_sps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6286868615558654814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4757313380666425150}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4045226219705695630}
+  - {fileID: 8455604213735158965}
+  - {fileID: 1127305952536713477}
+  - {fileID: 4939990434697625090}
+  m_Father: {fileID: 2728426059686194157}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8292009495500843615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4757313380666425150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 2589806632127955278
+  references:
+    version: 2
+    RefIds:
+    - rid: 2589806632127955278
+      type: {class: SpsOptions, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 0
+        menuIcon:
+          version: 1
+          fileID: 0
+          guid: 
+          id: 3bdb37dc9cca3cf4096075def1495f66|Assets/_ChoccyMk3/icons/icons8-disconnected-96.png
+          objRef: {fileID: 2800000, guid: 3bdb37dc9cca3cf4096075def1495f66, type: 3}
+        menuPath: 'Cuddle/:flushed:'
+        saveSockets: 0
+--- !u!1 &6016893974615620098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4939990434697625090}
+  - component: {fileID: 6095510949596181050}
+  - component: {fileID: 8483394704538863163}
+  m_Layer: 0
+  m_Name: right_hand_socket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4939990434697625090
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6016893974615620098}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.99988556, y: -0, z: -0, w: -0.0151313795}
+  m_LocalPosition: {x: 3.87, y: 6.49, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6286868615558654814}
+  m_LocalEulerAnglesHint: {x: 181.734, y: 0, z: 0}
+--- !u!114 &6095510949596181050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6016893974615620098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703106f8586c4f64b5aa39b6b4676684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 8
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  addLight: 3
+  name: Right Hand Socket
+  enableHandTouchZone2: 0
+  length: 0
+  unitsInMeters: 1
+  addMenuItem: 1
+  menuIcon:
+    version: 1
+    fileID: 0
+    guid: 
+    id: c6a915ea2b0d0cb4badeda05c0c9bbd7|Assets/_ChoccyMk3/icons/icons8-hand-96.png
+    objRef: {fileID: 2800000, guid: c6a915ea2b0d0cb4badeda05c0c9bbd7, type: 3}
+  enableAuto: 1
+  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  depthActions2:
+  - actionSet:
+      actions:
+      - rid: 3453823788001525768
+    range: {x: -0.25, y: 0.25}
+    units: 0
+    enableSelf: 0
+    smoothingSeconds: 0
+    reverseClip: 0
+  activeActions:
+    actions: []
+  useHipAvoidance: 1
+  enablePlugLengthParameter: 0
+  plugLengthParameterName: 
+  enablePlugWidthParameter: 0
+  plugWidthParameterName: 
+  enableDepthAnimations: 0
+  depthActions: []
+  enableActiveAnimation: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 3453823788001525768
+      type: {class: FxFloatAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 0
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        name: evil_heat
+        value: 1
+--- !u!114 &8483394704538863163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6016893974615620098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 2589806632127955008
+  references:
+    version: 2
+    RefIds:
+    - rid: 2589806632127955008
+      type: {class: ArmatureLink, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 7
+        propBone: {fileID: 6016893974615620098}
+        linkTo:
+        - useBone: 1
+          bone: 18
+          useObj: 0
+          obj: {fileID: 0}
+          offset: 
+        removeBoneSuffix: 
+        removeParentConstraints: 1
+        forceMergedName: 
+        forceOneWorldScale: 0
+        recursive: 0
+        alignPosition: 0
+        alignRotation: 0
+        alignScale: 0
+        autoScaleFactor: 1
+        scalingFactorPowersOf10Only: 1
+        skinRewriteScalingFactor: 1
+        useOptimizedUpload: 0
+        useBoneMerging: 0
+        keepBoneOffsets: 0
+        physbonesOnAvatarBones: 0
+        boneOnAvatar: 0
+        bonePathOnAvatar: 
+        fallbackBones: 
+        keepBoneOffsets2: 0
+        linkMode: 4
+--- !u!1 &6232189262029193738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2728426059686194157}
+  m_Layer: 0
+  m_Name: ncho_verypoor_features
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2728426059686194157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6232189262029193738}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6286868615558654814}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7182469028884181321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1127305952536713477}
+  - component: {fileID: 531284664207666980}
+  - component: {fileID: 8366008599900926753}
+  m_Layer: 0
+  m_Name: left_hand_socket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1127305952536713477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182469028884181321}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.99988556, y: -0, z: -0, w: -0.0151313795}
+  m_LocalPosition: {x: -3.87, y: 6.49, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6286868615558654814}
+  m_LocalEulerAnglesHint: {x: 181.734, y: 0, z: 0}
+--- !u!114 &531284664207666980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182469028884181321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703106f8586c4f64b5aa39b6b4676684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 8
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  addLight: 3
+  name: Left Hand Socket
+  enableHandTouchZone2: 0
+  length: 0
+  unitsInMeters: 1
+  addMenuItem: 1
+  menuIcon:
+    version: 1
+    fileID: 0
+    guid: 
+    id: e22e02c6757e28f4f8b7311dc2d72f54|Assets/_ChoccyMk3/icons/icons8-hand-96 L.png
+    objRef: {fileID: 2800000, guid: e22e02c6757e28f4f8b7311dc2d72f54, type: 3}
+  enableAuto: 1
+  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  depthActions2:
+  - actionSet:
+      actions:
+      - rid: 3453823788001525767
+    range: {x: -0.25, y: 0.25}
+    units: 0
+    enableSelf: 0
+    smoothingSeconds: 0
+    reverseClip: 0
+  activeActions:
+    actions: []
+  useHipAvoidance: 1
+  enablePlugLengthParameter: 0
+  plugLengthParameterName: 
+  enablePlugWidthParameter: 0
+  plugWidthParameterName: 
+  enableDepthAnimations: 0
+  depthActions: []
+  enableActiveAnimation: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 3453823788001525767
+      type: {class: FxFloatAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 0
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        name: evil_heat
+        value: 1
+--- !u!114 &8366008599900926753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7182469028884181321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 2589806632127955008
+  references:
+    version: 2
+    RefIds:
+    - rid: 2589806632127955008
+      type: {class: ArmatureLink, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 7
+        propBone: {fileID: 7182469028884181321}
+        linkTo:
+        - useBone: 1
+          bone: 17
+          useObj: 0
+          obj: {fileID: 0}
+          offset: 
+        removeBoneSuffix: 
+        removeParentConstraints: 1
+        forceMergedName: 
+        forceOneWorldScale: 0
+        recursive: 0
+        alignPosition: 0
+        alignRotation: 0
+        alignScale: 0
+        autoScaleFactor: 1
+        scalingFactorPowersOf10Only: 1
+        skinRewriteScalingFactor: 1
+        useOptimizedUpload: 0
+        useBoneMerging: 0
+        keepBoneOffsets: 0
+        physbonesOnAvatarBones: 0
+        boneOnAvatar: 0
+        bonePathOnAvatar: 
+        fallbackBones: 
+        keepBoneOffsets2: 0
+        linkMode: 4
+--- !u!1 &8157829915069066353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8455604213735158965}
+  - component: {fileID: 6495174524020372457}
+  - component: {fileID: 3271247996891457108}
+  m_Layer: 0
+  m_Name: face_socket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8455604213735158965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157829915069066353}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.004784376, y: 3.557124e-14, z: 1.4131052e-16, w: 0.99998856}
+  m_LocalPosition: {x: 0, y: 7.374898, z: 0.1986766}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6286868615558654814}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6495174524020372457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157829915069066353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703106f8586c4f64b5aa39b6b4676684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 8
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  addLight: 1
+  name: Face Socket
+  enableHandTouchZone2: 0
+  length: 0
+  unitsInMeters: 1
+  addMenuItem: 1
+  menuIcon:
+    version: 1
+    fileID: 0
+    guid: 
+    id: bf6f1d0ced463114b8a9dbcd78159b72|Assets/_ChoccyMk3/icons/icons8-open-mouth-64.png
+    objRef: {fileID: 2800000, guid: bf6f1d0ced463114b8a9dbcd78159b72, type: 3}
+  enableAuto: 1
+  position: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  depthActions2:
+  - actionSet:
+      actions:
+      - rid: 3453823788001525766
+    range: {x: -0.25, y: 0.25}
+    units: 0
+    enableSelf: 0
+    smoothingSeconds: 0
+    reverseClip: 0
+  activeActions:
+    actions:
+    - rid: 3453823788001525774
+  useHipAvoidance: 1
+  enablePlugLengthParameter: 0
+  plugLengthParameterName: 
+  enablePlugWidthParameter: 0
+  plugWidthParameterName: 
+  enableDepthAnimations: 0
+  depthActions: []
+  enableActiveAnimation: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 3453823788001525766
+      type: {class: FxFloatAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 0
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        name: evil_heat
+        value: 1
+    - rid: 3453823788001525774
+      type: {class: AnimationClipAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 0
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        clip:
+          version: 1
+          fileID: 0
+          guid: 
+          id: 32a9b69077667a440b013218fa69246b|Assets/_exegesis/[panels]_face_off.anim
+          objRef: {fileID: 7400000, guid: 32a9b69077667a440b013218fa69246b, type: 2}
+--- !u!114 &3271247996891457108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157829915069066353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 2589806632127955008
+  references:
+    version: 2
+    RefIds:
+    - rid: 2589806632127955008
+      type: {class: ArmatureLink, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 7
+        propBone: {fileID: 8157829915069066353}
+        linkTo:
+        - useBone: 1
+          bone: 10
+          useObj: 0
+          obj: {fileID: 0}
+          offset: 
+        removeBoneSuffix: 
+        removeParentConstraints: 1
+        forceMergedName: 
+        forceOneWorldScale: 0
+        recursive: 0
+        alignPosition: 0
+        alignRotation: 0
+        alignScale: 0
+        autoScaleFactor: 1
+        scalingFactorPowersOf10Only: 1
+        skinRewriteScalingFactor: 1
+        useOptimizedUpload: 0
+        useBoneMerging: 0
+        keepBoneOffsets: 0
+        physbonesOnAvatarBones: 0
+        boneOnAvatar: 0
+        bonePathOnAvatar: 
+        fallbackBones: 
+        keepBoneOffsets2: 0
+        linkMode: 4

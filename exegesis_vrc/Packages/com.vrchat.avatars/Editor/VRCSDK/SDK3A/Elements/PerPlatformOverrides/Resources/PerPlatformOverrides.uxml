@@ -1,0 +1,15 @@
+<UXML xmlns="UnityEngine.UIElements" xmlns:vrc="VRC.SDKBase.Editor.Elements">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="UnityEditor.UIElements file:/D:/Unity%20Projects/VRCSDK%2022%20Avatars/UIElementsSchema/UnityEditor.UIElements.xsd">
+    <VisualElement class="col">
+        <VisualElement>
+            <Label text="This allows you to override the uploaded avatar object for specific platforms." class="white-space-normal" />
+        </VisualElement>
+        <VisualElement name="avatar-per-platform-config" class="w-100 pt-3 pb-3">
+            <!-- Per-Platform config UI gets inserted here -->
+        </VisualElement>
+        <VisualElement class="flex-1">
+            <Button name="avatar-per-platform-entry-add-btn" class="pt-2 pb-2 text-bold" text="Add per-platform override" />
+        </VisualElement>
+    </VisualElement>
+</UXML>

@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="ParameterField" style="flex-direction: column;">
+        <ui:VisualElement name="ParameterRow" style="flex-grow: 1; flex-direction: row; margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 1px;">
+            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" class="unity-base-field__label" style="-unity-text-align: upper-left; display: none;" />
+            <ui:DropdownField index="-1" choices="System.Collections.Generic.List`1[System.String]" style="flex-grow: 1; margin-left: 0; margin-right: 4px; margin-top: 0; margin-bottom: 0; flex-shrink: 1;" />
+            <ui:TextField picking-mode="Ignore" style="width: 128px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="BoolHelpBoxContainer" style="flex-grow: 1;" />
+    </ui:VisualElement>
+</ui:UXML>

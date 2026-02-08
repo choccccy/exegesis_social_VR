@@ -1,0 +1,106 @@
+﻿#ListViewContainer {
+    margin-top: 4px;
+    max-height: 500px;
+}
+
+.horizontal {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1px 0;
+}
+
+.horizontal > * {
+    height: 18px;
+    margin: 0 1px;
+}
+
+.horizontal > Label {
+    height: auto;
+}
+
+.horizontal > PropertyField > * {
+    margin: 0;
+}
+
+#f-name {
+    flex-grow: 1;
+}
+
+#f-sync-type {
+    display: none;
+}
+
+.st-ty-Not-Synced .st-anim-only__hide {
+    display: none;
+}
+
+#f-is-prefix {
+    display: none;
+}
+
+.st-pb-prefix .st-pb-prefix__hide {
+    display: none;
+}
+
+#f-remap-to, #f-remap-to-disabled {
+    flex-grow: 1;
+}
+
+#f-remap-to-placeholder {
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#f-internal-parameter {
+    margin-left: 3px;
+}
+
+#remap-to-group {
+    display: flex;
+    flex-grow: 1;
+}
+
+#remap-to-group-disabled {
+    display: none;
+    flex-grow: 1;
+}
+
+.st-internal-parameter #remap-to-group {
+    display: none;
+}
+
+.st-internal-parameter #remap-to-group-disabled {
+    display: flex;
+}
+
+.horizontal > .horizontal {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+DefaultValueField > * {
+    width: 60px;
+    height: 100%;
+    margin: 0;
+}
+
+#f-local-only {
+    display: none;
+}
+
+.DetectedParameter {
+    flex-direction: row;
+}
+
+.DetectedParameter > Label {
+    flex-grow: 1;
+    align-self: center;
+}
+
+.SourceButton {
+    width: 24px;
+    height: 24px;
+    padding: 1px;
+}

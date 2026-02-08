@@ -1,0 +1,354 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6394688572709971398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1894081703919058493}
+  - component: {fileID: 7694202150961109532}
+  m_Layer: 0
+  m_Name: screwdriver_sender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1894081703919058493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6394688572709971398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 262048425549641935}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7694202150961109532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6394688572709971398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -802764141, guid: 80f1b8067b0760e4bb45023bc2e9de66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootTransform: {fileID: 0}
+  shapeType: 1
+  radius: 0.025
+  height: 0.6
+  position: {x: 0, y: 0, z: 0.6}
+  rotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
+  localOnly: 0
+  contentTypes: -1
+  collisionTags:
+  - screwdriver
+--- !u!1001 &299562883189792548
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.225
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.225
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.225
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.8165374
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.55263
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_ProbeAnchor
+      value: 
+      objectReference: {fileID: 262048425549641935}
+    - target: {fileID: -7511558181221131132, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 90a815eda3606e0458f109053e925980, type: 2}
+    - target: {fileID: 919132149155446097, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      propertyPath: m_Name
+      value: screwdriver
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1894081703919058493}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6972038183527561898}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4518542076168823856}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5927349614129798981}
+  m_SourcePrefab: {fileID: 100100000, guid: 3d9927d41ae72814dbbcae506fc0d7d2, type: 3}
+--- !u!4 &262048425549641935 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 299562883189792548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &642091748329677429 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3d9927d41ae72814dbbcae506fc0d7d2,
+    type: 3}
+  m_PrefabInstance: {fileID: 299562883189792548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6972038183527561898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642091748329677429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 2589806632127955366
+  references:
+    version: 2
+    RefIds:
+    - rid: 2589806632127955366
+      type: {class: ArmatureLink, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 7
+        propBone: {fileID: 642091748329677429}
+        linkTo:
+        - useBone: 1
+          bone: 18
+          useObj: 0
+          obj: {fileID: 0}
+          offset: 
+        removeBoneSuffix: 
+        removeParentConstraints: 1
+        forceMergedName: 
+        forceOneWorldScale: 0
+        recursive: 0
+        alignPosition: 0
+        alignRotation: 0
+        alignScale: 0
+        autoScaleFactor: 1
+        scalingFactorPowersOf10Only: 1
+        skinRewriteScalingFactor: 1
+        useOptimizedUpload: 0
+        useBoneMerging: 0
+        keepBoneOffsets: 0
+        physbonesOnAvatarBones: 0
+        boneOnAvatar: 0
+        bonePathOnAvatar: 
+        fallbackBones: 
+        keepBoneOffsets2: 0
+        linkMode: 4
+--- !u!114 &4518542076168823856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642091748329677429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 2589806632127955281
+  references:
+    version: 2
+    RefIds:
+    - rid: 2589806632127955281
+      type: {class: Toggle, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 3
+        name: Tools/Screwdriver/Enabled
+        state:
+          actions:
+          - rid: 2589806632127955282
+        saved: 0
+        slider: 0
+        sliderInactiveAtZero: 0
+        securityEnabled: 0
+        defaultOn: 0
+        includeInRest: 0
+        exclusiveOffState: 0
+        enableExclusiveTag: 0
+        exclusiveTag: 
+        resetPhysbones: []
+        hasExitTime: 0
+        enableIcon: 1
+        icon:
+          version: 1
+          fileID: 0
+          guid: 
+          id: 6ae442eb5674a4749aaf24a4b7af32d3|Assets/_exegesis/icons/icons8-screwdriver-64.png
+          objRef: {fileID: 2800000, guid: 6ae442eb5674a4749aaf24a4b7af32d3, type: 3}
+        enableDriveGlobalParam: 0
+        driveGlobalParam: 
+        separateLocal: 0
+        localState:
+          actions: []
+        hasTransition: 0
+        transitionStateIn:
+          actions: []
+        transitionStateOut:
+          actions: []
+        transitionTimeIn: 0
+        transitionTimeOut: 0
+        localTransitionStateIn:
+          actions: []
+        localTransitionStateOut:
+          actions: []
+        localTransitionTimeIn: 0
+        localTransitionTimeOut: 0
+        simpleOutTransition: 1
+        defaultSliderValue: 0
+        useGlobalParam: 0
+        globalParam: 
+        holdButton: 0
+        invertRestLogic: 0
+        expandIntoTransition: 1
+    - rid: 2589806632127955282
+      type: {class: ObjectToggleAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 1
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        obj: {fileID: 642091748329677429}
+        mode: 0
+--- !u!114 &5927349614129798981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642091748329677429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1278.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 2589806632127955958
+  references:
+    version: 2
+    RefIds:
+    - rid: 2589806632127955958
+      type: {class: SetIcon, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 1
+        path: Tools/Screwdriver
+        icon:
+          version: 1
+          fileID: 0
+          guid: 
+          id: 6ae442eb5674a4749aaf24a4b7af32d3|Assets/_exegesis/icons/icons8-screwdriver-64.png
+          objRef: {fileID: 2800000, guid: 6ae442eb5674a4749aaf24a4b7af32d3, type: 3}

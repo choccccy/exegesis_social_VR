@@ -1,0 +1,348 @@
+﻿%ShaderFeatures()
+{
+    #pragma shader_feature_local_fragment BAKERY_ENABLED
+    #pragma shader_feature_local_fragment _ BAKERY_RNM BAKERY_SH BAKERY_MONOSH
+    #pragma shader_feature_local_fragment BAKERY_SHNONLINEAR
+    #pragma shader_feature_local_fragment BAKERY_VOLUME
+    #pragma shader_feature_local_fragment BAKERY_COMPRESSED_VOLUME
+    #pragma shader_feature_local_fragment BAKERY_VOLROTATIONY
+}
+
+%ShaderDefines()
+{
+    #if !defined(LIGHTMAP_ON) || !defined(UNITY_PASS_FORWARDBASE)
+      #undef BAKERY_SH
+      #undef BAKERY_RNM
+    #endif
+
+    #ifdef LIGHTMAP_ON
+      #undef BAKERY_VOLUME
+    #endif
+
+    #ifdef LIGHTMAP_ON
+        #if defined(BAKERY_ENABLED)
+            #if defined(BAKERY_RNM) || defined(BAKERY_SH) || defined(BAKERY_VERTEXLM) || defined(BAKERY_MONOSH)
+                #define BAKERYLM_ENABLED
+                #if !defined(BAKERY_MONOSH)
+                    #undef DIRLIGHTMAP_COMBINED
+                #endif
+            #endif
+        #endif
+    #endif
+
+    #if defined(BAKERY_SH) || defined(BAKERY_RNM) || defined(BAKERY_VOLUME) || defined(BAKERY_MONOSH)
+      #ifdef BAKED_SPECULAR
+        #define _BAKERY_LMSPEC
+        #define BAKERY_LMSPEC
+      #endif
+    #endif
+}
+
+%Variables()
+{
+    #if defined(BAKERY_ENABLED)
+        #if defined(BAKERY_RNM) || defined(BAKERY_SH)
+    float4 _RNM0_TexelSize;
+        #endif
+    #endif
+
+    #if defined(BAKERY_ENABLED) && defined(BAKERY_VOLUME)
+    half3 _VolumeMin;
+    half3 _VolumeInvSize;
+    half3 _GlobalVolumeMin;
+    int _Udon_GlobalVolumeAdapterEnabled;
+    half3 _Udon_GlobalVolumeMin;
+    half3 _GlobalVolumeInvSize;
+    half3 _Udon_GlobalVolumeInvSize;
+
+    #if defined(BAKERY_VOLROTATION)
+    float4x4 _GlobalVolumeMatrix;
+    float4x4 _Udon_GlobalVolumeMatrix;
+    float4x4 _VolumeMatrix;
+    #endif
+    
+    #if defined(BAKERY_VOLROTATIONY)
+    float2 _GlobalVolumeRY;
+    float2 _Udon_GlobalVolumeRY;
+    float2 _VolumeRY;
+    #endif
+    
+    #endif
+}
+
+%Textures()
+{
+    #if defined(BAKERY_ENABLED)
+        #if defined(BAKERY_RNM) || defined(BAKERY_SH)
+    TEXTURE2D(_RNM0);
+    TEXTURE2D(_RNM1);
+    TEXTURE2D(_RNM2);
+    SAMPLER(sampler_RNM0);
+        #endif
+    #endif
+
+    #if defined(BAKERY_ENABLED) && defined(BAKERY_VOLUME)
+    TEXTURE3D(_Volume0);
+    TEXTURE3D(_Volume1);
+    TEXTURE3D(_Volume2);
+    TEXTURE3D(_VolumeMask);
+
+        #if defined(BAKERY_COMPRESSED_VOLUME)
+    TEXTURE3D(_Volume3);
+        #endif
+
+    SAMPLER(sampler_Volume0);
+    SAMPLER(sampler_VolumeMask);
+    #endif
+}
+
+%LibraryFunctions()
+{
+    // https://assetstore.unity.com/packages/tools/level-design/bakery-gpu-lightmapper-122218
+
+    #if defined(BAKERY_ENABLED)
+
+    //float2 bakeryLightmapSize;
+    #define BAKERYMODE_DEFAULT 0
+    #define BAKERYMODE_VERTEXLM 1.0f
+    #define BAKERYMODE_RNM 2.0f
+    #define BAKERYMODE_SH 3.0f
+
+    #define rnmBasis0 float3(0.816496580927726f, 0, 0.5773502691896258f)
+    #define rnmBasis1 float3(-0.4082482904638631f, 0.7071067811865475f, 0.5773502691896258f)
+    #define rnmBasis2 float3(-0.4082482904638631f, -0.7071067811865475f, 0.5773502691896258f)
+
+    #if defined(BAKERY_DOMINANT)
+      #undef BAKERY_RNM
+      #undef BAKERY_SH
+      #undef BAKERY_MONOSH
+    #endif
+
+    #ifdef BICUBIC_LIGHTMAP
+        #define BAKERY_BICUBIC
+    #endif
+
+    //#define BAKERY_SSBUMP
+
+    // can't fit vertexLM SH to sm3_0 interpolators
+    #ifndef SHADER_API_D3D11
+        #undef BAKERY_VERTEXLMSH
+    #endif
+
+    // can't do stuff on sm2_0 due to standard shader alrady taking up all instructions
+    #if SHADER_TARGET < 30
+        #undef BAKERY_BICUBIC
+        #undef BAKERY_LMSPEC
+
+        #undef BAKERY_RNM
+        #undef BAKERY_SH
+        #undef BAKERY_MONOSH
+        #undef BAKERY_VERTEXLM
+    #endif
+
+    #if !defined(BAKERY_SH) && !defined(BAKERY_RNM)
+        #undef BAKERY_BICUBIC
+    #endif
+
+    #ifndef UNITY_SHOULD_SAMPLE_SH
+        #undef BAKERY_PROBESHNONLINEAR
+    #endif
+
+    #if defined(BAKERY_RNM) && defined(BAKERY_LMSPEC)
+    #define BAKERY_RNMSPEC
+    #endif
+
+    #ifndef BAKERY_VERTEXLM
+        #undef BAKERY_VERTEXLMDIR
+        #undef BAKERY_VERTEXLMSH
+        #undef BAKERY_VERTEXLMMASK
+    #endif
+
+    #define lumaConv float3(0.2125f, 0.7154f, 0.0721f)
+
+    struct BakeryVolumeData
+    {
+        float3 L0;
+        float3 L1x;
+        float3 L1y;
+        float3 L1z;
+        
+        float4 tex0;
+        float4 tex1;
+        float4 tex2;
+        float4 tex3;
+
+        float3 viewDir;
+        float3 normal;
+        float3 uv;
+        float occlusion;
+    };
+
+    struct BakeryVolumeSpecularData
+    {
+        float3 direction;
+        float3 color;
+        float NoV;
+    };
+
+    #ifdef BAKERY_BICUBIC
+    float BakeryBicubic_w0(float a)
+    {
+        return (1.0f/6.0f)*(a*(a*(-a + 3.0f) - 3.0f) + 1.0f);
+    }
+
+    float BakeryBicubic_w1(float a)
+    {
+        return (1.0f/6.0f)*(a*a*(3.0f*a - 6.0f) + 4.0f);
+    }
+
+    float BakeryBicubic_w2(float a)
+    {
+        return (1.0f/6.0f)*(a*(a*(-3.0f*a + 3.0f) + 3.0f) + 1.0f);
+    }
+
+    float BakeryBicubic_w3(float a)
+    {
+        return (1.0f/6.0f)*(a*a*a);
+    }
+
+    float BakeryBicubic_g0(float a)
+    {
+        return BakeryBicubic_w0(a) + BakeryBicubic_w1(a);
+    }
+
+    float BakeryBicubic_g1(float a)
+    {
+        return BakeryBicubic_w2(a) + BakeryBicubic_w3(a);
+    }
+
+    float BakeryBicubic_h0(float a)
+    {
+        return -1.0f + BakeryBicubic_w1(a) / (BakeryBicubic_w0(a) + BakeryBicubic_w1(a)) + 0.5f;
+    }
+
+    float BakeryBicubic_h1(float a)
+    {
+        return 1.0f + BakeryBicubic_w3(a) / (BakeryBicubic_w2(a) + BakeryBicubic_w3(a)) + 0.5f;
+    }
+    #endif
+
+    #ifdef BAKERY_BICUBIC
+        // Bicubic
+        float4 BakeryTex2D(sampler2D tex, float2 uv, float4 texelSize)
+        {
+            float x = uv.x * texelSize.z;
+            float y = uv.y * texelSize.z;
+
+            x -= 0.5f;
+            y -= 0.5f;
+
+            float px = floor(x);
+            float py = floor(y);
+
+            float fx = x - px;
+            float fy = y - py;
+
+            float g0x = BakeryBicubic_g0(fx);
+            float g1x = BakeryBicubic_g1(fx);
+            float h0x = BakeryBicubic_h0(fx);
+            float h1x = BakeryBicubic_h1(fx);
+            float h0y = BakeryBicubic_h0(fy);
+            float h1y = BakeryBicubic_h1(fy);
+
+            return     BakeryBicubic_g0(fy) * ( g0x * tex2D(tex, (float2(px + h0x, py + h0y) * texelSize.x))   +
+                                  g1x * tex2D(tex, (float2(px + h1x, py + h0y) * texelSize.x))) +
+
+                       BakeryBicubic_g1(fy) * ( g0x * tex2D(tex, (float2(px + h0x, py + h1y) * texelSize.x))   +
+                                  g1x * tex2D(tex, (float2(px + h1x, py + h1y) * texelSize.x)));
+        }
+        float4 BakeryTex2D(Texture2D tex, SamplerState s, float2 uv, float4 texelSize)
+        {
+            float x = uv.x * texelSize.z;
+            float y = uv.y * texelSize.z;
+
+            x -= 0.5f;
+            y -= 0.5f;
+
+            float px = floor(x);
+            float py = floor(y);
+
+            float fx = x - px;
+            float fy = y - py;
+
+            float g0x = BakeryBicubic_g0(fx);
+            float g1x = BakeryBicubic_g1(fx);
+            float h0x = BakeryBicubic_h0(fx);
+            float h1x = BakeryBicubic_h1(fx);
+            float h0y = BakeryBicubic_h0(fy);
+            float h1y = BakeryBicubic_h1(fy);
+
+            return     BakeryBicubic_g0(fy) * ( g0x * tex.Sample(s, (float2(px + h0x, py + h0y) * texelSize.x))   +
+                                  g1x * tex.Sample(s, (float2(px + h1x, py + h0y) * texelSize.x))) +
+
+                       BakeryBicubic_g1(fy) * ( g0x * tex.Sample(s, (float2(px + h0x, py + h1y) * texelSize.x))   +
+                                  g1x * tex.Sample(s, (float2(px + h1x, py + h1y) * texelSize.x)));
+        }
+    #else
+        // Bilinear
+        float4 BakeryTex2D(sampler2D tex, float2 uv, float4 texelSize)
+        {
+            return tex2D(tex, uv);
+        }
+        float4 BakeryTex2D(Texture2D tex, SamplerState s, float2 uv, float4 texelSize)
+        {
+            return tex.Sample(s, uv);
+        }
+    #endif
+
+    #endif
+    //BAKERY_ENABLED
+}
+
+// These are defined separately so that they can reference Tesxture variables from inside the pass
+%PassFunctions()
+{
+    // Bakery volume helpers
+    #if defined(BAKERY_ENABLED)
+    #if defined(BAKERY_VOLUME)
+    BakeryVolumeData GetBakeryVolumeTextureData(BakeryVolumeData data)
+    {
+        #ifdef BAKERY_COMPRESSED_VOLUME
+            data.tex0 = _Volume0.Sample(sampler_Volume0, data.uv);
+            data.tex1 = _Volume1.Sample(sampler_Volume0, data.uv) * 2 - 1;
+            data.tex2 = _Volume2.Sample(sampler_Volume0, data.uv) * 2 - 1;
+            data.tex3 = _Volume3.Sample(sampler_Volume0, data.uv) * 2 - 1;
+            data.L0 = data.tex0.xyz;
+            data.L1x = data.tex1.xyz * data.L0 * 2;
+            data.L1y = data.tex2.xyz * data.L0 * 2;
+            data.L1z = data.tex3.xyz * data.L0 * 2;
+        #else
+            data.tex0 = _Volume0.Sample(sampler_Volume0, data.uv);
+            data.tex1 = _Volume1.Sample(sampler_Volume0, data.uv);
+            data.tex2 = _Volume2.Sample(sampler_Volume0, data.uv);
+            data.L0 = data.tex0.xyz;
+            data.L1x = data.tex1.xyz;
+            data.L1y = data.tex2.xyz;
+            data.L1z = float3(data.tex0.w, data.tex1.w, data.tex2.w);
+        #endif
+        return data;
+    }
+
+    BakeryVolumeSpecularData GetBakeryVolumeSpecularData(BakeryVolumeData data)
+    {
+        BakeryVolumeSpecularData ret = (BakeryVolumeSpecularData) 0;
+
+        float3 nL1x = data.L1x / data.L0;
+        float3 nL1y = data.L1y / data.L0;
+        float3 nL1z = data.L1z / data.L0;
+        ret.direction = float3(dot(nL1x, lumaConv), dot(nL1y, lumaConv), dot(nL1z, lumaConv));
+        ret.color = data.L0 + ret.direction.x * data.L1x + ret.direction.y * data.L1y + ret.direction.z * data.L1z;
+        ret.NoV = dot(data.normal, data.viewDir);
+        ret.NoV = max(ret.NoV, 0.0001);
+        return ret;
+    }
+
+    #endif
+
+    #endif
+}

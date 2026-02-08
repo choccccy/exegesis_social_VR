@@ -1,0 +1,10 @@
+﻿%Template("@/Templates/PBR")
+
+%Includes()
+{
+    "target",
+    "@/Structs/MeshData",
+    "@/Structs/PBR/SurfaceData",
+    "@/Functions/PBR/FragmentBase",
+    "@/Functions/VertexBase",
+}

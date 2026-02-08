@@ -1,0 +1,25 @@
+_PoiyomiShaders/
+
+# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# VS / Rider / IDE
+.vs/
+.vscode/
+*.csproj
+*.sln
+*.user
+*.unityproj
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Crash / debug
+*.stacktrace

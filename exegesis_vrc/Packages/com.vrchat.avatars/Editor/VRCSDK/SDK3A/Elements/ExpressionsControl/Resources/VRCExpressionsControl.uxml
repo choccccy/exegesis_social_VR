@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="ControlField" style="flex-direction: row; -unity-text-align: middle-left; align-items: stretch;">
+        <ui:VisualElement style="flex-direction: row; flex-shrink: 1; flex-grow: 1; overflow: hidden; text-overflow: ellipsis; align-self: auto;">
+            <ui:Label tabindex="-1" text="New Control" display-tooltip-when-elided="true" name="NameLabel" parse-escape-sequences="true" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; text-overflow: ellipsis; flex-wrap: wrap; flex-shrink: 1; overflow: hidden;" />
+            <ui:Label tabindex="-1" text="Variable" parse-escape-sequences="true" display-tooltip-when-elided="true" name="VariableLabel" style="margin-left: 8px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; color: rgba(210, 210, 210, 0.5);" />
+        </ui:VisualElement>
+        <ui:EnumField type="VRC.SDK3.Avatars.ScriptableObjects.VRCExpressionsMenu+Control+ControlType, VRCSDK3A" name="TypeField" value="Button" style="display: flex; min-width: 64px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+    </ui:VisualElement>
+</ui:UXML>

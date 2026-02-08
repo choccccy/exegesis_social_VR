@@ -1,0 +1,18 @@
+﻿<UXML xmlns="UnityEngine.UIElements" xmlns:vrc="VRC.SDKBase.Editor.Elements" xmlns:vrca="VRC.SDK3A.Editor.Elements">
+    <VisualElement name="avatar-selector-header">
+        <Label text="Selected Avatar" name="avatar-selector-label" />
+        <Button name="avatar-selector-options" tooltip="Options" />
+        <VisualElement name="avatar-options-active-marker" class="d-none" tooltip="Per-Platform Overrides Active">
+            <VisualElement name="avatar-options-active-circle" />
+        </VisualElement>
+    </VisualElement>
+    <VisualElement name="avatar-selector-dropdown">
+        <!-- Selector dropdown gets inserted here -->
+    </VisualElement>
+    
+    <vrc:Modal title="Configure Per-Platform Overrides" name="avatar-per-platform-config-modal">
+        <VisualElement class="p-3">
+            <vrca:PerPlatformOverridesElement />
+        </VisualElement>
+    </vrc:Modal>
+</UXML>

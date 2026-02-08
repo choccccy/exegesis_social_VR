@@ -1,0 +1,15 @@
+{
+  "name": "nadena.dev.misc-vrc-tools",
+  "displayName": "bd_'s misc tools",
+  "version": "0.0.8",
+  "unity": "2022.3",
+  "description": "bd_'s random tools for VRChat",
+  "vrchatVersion": "2022.1.1",
+  "author": {
+    "name": "bd_",
+    "email": "bd_@nadena.dev",
+    "url": "https://github.com/bdunderscore/modular-avatar"
+  },
+  "url": "https://github.com/bdunderscore/misc-vrc-tools",
+  "repo": "https://vpm.nadena.dev/vpm.json"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "dev.hai-vr.animation-viewer",
+  "displayName": "Haï ~ Animation Viewer",
+  "version": "2.1.1",
+  "unity": "2019.4",
+  "description": "Animation Viewer https://docs.hai-vr.dev/docs/products/animation-viewer",
+  "author" : {
+    "name" : "Haï~"
+  },
+  "vpmDependencies": {
+  },
+  "legacyFolders" : {
+    "Assets\\Hai\\AnimationViewer" : "6b1e2876697f44d1ad9b4ce24f452c98"
+  },
+  "url" : "https://docs.hai-vr.dev/docs/products/animation-viewer",
+  "documentationUrl": "https://docs.hai-vr.dev/docs/products/animation-viewer",
+  "changelogUrl": "https://docs.hai-vr.dev/docs/changelogs/animation-viewer",
+  "license": "MIT"
+}

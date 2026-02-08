@@ -1,0 +1,15 @@
+.title-label {
+    font-size: 18px;
+    color: rgb(209, 0, 84);
+}
+
+.vertical-toggle {
+}
+
+.vertical-toggle > Toggle {
+    flex-direction: column;
+}
+
+.margin-top {
+    margin-top: 4px;
+}

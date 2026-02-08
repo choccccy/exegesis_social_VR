@@ -1,0 +1,39 @@
+﻿#fallback-avatar-info {
+    margin-top: 4px;
+}
+
+#fallback-avatar-info Button {
+    margin: 0;
+}
+
+#fallback-avatar-info Label {
+    color: var(--unity-colors-default-text);
+    opacity: 0.5;
+}
+
+#visibility-block PopupField {
+    flex-direction: column;
+}
+#visibility-block PopupField > Label {
+    font-size: 12px;
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+    padding-top: 0;
+}
+
+#content-description {
+    min-height: 77px;
+}
+
+#content-name Label {
+    padding-top: 0;
+}
+
+#content-name {
+    margin-bottom: 6px;
+}
+
+#avatar-selector PopupField {
+    margin-bottom: 0;
+    margin-top: 0;
+}

@@ -1,0 +1,25 @@
+%ShaderName("orels1/Toon/Transparent")
+%CustomEditor("ORL.ShaderInspector.InspectorGUI")
+
+%Includes()
+{
+    "@/Shaders/ORL Toon",
+    "self",
+}
+
+%ShaderTags()
+{
+    "Queue" = "AlphaTest+10" "RenderType" = "TransparentCutout"
+}
+
+%ShaderModifiers()
+{
+    BlendOp Add, Max
+    Blend SrcAlpha OneMinusSrcAlpha, One One
+    ZWrite Off
+}
+
+%ShaderDefines()
+{
+    #define NEED_ALBEDO_ALPHA
+}

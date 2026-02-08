@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <uie:Toolbar name="ActionsToolbar" style="margin-bottom: 6px; height: 20px;">
+        <uie:ToolbarMenu tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" text="Options" name="ActionsMenu" style="width: 70px;" />
+        <ui:ProgressBar value="0" title="0/256 Synced Bits" high-value="255" name="MemoryBar" style="flex-grow: 1; overflow: hidden; padding-bottom: 0; margin-left: 1px; margin-right: 1px; margin-top: 0; margin-bottom: 0;" />
+    </uie:Toolbar>
+    <ui:VisualElement name="LearnMoreBox" style="margin-left: 4px; margin-right: 4px; margin-top: 4px; margin-bottom: 4px; background-color: rgba(255, 255, 255, 0.1); border-left-color: rgba(0, 0, 0, 0.5); border-right-color: rgba(0, 0, 0, 0.5); border-top-color: rgba(0, 0, 0, 0.5); border-bottom-color: rgba(0, 0, 0, 0.5); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px; flex-direction: row; align-items: center;">
+        <ui:Label tabindex="-1" text="Expression Parameters are values used to control your avatar either through your Expressions Menu, or through tools like OSC." parse-escape-sequences="true" display-tooltip-when-elided="true" style="white-space: normal; flex-shrink: 1; flex-grow: 1; overflow: hidden; text-overflow: ellipsis;" />
+        <ui:Button text="Learn More" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LearnMoreButton" style="height: 22px; width: 80px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="ListHeader" style="height: 24px; border-left-color: rgba(0, 0, 0, 0.5); border-right-color: rgba(0, 0, 0, 0.5); border-top-color: rgba(0, 0, 0, 0.5); border-bottom-color: rgba(0, 0, 0, 0.5); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-top-left-radius: 4px; border-bottom-left-radius: 0; border-top-right-radius: 4px; border-bottom-right-radius: 0; margin-bottom: -4px; background-color: rgba(0, 0, 0, 0.15); flex-direction: row; padding-left: 4px; padding-right: 2px; padding-top: 0; padding-bottom: 4px; overflow: hidden; margin-top: 0; -unity-text-align: middle-left; flex-shrink: 0;">
+        <ui:Label tabindex="-1" text="Name" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NameLabel" style="flex-grow: 1;" />
+        <ui:Label tabindex="-1" text="Type" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TypeLabel" style="width: 80px;" />
+        <ui:Label tabindex="-1" text="Default" parse-escape-sequences="true" display-tooltip-when-elided="true" name="DefaultLabel" style="width: 60px;" />
+        <ui:Label tabindex="-1" text="Saved" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SavedLabel" style="width: 50px;" />
+        <ui:Label tabindex="-1" text="Synced" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SyncedLabel" style="width: 54px;" />
+    </ui:VisualElement>
+    <ui:ListView focusable="true" name="ParametersListView" show-add-remove-footer="true" reorderable="true" show-alternating-row-backgrounds="All" show-border="true" header-title="Parameters" show-foldout-header="true" reorder-mode="Animated" />
+</ui:UXML>

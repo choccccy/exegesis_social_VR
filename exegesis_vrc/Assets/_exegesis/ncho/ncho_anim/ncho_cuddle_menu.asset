@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -340790334, guid: 67cc4cb7839cd3741b63733d5adf0442, type: 3}
+  m_Name: ncho_cuddle_menu
+  m_EditorClassIdentifier: 
+  Parameters: {fileID: 11400000, guid: 0feacba8ced43f942bb99a164936f912, type: 2}
+  controls:
+  - name: ':flushed:'
+    icon: {fileID: 2800000, guid: 331cebdccb49e334eaa0f88466a64715, type: 3}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Blushie
+    icon: {fileID: 2800000, guid: 322df2e1530b5cf4d980bb58d7fdf19d, type: 3}
+    type: 102
+    parameter:
+      name: blushie
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Close Eyes
+    icon: {fileID: 2800000, guid: 36e29b67fad2890439d86b8f6247534c, type: 3}
+    type: 102
+    parameter:
+      name: eyes_state
+    value: 2
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Open Eyes
+    icon: {fileID: 2800000, guid: fdf7ddb5645c0504c9e033b02213ee9c, type: 3}
+    type: 102
+    parameter:
+      name: eyes_state
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: snub
+    icon: {fileID: 0}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []

@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <VRC.SDK3A.Editor.Elements.VRCCreateObjectField label="Parameters" name="ParametersCreateObjectField" style="flex-shrink: 0; margin-bottom: 4px;" />
+    <ui:ListView fixed-item-height="20" show-alternating-row-backgrounds="ContentOnly" show-border="true" reorderable="true" reorder-mode="Animated" name="ControlsListView" header-title="Controls" virtualization-method="FixedHeight" show-bound-collection-size="true" show-add-remove-footer="true" show-foldout-header="true" style="flex-shrink: 0; -unity-text-align: middle-left; margin-right: -1px; margin-left: -1px;" />
+    <ui:VisualElement name="ControlOptionsContainer" />
+</ui:UXML>

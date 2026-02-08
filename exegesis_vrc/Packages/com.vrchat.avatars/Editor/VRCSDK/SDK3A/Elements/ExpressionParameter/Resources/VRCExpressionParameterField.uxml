@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="ParameterField" style="flex-direction: row; -unity-text-align: middle-left;">
+        <ui:TextField picking-mode="Ignore" name="NameField" style="margin-left: 0; margin-right: 8px; margin-top: 0; margin-bottom: 0; text-overflow: ellipsis; white-space: normal; flex-shrink: 1; flex-grow: 1; min-width: 64px;" />
+        <ui:EnumField type="VRC.SDK3.Avatars.ScriptableObjects.VRCExpressionParameters+ValueType, VRCSDK3A" name="TypeField" style="width: 72px; margin-left: 0; margin-right: 8px; margin-top: 0; margin-bottom: 0;" />
+        <ui:Toggle name="DefaultBoolField" style="margin-left: 20px; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 20px;" />
+        <ui:IntegerField value="42" name="DefaultIntField" style="width: 54px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        <ui:FloatField value="42.2" name="DefaultFloatField" style="width: 54px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        <ui:Toggle name="SavedField" style="margin-left: 20px; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 40px;" />
+        <ui:Toggle name="SyncedField" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 20px;" />
+    </ui:VisualElement>
+</ui:UXML>

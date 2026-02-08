@@ -1,0 +1,9 @@
+./Editor.meta
+./package.json.meta
+./CHANGELOG.md.meta
+./LICENSE.md.meta
+./Editor/FindAlphaAnimatingClips.cs.meta
+./Editor/BluUtilities.Editor.asmdef.meta
+./Editor/CurveEditorFix.cs.meta
+./Editor/FindEmissionAnimations.cs.meta
+./README.md.meta

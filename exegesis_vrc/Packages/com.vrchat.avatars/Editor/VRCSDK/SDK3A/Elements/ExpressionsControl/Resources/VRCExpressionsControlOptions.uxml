@@ -1,0 +1,39 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="ControlOptionsContainer" style="flex-shrink: 0; margin-top: 8px; background-color: rgba(255, 255, 255, 0.1); border-left-color: rgba(0, 0, 0, 0.5); border-right-color: rgba(0, 0, 0, 0.5); border-top-color: rgba(0, 0, 0, 0.5); border-bottom-color: rgba(0, 0, 0, 0.5); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-top-left-radius: 4px; border-bottom-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 2px; display: flex;">
+        <ui:VisualElement name="ControlHeader" style="flex-grow: 1;">
+            <VRC.SDK3A.Editor.Elements.ExpressionsControlLabel name="ControlNameField" label="Name" />
+            <ui:VisualElement name="ControlTypeContainer" style="flex-direction: row;">
+                <ui:EnumField label="Type" type="VRC.SDK3.Avatars.ScriptableObjects.VRCExpressionsMenu+Control+ControlType, VRCSDK3A" value="Toggle" name="ControlTypeField" style="margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 1px; flex-grow: 1;" />
+                <ui:Button text="?" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TypeInfoButton" style="border-top-left-radius: 16px; border-bottom-left-radius: 16px; border-top-right-radius: 16px; border-bottom-right-radius: 16px; width: 20px; height: 20px; margin-left: 0; margin-right: 0;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="ControlTypeHelpBoxContainer" style="flex-grow: 1;" />
+            <VRC.SDK3A.Editor.Elements.ExpressionsControlParameterField name="ControlParameterField" label="Parameter" />
+            <ui:Slider picking-mode="Ignore" label="Value" value="0" high-value="1" name="ValueSlider" low-value="-1" show-input-field="true" style="margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 1px; display: none;" />
+            <ui:SliderInt picking-mode="Ignore" label="Value" value="0" high-value="255" name="ValueIntSlider" show-input-field="true" style="margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 1px; display: none;" />
+            <ui:Toggle label="Value" value="true" name="ValueToggle" style="margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 1px; display: none;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="MenuTypesContainer" style="flex-grow: 0; flex-shrink: 0; display: none;">
+            <ui:VisualElement name="Spacer" style="flex-grow: 1; height: 4px; background-color: rgba(128, 128, 128, 0.5); margin-left: 8px; margin-right: 8px; margin-top: 8px; margin-bottom: 8px; border-top-left-radius: 2px; border-bottom-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px;" />
+            <VRC.SDK3A.Editor.Elements.VRCCreateObjectField name="SubMenuObjectField" label="Sub Menu" style="flex-shrink: 0;" />
+            <ui:VisualElement name="TwoAxisPuppetContainer">
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlParameterField name="HorizontalParam" label="Horizontal" value="aaaa" disallowBool="true" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlParameterField name="VerticalParam" label="Vertical" disallowBool="true" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlLabel name="UpLabel" label="Up Label" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlLabel name="RightLabel" label="Right Label" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlLabel name="DownLabel" label="Down Label" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlLabel name="LeftLabel" label="Left Label" />
+            </ui:VisualElement>
+            <ui:VisualElement name="FourAxisPuppetContainer">
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlParameterField name="FourAxisUpParam" label="Up Param" disallowBool="true" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlParameterField name="FourAxisRightParam" label="Right Param" disallowBool="true" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlParameterField name="FourAxisDownParam" label="Down Param" disallowBool="true" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlParameterField name="FourAxisLeftParam" label="Left Param" disallowBool="true" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlLabel name="FourAxisUpLabel" Blabel="Blanebl" label="Up Label" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlLabel name="FourAxisRightLabel" label="Right Label" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlLabel name="FourAxisDownLabel" label="Down Label" />
+                <VRC.SDK3A.Editor.Elements.ExpressionsControlLabel name="FourAxisLeftLabel" label="Left Label" />
+            </ui:VisualElement>
+            <VRC.SDK3A.Editor.Elements.ExpressionsControlParameterField name="RotationParamField" label="Rotation" disallowBool="true" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -340790334, guid: 67cc4cb7839cd3741b63733d5adf0442, type: 3}
+  m_Name: Menu - Sensitivity Control
+  m_EditorClassIdentifier: 
+  Parameters: {fileID: 11400000, guid: 99e850de3670bec468c2266ace536bc9, type: 2}
+  controls:
+  - name: EyeLook Up/Down
+    icon: {fileID: 2800000, guid: 371906cd231bc2645b9bd41176f958cf, type: 3}
+    type: 203
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters:
+    - name: OSCm/Sensitivity/EyeLookUpDown
+    labels: []
+  - name: EyeLook In/Out
+    icon: {fileID: 2800000, guid: 7038825b6130f974686db205aa2bea35, type: 3}
+    type: 203
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters:
+    - name: OSCm/Sensitivity/EyeLookInOut
+    labels: []
+  - name: EyeLid
+    icon: {fileID: 2800000, guid: a09c8a294d5ff8448917d25e49d8f3f3, type: 3}
+    type: 203
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters:
+    - name: OSCm/Sensitivity/EyeLid
+    labels: []
+  - name: EyeSquint
+    icon: {fileID: 2800000, guid: 7c7f2c108abe4844bbf4fe042e7d2fc4, type: 3}
+    type: 203
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters:
+    - name: OSCm/Sensitivity/EyeSquint
+    labels: []
+  - name: Brow
+    icon: {fileID: 2800000, guid: 81d77105b1bdb9e4e9ffe5b63c5ab33e, type: 3}
+    type: 203
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters:
+    - name: OSCm/Sensitivity/Brow
+    labels: []
+  - name: Face
+    icon: {fileID: 2800000, guid: fbfe3f1799034c94c82c132d474c23f7, type: 3}
+    type: 203
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters:
+    - name: OSCm/Sensitivity/Face
+    labels: []
+  - name: Pupil
+    icon: {fileID: 2800000, guid: 686b5f20ef4cd984db40004722c25081, type: 3}
+    type: 203
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters:
+    - name: OSCm/Sensitivity/Pupil
+    labels: []

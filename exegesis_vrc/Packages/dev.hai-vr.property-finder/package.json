@@ -1,0 +1,21 @@
+{
+  "name": "dev.hai-vr.property-finder",
+  "displayName": "Haï ~ Property Finder",
+  "version": "2.0.4",
+  "unity": "2019.4",
+  "description": "Property Finder https://docs.hai-vr.dev/docs/products/property-finder",
+  "vrchatVersion" : "2022.1.1",
+  "author" : {
+    "name" : "Haï~"
+  },
+  "vpmDependencies": {
+    "dev.hai-vr.resilience.toolkit" : "1.0.x"
+  },
+  "legacyFolders" : {
+    "Assets\\Hai\\PropertyFinder" : "bc4b83f373dd5f34ea232f8512b0b13b"
+  },
+  "url" : "https://docs.hai-vr.dev/docs/products/property-finder",
+  "documentationUrl": "https://docs.hai-vr.dev/docs/products/property-finder",
+  "changelogUrl": "https://docs.hai-vr.dev/docs/changelogs/property-finder",
+  "license": "MIT"
+}

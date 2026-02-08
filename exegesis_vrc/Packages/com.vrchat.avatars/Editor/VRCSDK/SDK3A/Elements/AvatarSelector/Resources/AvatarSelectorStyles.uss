@@ -1,0 +1,52 @@
+﻿#avatar-selector-header {
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+#avatar-selector-label {
+    padding-left: 4px;
+    padding-right: 4px;
+    margin-bottom: 4px;
+    -unity-font-style: bold;
+    font-size: 12px;
+}
+
+#avatar-selector-options {
+    width: 16px;
+    height: 16px;
+    border-width: 0;
+    background-color: transparent;
+}
+
+.light #avatar-selector-options:hover {
+    background-color: hsl(0, 0%, 27%);
+}
+
+.dark #avatar-selector-options:hover {
+    background-color: hsl(0, 0%, 31%);
+}
+
+.light #avatar-selector-options {
+    background-image: resource("_Menu");
+}
+
+.dark #avatar-selector-options {
+    background-image: resource("d__Menu");
+}
+
+#avatar-options-active-marker {
+    position: absolute;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    top: 0;
+    right: 16px;
+}
+
+#avatar-options-active-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 100px;
+    background-color: var(--unity-colors-label-text-focus);
+}

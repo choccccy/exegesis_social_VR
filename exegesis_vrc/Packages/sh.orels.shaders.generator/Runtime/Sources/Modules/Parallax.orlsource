@@ -1,0 +1,122 @@
+﻿%Properties()
+{
+    UI_ParallaxHeader("# Parallax", Int) = 0
+    UI_ParallaxDocs("[This module has documentation](https://shaders.orels.sh/docs/orl-standard/base-shader#parallax)", Int) = 0
+    [Toggle(PARALLAX)]_EnableParallax("Enable Parallax", Int) = 0
+    [NoScaleOffset]_Height("Height > %ShowIf(PARALLAX)", 2D) = "black" {}
+    _HeightScale("Height Scale %ShowIf(PARALLAX)", Range(0, 0.1)) = 0.006
+    _HeightRefPlane("Height Ref Plane %ShowIf(PARALLAX)", Range(-1, 1)) = 0.5
+    [KeywordEnum(Eight, Sixteen,ThirtyTwo, SixtyFour)]_ParallaxSteps("Steps %ShowIf(PARALLAX)", Int) = 0
+    [ToggleUI]_ParallaxScaleBasedOnAngle("Scaled Based On Angle %ShowIf(PARALLAX)", Int) = 0
+    UI_ParallaxScaleBasedOnAngleNote("> This will scale the parallax effect based on the angle between the camera forward ray and the surface normal %ShowIf(PARALLAX)", Int) = 0
+}
+
+%ShaderFeatures()
+{
+    #pragma shader_feature_local_fragment PARALLAX
+    #pragma shader_feature_local_fragment _PARALLAXSTEPS_EIGHT _PARALLAXSTEPS_SIXTEEN _PARALLAXSTEPS_THIRTYTWO _PARALLAXSTEPS_SIXTYFOUR
+}
+
+%Variables()
+{
+    #if defined(PARALLAX)
+    half _HeightScale;
+    half _HeightRefPlane;
+    int _ParallaxScaleBasedOnAngle;
+    #endif
+    
+    float2 GLOBAL_parallaxUv;
+
+    half GLOBAL_heightMask;
+    half GLOBAL_heightMaskSmoothing;
+    
+    int GLOBAL_heightSet;
+    half GLOBAL_height; 
+}
+
+%Textures()
+{
+    #if defined(PARALLAX)
+    TEXTURE2D(_Height);
+    SAMPLER(sampler_Height);
+    #endif
+}
+
+%Fragment("ParallaxFragment", -100)
+{
+    #if defined(_PARALLAXSTEPS_EIGHT)
+        #define PARALLAX_STEPS 8
+    #elif defined(_PARALLAXSTEPS_SIXTEEN)
+        #define PARALLAX_STEPS 16
+    #elif defined(_PARALLAXSTEPS_THIRTYTWO)
+        #define PARALLAX_STEPS 32
+    #elif defined(_PARALLAXSTEPS_SIXTYFOUR)
+        #define PARALLAX_STEPS 64
+    #else
+        #define PARALLAX_STEPS 1
+    #endif
+
+    float2 POM_simple(TEXTURE2D_PARAM(heightMap, heightSampler), float currentHeight, float scale, float2 uv, float3 tangetSpaceViewDir, float refPlane, out float heightOffset)
+    {
+        heightOffset = 0;
+        float2 uvOffset = 0;
+        float stepSize = 1.0 / PARALLAX_STEPS;
+        float stepHeight = 1;
+        tangetSpaceViewDir.xy /= (tangetSpaceViewDir.z + 0.42);
+        float2 uvDelta = tangetSpaceViewDir.xy * (stepSize * scale);
+
+        float2 derivatives = float2(ddx(uv.x), ddy(uv.y));
+
+        [unroll(PARALLAX_STEPS)]
+        for (int i = 1; i <= PARALLAX_STEPS && stepHeight > currentHeight; i++)
+        {
+            uvOffset -= uvDelta;
+            stepHeight -= stepSize;
+            currentHeight = SAMPLE_TEXTURE2D_GRAD(heightMap, heightSampler, uv + uvOffset, derivatives.x, derivatives.y).r + refPlane;
+        }
+
+        [unroll(3)]
+        for (int k = 0; k < 3; k++)
+        {
+            uvDelta *= 0.5;
+            stepSize *= 0.5;
+
+            if (stepHeight < currentHeight)
+            {
+                uvOffset += uvDelta;
+                stepHeight += stepSize;
+            } else {
+                uvOffset -= uvDelta;
+                stepHeight -= stepSize;
+            }
+            currentHeight = SAMPLE_TEXTURE2D_GRAD(heightMap, heightSampler, uv + uvOffset, derivatives.x, derivatives.y).r + refPlane;
+        }
+
+        heightOffset = currentHeight;
+        return uvOffset;
+    }
+
+    void ParallaxFragment(MeshData d, FragmentData i)
+    {
+        // this is a bit "magical" but basically we just push to global UVs
+        // and then any other module will read from them
+        // we use FragmentQueue to push the actual function call above the other modules
+        GLOBAL_parallaxUv = d.uv0.xy * _MainTex_ST.xy + _MainTex_ST.zw;
+        #if defined(PARALLAX) && !defined(PLAT_QUEST)
+        {
+            float customHeight = 0;
+            if (_ParallaxScaleBasedOnAngle)
+            {
+                float3 forwardRay = TransformViewToWorldDir(float3(0,0,1));
+                _HeightScale *= pow(saturate(dot(d.worldNormal, forwardRay)), 1.0/1.5);
+            }
+            half startingPoint = SAMPLE_TEXTURE2D(_Height, sampler_Height, GLOBAL_parallaxUv).r;
+            float2 uvOffset = POM_simple(TEXTURE2D_ARGS(_Height, sampler_Height), startingPoint, _HeightScale, GLOBAL_parallaxUv, d.tangentSpaceViewDir, _HeightRefPlane, customHeight);
+            GLOBAL_parallaxUv += uvOffset;
+
+            GLOBAL_height = customHeight;
+            GLOBAL_heightSet = 1;
+        }
+        #endif
+    }
+}

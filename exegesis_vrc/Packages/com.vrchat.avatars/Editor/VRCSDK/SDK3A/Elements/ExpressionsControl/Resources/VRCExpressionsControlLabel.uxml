@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:VisualElement name="LabelField" style="flex-direction: row; -unity-text-align: middle-left; margin-left: 3px; margin-right: 3px; margin-top: 1px; margin-bottom: 1px;">
+        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" class="unity-base-field__label" style="display: none; -unity-text-align: upper-left;" />
+        <ui:TextField picking-mode="Ignore" multiline="true" style="flex-grow: 1; margin-left: 0; margin-right: 4px; margin-top: 0; margin-bottom: 0; flex-shrink: 1; white-space: normal;" />
+        <uie:ObjectField type="UnityEngine.Texture2D, UnityEngine.CoreModule" style="width: 128px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; height: 20px;" />
+    </ui:VisualElement>
+</ui:UXML>

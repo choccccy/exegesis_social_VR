@@ -1,0 +1,138 @@
+%ShaderName("orels1/VFX/Laser")
+%LightingModel("@/LightingModels/VFX")
+%CustomEditor("ORL.ShaderInspector.InspectorGUI")
+
+%Properties()
+{
+    [HDR]_Color("Color", Color) = (76.48167,5.411438,5.411438,1)
+    [ToggleUI]_UseTrailColor("Use Trail Color", Int) = 0
+    UI_UseTrailColorNote("> This will ignore the Color option above and use the trail gradient", Int) = 0
+    _ColorBoost("Color Boost %ShowIf(_UseTrailColor)", Float) = 1
+    [ToggleUI]_LinearColor("Linear Trail Color %ShowIf(_UseTrailColor)", Int) = 0
+
+    UI_NoiseControlHeader("# Noise Control", Int) = 1
+    [Enum(World, 0, Local, 1, UV, 2)]_NoiseSpace("Noise Coordinate Space", Int) = 0
+
+    UI_Noise1Header("## 1st Noise", Int) = 1
+    _Scale("Noise Scale", Float) = 1.6
+    _ScaleY("Noise Scale Y %ShowIf(_NoiseSpace == 2)", Float) = 0.001
+    _Noise1Strength("Noise Strength", Range(-2, 2)) = 0.24
+    _Noise1Contrast("Noise Contrast %RemapSlider(0,1)", Vector) = (0.02, 0.4, 0, 1)
+    [Enum(World, 0, Local, 1, UV, 2)]_Noise1ScrollSpace("Noise Scroll Space", Int) = 0
+    _Noise1Scroll("Noise Scroll (X/Y/Z)", Vector) = (0.5, 0.02,0,0)
+
+    UI_Noise2Header("## 2nd Noise", Int) = 1
+    _Scale2("Noise Scale", Float) = 202.4
+    _Scale2Y("Noise Scale Y %ShowIf(_NoiseSpace == 2)", Float) = 0.001
+    _Noise2Strength("Noise Strength", Range(-2, 2)) = 2
+    _Noise2Contrast("Noise Contrast  %RemapSlider(0,1)", Vector) = (0, 1, 0, 1)
+    [Enum(World, 0, Local, 1, UV, 2)]_Noise2ScrollSpace("Noise Scroll Space", Int) = 0
+    _Noise2Scroll("Noise Scroll (X/Y/Z)", Vector) = (0.5, -0.2,0,0)
+
+    UI_WavinessHeader("# Waviness", Int) = 1
+    _WavinessTex("Waviness Texture", 2D) = "white" {}
+    _WavinessContrast("Waviness Contrast %RemapSlider(0,1)", Vector) = (0, 1, 0, 1)
+    _WavinessScroll("Waviness Scroll (X/Y)", Vector) = (-0.31, 0, 0, 0)
+
+    UI_InternalHeader("# Internal", Int) = 0
+    [NonModifiableTextureData][NoScaleOffset]_NoiseTex("Noise Texture > %RequiredTexture(@/BakedNoise.png)", 2D) = "gray" {}
+}
+
+%ShaderTags()
+{
+    "Queue" = "Transparent" "RenderType" = "Transparent" "IgnoreProjector" = "True" "ORL_RenderType" = "Fade"
+}
+
+%ShaderModifiers()
+{
+    Blend SrcAlpha OneMinusSrcAlpha
+    ZWrite Off
+    Cull Off
+}
+
+%Variables()
+{
+    half4 _Color;
+    int _UseTrailColor;
+    int _LinearColor;
+    half _ColorBoost;
+    half _Scale;
+    half _ScaleY;
+    int _NoiseSpace;
+    half _Noise1Strength;
+    half4 _Noise1Contrast;
+    half4 _Noise1Scroll;
+    int _Noise1ScrollSpace;
+    half _Scale2;
+    half _Scale2Y;
+    half _Noise2Strength;
+    half4 _Noise2Contrast;
+    half4 _Noise2Scroll;
+    int _Noise2ScrollSpace;
+    half4 _WavinessTex_ST;
+    half4 _WavinessContrast;
+    half4 _WavinessScroll;
+}
+
+%Textures()
+{
+    TEXTURE2D(_NoiseTex);
+    SAMPLER(sampler_NoiseTex);
+    TEXTURE2D(_WavinessTex);
+    SAMPLER(sampler_WavinessTex);
+}
+
+%Fragment("LaserFragment")
+{
+    void LaserFragment(MeshData d, inout SurfaceData o) {
+        half3x3 noiseTransMatrix = {
+            0.00, 0.80, 0.60,
+            -0.80, 0.36, -0.48,
+            -0.60, -0.48, 0.64
+        };
+        float3 scale = GetObjectScale();
+        float3 pos = _NoiseSpace ? (_NoiseSpace == 2 ? d.uv0.xyx : d.localSpacePosition) : d.worldSpacePosition;
+        half3 convertedScroll1Dir = _Noise1ScrollSpace ? (_Noise1ScrollSpace == 2 ? _Noise1Scroll.xyz : TransformObjectToWorld(_Noise1Scroll.xyz / scale)) : _Noise1Scroll.xyz;
+        pos += _Time.y * convertedScroll1Dir;
+        pos *= _Scale;
+        if (_Noise1ScrollSpace == 2) {
+            pos.y *= _ScaleY;
+        }
+        half noise = 0.5 * getBakedNoise(TEXTURE2D_ARGS(_NoiseTex, sampler_NoiseTex), pos);
+        pos = mul(pos, noiseTransMatrix) * 2.01;
+        noise += 0.25 * getBakedNoise(TEXTURE2D_ARGS(_NoiseTex, sampler_NoiseTex), pos);
+        pos = mul(pos, noiseTransMatrix) * 2.02;
+        noise += 0.125 * getBakedNoise(TEXTURE2D_ARGS(_NoiseTex, sampler_NoiseTex), pos);
+        
+        pos = _NoiseSpace ? (_NoiseSpace == 2 ? d.uv0.xyx : d.localSpacePosition) : d.worldSpacePosition;
+        half3 convertedScroll2Dir = _Noise2ScrollSpace ? (_Noise2ScrollSpace == 2 ? _Noise2Scroll.xyz : TransformObjectToWorld(_Noise2Scroll.xyz / scale)) : _Noise2Scroll.xyz;
+        pos += _Time.y * convertedScroll2Dir;
+        pos *= _Scale2;
+        if (_Noise1ScrollSpace == 2) {
+            pos.y *= _Scale2Y;
+        }
+        pos += half3(0.1, 1.2, 0.7);
+        half noise2 = 0.5 * getBakedNoise(TEXTURE2D_ARGS(_NoiseTex, sampler_NoiseTex), pos);
+        pos = mul(pos, noiseTransMatrix) * 2.01;
+        noise2 += 0.25 * getBakedNoise(TEXTURE2D_ARGS(_NoiseTex, sampler_NoiseTex), pos);
+        pos = mul(pos, noiseTransMatrix) * 2.02;
+        noise2 += 0.125 * getBakedNoise(TEXTURE2D_ARGS(_NoiseTex, sampler_NoiseTex), pos);
+
+        noise = saturate(invLerp(_Noise1Contrast.x, _Noise1Contrast.y, noise));
+        noise2 = saturate(invLerp(_Noise2Contrast.x, _Noise2Contrast.y, noise2));
+
+        half blended = saturate(BlendOverlay(lerp(0, noise, _Noise1Strength), lerp(0, noise2, _Noise2Strength)));
+
+        half2 waveUv = d.uv0.xy * _WavinessTex_ST.xy + _WavinessTex_ST.zw;
+        waveUv += _Time.y * _WavinessScroll.xy;
+        half waviness = SAMPLE_TEXTURE2D(_WavinessTex, sampler_WavinessTex, waveUv);
+        waviness = saturate(invLerp(_WavinessContrast.x, _WavinessContrast.y, waviness));
+        
+        if (_LinearColor) {
+            d.vertexColor.rgb = pow(d.vertexColor.rgb, 2.2);
+        }
+        o.Albedo = blended * lerp(_Color.rgb, d.vertexColor.rgb * _ColorBoost, _UseTrailColor);
+        o.Alpha = blended * lerp(1, d.vertexColor.a, _UseTrailColor);
+        o.Alpha *= waviness;
+    }
+}

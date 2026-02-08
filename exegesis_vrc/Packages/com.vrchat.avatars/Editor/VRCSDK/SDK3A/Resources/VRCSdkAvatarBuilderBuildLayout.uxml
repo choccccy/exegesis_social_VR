@@ -1,0 +1,45 @@
+﻿<UXML xmlns="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:vrc="VRC.SDKBase.Editor.Elements">
+    <VisualElement class="col-relative" name="section-3">
+        <VisualElement class="mt-2 col pr-2 pl-2" name="build-buttons-block">
+            <VisualElement class="row">
+                <VisualElement class="col flex-grow-1 align-items-start mr-3" name="build-type-container">
+                    <Label class="d-flex mt-2 mb-2 text-bold" text="Build Type" />
+                    <!-- build-type-dropdown gets inserted here -->
+                </VisualElement>
+    
+                <VisualElement class="col" name="platform-container">
+                    <vrc:PlatformSwitcherPopup label="Platform(s)" name="platform-switcher-popup" />
+                </VisualElement>
+            </VisualElement>
+    
+            <VisualElement class="mt-2">
+                <Button name="main-action-button" class="pt-4 pb-4 text-lg text-bold" />
+                <VisualElement name="main-action-disabled-block" class="d-none absolute text-lg text-bold text-grey-200">
+                    <Label name="main-action-disabled-text" text="You must fix the issues listed above before you can Upload a Build" class="white-space-normal" />
+                </VisualElement>
+            </VisualElement>
+            
+            <VisualElement class="row justify-content-between">
+                <VisualElement class="row m-2 d-none">
+                    <Label text="Run Performance Streaming" class="ml-2 flex-shrink-1 white-space-normal pr-2 options-text-color text-right"  />
+                    <Toggle name="run-performance-streaming" />
+                </VisualElement>
+            </VisualElement>
+        </VisualElement>
+        <VisualElement class="d-none" name="v3-block" />
+        <vrc:BuilderProgress name="progress-bar" />
+        <vrc:Modal title="Add notes to streamline the review process" name="avm-update-notes-modal">
+            <VisualElement class="col p-3">
+                <Label text="This avatar is marked for sale &amp; will be reviewed before being available for purchase." class="mb-3 white-space-normal" />
+                <VisualElement class="row">
+                    <VisualElement class="col flex-grow flex-9 w-full mr-3">
+                        <TextField name="avm-update-notes-field" style="min-height: 40px" multiline="true" />
+                    </VisualElement>
+                    <VisualElement class="col flex-3">
+                        <Button text="Send" class="text-lg text-bold flex-grow-1" name="avm-update-notes-send" />
+                    </VisualElement>
+                </VisualElement>
+            </VisualElement>
+        </vrc:Modal>
+    </VisualElement>
+</UXML>

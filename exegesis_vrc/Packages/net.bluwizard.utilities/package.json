@@ -1,0 +1,18 @@
+{
+  "name": "net.bluwizard.utilities",
+  "version": "0.1.4",
+  "displayName": "BluWizard LABS - Editor Utilities",
+  "unity": "2022.3",
+  "description": "Handy utilities that fixes some bugs, some strange behaviors I found in Unity, and some other debugging tools.",
+  "changelogUrl": "https://github.com/BluWizard10/Editor-Utilities/blob/main/CHANGELOG.md",
+  "gitDependencies": {},
+  "vpmDependencies": {},
+  "author": {
+    "name": "BluWizard",
+    "email": "17975114+BluWizard10@users.noreply.github.com",
+    "url": "https://vpm.bluwizard.net"
+  },
+  "legacyFolders": {},
+  "legacyFiles": {},
+  "legacyPackages": []
+}

@@ -1,0 +1,48 @@
+%Properties()
+{
+    [ToggleUI]UI_RimShadowHeader("# Rim Shadow", Int) = 0
+    [Toggle(RIMSHADOW_ON)]_RimShadow("Enable Rim Shadow", Int) = 0
+    _ShadowRimTint("Tint %ShowIf(RIMSHADOW_ON)", Color) = (1,1,1,1)
+    _ShadowRimRange("Range %ShowIf(RIMSHADOW_ON)", Range(0,1)) = 0.7
+    [Tooltip(Controls how much the rim shadow will be offset by the light direction. 1 Will only show up in the areas in shadow, 0 will show up everywhere)]_ShadowRimThreshold("Threshold %ShowIf(RIMSHADOW_ON)", Range(0,1)) = 0.1
+    _ShadowRimSharpness("Sharpness %ShowIf(RIMSHADOW_ON)", Range(0,1)) = 0.3
+    _ShadowRimAlbedoTint("Albedo Tint %ShowIf(RIMSHADOW_ON)", Range(0,1)) = 0
+}
+
+%ShaderFeatures()
+{
+    #pragma shader_feature_local_fragment RIMSHADOW_ON
+}
+
+%Variables()
+{
+    half4 _ShadowRimTint;
+    half _ShadowRimRange;
+    half _ShadowRimThreshold;
+    half _ShadowRimSharpness;
+    half _ShadowRimAlbedoTint;
+}
+
+%Fragment("ToonShadowRimFragment")
+{
+    void ToonShadowRimFragment(MeshData d, inout SurfaceData o) {
+        #if defined(RIMSHADOW_ON)
+
+        Light mainLight = GetMainLight(0..xxxx, d.worldSpacePosition, 0..xxxx);
+
+        float3 lightDir = mainLight.direction;
+        
+        bool lightEnv = any(lightDir.xyz);
+        if (!lightEnv) {
+            lightDir = unity_SHAr.xyz + unity_SHAg.xyz + unity_SHAb.xyz;
+        }
+        half lightNoL = saturate(dot(GLOBAL_pixelNormal, lightDir));
+        half SVDNoN = abs(dot(d.svdn, GLOBAL_pixelNormal));
+        half shadowRimIntensity = saturate((1 - SVDNoN)) * pow(1 - lightNoL, _ShadowRimThreshold * 2);
+        shadowRimIntensity = smoothstep(_ShadowRimRange - _ShadowRimSharpness, _ShadowRimRange + _ShadowRimSharpness, shadowRimIntensity);
+
+        o.RimShadow = lerp(1, (_ShadowRimTint * lerp(1, o.Albedo.rgbb, _ShadowRimAlbedoTint)), shadowRimIntensity);
+
+        #endif
+    }
+}

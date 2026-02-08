@@ -1,0 +1,26 @@
+{
+    "name": "Pumkin.VrcSdkPatches",
+    "rootNamespace": "Pumkin.VrcSdkPatches",
+    "references": [
+        "GUID:6e9c6119ac4eb334284fb7b4bc6d1f05"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "VRC_SDK_EXISTS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.vrchat.avatars",
+            "expression": "",
+            "define": "VRC_SDK_EXISTS"
+        }
+    ],
+    "noEngineReferences": false
+}
