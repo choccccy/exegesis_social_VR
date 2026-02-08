@@ -24,7 +24,12 @@ Material:
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
-  stringTagMap: {}
+  stringTagMap:
+    OriginalKeywords: BSSBLOOMFOGTYPE_HEIGHT VIGNETTE_MASKED _LIGHTINGMODE_FLAT _RIM2STYLE_POIYOMI
+      _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ _STYLIZEDREFLECTIONMODE_UNITYCHAN
+    OriginalShader: .poiyomi/Poiyomi Pro
+    OriginalShaderGUID: 77f45810ea400c74e929db1f8ea09c47
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -138,10 +143,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _DetailAlbedoMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -175,11 +176,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortionFlowTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 07f0a54a3a4e7754eabc8ced70d7b30c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortionFlowTexture1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 70cd704e7a9550241b8a8b51fffc1a68, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortionMask:
@@ -386,10 +387,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _OcclusionMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _OrificeData:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -411,10 +408,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxInternalMapMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _ParallaxMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -951,8 +944,24 @@ Material:
     - _ColorGradingToggle: 0
     - _ColorMask: 15
     - _ColorThemeIndex: 0
+    - _ConstellationALBrightnessBand: 0
+    - _ConstellationALEmissionBand: 0
+    - _ConstellationALHueShiftBand: 0
+    - _ConstellationALHueShiftSpeed: 0
+    - _ConstellationALHueShiftType: 0
+    - _ConstellationALLineBrightnessBand: 0
+    - _ConstellationALLineThicknessBand: 0
+    - _ConstellationALMovementBand: 0
+    - _ConstellationALMovementSpeed: 0
+    - _ConstellationALMovementType: 0
+    - _ConstellationALSizeBand: 0
+    - _ConstellationALThemeColor: 0
+    - _ConstellationALTwinkleBand: 0
+    - _ConstellationALTwinkleSpeed: 0
+    - _ConstellationALTwinkleType: 0
     - _ConstellationApplyGlobalMaskBlendType: 0
     - _ConstellationApplyGlobalMaskIndex: 0
+    - _ConstellationAudioLinkEnabled: 0
     - _ConstellationBlendMode: 2
     - _ConstellationColorThemeIndex: 0
     - _ConstellationDensity: 10
@@ -966,6 +975,7 @@ Material:
     - _ConstellationMaskGlobalMaskBlendType: 2
     - _ConstellationMaskInvert: 0
     - _ConstellationMaskUV: 0
+    - _ConstellationRandomColors: 0
     - _ConstellationStarBrightness: 1
     - _ConstellationStarMovement: 0.5
     - _ConstellationStarSize: 0.75
@@ -3408,6 +3418,8 @@ Material:
     - s_end_CCopt: 1
     - s_end_ClearCoatTPSMaskGroup: 0
     - s_end_ColorAdjustColorGrading: 0
+    - s_end_ConstellationAudioLink: 0
+    - s_end_ConstellationRandomColors: 0
     - s_end_ContinuousRotation: 0
     - s_end_CubeMapColorAdjust: 0
     - s_end_CubeMapMasking: 0
@@ -3641,6 +3653,8 @@ Material:
     - s_start_CCopt: 1
     - s_start_ClearCoatTPSMaskGroup: 0
     - s_start_ColorAdjustColorGrading: 0
+    - s_start_ConstellationAudioLink: 0
+    - s_start_ConstellationRandomColors: 0
     - s_start_ContinuousRotation: 0
     - s_start_CubeMapColorAdjust: 0
     - s_start_CubeMapMasking: 1
@@ -3959,11 +3973,19 @@ Material:
     - _ClearCoatSpecularTint: {r: 1, g: 1, b: 1, a: 1}
     - _ClothMetallicSmoothnessMapPan: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ConstellationALBrightnessMod: {r: 0, g: 0, b: 0, a: 0}
+    - _ConstellationALEmissionMod: {r: 0, g: 0, b: 0, a: 0}
+    - _ConstellationALLineBrightnessMod: {r: 0, g: 0, b: 0, a: 0}
+    - _ConstellationALLineThicknessMod: {r: 0, g: 0, b: 0, a: 0}
+    - _ConstellationALSizeMod: {r: 0, g: 0, b: 0, a: 0}
     - _ConstellationCenter: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _ConstellationColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ConstellationLayerFade: {r: 0.2, g: 1, b: 0, a: 1}
     - _ConstellationMaskPan: {r: 0, g: 0, b: 0, a: 0}
     - _ConstellationOffset: {r: 0, g: 0, b: 0, a: 0}
     - _ConstellationPanSpeed: {r: 0, g: 0, b: 0, a: 0}
+    - _ConstellationSaturationRange: {r: 0.7, g: 1, b: 0, a: 1}
+    - _ConstellationValueRange: {r: 0.8, g: 1, b: 0, a: 1}
     - _CubeMapColor: {r: 1, g: 1, b: 1, a: 1}
     - _CubeMapMaskPan: {r: 0, g: 0, b: 0, a: 0}
     - _CubeMapRotation: {r: 0, g: 0, b: 0, a: 0}

@@ -43,8 +43,9 @@ Material:
       POI_AUDIOLINK POI_BACKFACE POI_EMISSION_1 POI_EMISSION_2 POI_EMISSION_3 POI_GLOBALMASK_TEXTURES
       POI_LTCGI POI_PATHING POI_UZUMORE VIGNETTE_MASKED _EMISSION _LIGHTINGMODE_REALISTIC
       _RIM2STYLE_POIYOMI _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ _STYLIZEDREFLECTIONMODE_UNITYCHAN
-    OriginalShader: .poiyomi/Poiyomi Pro
-    OriginalShaderGUID: 77f45810ea400c74e929db1f8ea09c47
+    OriginalShader: .poiyomi/Poiyomi Toon
+    OriginalShaderGUID: 9444ce77bf4418748b1e8591b9d97f85
+    RenderType: Opaque
     _AnisoColorMap_texPack_a_channel: 4
     _AnisoColorMap_texPack_a_fallback: 1
     _AnisoColorMap_texPack_a_inverted: False
@@ -300,11 +301,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortionFlowTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 07f0a54a3a4e7754eabc8ced70d7b30c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortionFlowTexture1:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 70cd704e7a9550241b8a8b51fffc1a68, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DistortionMask:
@@ -511,10 +512,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _OrificeData:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _OutlineMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -615,14 +612,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SSAOColorMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SSAOMask:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SSSThicknessMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -671,12 +660,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TPS_BakedMesh:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _TextGlyphs:
-        m_Texture: {fileID: 2800000, guid: 9ca7d3d79221b844289e72f27d4a8084, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ToonRamp:
@@ -3030,50 +3015,66 @@ Material:
     - _UVSec: 0
     - _UVTileDissolveAlpha_Row0_0: 0
     - _UVTileDissolveAlpha_Row0_0_ncho: 0
+    - _UVTileDissolveAlpha_Row0_0_ncho_toon: 0
     - _UVTileDissolveAlpha_Row0_1: 1
     - _UVTileDissolveAlpha_Row0_1_ncho: 1
+    - _UVTileDissolveAlpha_Row0_1_ncho_toon: 1
     - _UVTileDissolveAlpha_Row0_1_rober: 1
     - _UVTileDissolveAlpha_Row0_2: 0
     - _UVTileDissolveAlpha_Row0_2_ncho: 0
+    - _UVTileDissolveAlpha_Row0_2_ncho_toon: 0
     - _UVTileDissolveAlpha_Row0_2_rober: 0
     - _UVTileDissolveAlpha_Row0_3: 0
     - _UVTileDissolveAlpha_Row0_3_ncho: 0
+    - _UVTileDissolveAlpha_Row0_3_ncho_toon: 0
     - _UVTileDissolveAlpha_Row0_3_rober: 0
     - _UVTileDissolveAlpha_Row1_0: 0
     - _UVTileDissolveAlpha_Row1_0_ncho: 0
+    - _UVTileDissolveAlpha_Row1_0_ncho_toon: 0
     - _UVTileDissolveAlpha_Row1_0_rober: 0
     - _UVTileDissolveAlpha_Row1_1: 0
     - _UVTileDissolveAlpha_Row1_1_ncho: 0
+    - _UVTileDissolveAlpha_Row1_1_ncho_toon: 0
     - _UVTileDissolveAlpha_Row1_1_rober: 0
     - _UVTileDissolveAlpha_Row1_2: 0
     - _UVTileDissolveAlpha_Row1_2_ncho: 0
+    - _UVTileDissolveAlpha_Row1_2_ncho_toon: 0
     - _UVTileDissolveAlpha_Row1_2_rober: 0
     - _UVTileDissolveAlpha_Row1_3: 0
     - _UVTileDissolveAlpha_Row1_3_ncho: 0
+    - _UVTileDissolveAlpha_Row1_3_ncho_toon: 0
     - _UVTileDissolveAlpha_Row1_3_rober: 0
     - _UVTileDissolveAlpha_Row2_0: 0
     - _UVTileDissolveAlpha_Row2_0_ncho: 0
+    - _UVTileDissolveAlpha_Row2_0_ncho_toon: 0
     - _UVTileDissolveAlpha_Row2_0_rober: 0
     - _UVTileDissolveAlpha_Row2_1: 0
     - _UVTileDissolveAlpha_Row2_1_ncho: 0
+    - _UVTileDissolveAlpha_Row2_1_ncho_toon: 0
     - _UVTileDissolveAlpha_Row2_1_rober: 0
     - _UVTileDissolveAlpha_Row2_2: 0
     - _UVTileDissolveAlpha_Row2_2_ncho: 0
+    - _UVTileDissolveAlpha_Row2_2_ncho_toon: 0
     - _UVTileDissolveAlpha_Row2_2_rober: 0
     - _UVTileDissolveAlpha_Row2_3: 0
     - _UVTileDissolveAlpha_Row2_3_ncho: 0
+    - _UVTileDissolveAlpha_Row2_3_ncho_toon: 0
     - _UVTileDissolveAlpha_Row2_3_rober: 0
     - _UVTileDissolveAlpha_Row3_0: 0
     - _UVTileDissolveAlpha_Row3_0_ncho: 0
+    - _UVTileDissolveAlpha_Row3_0_ncho_toon: 0
     - _UVTileDissolveAlpha_Row3_0_rober: 0
     - _UVTileDissolveAlpha_Row3_1: 0
     - _UVTileDissolveAlpha_Row3_1_ncho: 0
+    - _UVTileDissolveAlpha_Row3_1_ncho_toon: 0
     - _UVTileDissolveAlpha_Row3_1_rober: 0
     - _UVTileDissolveAlpha_Row3_2: 0
     - _UVTileDissolveAlpha_Row3_2_ncho: 0
+    - _UVTileDissolveAlpha_Row3_2_ncho_toon: 0
     - _UVTileDissolveAlpha_Row3_2_rober: 0
     - _UVTileDissolveAlpha_Row3_3: 0
     - _UVTileDissolveAlpha_Row3_3_ncho: 0
+    - _UVTileDissolveAlpha_Row3_3_ncho_toon: 0
     - _UVTileDissolveAlpha_Row3_3_rober: 0
     - _UVTileDissolveDiscardAtMax: 1
     - _UVTileDissolveEnabled: 1
