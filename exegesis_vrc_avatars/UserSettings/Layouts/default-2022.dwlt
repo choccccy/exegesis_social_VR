@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Inspector
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 137
+  controlID: 109
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 1202
     height: 875
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 37
+  controlID: 39
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -173,8 +173,8 @@ MonoBehaviour:
     y: 0
     width: 462
     height: 1299
-  m_MinSize: {x: 516, y: 600}
-  m_MaxSize: {x: 516, y: 2000}
+  m_MinSize: {x: 517, y: 621}
+  m_MaxSize: {x: 517, y: 2021}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 38
+  controlID: 40
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -358,7 +358,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 39
+  controlID: 41
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.06214159, y: 0.9264071, z: -0.17606294, w: 0.32697585}
     speed: 2
-    m_Value: {x: 0.061388884, y: 0.9271583, z: -0.17476514, w: 0.3256778}
+    m_Value: {x: 0.06214159, y: 0.9264071, z: -0.17606294, w: 0.32697585}
   m_Size:
     m_Target: 7.761434
     speed: 2
@@ -918,7 +918,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 3c0cfdfffeabfeffa42cffff747affff6ad7ffffb2dcffffb6dcffffbadcffffbedcffff14e3ffff18e3ffff1ae3ffff1ee3ffff22e3ffff26e3ffff82f4ffff84f4ffff86f4ffff8af4ffff9cf4ffff9ef4ffffa2f4ffffa6f4ffff5cf6ffff2cf8ffffa8f9ffffb2f9ffffdcfaffffbc8b00000e8d000090910000fa920000709700009c9b0000149c0000209c00000ca70000d0bc0000
+      m_ExpandedIDs: 
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1015,7 +1015,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_ViewTransforms:
     m_KeySerializationHelper:
-    - {fileID: -4496806017995077194, guid: 10700e315f058124fa082f2a2696cd0d, type: 2}
+    - {fileID: 6269119366392555289, guid: 837050749d3bb2340b1079a6a6cd754d, type: 2}
     m_ValueSerializationHelper:
     - e00: 1
       e01: 0
@@ -1244,7 +1244,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_exegesis/ncho
+    - Assets/_exegesis
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1252,16 +1252,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/_exegesis/ncho
+  - Assets/_exegesis
   m_LastFoldersGridSize: 96
-  m_LastProjectPath: C:\Users\choccy\Documents\unity\exegesis_social_VR\exegesis_unity
+  m_LastProjectPath: C:\Users\choccy\Documents\unity\exegesis_social_VR\exegesis_vrc
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 69}
-    m_SelectedIDs: 04840000
-    m_LastClickedID: 33796
-    m_ExpandedIDs: 000000004e8100007081000072810000fa8300002c38020000ca9a3b
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: 40e90000
+    m_LastClickedID: 59712
+    m_ExpandedIDs: 000000003ee9000040e9000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1289,7 +1289,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000004e810000
+    m_ExpandedIDs: 000000003ee9000040e90000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1429,9 +1429,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f0c70000c0c70000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 3c0cfdfffeabfeffa42cffff747affff6ad7ffff5cf6ffff2cf8ffffa8f9ffffb2f9ffffdcfaffff
+      m_ExpandedIDs: 
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
