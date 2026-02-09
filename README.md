@@ -3,6 +3,15 @@
 
 # VRChat avatars and assets
 
+## Notes for contributors
+
+### Poiyomi
+To make sure that we're respecting Poiyomi's [Terms of Service](https://www.poiyomi.com/terms-of-service/), **all Poiyomi materials should be unlocked before they are committed**.
+
+This can be done fairly trivially by right clicking the `Assets/_exegesis/` folder (or just the background when in the `Assets/` folder) and clicking `Thry > Materials > Unlock Folder`.
+
+`_PoiyomiShaders/` and any `OptimizedShaders/` folders are already in the .gitignore, so they simply won't be committed.
+
 ## Requirements
 
 Hard requirements for opening and working on this project. You can and probably should get most of these via [ALCOM/VCC repositories](#recommended-alcomvcc-repositories)
