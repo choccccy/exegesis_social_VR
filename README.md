@@ -2,7 +2,7 @@
 **Exegesis** is a hard sci-fi, zone-fiction setting about strange people and stranger AI in mechanical bodies on an existentially important mission to investigate a Dyson sphere that is eating at their minds, 112.21 light-years from home. You can read more about it at the [main website](https://exegesis.space).
 
 # NSFW warning
-**Certain Exegesis content includes explicit sexual features, typically tagged as [evil]. These elements are opt-in and can be ignored if not outright disabled, but please be aware of their presence.**
+**Certain Exegesis content includes explicit sexual features, typically tagged as `[evil]`. These elements are opt-in and can be ignored if not outright disabled, but please be aware of their presence.**
 
 # VRChat avatars and assets
 
