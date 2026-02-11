@@ -14,15 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Parameters: {fileID: 11400000, guid: 0feacba8ced43f942bb99a164936f912, type: 2}
   controls:
-  - name: ':flushed:'
-    icon: {fileID: 2800000, guid: 331cebdccb49e334eaa0f88466a64715, type: 3}
+  - name: SPS
+    icon: {fileID: 2800000, guid: 839a3f6e1d302314ea84c8828bdcfe33, type: 3}
     type: 103
     parameter:
       name: 
     value: 1
     style: 0
     subMenu: {fileID: 0}
-    subParameters: []
+    subParameters:
+    - name: 
     labels: []
   - name: Blushie
     icon: {fileID: 2800000, guid: 322df2e1530b5cf4d980bb58d7fdf19d, type: 3}
@@ -54,7 +55,7 @@ MonoBehaviour:
     subMenu: {fileID: 0}
     subParameters: []
     labels: []
-  - name: snub
+  - name: Snub
     icon: {fileID: 0}
     type: 103
     parameter:
