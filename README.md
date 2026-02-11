@@ -1,18 +1,38 @@
-# [Exegesis](https://exegesis.space)  <!-- use the exegesis text-logo as a header here, which links to the main site-->
+<p align='center'>
+  <a href='https://exegesis.space'>
+    <img
+      src='https://exegesis.space/exegesis_textlogo.svg'
+      alt='Exegesis Logo'
+      width='100%'
+    />
+  </a>
+</p>
+
 **Exegesis** is a hard sci-fi, zone-fiction setting about strange people and stranger AI in mechanical bodies on an existentially important mission to investigate a Dyson sphere that is eating at their minds, 112.21 light-years from home. You can read more about it at the [main website](https://exegesis.space).
 
 ## NSFW content warning
 **Certain Exegesis content includes explicit features, typically tagged as `[evil]`. These elements are opt-in and can be ignored if not outright disabled, but please be aware of their presence. *If you are underage, you obviously shouldn't touch this stuff. Go away.***
 
-# VRChat avatars and assets
+# VRChat avatars
 
-### Public avatars
-- [**onye Nchọgharị**](https://vrchat.com/home/avatar/avtr_5b7ca63e-a627-4c77-a66c-2291b007746f)  <!-- probably just link to the readme (when it's made), and put the avatar link there instead. use portrait photo instead of simple link? -->
-  - onye Nchọgharị README.md
-- **mkpụrụobi mepụta**  <!-- probably just link to the readme (when it's made), and put the avatar link there instead. use portrait photo instead of simple link? -->
-  - mkpụrụobi mepụta README.md
-- **Dr. Agnès Lemaître** (telepresence frame)  <!-- probably just link to the readme (when it's made), and put the avatar link there instead. use portrait photo instead of simple link? -->
-  - Dr. Agnès Lemaître (telepresence frame) README.md
+### onye Nchọgharị
+[![onye Nchọgharị](exegesis_vrc_avatars/Assets/_exegesis/ncho/ncho_thumb.png)](https://vrchat.com/home/avatar/avtr_5b7ca63e-a627-4c77-a66c-2291b007746f)
+
+[onye Nchọgharị VRChat public avatar](https://vrchat.com/home/avatar/avtr_5b7ca63e-a627-4c77-a66c-2291b007746f)
+[onye Nchọgharị VRChat avatar project](exegesis_vrc_avatars/Assets/_exegesis/ncho)
+
+### mkpụrụobi mepụta
+
+
+### Dr. Agnès Lemaître (telepresence frame)
+
+
+# VRChat props
+
+[README.md](props/README.md)
+[Download](https://github.com/choccccy/exegesis_social_VR/releases/tag/props-v1.1.0)
+
+# Development Setup
 
 ## Notes for contributors
 
