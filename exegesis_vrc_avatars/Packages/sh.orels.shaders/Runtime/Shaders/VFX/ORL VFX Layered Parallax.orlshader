@@ -1,9 +1,0 @@
-%ShaderName("orels1/VFX/Layered Parallax")
-%LightingModel("@/LightingModels/VFX")
-%CustomEditor("ORL.ShaderInspector.InspectorGUI")
-
-%Includes()
-{
-    "@/Modules/LayeredParallax",
-    "self"
-}

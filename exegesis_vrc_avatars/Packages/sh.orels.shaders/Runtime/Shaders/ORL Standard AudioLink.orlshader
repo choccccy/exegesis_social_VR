@@ -1,9 +1,0 @@
-%ShaderName("orels1/Standard AudioLink")
-%CustomEditor("ORL.ShaderInspector.InspectorGUI")
-
-%Includes()
-{
-    "@/Shaders/ORL Standard",
-    "@/Modules/AudioLinkEffects",
-    "self"
-}

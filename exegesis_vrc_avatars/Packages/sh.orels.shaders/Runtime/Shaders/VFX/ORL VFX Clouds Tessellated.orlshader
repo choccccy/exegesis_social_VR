@@ -1,9 +1,0 @@
-%ShaderName("orels1/VFX/Clouds Tessellated")
-%CustomEditor("ORL.ShaderInspector.InspectorGUI")
-
-%Includes()
-{
-    "@/Shaders/VFX/ORL VFX Clouds",
-    "@/Modules/Tessellation",
-    "self",
-}

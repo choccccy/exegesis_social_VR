@@ -9,6 +9,14 @@ OptimizedShaders/
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
+[Pp]lugins/
+# Ignore all package contents
+[Pp]ackages/**
+# But keep the package metadata files
+![Pp]ackages/
+![Pp]ackages/manifest.json
+![Pp]ackages/packages-lock.json
+![Pp]ackages/vpm-manifest.json
 
 # VS / Rider / IDE
 .vs/

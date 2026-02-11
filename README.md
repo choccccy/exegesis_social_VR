@@ -92,3 +92,6 @@ Hard requirements for opening and working on this project. You can and probably 
 5. Install Poiyomi shaders
     - if installing through ALCOM/VCC, you will need to authenticate as described in the [Poiyomi docs](https://www.poiyomi.com/download#vcc-version)
 6. Open the `exegesis` scene in `Assets/_exegesis/`.
+
+## License
+Licensed under [GPLv3](LICENSE).

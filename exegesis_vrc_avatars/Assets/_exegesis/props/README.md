@@ -22,3 +22,6 @@ The evil screwdriver features SPS.
 
 ## Usage
 The screwdriver creates a sub-menu in your expressions (radial) menu called `Tools/`. Once enabled, you can make the `fist` gesture with your right hand to enable the `screwdriver` contact sender, which removes panels on Exegesis avatars. (The contact sender becomes disabled if the SPS plug is enabled.)
+
+## License
+Licensed under [GPLv3](screwdriver/LICENSE).

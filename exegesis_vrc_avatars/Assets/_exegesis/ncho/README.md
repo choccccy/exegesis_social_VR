@@ -24,3 +24,6 @@ From Igbo, "Person who wanders/searches" - Shortened to **Nchọ**
 ## quirks and features
 - digitigrade legs
 - 
+
+## License
+Licensed under [GPLv3](LICENSE).

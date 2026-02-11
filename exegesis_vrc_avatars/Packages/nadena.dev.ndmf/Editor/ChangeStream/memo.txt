@@ -1,4 +1,0 @@
-﻿class ComputeContext {
-  T ObserveState(Object obj, Func<T> func);
-  Transform ObserveTransform(GameObject object);
-}

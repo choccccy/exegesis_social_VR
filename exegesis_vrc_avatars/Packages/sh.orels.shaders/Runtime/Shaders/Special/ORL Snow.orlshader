@@ -1,8 +1,0 @@
-%ShaderName("orels1/Special/Snow Coverage")
-
-%Includes()
-{
-    "@/Shaders/ORL Standard",
-    "@/Modules/Snow",
-    "self"
-}
