@@ -6,6 +6,14 @@
 
 # VRChat avatars and assets
 
+### Public avatars
+- [**onye Nchọgharị**](https://vrchat.com/home/avatar/avtr_5b7ca63e-a627-4c77-a66c-2291b007746f)  <!-- probably just link to the readme (when it's made), and put the avatar link there instead. use portrait photo instead of simple link? -->
+  - onye Nchọgharị README.md
+- **mkpụrụobi mepụta**  <!-- probably just link to the readme (when it's made), and put the avatar link there instead. use portrait photo instead of simple link? -->
+  - mkpụrụobi mepụta README.md
+- **Dr. Agnès Lemaître** (telepresence frame)  <!-- probably just link to the readme (when it's made), and put the avatar link there instead. use portrait photo instead of simple link? -->
+  - Dr. Agnès Lemaître (telepresence frame) README.md
+
 ## Notes for contributors
 
 ### Poiyomi Shaders
