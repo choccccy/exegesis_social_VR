@@ -23,7 +23,13 @@ From Igbo, "Person who wanders/searches" - Shortened to **Nchọ**
 
 ## quirks and features
 - digitigrade legs
-- 
+- HUD
+  - paper doll shows where it's being touched
+  - primion represents touch too (and audiolink)
+  - heat is avatar heat, builds on touch, dissipates over time
+  - H2O is battery level as reported by XSOverlay
+- `Snub`s are toggles for spacing so that i don't have to retrain my muscle memory
+- screwdriver on chest can be grabbed with fingerpoint gesture
 
 ## License
 Licensed under [GPLv3](LICENSE).

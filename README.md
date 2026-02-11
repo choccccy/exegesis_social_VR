@@ -19,6 +19,7 @@
 [![onye Nchọgharị](exegesis_vrc_avatars/Assets/_exegesis/ncho/ncho_thumb.png)](https://vrchat.com/home/avatar/avtr_5b7ca63e-a627-4c77-a66c-2291b007746f)
 
 [onye Nchọgharị VRChat public avatar](https://vrchat.com/home/avatar/avtr_5b7ca63e-a627-4c77-a66c-2291b007746f)
+
 [onye Nchọgharị VRChat avatar project](exegesis_vrc_avatars/Assets/_exegesis/ncho)
 
 ### mkpụrụobi mepụta
