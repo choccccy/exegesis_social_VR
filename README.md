@@ -1,4 +1,4 @@
-# [Exegesis](https://exegesis.space)
+# [Exegesis](https://exegesis.space)  <!-- use the exegesis text-logo as a header here, which links to the main site-->
 **Exegesis** is a hard sci-fi, zone-fiction setting about strange people and stranger AI in mechanical bodies on an existentially important mission to investigate a Dyson sphere that is eating at their minds, 112.21 light-years from home. You can read more about it at the [main website](https://exegesis.space).
 
 ## NSFW content warning
