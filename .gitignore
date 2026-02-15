@@ -10,13 +10,15 @@ OptimizedShaders/
 [Ll]ogs/
 [Mm]emoryCaptures/
 [Pp]lugins/
-# Ignore all package contents
-[Pp]ackages/**
-# But keep the package metadata files
-![Pp]ackages/
-![Pp]ackages/manifest.json
-![Pp]ackages/packages-lock.json
-![Pp]ackages/vpm-manifest.json
+# Ignore everything in Packages
+**/[Pp]ackages/*
+# Except the manifests that define which packages to download
+!**/[Pp]ackages/manifest.json
+!**/[Pp]ackages/packages-lock.json
+!**/[Pp]ackages/vpm-manifest.json
+# Textmesh Pro
+TextMesh Pro/
+TextMesh Pro.meta
 
 # VS / Rider / IDE
 .vs/

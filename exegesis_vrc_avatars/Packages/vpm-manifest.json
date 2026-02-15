@@ -127,7 +127,7 @@
       }
     },
     "com.llealloo.audiolink": {
-      "version": "3.1.0",
+      "version": "3.1.1",
       "dependencies": {}
     },
     "dev.vrlabs.av3manager": {
@@ -137,7 +137,7 @@
       }
     },
     "vrchat.blackstartx.gesture-manager": {
-      "version": "3.9.7",
+      "version": "3.9.8",
       "dependencies": {
         "com.vrchat.avatars": ">=3.5.2 <3.11.X"
       }
