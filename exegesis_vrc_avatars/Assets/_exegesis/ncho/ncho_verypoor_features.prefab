@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 6286868615558654814}
   - component: {fileID: 8292009495500843615}
   - component: {fileID: 8244280367038662820}
+  - component: {fileID: 2809377405509306590}
   m_Layer: 0
   m_Name: rober_sps
   m_TagString: Untagged
@@ -285,6 +286,77 @@ MonoBehaviour:
         version: 0
         path: Expression/SPS
         position: 0
+--- !u!114 &2809377405509306590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4757313380666425150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1279.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 5673955535474917422
+  references:
+    version: 2
+    RefIds:
+    - rid: 5673955535474917422
+      type: {class: FullController, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 4
+        controllers: []
+        menus:
+        - menu:
+            version: 1
+            fileID: 0
+            guid: 
+            id: edf9e6beedf3b274394e2df153dd2489|Assets/_exegesis/ncho/ncho_anim/ncho_tail_menu.asset
+            objRef: {fileID: 11400000, guid: edf9e6beedf3b274394e2df153dd2489, type: 2}
+          prefix: Expression/SPS/Tail
+        prms: []
+        smoothedPrms: []
+        globalParams:
+        - '*'
+        allNonsyncedAreGlobal: 0
+        ignoreSaved: 0
+        toggleParam: 
+        rootObjOverride: {fileID: 0}
+        rootBindingsApplyToAvatar: 0
+        rewriteBindings: []
+        allowMissingAssets: 0
+        injectSpsDepthParam: 
+        injectSpsVelocityParam: 
+        controller:
+          version: 1
+          fileID: 0
+          guid: 
+          id: 
+          objRef: {fileID: 0}
+        menu:
+          version: 1
+          fileID: 0
+          guid: 
+          id: 
+          objRef: {fileID: 0}
+        parameters:
+          version: 1
+          fileID: 0
+          guid: 
+          id: 
+          objRef: {fileID: 0}
+        submenu: 
+        removePrefixes: []
+        addPrefix: 
+        useSecurityForToggle: 0
 --- !u!1 &6016893974615620098
 GameObject:
   m_ObjectHideFlags: 0

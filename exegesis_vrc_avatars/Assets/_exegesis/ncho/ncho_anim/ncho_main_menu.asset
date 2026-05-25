@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: -340790334, guid: 67cc4cb7839cd3741b63733d5adf0442, type: 3}
   m_Name: ncho_main_menu
   m_EditorClassIdentifier: 
-  Parameters: {fileID: 11400000, guid: 5eb2d188b49a6d54e958fc21205ea0d3, type: 2}
+  Parameters: {fileID: 11400000, guid: 0feacba8ced43f942bb99a164936f912, type: 2}
   controls:
   - name: Tools
     icon: {fileID: 2800000, guid: 26f932c4382052a44bd754e68d59d7db, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
       name: 
     value: 1
     style: 0
-    subMenu: {fileID: 0}
+    subMenu: {fileID: 11400000, guid: 57587d3fba5d64845bc203cb10fac161, type: 2}
     subParameters: []
     labels: []
   - name: snub

@@ -14,11 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEmpty: 0
   parameters:
-  - name: VRCEmote
-    valueType: 0
-    saved: 1
-    defaultValue: 0
-    networkSynced: 1
   - name: isOverlayOpen
     valueType: 2
     saved: 0
@@ -43,6 +38,11 @@ MonoBehaviour:
     valueType: 1
     saved: 0
     defaultValue: 0
+    networkSynced: 1
+  - name: FT/v2/EyeLid
+    valueType: 1
+    saved: 0
+    defaultValue: 1
     networkSynced: 1
   - name: eyes_state
     valueType: 0
@@ -161,6 +161,11 @@ MonoBehaviour:
     networkSynced: 1
   - name: transponder
     valueType: 2
+    saved: 0
+    defaultValue: 0
+    networkSynced: 1
+  - name: tail_state
+    valueType: 0
     saved: 0
     defaultValue: 0
     networkSynced: 1
