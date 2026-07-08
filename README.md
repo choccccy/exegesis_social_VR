@@ -83,6 +83,7 @@ Hard requirements for opening and working on this project. You can and probably 
 - Dreadrith's [VRCSDK+](https://github.com/VRLabs/VRCSDKPlus)
 - Dreadrith's [Controller Cleaner](https://github.com/VRLabs/ControllerCleaner)
 - Markcreator's [Size Profiler](https://github.com/Markcreator/SizeProfiler)
+- Unsigned's [VRCMultiUploader](https://github.com/I5UCC/VRCMultiUploader)
 
 ## Setup
 
