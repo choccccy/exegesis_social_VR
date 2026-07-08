@@ -308,7 +308,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PathingColorMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d99dfa8b82cf6a5439129a8f7c42761c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PathingMap:
@@ -2997,7 +2997,7 @@ Material:
     - m_end_videoEffects: 0
     - m_end_voronoi: 0
     - m_end_voronoiRandom: 0
-    - m_lightingCategory: 1
+    - m_lightingCategory: 0
     - m_mainCategory: 1
     - m_modifierCategory: 1
     - m_renderingCategory: 0
@@ -3106,7 +3106,7 @@ Material:
     - m_start_backFace: 0
     - m_start_backlight: 0
     - m_start_blending: 0
-    - m_start_brdf: 1
+    - m_start_brdf: 0
     - m_start_clearCoat: 0
     - m_start_clearcoatadvanced: 0
     - m_start_clearcoatglobalmask: 0
@@ -3117,7 +3117,7 @@ Material:
     - m_start_emission1Options: 0
     - m_start_emission2Options: 0
     - m_start_emission3Options: 0
-    - m_start_emissionOptions: 1
+    - m_start_emissionOptions: 0
     - m_start_flipBook: 0
     - m_start_glitter: 0
     - m_start_gt7tonemapping: 0
@@ -3128,7 +3128,7 @@ Material:
     - m_start_outlineAlphaBlending: 0
     - m_start_outlineBlending: 0
     - m_start_parallax: 0
-    - m_start_pathing: 0
+    - m_start_pathing: 1
     - m_start_pen_autoConfig: 0
     - m_start_poiSSAO: 0
     - m_start_pointToPoint: 0
