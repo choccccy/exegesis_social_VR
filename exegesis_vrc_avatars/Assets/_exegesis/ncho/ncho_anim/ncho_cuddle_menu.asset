@@ -55,11 +55,11 @@ MonoBehaviour:
     subMenu: {fileID: 0}
     subParameters: []
     labels: []
-  - name: Snub
+  - name: Eyeshadow
     icon: {fileID: 0}
-    type: 103
+    type: 102
     parameter:
-      name: 
+      name: eyeshadow
     value: 1
     style: 0
     subMenu: {fileID: 0}

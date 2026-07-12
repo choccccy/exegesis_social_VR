@@ -65,6 +65,7 @@ Material:
     _EmissionColor1Animated: 1
     _EmissionColorAnimated: 1
     _EmissionMapAnimated: 1
+    _EmissionMask0GlobalMaskAnimated: 1
     _EmissionStrength1Animated: 1
     _EmissionStrength2Animated: 1
     _EmissionStrength3Animated: 1
@@ -276,7 +277,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GlobalMaskTexture3:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2c60aee94cf777e4fa114f62ad70c260, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _LightDataSDFMap:
@@ -1088,7 +1089,7 @@ Material:
     - _EmissionMap3UV: 0
     - _EmissionMapUV: 0
     - _EmissionMask0GlobalMask: 0
-    - _EmissionMask0GlobalMaskBlendType: 2
+    - _EmissionMask0GlobalMaskBlendType: 0
     - _EmissionMask1Channel: 0
     - _EmissionMask1GlobalMask: 0
     - _EmissionMask1GlobalMaskBlendType: 2
@@ -3030,7 +3031,7 @@ Material:
     - m_start_FXProximityColor: 0
     - m_start_FlipbookAudioLink: 0
     - m_start_Gameboy: 0
-    - m_start_GlobalMask: 0
+    - m_start_GlobalMask: 1
     - m_start_GlobalMaskDistanceM_0: 0
     - m_start_GlobalMaskDistanceM_1: 0
     - m_start_GlobalMaskDistanceM_10: 0
@@ -3053,7 +3054,7 @@ Material:
     - m_start_GlobalMaskModifiersDistance: 0
     - m_start_GlobalMaskModifiersMirror: 0
     - m_start_GlobalMaskOptions: 0
-    - m_start_GlobalMaskTextures: 0
+    - m_start_GlobalMaskTextures: 1
     - m_start_GlobalMaskVertexColors: 0
     - m_start_GlobalThemeColor0: 1
     - m_start_GlobalThemeColor1: 1
@@ -3117,7 +3118,7 @@ Material:
     - m_start_emission1Options: 0
     - m_start_emission2Options: 0
     - m_start_emission3Options: 0
-    - m_start_emissionOptions: 0
+    - m_start_emissionOptions: 1
     - m_start_flipBook: 0
     - m_start_glitter: 0
     - m_start_gt7tonemapping: 0
@@ -3128,7 +3129,7 @@ Material:
     - m_start_outlineAlphaBlending: 0
     - m_start_outlineBlending: 0
     - m_start_parallax: 0
-    - m_start_pathing: 1
+    - m_start_pathing: 0
     - m_start_pen_autoConfig: 0
     - m_start_poiSSAO: 0
     - m_start_pointToPoint: 0
@@ -3152,12 +3153,12 @@ Material:
     - m_start_uvPolar: 0
     - m_start_vertexGlitching: 0
     - m_start_vertexLookAt: 0
-    - m_start_vertexManipulation: 1
+    - m_start_vertexManipulation: 0
     - m_start_videoEffects: 0
     - m_start_voronoi: 0
     - m_start_voronoiRandom: 0
     - m_thirdpartyCategory: 0
-    - m_vertexCategory: 1
+    - m_vertexCategory: 0
     - s_end_ALAlpha: 0
     - s_end_ALDecalAudioModsOptions: 0
     - s_end_ALDecalBand: 0
@@ -3460,7 +3461,7 @@ Material:
     - s_start_EmissionAL3Add: 0
     - s_start_EmissionAL3COut: 0
     - s_start_EmissionAL3Multiply: 0
-    - s_start_EmissionBlinking0: 1
+    - s_start_EmissionBlinking0: 0
     - s_start_EmissionBlinking1: 0
     - s_start_EmissionBlinking2: 0
     - s_start_EmissionBlinking3: 0

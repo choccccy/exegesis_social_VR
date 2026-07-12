@@ -527,6 +527,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -596,6 +597,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -833,6 +835,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -841,6 +844,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -2021,6 +2025,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -2029,6 +2034,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -2174,6 +2180,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -2260,6 +2267,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.7
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -2271,6 +2279,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: hips_touch
   minVelocity: 0.05
@@ -2610,6 +2619,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -2622,6 +2632,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -4243,6 +4254,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -4302,6 +4314,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -4313,6 +4326,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: chest_touch
   minVelocity: 0.05
@@ -4678,6 +4692,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.25
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -4686,6 +4701,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: screwdriver_holster
   minVelocity: 0.05
@@ -4744,6 +4760,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -4961,8 +4978,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774048, y: -0.5496826, z: 6.035894}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 745328923}
@@ -5458,6 +5475,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -5466,6 +5484,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -7434,6 +7453,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -7519,6 +7539,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -7814,6 +7835,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -7868,6 +7890,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -7922,6 +7945,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -7930,6 +7954,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -7981,6 +8006,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -7989,6 +8015,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -8040,6 +8067,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -8321,6 +8349,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -8375,6 +8404,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -8822,6 +8852,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -8892,6 +8923,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -8902,6 +8934,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -8953,6 +8986,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -8961,6 +8995,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -9186,6 +9221,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -9339,6 +9375,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -9347,6 +9384,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -9630,6 +9668,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -9638,6 +9677,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -9689,6 +9729,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -9829,6 +9870,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -10177,6 +10219,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -10695,6 +10738,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -10749,6 +10793,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -11006,6 +11051,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -11014,6 +11060,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -11436,6 +11483,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -11490,6 +11538,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -11501,6 +11550,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: chest_touch
   minVelocity: 0.05
@@ -13115,6 +13165,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.1330305, y: 0.00000031292439, z: -0.7217057, w: 0.67929655}
   localOnly: 0
@@ -13204,6 +13255,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -13212,6 +13264,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -13950,6 +14003,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -13958,6 +14012,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -14159,6 +14214,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -14167,6 +14223,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -14218,6 +14275,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -14226,6 +14284,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: face_panels_tool
   minVelocity: 0.05
@@ -14368,6 +14427,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -14376,6 +14436,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -14730,6 +14791,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -14815,6 +14877,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -15011,6 +15074,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.13303052, y: -0.0000003501773, z: 0.7217056, w: 0.6792966}
   localOnly: 0
@@ -15595,6 +15659,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -19432,6 +19497,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -19440,6 +19506,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -19491,6 +19558,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -20144,6 +20212,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -20152,6 +20221,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -20525,6 +20595,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -20657,6 +20728,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.13303052, y: -0.0000003501773, z: 0.7217056, w: 0.6792966}
   localOnly: 0
@@ -20711,6 +20783,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -20719,6 +20792,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -21462,6 +21536,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -21984,6 +22059,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -21992,6 +22068,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -22043,6 +22120,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -22051,6 +22129,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -22708,6 +22787,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.64
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0.15, z: 0.05}
   rotation: {x: 0.044709153, y: 0, z: 0, w: 0.9990001}
   localOnly: 0
@@ -22719,6 +22799,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: head_prox
   minVelocity: 0.05
@@ -23393,6 +23474,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -23447,6 +23529,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -23557,6 +23640,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -23565,6 +23649,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -24360,6 +24445,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -24368,6 +24454,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -24559,6 +24646,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -24633,6 +24721,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -24723,6 +24812,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -24731,6 +24821,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -24782,6 +24873,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -24790,6 +24882,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -25034,6 +25127,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -25046,6 +25140,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -25129,6 +25224,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -25591,6 +25687,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -25603,6 +25700,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -25902,6 +26000,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -26204,6 +26303,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -26216,6 +26316,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -26267,6 +26368,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -26275,6 +26377,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -26598,6 +26701,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -26610,6 +26714,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -27123,6 +27228,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.7
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -27134,6 +27240,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: hips_touch
   minVelocity: 0.05
@@ -27185,6 +27292,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.4
   height: 1.25
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -27193,6 +27301,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: abdomen_panels_tool
   minVelocity: 0.05
@@ -27244,6 +27353,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -27252,6 +27362,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -27303,6 +27414,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -27667,6 +27779,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -27677,6 +27790,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -27985,6 +28099,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.13303052, y: -0.0000003501773, z: 0.7217056, w: 0.6792966}
   localOnly: 0
@@ -28478,6 +28593,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -28486,6 +28602,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -28537,6 +28654,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -28690,6 +28808,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -28698,6 +28817,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -28749,6 +28869,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -29305,6 +29426,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -29316,6 +29438,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: abdomen_touch
   minVelocity: 0.05
@@ -29642,6 +29765,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -29652,6 +29776,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -29911,6 +30036,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -29923,6 +30049,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -30502,6 +30629,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -30513,6 +30641,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_arm_touch
   minVelocity: 0.05
@@ -30564,6 +30693,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -30574,6 +30704,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -30625,6 +30756,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -30633,6 +30765,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -31604,6 +31737,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -31612,6 +31746,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -31835,6 +31970,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -31843,6 +31979,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -32085,6 +32222,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -32225,6 +32363,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.4
   height: 1.25
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -32233,6 +32372,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: abdomen_panels_tool
   minVelocity: 0.05
@@ -32284,6 +32424,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -32295,6 +32436,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: chest_touch
   minVelocity: 0.05
@@ -32381,6 +32523,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -32389,6 +32532,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -32638,6 +32782,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -33147,6 +33292,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -33155,6 +33301,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -33558,6 +33705,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -33566,6 +33714,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -33617,6 +33766,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -35398,6 +35548,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -35452,6 +35603,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -35462,6 +35614,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -35513,6 +35666,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -35521,6 +35675,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -36083,6 +36238,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -36094,6 +36250,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_arm_touch
   minVelocity: 0.05
@@ -36819,6 +36976,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -37120,6 +37278,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -37131,6 +37290,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_arm_touch
   minVelocity: 0.05
@@ -37182,6 +37342,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -37190,6 +37351,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -37467,6 +37629,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -40784,6 +40947,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -40869,6 +41033,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -40923,6 +41088,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -40931,6 +41097,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -41308,6 +41475,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -41316,6 +41484,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -41367,6 +41536,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 0.47
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -41375,6 +41545,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: groin_panels_tool
   minVelocity: 0.05
@@ -41528,6 +41699,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -41764,6 +41936,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.72
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -41775,6 +41948,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
@@ -41826,6 +42000,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -41837,6 +42012,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
@@ -42201,6 +42377,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -43720,7 +43897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -43747,7 +43924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -43774,7 +43951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -43802,7 +43979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -43864,6 +44041,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -43872,6 +44050,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -43923,6 +44102,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -44190,6 +44370,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -44198,6 +44379,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -44249,6 +44431,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -44257,6 +44440,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -44308,6 +44492,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -44316,6 +44501,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -45162,6 +45348,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -45170,6 +45357,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -45368,6 +45556,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -45376,6 +45565,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -45492,6 +45682,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -45561,6 +45752,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -45569,6 +45761,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -45969,6 +46162,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -46117,6 +46311,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -46129,6 +46324,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -46180,6 +46376,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -46190,6 +46387,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -46392,6 +46590,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -46446,6 +46645,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -46977,6 +47177,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -47180,6 +47381,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -47188,6 +47390,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -47442,6 +47645,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -47453,6 +47657,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
@@ -47745,6 +47950,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -47753,6 +47959,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -48203,6 +48410,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -48211,6 +48419,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -48262,6 +48471,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -48270,6 +48480,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -48532,6 +48743,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -48540,6 +48752,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -48626,6 +48839,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -49409,6 +49623,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -49419,6 +49634,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -49475,6 +49691,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -49638,6 +49855,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -49650,6 +49868,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -49792,6 +50011,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -49800,6 +50020,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -50275,6 +50496,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -50423,6 +50645,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -50431,6 +50654,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -51008,6 +51232,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -51016,6 +51241,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -51264,6 +51490,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -51544,6 +51771,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -51632,6 +51860,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -51686,6 +51915,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -52573,6 +52803,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -52581,6 +52812,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -52710,6 +52942,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -52718,6 +52951,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -52944,6 +53178,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -52956,6 +53191,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -53684,6 +53920,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -53738,6 +53975,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 0.47
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -53746,6 +53984,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: groin_panels_tool
   minVelocity: 0.05
@@ -53848,6 +54087,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -54934,6 +55174,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -54942,6 +55183,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -55604,6 +55846,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -55614,6 +55857,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -59361,6 +59605,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -59369,6 +59614,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -60888,6 +61134,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -60896,6 +61143,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -61119,6 +61367,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -61127,6 +61376,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -61926,6 +62176,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -61934,6 +62185,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_thigh_panels_tool
   minVelocity: 0.05
@@ -61985,6 +62237,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -62039,6 +62292,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -62049,6 +62303,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -62288,6 +62543,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -62296,6 +62552,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: face_panels_tool
   minVelocity: 0.05
@@ -62548,6 +62805,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -62559,6 +62817,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_arm_touch
   minVelocity: 0.05
@@ -62885,6 +63144,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -62893,6 +63153,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -62944,6 +63205,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -63814,6 +64076,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -63822,6 +64085,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: chest_panels_tool
   minVelocity: 0.05
@@ -64310,6 +64574,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -65053,6 +65318,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -65112,6 +65378,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -65166,6 +65433,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -65174,6 +65442,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -65290,6 +65559,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -65298,6 +65568,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -65686,6 +65957,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -65694,6 +65966,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -65917,6 +66190,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -65927,6 +66201,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -66382,6 +66657,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -66390,6 +66666,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -66767,6 +67044,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -66775,6 +67053,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -67667,6 +67946,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -67822,6 +68102,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -67830,6 +68111,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -67912,6 +68194,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -67966,6 +68249,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -68020,6 +68304,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -68028,6 +68313,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -68079,6 +68365,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -68138,6 +68425,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -68192,6 +68480,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -68345,6 +68634,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -68404,6 +68694,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -68995,6 +69286,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -69006,6 +69298,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: abdomen_touch
   minVelocity: 0.05
@@ -69157,6 +69450,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -69211,6 +69505,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -69521,6 +69816,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -69529,6 +69825,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -69850,6 +70147,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -70100,6 +70398,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.25
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -70108,6 +70407,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: screwdriver_holster
   minVelocity: 0.05
@@ -73850,6 +74150,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -73858,6 +74159,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -73909,6 +74211,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -73917,6 +74220,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -74049,6 +74353,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -74057,6 +74362,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -74115,6 +74421,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -74219,6 +74526,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.5
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -74226,6 +74534,7 @@ MonoBehaviour:
   collisionTags: []
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: 
   minVelocity: 0.05
@@ -76187,6 +76496,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -76195,6 +76505,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -76246,6 +76557,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -76254,6 +76566,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -76305,6 +76618,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -76317,6 +76631,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -76545,6 +76860,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -76553,6 +76869,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_thigh_panels_tool
   minVelocity: 0.05
@@ -76662,6 +76979,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -76716,6 +77034,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -76724,6 +77043,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -77698,6 +78018,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -77706,6 +78027,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -78955,7 +79277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -78982,7 +79304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -79010,7 +79332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -79037,7 +79359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -79064,7 +79386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -79245,6 +79567,8 @@ MonoBehaviour:
     name: '[ncho]_blink'
   - hash: -2018031331
     name: empty
+  - hash: 2093830696
+    name: '[ncho]_slutty_eyes'
   - hash: -1771217133
     name: empty
   - hash: 1299401472
@@ -79271,6 +79595,12 @@ MonoBehaviour:
     name: empty
   - hash: 1121417020
     name: talk_heat_add
+  - hash: -1465562795
+    name: 0_0 heat integral
+  - hash: -1692207138
+    name: 0_5 heat integral
+  - hash: 788759062
+    name: 1_0 heat integral
   - hash: 1194402302
     name: empty
   - hash: 1187905595
@@ -79419,6 +79749,12 @@ MonoBehaviour:
     name: empty
   - hash: 2110481887
     name: right_leg_touch
+  - hash: 426100815
+    name: '[ncho]_eyeshadow_off'
+  - hash: 282724060
+    name: '[ncho]_eyeshadow_off 0'
+  - hash: 139445988
+    name: '[ncho]_eyeshadow_on'
   autoFootsteps: 1
   autoLocomotion: 1
   collider_head:
@@ -79581,6 +79917,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 1.56
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
   localOnly: 0
@@ -79592,6 +79929,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: head_prox
   minVelocity: 0.05
@@ -79768,6 +80106,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -79780,6 +80119,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -79884,6 +80224,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -80009,6 +80350,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -80017,6 +80359,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -81207,6 +81550,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -81215,6 +81559,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -81360,6 +81705,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -81619,6 +81965,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -81627,6 +81974,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_thigh_panels_tool
   minVelocity: 0.05
@@ -81678,6 +82026,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -83010,6 +83359,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -83064,6 +83414,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -83072,6 +83423,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -83374,6 +83726,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -83925,6 +84278,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -84108,6 +84462,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -87142,6 +87497,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -88488,6 +88844,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -88557,6 +88914,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -89047,6 +89405,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -89233,6 +89592,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -89244,6 +89604,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
@@ -89378,6 +89739,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -89386,6 +89748,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -89531,6 +89894,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -89585,6 +89949,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -89593,6 +89958,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -89644,6 +90010,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -89652,6 +90019,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -90628,7 +90996,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -90656,7 +91024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -90683,7 +91051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -90710,7 +91078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -91307,6 +91675,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -91315,6 +91684,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -91511,6 +91881,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.72
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -91522,6 +91893,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
@@ -91573,6 +91945,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -91583,6 +91956,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -92094,6 +92468,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -92148,6 +92523,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -92669,6 +93045,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -92677,6 +93054,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -92728,6 +93106,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -92782,6 +93161,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -92836,6 +93216,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -92844,6 +93225,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -93062,6 +93444,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -93072,6 +93455,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -93206,6 +93590,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -93218,6 +93603,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -93269,6 +93655,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -93280,6 +93667,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_arm_touch
   minVelocity: 0.05
@@ -93517,7 +93905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 10
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   autoRenderer: 0
   autoPosition: 1
   autoLength: 1
@@ -93557,6 +93945,10 @@ MonoBehaviour:
     smoothingSeconds: 0
     reverseClip: 0
   useHipAvoidance: 1
+  useSharedTag: 1
+  useLights: 1
+  includeTags: []
+  excludeTags: []
   configureSps: 0
   spsBoneMask: 1
   spsTextureMask:
@@ -93598,7 +93990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -93795,6 +94187,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -98845,6 +99238,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -98853,6 +99247,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -98904,6 +99299,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -98915,6 +99311,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: abdomen_touch
   minVelocity: 0.05
@@ -98966,6 +99363,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -98974,6 +99372,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -99111,6 +99510,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -99165,6 +99565,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -99173,6 +99574,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -99224,6 +99626,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -99232,6 +99635,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -99432,6 +99836,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -99440,6 +99845,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -99491,6 +99897,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -99699,6 +100106,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -99709,6 +100117,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -99882,6 +100291,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -99892,6 +100302,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -99943,6 +100354,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -99951,6 +100363,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -100101,6 +100514,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -100306,6 +100720,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -100314,6 +100729,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_thigh_panels_tool
   minVelocity: 0.05
@@ -100880,6 +101296,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -100999,7 +101416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -101431,6 +101848,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -101439,6 +101857,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -101526,6 +101945,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -101534,6 +101954,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -101615,6 +102036,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -101753,6 +102175,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -101761,6 +102184,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -101865,6 +102289,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -101873,6 +102298,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -101924,6 +102350,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.1330305, y: 0.00000031292439, z: -0.7217057, w: 0.67929655}
   localOnly: 0
@@ -102238,6 +102665,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -102246,6 +102674,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -102297,6 +102726,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -102305,6 +102735,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -102849,6 +103280,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -102857,6 +103289,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_thigh_panels_tool
   minVelocity: 0.05
@@ -102908,6 +103341,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -104097,6 +104531,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -104105,6 +104540,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -104156,6 +104592,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -104164,6 +104601,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -104269,8 +104707,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: 18.45792, y: 55.86763, z: 15.669644}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 745328923}
@@ -104515,6 +104953,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -104523,6 +104962,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -105036,6 +105476,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -105044,6 +105485,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -106056,6 +106498,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -106287,6 +106730,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -106436,6 +106880,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -106444,6 +106889,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -106495,6 +106941,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -106658,6 +107105,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -107972,6 +108420,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -108026,6 +108475,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -108080,6 +108530,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -108088,6 +108539,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -108613,6 +109065,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -108621,6 +109074,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -108672,6 +109126,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -108947,6 +109402,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -112318,6 +112774,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -112417,6 +112874,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -112481,6 +112939,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -112621,6 +113080,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -112675,6 +113135,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -112915,7 +113376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -114350,6 +114811,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.72
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -114361,6 +114823,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
@@ -114448,6 +114911,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -114456,6 +114920,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -114646,6 +115111,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -114737,6 +115203,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -114745,6 +115212,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -114801,6 +115269,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -114939,6 +115408,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -115067,6 +115537,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -115206,6 +115677,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -115214,6 +115686,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -115296,6 +115769,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -115350,6 +115824,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -115358,6 +115833,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -115701,6 +116177,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -120168,6 +120645,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.7
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -120179,6 +120657,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: hips_touch
   minVelocity: 0.05
@@ -120675,6 +121154,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -120685,6 +121165,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -120997,6 +121478,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -121007,6 +121489,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -121058,6 +121541,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -121068,6 +121552,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -121329,6 +121814,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -121383,6 +121869,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -121394,6 +121881,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: abdomen_touch
   minVelocity: 0.05
@@ -121445,6 +121933,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -121504,6 +121993,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -121558,6 +122048,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -121612,6 +122103,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -123255,6 +123747,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -123263,6 +123756,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -123742,6 +124236,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -124029,6 +124524,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -124040,6 +124536,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_leg_touch
   minVelocity: 0.05
@@ -124608,6 +125105,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -125357,6 +125855,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -126090,6 +126589,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -126098,6 +126598,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -126377,6 +126878,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -126858,6 +127360,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -126868,6 +127371,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -126959,6 +127463,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -126969,6 +127474,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -127288,6 +127794,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 0.47
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -127296,6 +127803,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: groin_panels_tool
   minVelocity: 0.05
@@ -127678,6 +128186,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -127686,6 +128195,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -129914,6 +130424,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -129968,6 +130479,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -129978,6 +130490,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -130029,6 +130542,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -130037,6 +130551,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -130088,6 +130603,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -130098,6 +130614,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -130271,6 +130788,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.1330305, y: 0.00000031292439, z: -0.7217057, w: 0.67929655}
   localOnly: 0
@@ -130468,6 +130986,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -130478,6 +130997,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -130661,6 +131181,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -131297,6 +131818,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -131305,6 +131827,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -131468,6 +131991,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -131476,6 +132000,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -131624,6 +132149,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -132102,6 +132628,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -132110,6 +132637,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -132168,6 +132696,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -132563,6 +133092,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -132571,6 +133101,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -132946,6 +133477,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -132954,6 +133486,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -133220,6 +133753,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -133230,6 +133764,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -133428,6 +133963,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -133482,6 +134018,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -133490,6 +134027,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -133541,6 +134079,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -133553,6 +134092,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -133604,6 +134144,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -133614,6 +134155,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -133665,6 +134207,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -133677,6 +134220,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -133847,6 +134391,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -133855,6 +134400,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -133960,8 +134506,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774048, y: -0.5496826, z: 6.035894}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 850857297}
@@ -134106,6 +134652,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -134357,6 +134904,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -134365,6 +134913,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -134520,6 +135069,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -134531,6 +135081,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_leg_touch
   minVelocity: 0.05
@@ -134582,6 +135133,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -134720,6 +135272,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -134728,6 +135281,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -135495,6 +136049,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -135503,6 +136058,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -135554,6 +136110,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -135919,6 +136476,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -135973,6 +136531,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -136027,6 +136586,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -136038,6 +136598,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_leg_touch
   minVelocity: 0.05
@@ -136196,6 +136757,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -137249,6 +137811,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -137257,6 +137820,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -140880,6 +141444,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -141020,6 +141585,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -141028,6 +141594,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -141079,6 +141646,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -141087,6 +141655,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: chest_panels_tool
   minVelocity: 0.05
@@ -141353,6 +141922,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -141364,6 +141934,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_leg_touch
   minVelocity: 0.05
@@ -141758,6 +142329,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.1330305, y: 0.00000031292439, z: -0.7217057, w: 0.67929655}
   localOnly: 0
@@ -141906,6 +142478,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -141960,6 +142533,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -141971,6 +142545,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
@@ -142112,6 +142687,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -142398,6 +142974,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -142406,6 +142983,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -142457,6 +143035,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -142465,6 +143044,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -143235,6 +143815,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -143243,6 +143824,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -143496,6 +144078,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -143504,6 +144087,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -144052,6 +144636,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -144062,6 +144647,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -144207,6 +144793,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -144219,6 +144806,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -144364,6 +144952,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -144372,6 +144961,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -145010,6 +145600,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -145018,6 +145609,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -145597,6 +146189,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -145605,6 +146198,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -146116,6 +146710,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -146124,6 +146719,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -146175,6 +146771,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -146229,6 +146826,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -146237,6 +146835,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -147598,6 +148197,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -147606,6 +148206,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: face_panels_tool
   minVelocity: 0.05
@@ -147794,6 +148395,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -147802,6 +148404,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -147853,6 +148456,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.13303052, y: -0.0000003501773, z: 0.7217056, w: 0.6792966}
   localOnly: 0
@@ -148260,6 +148864,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -148398,6 +149003,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -148512,6 +149118,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -148520,6 +149127,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -148790,6 +149398,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -148798,6 +149407,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -149046,6 +149656,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -149167,6 +149778,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -149356,6 +149968,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -149410,6 +150023,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -149421,6 +150035,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_arm_touch
   minVelocity: 0.05
@@ -149472,6 +150087,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -149480,6 +150096,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -149564,6 +150181,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -149623,6 +150241,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -149631,6 +150250,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -150011,6 +150631,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -150065,6 +150686,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -150073,6 +150695,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -151082,7 +151705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -151110,7 +151733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -151137,7 +151760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -151164,7 +151787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -151345,6 +151968,8 @@ MonoBehaviour:
     name: '[ncho]_blink'
   - hash: -2018031331
     name: empty
+  - hash: 2093830696
+    name: '[ncho]_slutty_eyes'
   - hash: -1771217133
     name: empty
   - hash: 1299401472
@@ -151371,6 +151996,12 @@ MonoBehaviour:
     name: empty
   - hash: 1121417020
     name: talk_heat_add
+  - hash: -1465562795
+    name: 0_0 heat integral
+  - hash: -1692207138
+    name: 0_5 heat integral
+  - hash: 788759062
+    name: 1_0 heat integral
   - hash: 1194402302
     name: empty
   - hash: 1187905595
@@ -151519,6 +152150,12 @@ MonoBehaviour:
     name: empty
   - hash: 2110481887
     name: right_leg_touch
+  - hash: 426100815
+    name: '[ncho]_eyeshadow_off'
+  - hash: 282724060
+    name: '[ncho]_eyeshadow_off 0'
+  - hash: 139445988
+    name: '[ncho]_eyeshadow_on'
   autoFootsteps: 1
   autoLocomotion: 1
   collider_head:
@@ -151647,7 +152284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -151759,6 +152396,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -151767,6 +152405,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -152068,6 +152707,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -152172,6 +152812,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -152180,6 +152821,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -155517,6 +156159,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -155525,6 +156168,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -156172,6 +156816,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.13303052, y: -0.0000003501773, z: 0.7217056, w: 0.6792966}
   localOnly: 0
@@ -156436,6 +157081,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -156444,6 +157090,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -156627,6 +157274,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -156638,6 +157286,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_leg_touch
   minVelocity: 0.05
@@ -156818,6 +157467,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.2
   height: 0.55
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -156828,6 +157478,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -157750,7 +158401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -157777,7 +158428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -157804,7 +158455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -158443,6 +159094,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -158534,6 +159186,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -158542,6 +159195,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -158593,6 +159247,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -158647,6 +159302,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -158655,6 +159311,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_thigh_panels_tool
   minVelocity: 0.05
@@ -160253,6 +160910,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -160264,6 +160922,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: chest_touch
   minVelocity: 0.05
@@ -160755,6 +161414,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -160763,6 +161423,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -160814,6 +161475,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.4
   height: 1.25
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -160822,6 +161484,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: abdomen_panels_tool
   minVelocity: 0.05
@@ -160927,8 +161590,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 745328923}
@@ -162165,6 +162828,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -162173,6 +162837,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -166422,6 +167087,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -167252,6 +167918,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -167260,6 +167927,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -167520,6 +168188,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -167579,6 +168248,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -167733,6 +168403,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -168306,6 +168977,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -168360,6 +169032,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -168368,6 +169041,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -168395,7 +169069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -168518,6 +169192,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.72
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -168529,6 +169204,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
@@ -168663,6 +169339,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -168671,6 +169348,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_thigh_panels_tool
   minVelocity: 0.05
@@ -168944,6 +169622,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -169378,6 +170057,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -169386,6 +170066,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -169910,6 +170591,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -169918,6 +170600,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -170151,6 +170834,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -170411,6 +171095,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -170551,6 +171236,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -170559,6 +171245,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -170615,6 +171302,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -171102,6 +171790,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -171216,6 +171905,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -171701,6 +172391,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.2
   height: 0.55
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -171711,6 +172402,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -171843,6 +172535,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -172516,6 +173209,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -172524,6 +173218,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -172811,6 +173506,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -172819,6 +173515,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -173409,7 +174106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -174022,6 +174719,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.13303052, y: -0.0000003501773, z: 0.7217056, w: 0.6792966}
   localOnly: 0
@@ -174355,6 +175053,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -174801,6 +175500,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -174809,6 +175509,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -178235,6 +178936,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -178246,6 +178948,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_leg_touch
   minVelocity: 0.05
@@ -178539,6 +179242,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -178547,6 +179251,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -179216,6 +179921,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.64
   height: 1.56
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0.15, z: 0.05}
   rotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
   localOnly: 0
@@ -179227,6 +179933,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: head_prox
   minVelocity: 0.05
@@ -179561,6 +180268,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -179615,6 +180323,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -179748,6 +180457,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -179756,6 +180466,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -179952,6 +180663,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -179960,6 +180672,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -180047,6 +180760,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -180101,6 +180815,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -180111,6 +180826,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -180559,6 +181275,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -181381,6 +182098,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -181389,6 +182107,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -181587,6 +182306,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.2
   height: 0.55
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -181597,6 +182317,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -181893,6 +182614,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -184946,6 +185668,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -185085,6 +185808,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -185093,6 +185817,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_thigh_panels_tool
   minVelocity: 0.05
@@ -185151,6 +185876,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -186254,6 +186980,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.25
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -186262,6 +186989,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: screwdriver_holster
   minVelocity: 0.05
@@ -186313,6 +187041,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -186367,6 +187096,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -186421,6 +187151,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -186768,6 +187499,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -186776,6 +187508,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -186827,6 +187560,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -187086,6 +187820,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -187140,6 +187875,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -187350,6 +188086,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -187360,6 +188097,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -187810,6 +188548,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -187818,6 +188557,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -188010,6 +188750,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -188185,6 +188926,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -188239,6 +188981,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -188247,6 +188990,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -188445,6 +189189,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -188453,6 +189198,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -188504,6 +189250,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.2
   height: 0.55
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -188514,6 +189261,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -188663,6 +189411,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -188800,6 +189549,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -188808,6 +189558,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -188859,6 +189610,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 2.5
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0.044709153, y: 0, z: 0, w: 0.9990001}
   localOnly: 0
@@ -188870,6 +189622,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
@@ -188926,6 +189679,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -188980,6 +189734,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -188988,6 +189743,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -189167,6 +189923,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -189175,6 +189932,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -189352,6 +190110,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -189406,6 +190165,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.7
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -189417,6 +190177,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: hips_touch
   minVelocity: 0.05
@@ -189860,6 +190621,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -190008,6 +190770,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 0.47
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -190016,6 +190779,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: groin_panels_tool
   minVelocity: 0.05
@@ -190331,6 +191095,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -190645,6 +191410,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -190704,6 +191470,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -190712,6 +191479,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -190958,6 +191726,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -191012,6 +191781,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -191066,6 +191836,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -191226,6 +191997,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -191280,6 +192052,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.4
   height: 1.25
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -191288,6 +192061,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: abdomen_panels_tool
   minVelocity: 0.05
@@ -196021,6 +196795,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -196029,6 +196804,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -196080,6 +196856,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -196088,6 +196865,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -196462,6 +197240,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -196470,6 +197249,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -197486,6 +198266,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -197494,6 +198275,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -197545,6 +198327,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -197745,6 +198528,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -197799,6 +198583,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -197853,6 +198638,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -198691,6 +199477,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -198699,6 +199486,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -199210,6 +199998,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -199546,6 +200335,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -200206,6 +200996,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.1330305, y: 0.00000031292439, z: -0.7217057, w: 0.67929655}
   localOnly: 0
@@ -204403,6 +205194,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -205414,6 +206206,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -205468,6 +206261,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -205476,6 +206270,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -205527,6 +206322,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.13303052, y: -0.0000003501773, z: 0.7217056, w: 0.6792966}
   localOnly: 0
@@ -205852,6 +206648,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -205860,6 +206657,7 @@ MonoBehaviour:
   - "\u023E"
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -205911,6 +206709,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -205965,6 +206764,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -205975,6 +206775,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -206811,6 +207612,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -206865,6 +207667,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -206873,6 +207676,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -207145,6 +207949,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -207156,6 +207961,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: left_leg_touch
   minVelocity: 0.05
@@ -207556,6 +208362,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 3
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -207567,6 +208374,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_leg_touch
   minVelocity: 0.05
@@ -207683,7 +208491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -207711,7 +208519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -207738,7 +208546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -207765,7 +208573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1338.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -208232,6 +209040,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -208240,6 +209049,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -208436,6 +209246,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -208444,6 +209255,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -208495,6 +209307,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -209057,6 +209870,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -209065,6 +209879,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -209116,6 +209931,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -209124,6 +209940,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -209276,6 +210093,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -209538,6 +210356,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -209546,6 +210365,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -209634,6 +210454,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -209688,6 +210509,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -209696,6 +210518,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -209940,6 +210763,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -210601,6 +211425,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -210609,6 +211434,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -210660,6 +211486,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.24
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -210668,6 +211495,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHiltProx
   minVelocity: 0.05
@@ -210938,6 +211766,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -211116,6 +211945,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -211124,6 +211954,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -211360,6 +212191,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -211368,6 +212200,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootForw
   minVelocity: 0.05
@@ -211419,6 +212252,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -211427,6 +212261,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: chest_panels_tool
   minVelocity: 0.05
@@ -211531,6 +212366,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.2
   height: 0.55
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -211541,6 +212377,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -211982,6 +212819,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -212036,6 +212874,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.2
   height: 0.55
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -212046,6 +212885,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -212303,6 +213143,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -212311,6 +213152,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -212605,6 +213447,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -212712,6 +213555,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -212720,6 +213564,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -214013,6 +214858,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -214553,6 +215399,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -214561,6 +215408,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/BackRoot
   minVelocity: 0.05
@@ -214682,6 +215530,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -214690,6 +215539,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: RightFootOnFloor
   minVelocity: 0.05
@@ -215078,6 +215928,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -217833,6 +218684,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -217957,6 +218809,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -217965,6 +218818,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -218163,6 +219017,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -218252,6 +219107,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -218263,6 +219119,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_arm_touch
   minVelocity: 0.05
@@ -218775,6 +219632,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -218783,6 +219641,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -218839,6 +219698,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -218847,6 +219707,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -218903,6 +219764,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -219096,6 +219958,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -219104,6 +219967,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -219155,6 +220019,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.010000003
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -219209,6 +220074,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -219217,6 +220083,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -219268,6 +220135,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -219276,6 +220144,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -223166,6 +224035,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -223174,6 +224044,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -223334,6 +224205,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -223342,6 +224214,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -223418,6 +224291,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -223566,6 +224440,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -223574,6 +224449,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -223943,6 +224819,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: -0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638477, y: 0.00000006984919, z: 0.7819191, w: 0.6232308}
   localOnly: 0
@@ -224292,6 +225169,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -224300,6 +225178,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -224351,6 +225230,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -224458,6 +225338,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -224565,6 +225446,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -224575,6 +225457,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -224770,6 +225653,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -224778,6 +225662,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -225119,6 +226004,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -225127,6 +226013,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -228639,6 +229526,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -228647,6 +229535,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -228792,6 +229681,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.3
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -228800,6 +229690,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: SordHolsterProx
   minVelocity: 0.05
@@ -229002,8 +229893,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1396905953}
@@ -229106,6 +229997,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -229229,6 +230121,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.11046661
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -229237,6 +230130,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/0/RootRoot
   minVelocity: 0.05
@@ -229342,8 +230236,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1396905953}
@@ -229407,6 +230301,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12310155
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -229580,6 +230475,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.15
   height: 1.885
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 1.2, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -229592,6 +230488,7 @@ MonoBehaviour:
   - Finger
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 1
   parameter: SordStrike
   minVelocity: 4
@@ -229643,6 +230540,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.8
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0.044709153, y: 0, z: 0, w: 0.9990001}
   localOnly: 0
@@ -229654,6 +230552,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
@@ -229814,6 +230713,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -229822,6 +230722,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -229926,6 +230827,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.12
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -229934,6 +230836,7 @@ MonoBehaviour:
   - Floor
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: LeftFootOnFloor
   minVelocity: 0.05
@@ -230131,6 +231034,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.1330305, y: 0.00000031292439, z: -0.7217057, w: 0.67929655}
   localOnly: 0
@@ -230185,6 +231089,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -230193,6 +231098,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -230244,6 +231150,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -230254,6 +231161,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -230421,6 +231329,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -230432,6 +231341,7 @@ MonoBehaviour:
   - Torso
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: right_arm_touch
   minVelocity: 0.05
@@ -230589,6 +231499,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 4
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: -4.15, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -230683,6 +231594,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -230691,6 +231603,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootRoot
   minVelocity: 0.05
@@ -231238,8 +232151,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 745328923}
@@ -231352,8 +232265,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: 18.45792, y: 55.86763, z: 15.669644}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 850857297}
@@ -231412,6 +232325,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 1
@@ -231420,6 +232334,7 @@ MonoBehaviour:
   - Succ
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: NeckProx
   minVelocity: 0.05
@@ -231706,6 +232621,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.6
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -231714,6 +232630,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: chest_panels_tool
   minVelocity: 0.05
@@ -231765,6 +232682,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -231773,6 +232691,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -232235,6 +233154,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.02729639
   height: 0.1091855
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.02057307, y: 0.09030255, z: 0.005957525}
   rotation: {x: 0.013638416, y: -0.000000053085387, z: -0.7819191, w: 0.62323076}
   localOnly: 0
@@ -232289,6 +233209,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.03448049
   height: 0.137922
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0.01241819, y: 0.1151376, z: -0.01824563}
   rotation: {x: 0.1330305, y: 0.00000031292439, z: -0.7217057, w: 0.67929655}
   localOnly: 0
@@ -232343,6 +233264,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.3
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -232351,6 +233273,7 @@ MonoBehaviour:
   - Foot
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxFoot
   minVelocity: 0.05
@@ -232402,6 +233325,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -232410,6 +233334,7 @@ MonoBehaviour:
   - TPS_Orf_Norm
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/RootForw
   minVelocity: 0.05
@@ -233250,6 +234175,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -233260,6 +234186,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -234611,6 +235538,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.2
   height: 0.55
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 0
@@ -234621,6 +235549,7 @@ MonoBehaviour:
   - Head
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
@@ -235113,6 +236042,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -235633,6 +236563,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.22
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -235641,6 +236572,7 @@ MonoBehaviour:
   - Hand
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: MakePonytail
   minVelocity: 0.05
@@ -236603,6 +237535,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.1517131
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -236611,6 +237544,7 @@ MonoBehaviour:
   - TPS_Orf_Root
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 2
   parameter: TPS_Internal/Pen/1/BackRoot
   minVelocity: 0.05
@@ -236784,6 +237718,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.26
   height: 0.65
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
   localOnly: 1
@@ -236794,6 +237729,7 @@ MonoBehaviour:
   - SnowyHead
   allowSelf: 0
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: SnowyProx
   minVelocity: 0.05
@@ -237188,6 +238124,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.08713535
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -238348,6 +239285,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.01
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -238804,6 +239742,7 @@ MonoBehaviour:
   shapeType: 0
   radius: 0.25
   height: 2
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -238812,6 +239751,7 @@ MonoBehaviour:
   - HandR
   allowSelf: 1
   allowOthers: 0
+  useFaceProximity: 0
   receiverType: 0
   parameter: screwdriver_holster
   minVelocity: 0.05
@@ -239190,6 +240130,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.35
   height: 0
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 1}
   localOnly: 0
@@ -239198,6 +240139,7 @@ MonoBehaviour:
   - screwdriver
   allowSelf: 1
   allowOthers: 1
+  useFaceProximity: 0
   receiverType: 0
   parameter: face_panels_tool
   minVelocity: 0.05

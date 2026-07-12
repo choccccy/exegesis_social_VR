@@ -44,6 +44,11 @@ MonoBehaviour:
     saved: 0
     defaultValue: 1
     networkSynced: 1
+  - name: FT/v2/EyeSquint
+    valueType: 1
+    saved: 0
+    defaultValue: 0
+    networkSynced: 1
   - name: eyes_state
     valueType: 0
     saved: 0
@@ -97,6 +102,11 @@ MonoBehaviour:
   - name: heat
     valueType: 1
     saved: 1
+    defaultValue: 0
+    networkSynced: 1
+  - name: heat_integral
+    valueType: 1
+    saved: 0
     defaultValue: 0
     networkSynced: 1
   - name: vertex_rounding
@@ -167,5 +177,10 @@ MonoBehaviour:
   - name: tail_state
     valueType: 0
     saved: 0
+    defaultValue: 0
+    networkSynced: 1
+  - name: eyeshadow
+    valueType: 2
+    saved: 1
     defaultValue: 0
     networkSynced: 1
