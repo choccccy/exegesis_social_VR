@@ -35,8 +35,6 @@ struct v2f {
 #include "CGInclude/CSDiscriminate.cginc"
 #include "CGInclude/CSFalloff.cginc"
 
-#include "CGInclude/CSFalloff.cginc"
-
 // -----------------------------------------------------------------------------
 // HUD uniforms
 // -----------------------------------------------------------------------------
@@ -937,23 +935,23 @@ v2f vert (appdata v) {
     return o;
 }
 
+// Composite one HUD layer over the accumulated color: lerp RGB by the layer's
+// alpha, accumulate (saturated) alpha. Matches the original per-layer blend.
+float4 compositeHudLayer(float4 base, float4 layer) {
+    base.rgb = lerp(base.rgb, layer.rgb, layer.a);
+    base.a   = saturate(base.a + layer.a);
+    return base;
+}
+
 fixed4 frag (v2f i) : SV_Target {
     // SPS-I setup
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
-    float timeCircularMod = fmod(_Time.y, UNITY_TWO_PI);
-    
-    float3 viewVec = mul(unity_ObjectToWorld, float4(0,0,0,1)).xyz - _WorldSpaceCameraPos;
     float effectDistance = i.uv.z;
-    float particleAge01 = i.uv.w;
-    
+    float particleAge01  = i.uv.w;
+
     float depth = calculateCameraDepth(i.depthPos.xy, i.worldDir, rcp(i.pos.w));
-    
-    float VRFix = 1;
-#if defined(UNITY_SINGLE_PASS_STEREO)
-    VRFix = .5;
-#endif
-    
+
     float3 triplanarWorld = depth * normalize(i.posWorld - _WorldSpaceCameraPos) + _WorldSpaceCameraPos;
     
     float3 triplanarNormal;
@@ -987,123 +985,19 @@ fixed4 frag (v2f i) : SV_Target {
     fixed allAmp = calculateFalloffAmplitude(effectDistance, screenSpaceOverlayUV, i.color, depth, particleAge01);
     float2 distortion = calculateDistortion(allAmp, screenSpaceOverlayUV);
 
-    // Start from black (no overlay yet)
+    // Composite the HUD layers back-to-front; each contributes color and alpha.
+    // Order: secondary overlay (back) -> main overlay -> compass -> horizon ->
+    // status bars -> paper doll (front).
     float4 color = 0;
-
-    // Secondary overlay first (background)
-    float4 overlay2Col = sampleSecondaryOverlay(screenSpaceOverlayUV, distortion);
-    color.rgb = lerp(color.rgb, overlay2Col.rgb, overlay2Col.a);
-    color.a   = saturate(color.a + overlay2Col.a);
-
-    // Main overlay on top
-    float4 primaryCol = calculateOverlayColor(screenSpaceOverlayUV, distortion, i.cubemapSampler);
-    color.rgb = lerp(color.rgb, primaryCol.rgb, primaryCol.a);
-    color.a   = saturate(color.a + primaryCol.a);
-
-    // --- HUD Compass blend ---
-    // Treat compass as an additive overlay that also contributes to alpha
-    float4 compassCol = sampleCompass(screenSpaceOverlayUV);
-    color.rgb = lerp(color.rgb, compassCol.rgb, compassCol.a);
-    color.a   = saturate(color.a + compassCol.a);
-
-    // HUD Artificial Horizon compositing
-    float4 horizonCol = sampleHorizon(screenSpaceOverlayUV);
-    color.rgb = lerp(color.rgb, horizonCol.rgb, horizonCol.a);
-    color.a   = saturate(color.a + horizonCol.a);
-
-    // HUD status bars
-    float4 barsCol = sampleStatusBars(screenSpaceOverlayUV);
-    color.rgb = lerp(color.rgb, barsCol.rgb, barsCol.a);
-    color.a   = saturate(color.a + barsCol.a);
-
-    // Paper Doll indicators
-    float4 dollCol = samplePaperDoll(screenSpaceOverlayUV);
-    color.rgb = lerp(color.rgb, dollCol.rgb, dollCol.a);
-    color.a   = saturate(color.a + dollCol.a);
+    color = compositeHudLayer(color, sampleSecondaryOverlay(screenSpaceOverlayUV, distortion));
+    color = compositeHudLayer(color, calculateOverlayColor(screenSpaceOverlayUV, distortion, i.cubemapSampler));
+    color = compositeHudLayer(color, sampleCompass(screenSpaceOverlayUV));
+    color = compositeHudLayer(color, sampleHorizon(screenSpaceOverlayUV));
+    color = compositeHudLayer(color, sampleStatusBars(screenSpaceOverlayUV));
+    color = compositeHudLayer(color, samplePaperDoll(screenSpaceOverlayUV));
     
-    // Rest of frag
-    float2 grabUV = _ScreenReprojection ? screenSpaceOverlayUV : (i.projPos.xy / i.projPos.w);
-    
-    float3 originPos = ComputeGrabScreenPos(UnityObjectToClipPos(float4(0,0,0,1))).xyw;
-    originPos.xy /= originPos.z;
-    if (distance(originPos.xy, saturate(originPos.xy)) == 0) {
-        grabUV -= originPos.xy;
-        float zoomAmt = lerp(1, _Zoom, saturate(-dot(normalize(viewVec), UNITY_MATRIX_V[2].xyz)));
-        grabUV *= lerp(1, zoomAmt, allAmp);
-        grabUV += originPos.xy;
-    }
-    
-    float pixelationAmt = _Pixelation * allAmp;
-    if (pixelationAmt > 0) grabUV = floor(grabUV / pixelationAmt) * pixelationAmt;
-    
-    float2 displace = _Shake * sin(timeCircularMod * _ShakeSpeed) * _ShakeAmplitude;
-    displace += _WobbleAmount * sin(timeCircularMod * _WobbleSpeed + i.pos.xy * _WobbleTiling);
-    if (_DistortionTarget == DISTORT_TARGET_SCREEN || _DistortionTarget == DISTORT_TARGET_BOTH) displace += distortion;
-    grabUV += allAmp * displace * float2(VRFix, 1);
-    
-    float4 grabCol = float4(0, 0, 0, 1);
-    
-#ifndef CANCERFREE
-    for (int blurPass = 0; blurPass < _BlurSampling; ++blurPass) {
-        float2 blurNoiseRand = hash23(float3(grabUV, (float) blurPass));
-        
-        float s, c;
-        sincos(blurNoiseRand.x * UNITY_TWO_PI, s, c);
-        
-        // FIXME: does this line need VRFix? i think it might.
-        float2 sampleUV = grabUV + (blurNoiseRand.y * allAmp * _BlurRadius * float2(s, c)) / (SCREEN_SIZE.zw);
-        
-        float4 col = 0;
-        
-        UNITY_UNROLL for (int j = 0; j < 3; ++j) {
-            float2 multiplier = float2(_ScreenXMultiplier[j] * _ScreenXMultiplier.a, _ScreenYMultiplier[j] * _ScreenYMultiplier.a);
-            float2 shift = float2(_ScreenXOffset[j] + _ScreenXOffset.a, _ScreenYOffset[j] + _ScreenYOffset.a);
-            shift.x *= VRFix;
-            
-            float2 uv = sampleUV - .5;
-            
-            UNITY_BRANCH if (_ScreenReprojection) {
-                uv = rotate(uv, _ScreenRotationAngle * allAmp);
-            }
-            uv = lerp(uv, shift + multiplier * uv, allAmp) + .5;
-            
-            switch (_ScreenBoundaryHandling) {
-                case BOUNDARYMODE_CLAMP:
-                    /*
-                     * technically not necessary since this should happen automatically,
-                     * but I feel better about it by explicitly making sure it happens.
-                     */
-                    uv = saturate(uv);
-                    break;
-                case BOUNDARYMODE_REPEAT:
-                    uv = frac(uv);
-                    break;
-            }
-            
-            if (_ScreenBoundaryHandling == BOUNDARYMODE_OVERLAY && (saturate(uv.x) != uv.x || saturate(uv.y) != uv.y)) {
-                col[j] = color[j];
-                col.a = max(col.a, color.a);
-            } else {
-                UNITY_BRANCH if (_ScreenReprojection) {
-                    float4 testColor = UNITY_SAMPLE_SCREENSPACE_TEXTURE(SCREENTEXNAME, uv * float2(VRFix, 1));
-                    col[j] = testColor[j];
-                    col.a = max(col.a, testColor.a);
-                } else {
-                    float4 testColor = UNITY_SAMPLE_SCREENSPACE_TEXTURE(SCREENTEXNAME, uv);
-                    col[j] = testColor[j];
-                    col.a = max(col.a, testColor.a);
-                }
-            }
-        }
-        
-        grabCol = lerp(grabCol, col, 1 / (float) (blurPass + 1));
-    }
-#endif
-
-    //CANCERFREE
     float overlayMask = _OverlayMaskOpacity * tex2Dlod(_OverlayMask, float4(.5+TRANSFORM_TEX((screenSpaceOverlayUV-.5), _OverlayMask), 0, 0)).r;
     float overallMask = _OverallEffectMaskOpacity * tex2Dlod(_OverallEffectMask, float4(.5+TRANSFORM_TEX((screenSpaceOverlayUV-.5), _OverallEffectMask), 0, 0)).r;
-#ifdef CANCERFREE
     color.a *= _BlendAmount * overlayMask * overallMask * allAmp;
 
     // Blend in HUDOpacity
@@ -1111,32 +1005,6 @@ fixed4 frag (v2f i) : SV_Target {
     color.a   *= _HUDOpacity;
 
     return float4(color.rgb, color.a);
-#else
-    float3 hsv = rgb2hsv(grabCol.rgb) * _HSVMultiply + _HSVAdd;
-    hsv.r = frac(hsv.r);
-    hsv.g = saturate(hsv.g);
-    grabCol.rgb = lerp(grabCol.rgb, hsv2rgb(hsv), allAmp);
-    
-    // lol one-liner for exposure and shit, GOML
-    if (_Burn) grabCol.rgb = lerp(grabCol.rgb, unboundedSmoothstep(_BurnLow, _BurnHigh, grabCol.rgb), allAmp);
-
-    float finalScreenAlpha = grabCol.a;
-    finalScreenAlpha *= _Color.a;
-    finalScreenAlpha *= color.a;
-    
-    float3 finalScreenColor = lerp(grabCol, float4(1 - grabCol.rgb, grabCol.a), _InversionAmount * allAmp);
-    finalScreenColor = blend(finalScreenColor, color.rgb, _BlendMode, _BlendAmount * color.a * overlayMask * allAmp);
-    finalScreenColor = blend(finalScreenColor, _Color.rgb, _ScreenColorBlendMode, allAmp);
-    float overallMaskFalloff = allAmp;
-    if (_OverallEffectMaskBlendMode == BLENDMODE_NORMAL)  overallMaskFalloff = 1 - step(_MaxFalloff, effectDistance);
-    finalScreenColor = blend(UNITY_SAMPLE_SCREENSPACE_TEXTURE(SCREENTEXNAME, i.projPos.xy / i.projPos.w).rgb, finalScreenColor, _OverallEffectMaskBlendMode, overallMask * overallMaskFalloff);
-    
-    // Blend in HUDOpacity
-    finalScreenAlpha *= _HUDOpacity;
-    finalScreenColor *= _HUDOpacity;
-
-    return float4(finalScreenColor, finalScreenAlpha);
-#endif
 }
 
 #endif
