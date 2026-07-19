@@ -235,15 +235,6 @@ float4 sampleCompass(float2 screenUV)  // sample compass strip in a horizontal b
 static const float3 WORLD_UP   = float3(0, 1, 0);
 static const float3 WORLD_DOWN = float3(0,-1, 0);
 
-// Camera forward in world space (from view matrix)
-float3 camFwdWS()
-{
-    // Unity view matrix: rows are camera basis in world space
-    // Forward is -row2 of UNITY_MATRIX_V (row-major)
-    float3 f = -UNITY_MATRIX_V[2].xyz;
-    return normalize(f + 1e-6);
-}
-
 // Gravity direction in view space (camera-local)
 // Used to define "down" on the HUD and drive roll.
 float3 gravityVS()
@@ -257,7 +248,7 @@ float3 gravityVS()
 // This is the angular separation between camera forward and the horizon plane.
 float getHorizonPitchDeg()
 {
-    float3 f     = camFwdWS();
+    float3 f     = getCameraForwardWS();
     float  dotUp = clamp(dot(f, WORLD_UP), -1.0, 1.0); // dotUp = sin(pitch)
     return asin(dotUp) * (180.0 / UNITY_PI);
 }
@@ -669,36 +660,6 @@ float4 samplePaperDoll(float2 screenUV)
     return col;
 }
 
-//CANCERFREE
-float4 sampleBumpMap(float4 uv) {
-#ifdef CANCERFREE
-    return ((float4)0);
-#else
-    return tex2Dlod(_BumpMap, uv);
-#endif
-}
-float4 sampleMeltMap(float4 uv) {
-#ifdef CANCERFREE
-    return ((float4)0);
-#else
-    return tex2Dlod(_MeltMap, uv);
-#endif
-}
-float4 sampleDistortionMask(float4 uv) {
-#ifdef CANCERFREE
-    return ((float4)0);
-#else
-    return tex2Dlod(_DistortionMask, uv);
-#endif
-}
-
-float2 hash23(float3 p) {
-    if (_AnimatedSampling) p.z += frac(_Time.z) * 4;
-    p = frac(p * float3(400, 450, .1));
-    p += dot(p, p.yzx + 20);
-    return frac((p.xx + p.yz) * p.zy);
-}
-
 float2 calculateUVsWithFlipbookParameters(float2 uv, float2 distortion, bool pixelated, bool flipbook, float4 texelSizes, float startFrame, float fps, float totalFrames, float2 cr, float uvRot, float2 uvScrollSpeed, float4 uvST, int boundaryHandling) {
     float currentFrame = 0;
     float2 invCR = 1;
@@ -759,60 +720,6 @@ fixed calculateFalloffAmplitude(float dist, float2 screenUV, float4 color, float
     }
     
     return calculateEffectAmplitudeFromFalloff(dist, _FalloffCurve, _MinFalloff, _MaxFalloff) * amplitudeMaskContribution.r * amplitudeMaskContribution.a * _OverallAmplitudeMaskOpacity * depthContribution * ageContribution * colorContribution;
-}
-
-float2 calculateDistortion(float falloffAmplitude, float2 screenSpaceOverlayUV) {
-    float2 distortion = 0;
-    UNITY_BRANCH switch (_DistortionType) {
-        case DISTORT_NORMAL:
-            {
-                float2 distortionUV = calculateUVsWithFlipbookParameters(
-                    screenSpaceOverlayUV,
-                    0,
-                    false,
-                    _DistortFlipbook,
-                    _BumpMap_TexelSize,
-                    _DistortFlipbookStartFrame,
-                    _DistortFlipbookFPS,
-                    _DistortFlipbookTotalFrames,
-                    float2(_DistortFlipbookColumns, _DistortFlipbookRows),
-                    _DistortionMapRotation,
-                    _BumpMapScrollSpeed,
-                    _BumpMap_ST,
-                    BOUNDARYMODE_REPEAT);
-                distortion = UnpackNormal(sampleBumpMap(float4(distortionUV, 0, 0))).xy * _DistortionAmplitude;
-            }
-            break;
-        case DISTORT_MELT:
-            {
-                float2 distortionUV = calculateUVsWithFlipbookParameters(
-                    screenSpaceOverlayUV,
-                    0,
-                    false,
-                    _DistortFlipbook,
-                    _MeltMap_TexelSize,
-                    _DistortFlipbookStartFrame,
-                    _DistortFlipbookFPS,
-                    _DistortFlipbookTotalFrames,
-                    float2(_DistortFlipbookColumns, _DistortFlipbookRows),
-                    _DistortionMapRotation,
-                    0,
-                    _MeltMap_ST,
-                    BOUNDARYMODE_REPEAT);
-                float4 meltVal = sampleMeltMap(float4(distortionUV, 0, 0));
-                float2 motionVector = normalize(2 * meltVal.rg - 1);
-                float activation_Time = meltVal.b * _MeltActivationScale;
-                float speed = meltVal.a * _DistortionAmplitude;
-                if (_MeltController >= activation_Time) {
-                    distortion = ((_MeltController - activation_Time) * speed) * motionVector;
-                }
-            }
-            break;
-    }
-    
-    distortion *= falloffAmplitude * _DistortionMaskOpacity * sampleDistortionMask(float4((TRANSFORM_TEX((screenSpaceOverlayUV - .5), _DistortionMask) + .5), 0, 0)).r;
-    distortion = mul(createRotationMatrix(_DistortionRotation), distortion);
-    return distortion;
 }
 
 float4 calculateOverlayColor(float2 screenSpaceOverlayUV, float2 distortion, float3 cubemapSampler) {
@@ -983,7 +890,7 @@ fixed4 frag (v2f i) : SV_Target {
     }
 
     fixed allAmp = calculateFalloffAmplitude(effectDistance, screenSpaceOverlayUV, i.color, depth, particleAge01);
-    float2 distortion = calculateDistortion(allAmp, screenSpaceOverlayUV);
+    float2 distortion = 0; // HUD is a pure overlay (CANCERFREE): no screen distortion
 
     // Composite the HUD layers back-to-front; each contributes color and alpha.
     // Order: secondary overlay (back) -> main overlay -> compass -> horizon ->
