@@ -66,14 +66,6 @@
         _OverlayCubemapSpeedY ("Rotation Speed Y", Range(-360, 360)) = 0
         _OverlayCubemapSpeedZ ("Rotation Speed Z", Range(-360, 360)) = 0
         _BlendAmount ("Opacity", Range(0,1)) = 0.5
-        _BlendMode ("Blend Mode", Int) = 0
-
-        _HueAdd ("Hue Add", Range(-1, 1)) = 0
-        _SaturationAdd ("Saturation Add", Range(-1, 1)) = 0
-        _ValueAdd ("Value Add", Range(-1, 1)) = 0
-        _HueMultiply ("Hue Multiply", Range(-40, 40)) = 1
-        _SaturationMultiply ("Saturation Multiply", Range(0, 1)) = 1
-        _ValueMultiply ("Value Multiply", Range(0, 5)) = 1
 
         [Toggle(_)] _ParticleSystem ("Is on Particle System?", Float) = 0
         [Toggle(_)] _LifetimeFalloff ("Lifetime Falloff", Int) = 0

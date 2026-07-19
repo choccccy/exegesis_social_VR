@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: VRChat SDK
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 149
+  controlID: 110
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.10937153, y: -0.8188098, z: 0.16632193, w: -0.53845423}
     speed: 2
-    m_Value: {x: -0.108000964, y: -0.81849295, z: 0.16370232, w: -0.5400063}
+    m_Value: {x: -0.10937111, y: -0.8188067, z: 0.16632129, w: -0.5384522}
   m_Size:
     m_Target: 3.651944
     speed: 2
@@ -918,7 +918,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4820feffe8faffff5c9c0000
+      m_ExpandedIDs: aa2effffecf9fffff0f9fffff2f9fffff4f9fffff8f9fffffcf9fffff4faffffd29d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1021,12 +1021,6 @@ MonoBehaviour:
     - {fileID: 244426405077858379, guid: 45ee137d858957046b5966b3422df7ff, type: 2}
     - {fileID: 8237353341488487993, guid: 45ee137d858957046b5966b3422df7ff, type: 2}
     - {fileID: 8372717910358763268, guid: 45ee137d858957046b5966b3422df7ff, type: 2}
-    - {fileID: 496773303131696116, guid: a8269550752762845aa279a1f384c8eb, type: 2}
-    - {fileID: 0}
-    - {fileID: -4174819044554342999, guid: baf604a06fae74e41bd631dd196a6112, type: 2}
-    - {fileID: 19137131107897258, guid: a161fbac039125b40a1dd776fe46c794, type: 2}
-    - {fileID: 0}
-    - {fileID: -4301298492462070887, guid: 13d5020206b64ba4388650c1db3b394e, type: 2}
     - {fileID: 325307545198185847, guid: 8b3ac40931753fc43b7e046f8b1d932e, type: 2}
     m_ValueSerializationHelper:
     - e00: 0.7147368
@@ -1125,110 +1119,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.8362069
+    - e00: 1
       e01: 0
       e02: 0
-      e03: -476.6897
+      e03: 0
       e10: 0
-      e11: 0.8362069
+      e11: 1
       e12: 0
-      e13: 52.02585
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 0.7147368
-      e01: 0
-      e02: 0
-      e03: -20.736816
-      e10: 0
-      e11: 0.7147368
-      e12: 0
-      e13: 290.5466
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 0.7147368
-      e01: 0
-      e02: 0
-      e03: -20.736816
-      e10: 0
-      e11: 0.7147368
-      e12: 0
-      e13: 290.5466
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 0.8362069
-      e01: 0
-      e02: 0
-      e03: -476.6897
-      e10: 0
-      e11: 0.8362069
-      e12: 0
-      e13: 52.02585
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 0.7147368
-      e01: 0
-      e02: 0
-      e03: -20.736816
-      e10: 0
-      e11: 0.7147368
-      e12: 0
-      e13: 290.5466
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 0.7147368
-      e01: 0
-      e02: 0
-      e03: -20.736816
-      e10: 0
-      e11: 0.7147368
-      e12: 0
-      e13: 290.5466
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 0.7147368
-      e01: 0
-      e02: 0
-      e03: -20.736816
-      e10: 0
-      e11: 0.7147368
-      e12: 0
-      e13: 290.5466
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -1252,7 +1150,7 @@ MonoBehaviour:
     m_IsLocked: 0
   m_CurrentEditor: 0
   m_LayerEditor:
-    m_SelectedLayerIndex: 1
+    m_SelectedLayerIndex: 0
 --- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1448,7 +1346,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/_exegesis/ncho/ncho_tex
+    - Assets/_exegesis
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1456,16 +1354,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/_exegesis/ncho/ncho_tex
+  - Assets/_exegesis
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\choccy\Documents\unity\exegesis_social_VR\exegesis_vrc_avatars
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b0ef0000
-    m_LastClickedID: 61360
-    m_ExpandedIDs: 000000006aeb00006ceb00001aef000000ca9a3bffffff7f
+    m_SelectedIDs: eeec0000
+    m_LastClickedID: 60654
+    m_ExpandedIDs: 00000000ecec0000eeec00000eed000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1493,7 +1391,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000006aeb00006ceb0000
+    m_ExpandedIDs: 00000000ecec0000eeec0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1633,9 +1531,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 62ab0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4820feff
+      m_ExpandedIDs: aa2effff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

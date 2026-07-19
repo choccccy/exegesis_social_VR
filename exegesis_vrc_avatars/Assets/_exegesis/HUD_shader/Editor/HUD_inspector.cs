@@ -1,13 +1,19 @@
-﻿using UnityEditor;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text.RegularExpressions;
 
+// Custom ShaderGUI for the exegesis/HUD shader. Groups the shader's properties into
+// collapsible categories.
+//
+// This shader is CANCERFREE (overlay-only). The upstream VRC-Cancerspace screen-effect
+// categories (screen shake, wobble, blur, distortion mapping, screen color adjustment,
+// screen transforms, the render-queue exporter) were removed along with that machinery.
 public class HUD_inspector : ShaderGUI {
-    
+
+    // Photoshop-style blend modes for the mask blend popup. Order mirrors the
+    // BLENDMODE_* constants in CGInclude/CSEnums.cginc — keep them in sync.
     public enum BlendMode {
         Multiply,
         Screen,
@@ -25,131 +31,90 @@ public class HUD_inspector : ShaderGUI {
         SoftLight,
         Exclusion
     }
-    
-    public static class Styles {
-        public static string sliderModeCheckboxText = "Sliders for dummies";
-        public static string randomizerOptionsCheckboxText = "Show Randomizer Controls";
-        public static string shouldRandomizeCheckboxText = "Allow randomization";
-        public static GUIContent overlayImageText = new GUIContent("Image Overlay", "The overlay image and color.");
-        public static string targetObjectSettingsTitle = "Target Object Settings";
-        public static string particleSystemSettingsTitle = "Particle System Settings";
-        public static string falloffSettingsTitle = "Falloff Settings";
-        public static string wobbleSettingsTitle = "Wave Distortion";
-        public static string blurSettingsTitle = "Blur";
-        public static string distortionMapSettingsTitle = "Distortion Mapping";
-        public static string screenShakeSettingsTitle = "Screen Shake";
-        public static string overlaySettingsTitle = "Overlay";
-        public static string screenColorAdjustmentsTitle = "Screen Color Adjustment";
-        public static string screenTransformTitle = "Screen Transformations";
 
-        public static string overlay2SettingsTitle = "Secondary Overlay";
-        public static string compassSettingsTitle = "HUD Compass";
-        public static string horizonSettingsTitle = "HUD Artificial Horizon";
-        public static string statusBarsTitle = "HUD Status Bars";
-        public static string statusBar0Title = "Status Bar 0";
-        public static string statusBar1Title = "Status Bar 1";
-        public static string statusBar2Title = "Status Bar 2";
-        public static string paperDollTitle = "Paper Doll";
+    static class Styles {
+        public const string sliderModeCheckboxText = "Sliders for dummies";
+        public const string randomizerOptionsCheckboxText = "Show Randomizer Controls";
+        public const string shouldRandomizeCheckboxText = "Allow randomization";
+        public static readonly GUIContent overlayImageText = new GUIContent("Image Overlay", "The overlay image and color.");
 
-        public static string projectionRotationText = "Rotation";
-        public static string stencilTitle = "Stencil Testing";
-        public static string maskingTitle = "Masking";
-        public static string miscSettingsTitle = "Misc";
-        public static string renderQueueExportTitle = "Custom Render Queue Exporter";
-        public static string customRenderQueueSliderText = "Custom Render Queue";
-        public static string exportCustomRenderQueueButtonText = "Export shader with queue and replace in this material";
-        public static string blendSettingsTitle = "Blending";
-        
+        public const string targetObjectSettingsTitle = "Target Object Settings";
+        public const string particleSystemSettingsTitle = "Particle System Settings";
+        public const string falloffSettingsTitle = "Falloff Settings";
+        public const string overlaySettingsTitle = "Overlay";
+        public const string overlay2SettingsTitle = "Secondary Overlay";
+        public const string compassSettingsTitle = "HUD Compass";
+        public const string horizonSettingsTitle = "HUD Artificial Horizon";
+        public const string statusBarsTitle = "HUD Status Bars";
+        public const string paperDollTitle = "Paper Doll";
+        public const string projectionRotationText = "Rotation";
+        public const string stencilTitle = "Stencil Testing";
+        public const string maskingTitle = "Masking";
+        public const string miscSettingsTitle = "Misc";
+        public const string blendSettingsTitle = "Blending";
+
         public static readonly string[] blendNames = Enum.GetNames(typeof(BlendMode));
     }
-    
-    public delegate void CSCategorySetup(MaterialEditor me);
-    public class CSCategory {
+
+    delegate void CSCategorySetup(MaterialEditor me);
+
+    class CSCategory {
         public string name;
         public GUIStyle style;
         public CSCategorySetup setupDelegate;
-        
-        public CSCategory(string nname, GUIStyle sstyle, CSCategorySetup ssetupDelegate) {
-            name = nname;
-            style = sstyle;
-            setupDelegate = ssetupDelegate;
+
+        public CSCategory(string name, GUIStyle style, CSCategorySetup setupDelegate) {
+            this.name = name;
+            this.style = style;
+            this.setupDelegate = setupDelegate;
         }
     }
-    
-    public class CSProperty {
+
+    // Thin wrapper so a MaterialProperty can be passed around tersely.
+    class CSProperty {
         public MaterialProperty prop;
-        
-        public CSProperty(MaterialProperty property) {
-            prop = property;
-        }
-        
-        public static implicit operator CSProperty(MaterialProperty property) {
-            return new CSProperty(property);
-        }
+        public CSProperty(MaterialProperty property) { prop = property; }
+        public static implicit operator CSProperty(MaterialProperty property) => new CSProperty(property);
     }
-    
-    protected static bool sliderMode = true;
-    protected static int categoryExpansionFlags;
-    // i'm sorry, this was the laziest way i could tack this on
-    protected static int categoryExpansionFlagsCancerfree;
-    private static bool showRandomizerOptions = false;
-    private static HashSet<String> propertiesWithRandomization = new HashSet<String>();
-    
-    protected int customRenderQueue;
-    protected bool initialized;
-    protected bool cancerfree;
-    
-    private bool randomizingCurrentPass;
-    private System.Random rng;
-    
-    private void SetExpansionFlags(int flags) {
-        if (cancerfree) {
-            categoryExpansionFlagsCancerfree = flags;
-        } else {
-            categoryExpansionFlags = flags;
-        }
-    }
-    
-    private int GetExpansionFlags() {
-        int flags;
-        if (cancerfree) {
-            flags = categoryExpansionFlagsCancerfree;
-        } else {
-            flags = categoryExpansionFlags;
-        }
-        return flags;
-    }
-    
+
+    // Body regions for the paper doll, in the order the shader/property names use them.
+    static readonly string[] PaperDollRegions = {
+        "Head", "Chest", "Abdomen", "Hips", "LArm", "RArm", "LLeg", "RLeg"
+    };
+
+    static bool sliderMode = true;
+    static int categoryExpansionFlags;
+    static bool showRandomizerOptions = false;
+    static readonly HashSet<string> propertiesWithRandomization = new HashSet<string>();
+
+    bool initialized;
+    bool randomizingCurrentPass;
+    System.Random rng;
+
     public override void OnGUI(MaterialEditor materialEditor, MaterialProperty[] props) {
         if (!initialized) {
-            customRenderQueue = (materialEditor.target as Material).shader.renderQueue;
             rng = new System.Random();
             initialized = true;
         }
 
-        // HUD is Cancerfree-style (no wobble/distortion/blur/screen transforms)
-        cancerfree = true;
-
-        GUIStyle defaultStyle = new GUIStyle(EditorStyles.foldout);
-        defaultStyle.fontStyle = FontStyle.Bold;
-        defaultStyle.onNormal = EditorStyles.boldLabel.onNormal;
-        defaultStyle.onFocused = EditorStyles.boldLabel.onFocused;
+        GUIStyle headerStyle = new GUIStyle(EditorStyles.foldout);
+        headerStyle.fontStyle = FontStyle.Bold;
+        headerStyle.onNormal = EditorStyles.boldLabel.onNormal;
+        headerStyle.onFocused = EditorStyles.boldLabel.onFocused;
 
         List<CSCategory> categories = new List<CSCategory>();
 
-        // Falloff
-        categories.Add(new CSCategory(Styles.falloffSettingsTitle, defaultStyle, me => {
+        categories.Add(new CSCategory(Styles.falloffSettingsTitle, headerStyle, me => {
             CSProperty falloffCurve = FindProperty("_FalloffCurve", props);
             CSProperty falloffDepth = FindProperty("_DepthFalloff", props);
             CSProperty falloffColor = FindProperty("_ColorFalloff", props);
-            
+
             DisplayRegularProperty(me, falloffCurve);
             if (falloffCurve.prop.floatValue > .5) DisplayRegularProperty(me, FindProperty("_MinFalloff", props));
             DisplayRegularProperty(me, FindProperty("_MaxFalloff", props));
             DisplayRegularProperty(me, falloffDepth);
             if (falloffDepth.prop.floatValue > .5) {
                 CSProperty falloffDepthCurve = FindProperty("_DepthFalloffCurve", props);
-                
                 DisplayRegularProperty(me, falloffDepthCurve);
                 if (falloffDepthCurve.prop.floatValue > .5) DisplayRegularProperty(me, FindProperty("_DepthMinFalloff", props));
                 DisplayRegularProperty(me, FindProperty("_DepthMaxFalloff", props));
@@ -157,17 +122,17 @@ public class HUD_inspector : ShaderGUI {
             DisplayRegularProperty(me, falloffColor);
             if (falloffColor.prop.floatValue > .5) {
                 CSProperty falloffColorCurve = FindProperty("_ColorFalloffCurve", props);
-
                 DisplayRegularProperty(me, FindProperty("_ColorChannelForFalloff", props));
                 DisplayRegularProperty(me, falloffColorCurve);
                 if (falloffColorCurve.prop.floatValue > .5) DisplayRegularProperty(me, FindProperty("_ColorMinFalloff", props));
                 DisplayRegularProperty(me, FindProperty("_ColorMaxFalloff", props));
             }
         }));
-        categories.Add(new CSCategory(Styles.particleSystemSettingsTitle, defaultStyle, me => {
+
+        categories.Add(new CSCategory(Styles.particleSystemSettingsTitle, headerStyle, me => {
             CSProperty falloffCurve = FindProperty("_LifetimeFalloffCurve", props);
             CSProperty falloff = FindProperty("_LifetimeFalloff", props);
-            
+
             DisplayRegularProperty(me, FindProperty("_ParticleSystem", props));
             DisplayRegularProperty(me, falloff);
             if (falloff.prop.floatValue > .5) {
@@ -176,85 +141,15 @@ public class HUD_inspector : ShaderGUI {
                 DisplayRegularProperty(me, FindProperty("_LifetimeMaxFalloff", props));
             }
         }));
-        if (!cancerfree) categories.Add(new CSCategory(Styles.screenShakeSettingsTitle, defaultStyle, me => {
-            DisplayFloatWithSliderMode(me, FindProperty("_XShake", props));
-            DisplayFloatWithSliderMode(me, FindProperty("_YShake", props));
-            DisplayFloatWithSliderMode(me, FindProperty("_XShakeSpeed", props));
-            DisplayFloatWithSliderMode(me, FindProperty("_YShakeSpeed", props));
-            DisplayFloatWithSliderMode(me, FindProperty("_ShakeAmplitude", props));
-        }));
-        if (!cancerfree) categories.Add(new CSCategory(Styles.wobbleSettingsTitle, defaultStyle, me => {
-            DisplayFloatRangeProperty(me, FindProperty("_XWobbleAmount", props));
-            DisplayFloatRangeProperty(me, FindProperty("_YWobbleAmount", props));
-            DisplayFloatRangeProperty(me, FindProperty("_XWobbleTiling", props));
-            DisplayFloatRangeProperty(me, FindProperty("_YWobbleTiling", props));
-            DisplayFloatWithSliderMode(me, FindProperty("_XWobbleSpeed", props));
-            DisplayFloatWithSliderMode(me, FindProperty("_YWobbleSpeed", props));
-        }));
-        if (!cancerfree) categories.Add(new CSCategory(Styles.blurSettingsTitle, defaultStyle, me => {
-            DisplayFloatWithSliderMode(me, FindProperty("_BlurRadius", props));
-            DisplayIntSlider(me, FindProperty("_BlurSampling", props), 1, 5);
-            DisplayRegularProperty(me, FindProperty("_AnimatedSampling", props));
-        }));
-        if (!cancerfree) categories.Add(new CSCategory(Styles.distortionMapSettingsTitle, defaultStyle, me => {
-            CSProperty distortionType = FindProperty("_DistortionType", props);
-            CSProperty distortionMapRotation = FindProperty("_DistortionMapRotation", props);
-            CSProperty distortionAmplitude = FindProperty("_DistortionAmplitude", props);
-            CSProperty distortionRotation = FindProperty("_DistortionRotation", props);
-            CSProperty distortFlipbook = FindProperty("_DistortFlipbook", props);
-            
-            DisplayRegularProperty(me, distortionType);
-            DisplayRegularProperty(me, FindProperty("_DistortionTarget", props));
-            
-            switch ((int) distortionType.prop.floatValue) {
-                case 0:
-                    DisplayRegularProperty(me, FindProperty("_BumpMap", props));
-                    DisplayFloatWithSliderMode(me, distortionMapRotation);
-                    DisplayFloatWithSliderMode(me, distortionAmplitude);
-                    DisplayFloatWithSliderMode(me, distortionRotation);
-                    DisplayFloatWithSliderMode(me, FindProperty("_BumpMapScrollSpeedX", props));
-                    DisplayFloatWithSliderMode(me, FindProperty("_BumpMapScrollSpeedY", props));
-                    break;
-                case 1:
-                    DisplayRegularProperty(me, FindProperty("_MeltMap", props));
-                    DisplayFloatWithSliderMode(me, distortionMapRotation);
-                    DisplayFloatWithSliderMode(me, distortionAmplitude);
-                    DisplayFloatWithSliderMode(me, distortionRotation);
-                    DisplayFloatWithSliderMode(me, FindProperty("_MeltController", props));
-                    DisplayFloatWithSliderMode(me, FindProperty("_MeltActivationScale", props));
-                    break;
-            }
-            
-            DisplayRegularProperty(me, distortFlipbook);
-            
-            if (distortFlipbook.prop.floatValue != 0) {
-                DisplayIntField(me, FindProperty("_DistortFlipbookTotalFrames", props));
-                DisplayIntField(me, FindProperty("_DistortFlipbookStartFrame", props));
-                DisplayIntField(me, FindProperty("_DistortFlipbookRows", props));
-                DisplayIntField(me, FindProperty("_DistortFlipbookColumns", props));
-                DisplayFloatProperty(me, FindProperty("_DistortFlipbookFPS", props));
-            }
+
+        categories.Add(new CSCategory("HUD", headerStyle, me => {
+            DisplayFloatRangeProperty(me, FindProperty("_HUDScale", props));
+            DisplayFloatRangeProperty(me, FindProperty("_HUDOpacity", props));
+            DisplayFloatRangeProperty(me, FindProperty("_HUDDriftRadius", props));
+            DisplayRegularProperty(me, FindProperty("_HUDDriftPeriod", props));
         }));
 
-        // --------------------------------------------------------------------
-        // HUD Scaling
-        // --------------------------------------------------------------------
-        categories.Add(new CSCategory("HUD", defaultStyle, me => {
-            var hudScale       = FindProperty("_HUDScale", props);
-            var hudOpacity     = FindProperty("_HUDOpacity", props);
-            var hudDriftRadius = FindProperty("_HUDDriftRadius", props);
-            var hudDriftPeriod = FindProperty("_HUDDriftPeriod", props);
-
-            DisplayFloatRangeProperty(me, hudScale);
-            DisplayFloatRangeProperty(me, hudOpacity);
-            DisplayFloatRangeProperty(me, hudDriftRadius);
-            DisplayRegularProperty(me, hudDriftPeriod);
-        }));
-
-        // --------------------------------------------------------------------
-        // HUD Base Overlay
-        // --------------------------------------------------------------------
-        categories.Add(new CSCategory(Styles.overlaySettingsTitle, defaultStyle, me => {
+        categories.Add(new CSCategory(Styles.overlaySettingsTitle, headerStyle, me => {
             CSProperty overlayImageType = FindProperty("_OverlayImageType", props);
             CSProperty overlayImage = FindProperty("_MainTex", props);
             CSProperty overlayRotation = FindProperty("_MainTexRotation", props);
@@ -263,13 +158,11 @@ public class HUD_inspector : ShaderGUI {
             CSProperty overlayScrollSpeedY = FindProperty("_MainTexScrollSpeedY", props);
             CSProperty overlayBoundary = FindProperty("_OverlayBoundaryHandling", props);
             CSProperty overlayColor = FindProperty("_OverlayColor", props);
-            
-            if (!cancerfree) BlendModePopup(me, FindProperty("_BlendMode", props));
-            
+
             DisplayRegularProperty(me, overlayImageType);
             switch ((int) overlayImageType.prop.floatValue) {
-                // TODO: replace these with proper enums so there's no magic numbers
-                case 0:
+                case 0: // Image
+                case 1: // Flipbook
                     DisplayRegularProperty(me, overlayBoundary);
                     DisplayRegularProperty(me, overlayPixelate);
                     me.TexturePropertySingleLine(Styles.overlayImageText, overlayImage.prop, overlayColor.prop);
@@ -279,367 +172,146 @@ public class HUD_inspector : ShaderGUI {
                         DisplayFloatWithSliderMode(me, overlayScrollSpeedX);
                         DisplayFloatWithSliderMode(me, overlayScrollSpeedY);
                     }
-                    break;
-                case 1:
-                    DisplayRegularProperty(me, overlayBoundary);
-                    DisplayRegularProperty(me, overlayPixelate);
-                    me.TexturePropertySingleLine(Styles.overlayImageText, overlayImage.prop, overlayColor.prop);
-                    me.TextureScaleOffsetProperty(overlayImage.prop);
-                    DisplayFloatWithSliderMode(me, overlayRotation);
-                    if (overlayBoundary.prop.floatValue != 0) {
-                        DisplayFloatWithSliderMode(me, overlayScrollSpeedX);
-                        DisplayFloatWithSliderMode(me, overlayScrollSpeedY);
+                    if ((int) overlayImageType.prop.floatValue == 1) {
+                        DisplayIntField(me, FindProperty("_FlipbookTotalFrames", props));
+                        DisplayIntField(me, FindProperty("_FlipbookStartFrame", props));
+                        DisplayIntField(me, FindProperty("_FlipbookRows", props));
+                        DisplayIntField(me, FindProperty("_FlipbookColumns", props));
+                        DisplayFloatProperty(me, FindProperty("_FlipbookFPS", props));
                     }
-                    DisplayIntField(me, FindProperty("_FlipbookTotalFrames", props));
-                    DisplayIntField(me, FindProperty("_FlipbookStartFrame", props));
-                    DisplayIntField(me, FindProperty("_FlipbookRows", props));
-                    DisplayIntField(me, FindProperty("_FlipbookColumns", props));
-                    DisplayFloatProperty(me, FindProperty("_FlipbookFPS", props));
                     break;
-                case 2:
+                case 2: // Cubemap
                     DisplayRegularProperty(me, FindProperty("_OverlayCubemap", props));
                     DisplayColorProperty(me, overlayColor);
-                    DisplayVec3WithSliderMode(
-                        me,
-                        "Rotation",
+                    DisplayVec3WithSliderMode(me, "Rotation",
                         FindProperty("_OverlayCubemapRotationX", props),
                         FindProperty("_OverlayCubemapRotationY", props),
-                        FindProperty("_OverlayCubemapRotationZ", props)
-                    );
-                    DisplayVec3WithSliderMode(
-                        me,
-                        "Rotation Speed",
+                        FindProperty("_OverlayCubemapRotationZ", props));
+                    DisplayVec3WithSliderMode(me, "Rotation Speed",
                         FindProperty("_OverlayCubemapSpeedX", props),
                         FindProperty("_OverlayCubemapSpeedY", props),
-                        FindProperty("_OverlayCubemapSpeedZ", props)
-                    );
+                        FindProperty("_OverlayCubemapSpeedZ", props));
                     break;
             }
-            
+
             DisplayFloatRangeProperty(me, FindProperty("_BlendAmount", props));
         }));
 
-        // --------------------------------------------------------------------
-        // HUD Secondary Overlay
-        // --------------------------------------------------------------------
-        categories.Add(new CSCategory(Styles.overlay2SettingsTitle, defaultStyle, me => {
-            CSProperty enabled   = FindProperty("_Overlay2Enabled", props);
-            CSProperty tex       = FindProperty("_Overlay2Tex", props);
-            CSProperty color     = FindProperty("_Overlay2Color", props);
-            CSProperty rotation  = FindProperty("_Overlay2Rotation", props);
-            CSProperty scrollX   = FindProperty("_Overlay2ScrollSpeedX", props);
-            CSProperty scrollY   = FindProperty("_Overlay2ScrollSpeedY", props);
-            CSProperty pixelated = FindProperty("_Overlay2Pixelated", props);
-            CSProperty opacity   = FindProperty("_Overlay2Opacity", props);
+        categories.Add(new CSCategory(Styles.overlay2SettingsTitle, headerStyle, me => {
+            CSProperty tex   = FindProperty("_Overlay2Tex", props);
+            CSProperty color = FindProperty("_Overlay2Color", props);
 
-            DisplayRegularProperty(me, enabled);
+            DisplayRegularProperty(me, FindProperty("_Overlay2Enabled", props));
             me.TexturePropertySingleLine(new GUIContent("Secondary Overlay"), tex.prop, color.prop);
             me.TextureScaleOffsetProperty(tex.prop);
-            DisplayFloatWithSliderMode(me, rotation);
-            DisplayRegularProperty(me, pixelated);
-            DisplayFloatWithSliderMode(me, scrollX);
-            DisplayFloatWithSliderMode(me, scrollY);
-            DisplayFloatRangeProperty(me, opacity);
+            DisplayFloatWithSliderMode(me, FindProperty("_Overlay2Rotation", props));
+            DisplayRegularProperty(me, FindProperty("_Overlay2Pixelated", props));
+            DisplayFloatWithSliderMode(me, FindProperty("_Overlay2ScrollSpeedX", props));
+            DisplayFloatWithSliderMode(me, FindProperty("_Overlay2ScrollSpeedY", props));
+            DisplayFloatRangeProperty(me, FindProperty("_Overlay2Opacity", props));
         }));
 
-        // --------------------------------------------------------------------
-        // Compass HUD settings
-        // --------------------------------------------------------------------
-        categories.Add(new CSCategory(Styles.compassSettingsTitle, defaultStyle, me => {
-            CSProperty compassTex       = FindProperty("_CompassTex", props);
-            CSProperty compassTint      = FindProperty("_CompassTint", props);
-            CSProperty compassWidth     = FindProperty("_CompassWidth", props);
-            CSProperty compassHeight    = FindProperty("_CompassHeight", props);
-            CSProperty compassYOffset   = FindProperty("_CompassYOffset", props);
-            CSProperty compassMask      = FindProperty("_CompassMask", props);
-
-            CSProperty compassSnap      = FindProperty("_CompassSnap", props);
-            CSProperty compassHUDResX   = FindProperty("_CompassHUDResX", props);
-            CSProperty compassHUDResY   = FindProperty("_CompassHUDResY", props);
-            CSProperty compassTexResX   = FindProperty("_CompassTexResX", props);
-            CSProperty compassTexResY   = FindProperty("_CompassTexResY", props);
+        categories.Add(new CSCategory(Styles.compassSettingsTitle, headerStyle, me => {
+            CSProperty compassTex  = FindProperty("_CompassTex", props);
+            CSProperty compassTint = FindProperty("_CompassTint", props);
+            CSProperty compassMask = FindProperty("_CompassMask", props);
+            CSProperty compassSnap = FindProperty("_CompassSnap", props);
 
             me.TexturePropertySingleLine(new GUIContent("Compass Strip"), compassTex.prop, compassTint.prop);
-            DisplayFloatRangeProperty(me, compassWidth);
-            DisplayFloatRangeProperty(me, compassHeight);
-            DisplayFloatRangeProperty(me, compassYOffset);
-
+            DisplayFloatRangeProperty(me, FindProperty("_CompassWidth", props));
+            DisplayFloatRangeProperty(me, FindProperty("_CompassHeight", props));
+            DisplayFloatRangeProperty(me, FindProperty("_CompassYOffset", props));
             me.TexturePropertySingleLine(new GUIContent("Compass Mask (R)"), compassMask.prop);
 
             EditorGUILayout.Space();
             DisplayRegularProperty(me, compassSnap);
-            if (compassSnap.prop.floatValue != 0)
-            {
-                DisplayFloatProperty(me, compassHUDResX);
-                DisplayFloatProperty(me, compassHUDResY);
-                DisplayFloatProperty(me, compassTexResX);
-                DisplayFloatProperty(me, compassTexResY);
+            if (compassSnap.prop.floatValue != 0) {
+                DisplayFloatProperty(me, FindProperty("_CompassHUDResX", props));
+                DisplayFloatProperty(me, FindProperty("_CompassHUDResY", props));
+                DisplayFloatProperty(me, FindProperty("_CompassTexResX", props));
+                DisplayFloatProperty(me, FindProperty("_CompassTexResY", props));
             }
         }));
 
-        // --------------------------------------------------------------------
-        // Artificial Horizon
-        // --------------------------------------------------------------------
-        categories.Add(new CSCategory(Styles.horizonSettingsTitle, defaultStyle, me => {
-            var horizonPixelated        = FindProperty("_HorizonPixelated", props);
-            var horizonColor            = FindProperty("_HorizonColor", props);
-            var horizonColorUp90        = FindProperty("_HorizonColorUp90", props);
-            var horizonColorDown90      = FindProperty("_HorizonColorDown90", props);
-            var horizonThickness        = FindProperty("_HorizonThickness", props);
-            var horizonHUDResX          = FindProperty("_HorizonHUDResX", props);
-            var horizonHUDResY          = FindProperty("_HorizonHUDResY", props);
-            var horizonMask             = FindProperty("_HorizonMask", props);
-            var horizonBandsPerSide     = FindProperty("_HorizonBandsPerSide", props);
-            var horizonRollOffset       = FindProperty("_HorizonRollOffset", props);
-            var horizonUpperBandsDotted = FindProperty("_HorizonUpperBandsDotted", props);
-
-            DisplayRegularProperty(me, horizonPixelated);
-
-            DisplayColorProperty(me, horizonColor);
-            DisplayColorProperty(me, horizonColorUp90);
-            DisplayColorProperty(me, horizonColorDown90);
-
-            DisplayFloatRangeProperty(me, horizonThickness);
-
-            DisplayRegularProperty(me, horizonHUDResX);
-            DisplayRegularProperty(me, horizonHUDResY);
-
-            DisplayFloatRangeProperty(me, horizonBandsPerSide);
-
-            me.TexturePropertySingleLine(new GUIContent("Horizon Mask (B)"), horizonMask);
-
-            DisplayRegularProperty(me, horizonRollOffset);
-
-            DisplayRegularProperty(me, horizonUpperBandsDotted);
+        categories.Add(new CSCategory(Styles.horizonSettingsTitle, headerStyle, me => {
+            DisplayRegularProperty(me, FindProperty("_HorizonPixelated", props));
+            DisplayColorProperty(me, FindProperty("_HorizonColor", props));
+            DisplayColorProperty(me, FindProperty("_HorizonColorUp90", props));
+            DisplayColorProperty(me, FindProperty("_HorizonColorDown90", props));
+            DisplayFloatRangeProperty(me, FindProperty("_HorizonThickness", props));
+            DisplayRegularProperty(me, FindProperty("_HorizonHUDResX", props));
+            DisplayRegularProperty(me, FindProperty("_HorizonHUDResY", props));
+            DisplayFloatRangeProperty(me, FindProperty("_HorizonBandsPerSide", props));
+            me.TexturePropertySingleLine(new GUIContent("Horizon Mask (B)"), FindProperty("_HorizonMask", props));
+            DisplayRegularProperty(me, FindProperty("_HorizonRollOffset", props));
+            DisplayRegularProperty(me, FindProperty("_HorizonUpperBandsDotted", props));
         }));
 
-        // --------------------------------------------------------------------
-        // HUD Status Bars
-        // --------------------------------------------------------------------
-        categories.Add(new CSCategory(Styles.statusBarsTitle, defaultStyle, me => {
-            var statusBarsEnabled   = FindProperty("_StatusBarsEnabled", props);
-            var statusBarsPixelated = FindProperty("_StatusBarsPixelated", props);
-            var statusBarsMask      = FindProperty("_StatusBarsMask", props);
-            var jitterIntensity     = FindProperty("_StatusBarsJitterIntensity", props);
-            var jitterFrequency     = FindProperty("_StatusBarsJitterFrequency", props);
-            var statusBarsHUDResX   = FindProperty("_StatusBarsHUDResX", props);
-            var statusBarsHUDResY   = FindProperty("_StatusBarsHUDResY", props);
+        categories.Add(new CSCategory(Styles.statusBarsTitle, headerStyle, me => {
+            DisplayRegularProperty(me, FindProperty("_StatusBarsEnabled", props));
+            DisplayRegularProperty(me, FindProperty("_StatusBarsPixelated", props));
+            me.TexturePropertySingleLine(new GUIContent("Mask (RGB)"), FindProperty("_StatusBarsMask", props));
+            DisplayFloatRangeProperty(me, FindProperty("_StatusBarsJitterIntensity", props));
+            DisplayRegularProperty(me, FindProperty("_StatusBarsJitterFrequency", props));
+            DisplayRegularProperty(me, FindProperty("_StatusBarsHUDResX", props));
+            DisplayRegularProperty(me, FindProperty("_StatusBarsHUDResY", props));
 
-            DisplayRegularProperty(me, statusBarsEnabled);
-            DisplayRegularProperty(me, statusBarsPixelated);
-            me.TexturePropertySingleLine(new GUIContent("Mask (RGB)"), statusBarsMask);
-            DisplayFloatRangeProperty(me, jitterIntensity);
-            DisplayRegularProperty(me, jitterFrequency);
-            DisplayRegularProperty(me, statusBarsHUDResX);
-            DisplayRegularProperty(me, statusBarsHUDResY);
-
-            // Status Bar 0
-            if (EditorGUILayout.Foldout(true, Styles.statusBar0Title, true)) {
-                var layout      = FindProperty("_StatusBar0Layout", props);
-                var fill        = FindProperty("_StatusBar0Fill", props);
-                var gradTex     = FindProperty("_StatusBar0Gradient", props);
-                var bottomToTop = FindProperty("_StatusBar0BottomToTop", props);
-                var jitter      = FindProperty("_StatusBar0Jitter", props);
-
-                EditorGUI.indentLevel++;
-                DisplayRegularProperty(me, layout);
-                DisplayFloatRangeProperty(me, fill);
-                DisplayRegularProperty(me, bottomToTop);
-                DisplayRegularProperty(me, jitter);
-                me.TexturePropertySingleLine(new GUIContent("Gradient"), gradTex);
-                EditorGUI.indentLevel--;
-            }
-
-            // Status Bar 1
-            if (EditorGUILayout.Foldout(true, Styles.statusBar1Title, true)) {
-                var layout      = FindProperty("_StatusBar1Layout", props);
-                var fill        = FindProperty("_StatusBar1Fill", props);
-                var gradTex     = FindProperty("_StatusBar1Gradient", props);
-                var bottomToTop = FindProperty("_StatusBar1BottomToTop", props);
-                var jitter      = FindProperty("_StatusBar1Jitter", props);
-
-                EditorGUI.indentLevel++;
-                DisplayRegularProperty(me, layout);
-                DisplayFloatRangeProperty(me, fill);
-                DisplayRegularProperty(me, bottomToTop);
-                DisplayRegularProperty(me, jitter);
-                me.TexturePropertySingleLine(new GUIContent("Gradient"), gradTex);
-                EditorGUI.indentLevel--;
-            }
-
-            // Status Bar 2
-            if (EditorGUILayout.Foldout(true, Styles.statusBar2Title, true)) {
-                var layout      = FindProperty("_StatusBar2Layout", props);
-                var fill        = FindProperty("_StatusBar2Fill", props);
-                var gradTex     = FindProperty("_StatusBar2Gradient", props);
-                var bottomToTop = FindProperty("_StatusBar2BottomToTop", props);
-                var jitter      = FindProperty("_StatusBar2Jitter", props);
-
-                EditorGUI.indentLevel++;
-                DisplayRegularProperty(me, layout);
-                DisplayFloatRangeProperty(me, fill);
-                DisplayRegularProperty(me, bottomToTop);
-                DisplayRegularProperty(me, jitter);
-                me.TexturePropertySingleLine(new GUIContent("Gradient"), gradTex);
-                EditorGUI.indentLevel--;
+            for (int b = 0; b < 3; ++b) {
+                if (EditorGUILayout.Foldout(true, "Status Bar " + b, true)) {
+                    EditorGUI.indentLevel++;
+                    DisplayRegularProperty(me, FindProperty("_StatusBar" + b + "Layout", props));
+                    DisplayFloatRangeProperty(me, FindProperty("_StatusBar" + b + "Fill", props));
+                    DisplayRegularProperty(me, FindProperty("_StatusBar" + b + "BottomToTop", props));
+                    DisplayRegularProperty(me, FindProperty("_StatusBar" + b + "Jitter", props));
+                    me.TexturePropertySingleLine(new GUIContent("Gradient"), FindProperty("_StatusBar" + b + "Gradient", props));
+                    EditorGUI.indentLevel--;
+                }
             }
         }));
 
-        // --------------------------------------------------------------------
-        // HUD Paper Doll
-        // --------------------------------------------------------------------
-        categories.Add(new CSCategory(Styles.paperDollTitle, defaultStyle, me => {
-            CSProperty enabled      = FindProperty("_PaperDollEnabled", props);
-            CSProperty mask         = FindProperty("_PaperDollMask", props);
-            CSProperty baseColor    = FindProperty("_PaperDollBaseColor", props);
-            CSProperty touchColor   = FindProperty("_PaperDollTouchColor", props);
-            CSProperty damageColor  = FindProperty("_PaperDollDamageColor", props);
-
-            DisplayRegularProperty(me, enabled);
-            me.TexturePropertySingleLine(new GUIContent("Mask"), mask.prop);
-            DisplayColorProperty(me, baseColor);
-            DisplayColorProperty(me, touchColor);
-            DisplayColorProperty(me, damageColor);
+        categories.Add(new CSCategory(Styles.paperDollTitle, headerStyle, me => {
+            DisplayRegularProperty(me, FindProperty("_PaperDollEnabled", props));
+            me.TexturePropertySingleLine(new GUIContent("Mask"), FindProperty("_PaperDollMask", props));
+            DisplayColorProperty(me, FindProperty("_PaperDollBaseColor", props));
+            DisplayColorProperty(me, FindProperty("_PaperDollTouchColor", props));
+            DisplayColorProperty(me, FindProperty("_PaperDollDamageColor", props));
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Regions", EditorStyles.boldLabel);
             EditorGUI.indentLevel++;
 
-            // Touch toggles
-            EditorGUILayout.Space();
             EditorGUILayout.LabelField("Touch", EditorStyles.boldLabel);
-            DisplayRegularProperty(me, FindProperty("_PD_HeadTouch", props));
-            DisplayRegularProperty(me, FindProperty("_PD_ChestTouch", props));
-            DisplayRegularProperty(me, FindProperty("_PD_AbdomenTouch", props));
-            DisplayRegularProperty(me, FindProperty("_PD_HipsTouch", props));
-            DisplayRegularProperty(me, FindProperty("_PD_LArmTouch", props));
-            DisplayRegularProperty(me, FindProperty("_PD_RArmTouch", props));
-            DisplayRegularProperty(me, FindProperty("_PD_LLegTouch", props));
-            DisplayRegularProperty(me, FindProperty("_PD_RLegTouch", props));
+            foreach (string region in PaperDollRegions)
+                DisplayRegularProperty(me, FindProperty("_PD_" + region + "Touch", props));
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Damage", EditorStyles.boldLabel);
-            DisplayRegularProperty(me, FindProperty("_PD_HeadDamage", props));
-            DisplayRegularProperty(me, FindProperty("_PD_ChestDamage", props));
-            DisplayRegularProperty(me, FindProperty("_PD_AbdomenDamage", props));
-            DisplayRegularProperty(me, FindProperty("_PD_HipsDamage", props));
-            DisplayRegularProperty(me, FindProperty("_PD_LArmDamage", props));
-            DisplayRegularProperty(me, FindProperty("_PD_RArmDamage", props));
-            DisplayRegularProperty(me, FindProperty("_PD_LLegDamage", props));
-            DisplayRegularProperty(me, FindProperty("_PD_RLegDamage", props));
+            foreach (string region in PaperDollRegions)
+                DisplayRegularProperty(me, FindProperty("_PD_" + region + "Damage", props));
 
             EditorGUI.indentLevel--;
         }));
 
-        if (cancerfree) categories.Add(new CSCategory(Styles.blendSettingsTitle, defaultStyle, me => {
+        categories.Add(new CSCategory(Styles.blendSettingsTitle, headerStyle, me => {
             DisplayRegularProperty(me, FindProperty("_BlendOp", props));
             DisplayRegularProperty(me, FindProperty("_BlendSource", props));
             DisplayRegularProperty(me, FindProperty("_BlendDestination", props));
         }));
-        if (!cancerfree) categories.Add(new CSCategory(Styles.screenColorAdjustmentsTitle, defaultStyle, me => {
-            CSProperty colorBurningToggle = FindProperty("_Burn", props);
-            
-            DisplayVec3WithSliderMode(
-                me,
-                "HSV Add",
-                FindProperty("_HueAdd", props),
-                FindProperty("_SaturationAdd", props),
-                FindProperty("_ValueAdd", props)
-            );
-            DisplayVec3WithSliderMode(
-                me,
-                "HSV Multiply",
-                FindProperty("_HueMultiply", props),
-                FindProperty("_SaturationMultiply", props),
-                FindProperty("_ValueMultiply", props)
-            );
-            
-            DisplayFloatRangeProperty(me, FindProperty("_InversionAmount", props));
-            DisplayColorProperty(me, FindProperty("_Color", props));
-            
-            BlendModePopup(me, FindProperty("_ScreenColorBlendMode", props));
-            
-            DisplayRegularProperty(me, colorBurningToggle);
-            if (colorBurningToggle.prop.floatValue == 1) {
-                DisplayFloatRangeProperty(me, FindProperty("_BurnLow", props));
-                DisplayFloatRangeProperty(me, FindProperty("_BurnHigh", props));
-            }
-        }));
-        if (!cancerfree) categories.Add(new CSCategory(Styles.screenTransformTitle, defaultStyle, me => {
-            DisplayRegularProperty(me, FindProperty("_ScreenBoundaryHandling", props));
-            DisplayRegularProperty(me, FindProperty("_ScreenReprojection", props));
-            DisplayFloatWithSliderMode(me, FindProperty("_Zoom", props));
-            DisplayRegularProperty(me, FindProperty("_Pixelation", props));
-            
-            CSProperty screenXOffsetR = FindProperty("_ScreenXOffsetR", props);
-            CSProperty screenXOffsetG = FindProperty("_ScreenXOffsetG", props);
-            CSProperty screenXOffsetB = FindProperty("_ScreenXOffsetB", props);
-            CSProperty screenXOffsetA = FindProperty("_ScreenXOffsetA", props);
-            CSProperty screenYOffsetR = FindProperty("_ScreenYOffsetR", props);
-            CSProperty screenYOffsetG = FindProperty("_ScreenYOffsetG", props);
-            CSProperty screenYOffsetB = FindProperty("_ScreenYOffsetB", props);
-            CSProperty screenYOffsetA = FindProperty("_ScreenYOffsetA", props);
-            CSProperty screenXMultiplierR = FindProperty("_ScreenXMultiplierR", props);
-            CSProperty screenXMultiplierG = FindProperty("_ScreenXMultiplierG", props);
-            CSProperty screenXMultiplierB = FindProperty("_ScreenXMultiplierB", props);
-            CSProperty screenXMultiplierA = FindProperty("_ScreenXMultiplierA", props);
-            CSProperty screenYMultiplierR = FindProperty("_ScreenYMultiplierR", props);
-            CSProperty screenYMultiplierG = FindProperty("_ScreenYMultiplierG", props);
-            CSProperty screenYMultiplierB = FindProperty("_ScreenYMultiplierB", props);
-            CSProperty screenYMultiplierA = FindProperty("_ScreenYMultiplierA", props);
-            
-            if (sliderMode) {
-                DisplayFloatRangeProperty(me, screenXOffsetA);
-                DisplayFloatRangeProperty(me, screenYOffsetA);
-                DisplayFloatRangeProperty(me, screenXOffsetR);
-                DisplayFloatRangeProperty(me, screenYOffsetR);
-                DisplayFloatRangeProperty(me, screenXOffsetG);
-                DisplayFloatRangeProperty(me, screenYOffsetG);
-                DisplayFloatRangeProperty(me, screenXOffsetB);
-                DisplayFloatRangeProperty(me, screenYOffsetB);
-                DisplayFloatRangeProperty(me, screenXMultiplierA);
-                DisplayFloatRangeProperty(me, screenYMultiplierA);
-                DisplayFloatRangeProperty(me, screenXMultiplierR);
-                DisplayFloatRangeProperty(me, screenYMultiplierR);
-                DisplayFloatRangeProperty(me, screenXMultiplierG);
-                DisplayFloatRangeProperty(me, screenYMultiplierG);
-                DisplayFloatRangeProperty(me, screenXMultiplierB);
-                DisplayFloatRangeProperty(me, screenYMultiplierB);
-            } else {
-                DisplayVec4Field(me, "Screen X Offset (RGB)", screenXOffsetR, screenXOffsetG, screenXOffsetB, screenXOffsetA);
-                DisplayVec4Field(me, "Screen Y Offset (RGB)", screenYOffsetR, screenYOffsetG, screenYOffsetB, screenYOffsetA);
-                DisplayVec4Field(me, "Screen X Multiplier (RGB)", screenXMultiplierR, screenXMultiplierG, screenXMultiplierB, screenXMultiplierA);
-                DisplayVec4Field(me, "Screen Y Multiplier (RGB)", screenYMultiplierR, screenYMultiplierG, screenYMultiplierB, screenYMultiplierA);
-            }
-            DisplayFloatRangeProperty(me, FindProperty("_ScreenRotationAngle", props));
-        }));
-        categories.Add(new CSCategory(Styles.targetObjectSettingsTitle, defaultStyle, me => {
-            DisplayVec4Field(
-                me,
-                "Position",
-                FindProperty("_ObjectPositionX", props),
-                FindProperty("_ObjectPositionY", props),
-                FindProperty("_ObjectPositionZ", props),
-                FindProperty("_ObjectPositionA", props)
-            );
-            DisplayVec3Field(
-                me,
-                "Rotation",
-                FindProperty("_ObjectRotationX", props),
-                FindProperty("_ObjectRotationY", props),
-                FindProperty("_ObjectRotationZ", props)
-            );
-            DisplayVec4Field(
-                me,
-                "Scale",
-                FindProperty("_ObjectScaleX", props),
-                FindProperty("_ObjectScaleY", props),
-                FindProperty("_ObjectScaleZ", props),
-                FindProperty("_ObjectScaleA", props)
-            );
+
+        categories.Add(new CSCategory(Styles.targetObjectSettingsTitle, headerStyle, me => {
+            DisplayVec4Field(me, "Position",
+                FindProperty("_ObjectPositionX", props), FindProperty("_ObjectPositionY", props),
+                FindProperty("_ObjectPositionZ", props), FindProperty("_ObjectPositionA", props));
+            DisplayVec3Field(me, "Rotation",
+                FindProperty("_ObjectRotationX", props), FindProperty("_ObjectRotationY", props),
+                FindProperty("_ObjectRotationZ", props));
+            DisplayVec4Field(me, "Scale",
+                FindProperty("_ObjectScaleX", props), FindProperty("_ObjectScaleY", props),
+                FindProperty("_ObjectScaleZ", props), FindProperty("_ObjectScaleA", props));
             DisplayRegularProperty(me, FindProperty("_Puffiness", props));
         }));
-        categories.Add(new CSCategory(Styles.stencilTitle, defaultStyle, me => {
+
+        categories.Add(new CSCategory(Styles.stencilTitle, headerStyle, me => {
             DisplayIntSlider(me, FindProperty("_StencilRef", props), 0, 255);
             DisplayRegularProperty(me, FindProperty("_StencilComp", props));
             DisplayRegularProperty(me, FindProperty("_StencilPassOp", props));
@@ -648,25 +320,21 @@ public class HUD_inspector : ShaderGUI {
             DisplayIntSlider(me, FindProperty("_StencilReadMask", props), 0, 255);
             DisplayIntSlider(me, FindProperty("_StencilWriteMask", props), 0, 255);
         }));
-        categories.Add(new CSCategory(Styles.maskingTitle, defaultStyle, me => {
-            if (!cancerfree) {
-                DisplayRegularProperty(me, FindProperty("_DistortionMask", props));
-                DisplayFloatRangeProperty(me, FindProperty("_DistortionMaskOpacity", props));
-            }
-            
+
+        categories.Add(new CSCategory(Styles.maskingTitle, headerStyle, me => {
             DisplayRegularProperty(me, FindProperty("_OverlayMask", props));
             DisplayFloatRangeProperty(me, FindProperty("_OverlayMaskOpacity", props));
-            
+
             DisplayRegularProperty(me, FindProperty("_OverallEffectMask", props));
             DisplayFloatRangeProperty(me, FindProperty("_OverallEffectMaskOpacity", props));
             BlendModePopup(me, FindProperty("_OverallEffectMaskBlendMode", props));
 
             EditorGUILayout.Space();
-            
             DisplayRegularProperty(me, FindProperty("_OverallAmplitudeMask", props));
             DisplayFloatRangeProperty(me, FindProperty("_OverallAmplitudeMaskOpacity", props));
         }));
-        categories.Add(new CSCategory(Styles.miscSettingsTitle, defaultStyle, me => {
+
+        categories.Add(new CSCategory(Styles.miscSettingsTitle, headerStyle, me => {
             DisplayRegularProperty(me, FindProperty("_CullMode", props));
             DisplayRegularProperty(me, FindProperty("_ZTest", props));
             DisplayRegularProperty(me, FindProperty("_ZWrite", props));
@@ -677,75 +345,22 @@ public class HUD_inspector : ShaderGUI {
             CSProperty projectionType = FindProperty("_ProjectionType", props);
             DisplayRegularProperty(me, projectionType);
             if (projectionType.prop.floatValue != 2) {
-                DisplayVec3WithSliderMode(
-                    me,
-                    Styles.projectionRotationText,
+                DisplayVec3WithSliderMode(me, Styles.projectionRotationText,
                     FindProperty("_ProjectionRotX", props),
                     FindProperty("_ProjectionRotY", props),
-                    FindProperty("_ProjectionRotZ", props)
-                );
+                    FindProperty("_ProjectionRotZ", props));
             }
         }));
-        if (!cancerfree) categories.Add(new CSCategory(Styles.renderQueueExportTitle, defaultStyle, me => {
-            Material material = me.target as Material;
-            
-            customRenderQueue = EditorGUILayout.IntSlider(Styles.customRenderQueueSliderText, customRenderQueue, 0, 5000);
-            if (GUILayout.Button(Styles.exportCustomRenderQueueButtonText)) {
-                int relativeQueue = customRenderQueue - ((int) UnityEngine.Rendering.RenderQueue.Transparent);
-                string newQueueString = "Transparent" + (relativeQueue >= 0 ? "+" : "") + relativeQueue;
-                string shaderName = "RedMage/Cancer" + (cancerfree ? "free" : "space");
-                string newShaderPath = shaderName + " Queue " + customRenderQueue;
-                
-                string shaderPath = AssetDatabase.GetAssetPath(material.shader.GetInstanceID());
-                string outputLocation = shaderPath.Substring(0, shaderPath.Replace("\\", "/").LastIndexOf('/') + 1) + "CancerspaceQueue" + customRenderQueue + ".shader";
-                
-                try {
-                    using (StreamWriter sw = new StreamWriter(outputLocation)) {
-                        using (StreamReader sr = new StreamReader(shaderPath)) {
-                            string line;
-                            while ((line = sr.ReadLine()) != null) {
-                                if (line.Contains("\"Transparent+")) {
-                                    Regex rx = new Regex(@"Transparent[+-]\d+", RegexOptions.Compiled);
-                                    MatchCollection matches = rx.Matches(line);
-                                    foreach (Match match in matches) {
-                                        line = line.Replace(match.Value, newQueueString);
-                                    }
-                                } else if (line.Contains(shaderName)) {
-                                    Regex rx = new Regex("\"[^\"]+\"", RegexOptions.Compiled);
-                                    MatchCollection matches = rx.Matches(line);
-                                    foreach (Match match in matches) {
-                                        line = line.Replace(match.Value, "\"" + newShaderPath + "\"");
-                                    }
-                                }
-                                if (!cancerfree) line = line.Replace("_Garb", "_Garb" + customRenderQueue);
-                                sw.Write(line);
-                                sw.WriteLine();
-                            }
-                        }
-                    }
-                } catch (Exception e) {
-                    Debug.Log("AAAGAGHH WHAT? HOW? WHY??? WHAT ARE YOU DOING? Shader file could not be read / written.");
-                    Debug.Log(e.Message);
-                    return;
-                }
-                
-                AssetDatabase.Refresh();
-                
-                material.shader = Shader.Find(newShaderPath);
-                
-                AssetDatabase.SaveAssets();
-            }
-        }));
-        
+
         EditorGUIUtility.labelWidth = 0f;
-        
+
         sliderMode = EditorGUILayout.ToggleLeft(Styles.sliderModeCheckboxText, sliderMode);
         showRandomizerOptions = EditorGUILayout.ToggleLeft(Styles.randomizerOptionsCheckboxText, showRandomizerOptions);
         if (showRandomizerOptions) {
             randomizingCurrentPass = GUILayout.Button("Randomize Values");
         }
-        
-        int oldflags = GetExpansionFlags();
+
+        int oldflags = categoryExpansionFlags;
         int newflags = 0;
         for (int i = 0; i < categories.Count; ++i) {
             bool expanded = EditorGUILayout.Foldout((oldflags & (1 << i)) != 0, categories[i].name, true, categories[i].style);
@@ -756,15 +371,33 @@ public class HUD_inspector : ShaderGUI {
                 EditorGUI.indentLevel--;
             }
         }
-        SetExpansionFlags(newflags);
-        
-        
-        if (!cancerfree) GUI.enabled = false;
+        categoryExpansionFlags = newflags;
+
         materialEditor.RenderQueueField();
-        
+
         randomizingCurrentPass = false;
     }
-    
+
+    // ---- shared randomization boilerplate ---------------------------------------
+
+    // True if this property is opted into randomization and this is a "Randomize" pass.
+    bool ShouldRandomizeNow(string propName) {
+        return randomizingCurrentPass && propertiesWithRandomization.Contains(propName);
+    }
+
+    // Draws the per-property "Allow randomization" opt-in toggle (only while the
+    // randomizer controls are shown) and keeps the opt-in set up to date.
+    void DrawRandomizeToggle(string propName) {
+        if (!showRandomizerOptions) return;
+        bool enabled = propertiesWithRandomization.Contains(propName);
+        bool newState = EditorGUILayout.ToggleLeft(Styles.shouldRandomizeCheckboxText, enabled);
+        if (newState == enabled) return;
+        if (newState) propertiesWithRandomization.Add(propName);
+        else propertiesWithRandomization.Remove(propName);
+    }
+
+    // ---- property drawers -------------------------------------------------------
+
     void BlendModePopup(MaterialEditor materialEditor, CSProperty prop) {
         EditorGUI.showMixedValue = prop.prop.hasMixedValue;
         var mode = (BlendMode) prop.prop.floatValue;
@@ -776,64 +409,43 @@ public class HUD_inspector : ShaderGUI {
         }
         EditorGUI.showMixedValue = false;
     }
-    
+
     void DisplayRegularProperty(MaterialEditor me, CSProperty prop) {
         me.ShaderProperty(prop.prop, prop.prop.displayName);
     }
-    
+
     void DisplayColorProperty(MaterialEditor me, CSProperty prop, bool randomizable = true) {
-        bool randomizationEnabled = propertiesWithRandomization.Contains(prop.prop.name);
-        if (randomizationEnabled && randomizingCurrentPass) {
-            // TODO: make ranges more configurable
-            prop.prop.colorValue = new Color((float) rng.NextDouble(), (float) rng.NextDouble(), (float) rng.NextDouble(), (float) rng.NextDouble());
+        if (ShouldRandomizeNow(prop.prop.name)) {
+            prop.prop.colorValue = new Color(
+                (float) rng.NextDouble(), (float) rng.NextDouble(),
+                (float) rng.NextDouble(), (float) rng.NextDouble());
         }
         me.ColorProperty(prop.prop, prop.prop.displayName);
-        if (randomizable && showRandomizerOptions) {
-            bool newState = EditorGUILayout.ToggleLeft(Styles.shouldRandomizeCheckboxText, randomizationEnabled);
-            if (newState != randomizationEnabled) {
-                if (newState) propertiesWithRandomization.Add(prop.prop.name);
-                else propertiesWithRandomization.Remove(prop.prop.name);
-            }
-        }
+        if (randomizable) DrawRandomizeToggle(prop.prop.name);
     }
-    
+
     void DisplayFloatRangeProperty(MaterialEditor me, CSProperty prop, bool randomizable = true) {
-        bool randomizationEnabled = propertiesWithRandomization.Contains(prop.prop.name);
-        if (randomizationEnabled && randomizingCurrentPass) {
-            // TODO: make ranges more configurable
-            prop.prop.floatValue = (float) (rng.NextDouble() * (prop.prop.rangeLimits.y - prop.prop.rangeLimits.x) + prop.prop.rangeLimits.x);
+        if (ShouldRandomizeNow(prop.prop.name)) {
+            prop.prop.floatValue = (float) (rng.NextDouble() *
+                (prop.prop.rangeLimits.y - prop.prop.rangeLimits.x) + prop.prop.rangeLimits.x);
         }
         me.RangeProperty(prop.prop, prop.prop.displayName);
-        if (randomizable && showRandomizerOptions) {
-            bool newState = EditorGUILayout.ToggleLeft(Styles.shouldRandomizeCheckboxText, randomizationEnabled);
-            if (newState != randomizationEnabled) {
-                if (newState) propertiesWithRandomization.Add(prop.prop.name);
-                else propertiesWithRandomization.Remove(prop.prop.name);
-            }
-        }
+        if (randomizable) DrawRandomizeToggle(prop.prop.name);
     }
-    
+
     void DisplayFloatProperty(MaterialEditor me, CSProperty prop, bool randomizable = true) {
-        bool randomizationEnabled = propertiesWithRandomization.Contains(prop.prop.name);
-        if (randomizationEnabled && randomizingCurrentPass) {
-            // TODO: make ranges more configurable
+        if (ShouldRandomizeNow(prop.prop.name)) {
             prop.prop.floatValue = (float) (rng.NextDouble() * 100);
         }
         me.FloatProperty(prop.prop, prop.prop.displayName);
-        if (randomizable && showRandomizerOptions) {
-            bool newState = EditorGUILayout.ToggleLeft(Styles.shouldRandomizeCheckboxText, randomizationEnabled);
-            if (newState != randomizationEnabled) {
-                if (newState) propertiesWithRandomization.Add(prop.prop.name);
-                else propertiesWithRandomization.Remove(prop.prop.name);
-            }
-        }
+        if (randomizable) DrawRandomizeToggle(prop.prop.name);
     }
-    
+
     void DisplayFloatWithSliderMode(MaterialEditor me, CSProperty prop, bool randomizable = true) {
         if (sliderMode) DisplayFloatRangeProperty(me, prop, randomizable);
         else DisplayFloatProperty(me, prop, randomizable);
     }
-    
+
     void DisplayVec3WithSliderMode(MaterialEditor me, string displayName, CSProperty xProp, CSProperty yProp, CSProperty zProp) {
         if (sliderMode) {
             DisplayFloatRangeProperty(me, xProp.prop);
@@ -843,7 +455,7 @@ public class HUD_inspector : ShaderGUI {
             DisplayVec3Field(me, displayName, xProp.prop, yProp.prop, zProp.prop);
         }
     }
-    
+
     void DisplayVec3Field(MaterialEditor materialEditor, string displayName, CSProperty _xProp, CSProperty _yProp, CSProperty _zProp) {
         MaterialProperty xProp = _xProp.prop;
         MaterialProperty yProp = _yProp.prop;
@@ -853,27 +465,26 @@ public class HUD_inspector : ShaderGUI {
         materialEditor.BeginAnimatedCheck(zProp);
         EditorGUI.BeginChangeCheck();
         EditorGUI.showMixedValue = xProp.hasMixedValue || yProp.hasMixedValue || zProp.hasMixedValue;
-        
+
         var oldLabelWidth = EditorGUIUtility.labelWidth;
         EditorGUIUtility.labelWidth = 0f;
-        
+
         Vector3 v = EditorGUILayout.Vector3Field(displayName, new Vector3(xProp.floatValue, yProp.floatValue, zProp.floatValue));
-        
+
         EditorGUIUtility.labelWidth = oldLabelWidth;
-        
         EditorGUI.showMixedValue = false;
-        
+
         if (EditorGUI.EndChangeCheck()) {
             xProp.floatValue = v.x;
             yProp.floatValue = v.y;
             zProp.floatValue = v.z;
         }
-        
+
         materialEditor.EndAnimatedCheck();
         materialEditor.EndAnimatedCheck();
         materialEditor.EndAnimatedCheck();
     }
-    
+
     void DisplayVec4Field(MaterialEditor materialEditor, string displayName, CSProperty _xProp, CSProperty _yProp, CSProperty _zProp, CSProperty _wProp) {
         MaterialProperty xProp = _xProp.prop;
         MaterialProperty yProp = _yProp.prop;
@@ -885,29 +496,28 @@ public class HUD_inspector : ShaderGUI {
         materialEditor.BeginAnimatedCheck(wProp);
         EditorGUI.BeginChangeCheck();
         EditorGUI.showMixedValue = xProp.hasMixedValue || yProp.hasMixedValue || zProp.hasMixedValue || wProp.hasMixedValue;
-        
+
         var oldLabelWidth = EditorGUIUtility.labelWidth;
         EditorGUIUtility.labelWidth = 0f;
-        
+
         Vector4 v = EditorGUILayout.Vector4Field(displayName, new Vector4(xProp.floatValue, yProp.floatValue, zProp.floatValue, wProp.floatValue));
-        
+
         EditorGUIUtility.labelWidth = oldLabelWidth;
-        
         EditorGUI.showMixedValue = false;
-        
+
         if (EditorGUI.EndChangeCheck()) {
             xProp.floatValue = v.x;
             yProp.floatValue = v.y;
             zProp.floatValue = v.z;
             wProp.floatValue = v.w;
         }
-        
+
         materialEditor.EndAnimatedCheck();
         materialEditor.EndAnimatedCheck();
         materialEditor.EndAnimatedCheck();
         materialEditor.EndAnimatedCheck();
     }
-    
+
     void DisplayIntField(MaterialEditor materialEditor, CSProperty property) {
         EditorGUI.showMixedValue = property.prop.hasMixedValue;
         int v = (int) property.prop.floatValue;
@@ -919,7 +529,7 @@ public class HUD_inspector : ShaderGUI {
         }
         EditorGUI.showMixedValue = false;
     }
-    
+
     void DisplayIntSlider(MaterialEditor materialEditor, CSProperty property, int min, int max) {
         EditorGUI.showMixedValue = property.prop.hasMixedValue;
         int v = (int) property.prop.floatValue;
@@ -931,7 +541,7 @@ public class HUD_inspector : ShaderGUI {
         }
         EditorGUI.showMixedValue = false;
     }
-    
+
     void ShowColorMaskFlags(MaterialEditor materialEditor, CSProperty property) {
         EditorGUI.showMixedValue = property.prop.hasMixedValue;
         ColorWriteMask v = (ColorWriteMask) ((int) property.prop.floatValue);
