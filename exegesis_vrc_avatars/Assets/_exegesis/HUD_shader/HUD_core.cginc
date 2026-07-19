@@ -675,7 +675,6 @@ float2 calculateUVsWithFlipbookParameters(float2 uv, float2 distortion, bool pix
     
     if (pixelated) uv = pixelateSamples(res, invRes, uv);
     
-    if (_DistortionTarget == DISTORT_TARGET_OVERLAY || _DistortionTarget == DISTORT_TARGET_BOTH) uv += distortion;
     
     uv -= .5;
     uv = mul(createRotationMatrix(uvRot), uv);
@@ -811,26 +810,6 @@ v2f vert (appdata v) {
         distanceForFalloff = distance(_WorldSpaceCameraPos, mul(unity_ObjectToWorld, float4(0,0,0,1)).xyz);
     }
     
-#ifndef CANCERFREE
-    UNITY_BRANCH if (!_ScreenReprojection)
-#endif
-    {
-        int projectionType = _ProjectionType;
-        if (projectionType == PROJECTION_TRIPLANAR) projectionType = PROJECTION_FLAT;
-        
-        float2 screenUV = calculateScreenUVs(
-            _ProjectionType, 
-            rotateProjectionWorld(o.posWorld, _ProjectionRot), 
-            v.uv, 
-            0, 
-            0, 
-            SCREEN_SIZE.zw
-        );
-        
-        float rotation = calculateFalloffAmplitude(distanceForFalloff, screenUV, v.color, -1234, particleAge01) * _ScreenRotationAngle;
-        viewPos.xy = rotate(viewPos.xy, rotation);
-        o.posWorld = rotateAxis(o.posWorld, UNITY_MATRIX_IT_MV[2].xyz, rotation);
-    }
     
     o.pos = UnityViewToClipPos(viewPos);
     o.cubemapSampler = rotateXYZ(o.posWorld - _WorldSpaceCameraPos, _OverlayCubemapRotation + fmod(_Time.y * _OverlayCubemapSpeed, 360));
