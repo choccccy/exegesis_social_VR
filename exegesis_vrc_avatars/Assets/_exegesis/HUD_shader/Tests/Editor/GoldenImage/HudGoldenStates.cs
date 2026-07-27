@@ -17,6 +17,7 @@ namespace Exegesis.HudShader.Tests
         {
             public string Name;
             public Dictionary<string, float> Overrides; // null => just the time-neutralized default
+            public bool Background;                     // render scene content for the GrabPass to capture
         }
 
         public static readonly State[] All =
@@ -61,6 +62,46 @@ namespace Exegesis.HudShader.Tests
                     { "_StatusBar0Fill", 1f },
                     { "_StatusBar1Fill", 1f },
                     { "_StatusBar2Fill", 1f },
+                },
+            },
+
+            // Scanner states: Background=true renders scene geometry AND forces the depth
+            // texture (see HudRenderHarness) so the depth-driven scan has something to read.
+            new State
+            {
+                Name = "scan_normals",
+                Background = true,
+                Overrides = new Dictionary<string, float>
+                {
+                    { "_ScanEnabled", 1f }, { "_ScanNormalShade", 1f }, { "_ScanEdges", 0f },
+                },
+            },
+            new State
+            {
+                Name = "scan_edges",
+                Background = true,
+                Overrides = new Dictionary<string, float>
+                {
+                    { "_ScanEnabled", 1f }, { "_ScanNormalShade", 0f }, { "_ScanEdges", 1f },
+                },
+            },
+            new State
+            {
+                Name = "scan_range",
+                Background = true,
+                Overrides = new Dictionary<string, float>
+                {
+                    { "_ScanEnabled", 1f }, { "_ScanNormalShade", 0f }, { "_ScanEdges", 0f }, { "_ScanRange", 1f },
+                },
+            },
+            new State
+            {
+                Name = "scan_all",
+                Background = true,
+                Overrides = new Dictionary<string, float>
+                {
+                    { "_ScanEnabled", 1f }, { "_ScanNormalShade", 1f }, { "_ScanEdges", 1f },
+                    { "_ScanRange", 1f }, { "_ScanContours", 1f }, // no sweep (time-based, non-deterministic)
                 },
             },
         };

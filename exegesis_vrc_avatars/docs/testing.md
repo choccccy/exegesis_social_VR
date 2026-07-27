@@ -45,7 +45,14 @@ real changes. Failing renders are dumped to `%TEMP%/hud_golden_failures/` for in
 
 The states rendered are defined once in `GoldenImage/HudGoldenStates.cs` (used by both
 the tests and the capture menu): `default_all` (the primary pin), plus status-bars
-on/off/full, paper-doll off/touch, secondary-overlay on, and half-opacity.
+on/off/full, paper-doll off/touch, secondary-overlay on, and half-opacity — all rendered
+over a solid clear (no `Background`). The scanner states (`scan_normals`, `scan_edges`,
+`scan_range`, `scan_all`) set `Background = true`, which makes `HudRenderHarness` render a
+few fixed **shadow-casting** cubes (Standard shader) plus a shadow-casting directional light
+behind the HUD — this forces `_CameraDepthTexture` to populate in-editor (only shadow-caster
+geometry appears in depth), giving the depth-driven scanner real geometry to read. Scanner
+states must therefore be captured/compared with depth forced; scanner-off states leave
+`Background` false so their baselines stay valid over the plain clear.
 
 ## Running the tests
 

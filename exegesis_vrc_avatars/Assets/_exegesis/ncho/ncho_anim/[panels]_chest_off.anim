@@ -33,7 +33,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._UVTileDissolveAlpha_Row0_2_ncho
+    attribute: material._UVTileDissolveAlpha_Row2_1_ncho
     path: Body
     classID: 137
     script: {fileID: 0}
@@ -48,7 +48,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2393944594
+      attribute: 2315372481
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -93,7 +93,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._UVTileDissolveAlpha_Row0_2_ncho
+    attribute: material._UVTileDissolveAlpha_Row2_1_ncho
     path: Body
     classID: 137
     script: {fileID: 0}

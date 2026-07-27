@@ -298,6 +298,31 @@ public class HUD_inspector : ShaderGUI {
             DisplayRegularProperty(me, FindProperty("_BlendDestination", props));
         }));
 
+        categories.Add(new CSCategory("Sensor Scanner", headerStyle, me => {
+            EditorGUILayout.HelpBox(
+                "First-person, PC-focused. Driven by the scene DEPTH texture (world-provided " +
+                "by a realtime shadow light — no avatar light needed) + reconstructed normals. " +
+                "Works in lit worlds and on shadow-casting props/avatars; blank in fullbright / " +
+                "no-depth worlds. Toggle modes and mix freely.",
+                MessageType.Info);
+
+            CSProperty scan = FindProperty("_ScanEnabled", props);
+            DisplayRegularProperty(me, scan);
+            if (scan.prop.floatValue <= 0.5f) return;
+
+            EditorGUI.indentLevel++;
+            DisplayRegularProperty(me, FindProperty("_ScanColor", props));
+            DisplayRegularProperty(me, FindProperty("_ScanBrightness", props));
+            EditorGUILayout.Space();
+
+            DrawScanMode(me, props, "_ScanNormalShade", new[] { "_ScanNormalContrast" });
+            DrawScanMode(me, props, "_ScanEdges", new[] { "_ScanEdgeColor", "_ScanEdgeDepthThreshold", "_ScanEdgeNormalThreshold" });
+            DrawScanMode(me, props, "_ScanRange", new[] { "_ScanRangeNearColor", "_ScanRangeFarColor", "_ScanRangeNear", "_ScanRangeFar" });
+            DrawScanMode(me, props, "_ScanContours", new[] { "_ScanContourColor", "_ScanContourSpacing" });
+            DrawScanMode(me, props, "_ScanSweep", new[] { "_ScanSweepColor", "_ScanSweepSpeed", "_ScanSweepRange", "_ScanSweepThickness" });
+            EditorGUI.indentLevel--;
+        }));
+
         categories.Add(new CSCategory(Styles.targetObjectSettingsTitle, headerStyle, me => {
             DisplayVec4Field(me, "Position",
                 FindProperty("_ObjectPositionX", props), FindProperty("_ObjectPositionY", props),
@@ -412,6 +437,18 @@ public class HUD_inspector : ShaderGUI {
 
     void DisplayRegularProperty(MaterialEditor me, CSProperty prop) {
         me.ShaderProperty(prop.prop, prop.prop.displayName);
+    }
+
+    // Draws a scanner mode toggle and, when it's on, its indented sub-properties.
+    void DrawScanMode(MaterialEditor me, MaterialProperty[] props, string toggleName, string[] subProps) {
+        CSProperty toggle = FindProperty(toggleName, props);
+        DisplayRegularProperty(me, toggle);
+        if (toggle.prop.floatValue > 0.5f) {
+            EditorGUI.indentLevel++;
+            foreach (var p in subProps) DisplayRegularProperty(me, FindProperty(p, props));
+            EditorGUI.indentLevel--;
+        }
+        EditorGUILayout.Space();
     }
 
     void DisplayColorProperty(MaterialEditor me, CSProperty prop, bool randomizable = true) {

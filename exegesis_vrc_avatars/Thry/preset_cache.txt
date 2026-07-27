@@ -32,6 +32,8 @@ Example/Video Effects/TN Panel;a79dd004459fd1d45961efa3622c4f47
 Shading/Shading/Cloth;2807a42a52df1c44d97cf5e17934fb66
 Shading/Shading/Shade Maps;0dfb68f3451a286408b0be70c899a6c2
 SpecialFX/DepthFX/Fade Near Object;85ae851a357ebf4429ba502c9c0a1a64
+Blu's Shading Styles/Anthro Balanced Wrapped;288888fa0d7529943a4137082063ce92
+Example/Crystal;33906e3bda9ff07479969b49abf52107
 Example/Ice;8d183e97b99f26040a156cbc60955feb
 Example/Sunglasses (Early Outline);e882f4d57a954904b8a144bdcea017ea
 Lighting/Full UTS2;b3ea4f0c69d93b14ca1f17342c9502fa
@@ -124,13 +126,9 @@ Volume Bands/12-Band;0b416ffba1a7d97429ff71b7efc9230c
 Volume Bands/4-Band;c616aa2d7967623489243ae874323c90
 Volume Bands/8-Band;be96e40be3814e84fbca071cf6782a66
 Volume Bands/Reset;53395a2a59ff2f148b53eafd66967204
-Oldschool VFD;e521e7368b5839d4d927e507e15593eb
+Oldschool VFD;34b907ecea29f974aaf32f618e246a5b
 
 m_start_Alpha
-Alpha to Coverage + Dithering;11cc49b1463fe4240ae384b23baf0f67
-Center Fade;f317269719aab3943bb257b3ccd5df9c
-Fade Close;9d3374f93cc20444ea719f89dd54fa40
-Fade Far;d8998f2d34f7a3c45b228d16870516e7
 
 m_start_backFace
 Glow;149f22d578708e749b912f9c811a7977
@@ -161,7 +159,8 @@ Min Brightness/.01 (Recognizable);82c5aafb37530a643b4e3f9421d5fda5
 Min Brightness/.1 (Glowstick);a5dc2b822da4d1a428581dfadf5f3dbb
 Min Brightness/0 (Correct);26af5cb87deb3ed4c8c2032134d84d5d
 "PBR";372d7ee2fdaa3914986be8eb2b0cdd0d
-Teeh Custom;9392d94f15870434facaa649d54973f0
+Blu's Custom;0eb1ace2030fc5b4085d0ce62e18d84e
+Teeh Custom;6b98b5e879972824d913a41f992c833c
 
 m_start_OutlineAudioLink
 BluWizard's Presets/AudioLinked Outlines;90ff955132540154da999a82a0e1b1cc
@@ -283,12 +282,16 @@ Organic/Lemon;014007aa7d4da6743804412155792a66
 Organic/Pearl;45a536b06cced25408ffc2ee9ae76747
 Skin/Sclera;f7aeb9ab10b4b6347a95239ed20720fa
 Skin/Skin I;3a4b3cb3767aa55408a9dec7a41dc03c
+Default Fallback;aba6938c5cd9c794f80902ba8fa2259f
+Glasses;52f4359514aca564eba594a02e852d68
 Teeh's Fallback;d8e3c66db574ae04c8efa46fcc233130
 
 m_start_clearCoat
 BluWizard's Presets/Add Fallback Reflection;3c5615811c7ca2447ae71a6503a330a8
 Inorganic/Car Paint;85d2476e67e6610419e0265098613b3b
 Inorganic/Gem;0f70a47cca5e8f74e9acad7f202e1d8a
+Default Fallback;aba6938c5cd9c794f80902ba8fa2259f
+Glasses Coating;52f4359514aca564eba594a02e852d68
 Teeh's Fallback;d8e3c66db574ae04c8efa46fcc233130
 
 m_start_blending
@@ -317,34 +320,44 @@ m_start_PoiShading
 Add Pass/ToonHard;6ab708189f12c864b872e8df6a2ee79b
 Add Pass/UTS Style;d6d1c75edfd0ec94ab3a549a6bdcef28
 BluWizard's Presets/Balanced Wrapped Shading;60a9882f22832554bb2f272e4871ef74
+"PBR";372d7ee2fdaa3914986be8eb2b0cdd0d
+Anthro Balanced Wrapped;0eb1ace2030fc5b4085d0ce62e18d84e
 
 m_start_Matcap2
 AudioLink/10W;c0880ad625af101439c2010fe559c70b
 AudioLink/2000W;20c11aecc28938d4998d41560aa967b1
 AudioLink/250W;c95a9bc7749242640a7217af09ef3bb4
 BluWizard's Presets/Balanced Wrapped Matcap;60a9882f22832554bb2f272e4871ef74
+Fake Lens Glint;52f4359514aca564eba594a02e852d68
 Iridescence;3ad1ae4010aa7124fa46fada6c006deb
+Vibrant Light Spots;90c085369f89a8842b53c054af744f27
 
 m_start_Matcap3
 AudioLink/10W;c0880ad625af101439c2010fe559c70b
 AudioLink/2000W;20c11aecc28938d4998d41560aa967b1
 AudioLink/250W;c95a9bc7749242640a7217af09ef3bb4
 BluWizard's Presets/Balanced Wrapped Matcap;60a9882f22832554bb2f272e4871ef74
+Fake Lens Glint;52f4359514aca564eba594a02e852d68
 Iridescence;3ad1ae4010aa7124fa46fada6c006deb
+Vibrant Light Spots;90c085369f89a8842b53c054af744f27
 
 m_start_Matcap4
 AudioLink/10W;c0880ad625af101439c2010fe559c70b
 AudioLink/2000W;20c11aecc28938d4998d41560aa967b1
 AudioLink/250W;c95a9bc7749242640a7217af09ef3bb4
 BluWizard's Presets/Balanced Wrapped Matcap;60a9882f22832554bb2f272e4871ef74
+Fake Lens Glint;52f4359514aca564eba594a02e852d68
 Iridescence;3ad1ae4010aa7124fa46fada6c006deb
+Vibrant Light Spots;90c085369f89a8842b53c054af744f27
 
 m_start_matcap
 AudioLink/10W;c0880ad625af101439c2010fe559c70b
 AudioLink/2000W;20c11aecc28938d4998d41560aa967b1
 AudioLink/250W;c95a9bc7749242640a7217af09ef3bb4
 BluWizard's Presets/Balanced Wrapped Matcap;60a9882f22832554bb2f272e4871ef74
+Fake Lens Glint;52f4359514aca564eba594a02e852d68
 Iridescence;3ad1ae4010aa7124fa46fada6c006deb
+Vibrant Light Spots;90c085369f89a8842b53c054af744f27
 
 m_start_RimAudioLink
 10W;59e992582e0872c4486edd6e6948399b
@@ -388,6 +401,7 @@ Example;11ce4bd1b7b381f4abef3a8d553a0cc8
 
 m_start_stylizedSpec
 BluWizard's Presets/Add Fallback Reflection;3c5615811c7ca2447ae71a6503a330a8
+Default Fallback;aba6938c5cd9c794f80902ba8fa2259f
 lil Style;fffc9a264f0cea34e98d4ce8bcac38cd
 Teeh's Fallback;d8e3c66db574ae04c8efa46fcc233130
 UTS Style;520c0c3795796fb439a68661b0844ffc
@@ -457,3 +471,6 @@ Eyes over hair / Body (RenderQueue must be less than Hair);2d376c758a7e2b242aeb1
 Eyes over hair / Eye (RenderQueue must be less than hair);5cf16c95560282047908bcfff06e446c
 Eyes over hair / Hair (RenderQueue 2000);e174c5d3a58ccc94485ccecee53382be
 Stencilled Outline;d0965c132fc7cd14cbe2fdab2f6c8f27
+
+m_start_internalparallax
+Yellow Grid Demo;c4b62e16ed3cad9479088bae9cfe051b

@@ -78,8 +78,8 @@ namespace Exegesis.HudShader.Tests
         public void Shader_HasExpectedPassCount()
         {
             Assert.IsNotNull(_shader);
-            // The HUD is a single-pass overlay. If this changes (e.g. a GrabPass or a
-            // radar/IR pass is added later) this pin should be updated deliberately.
+            // Single pass: the sensor scanner is depth-driven, so there's no GrabPass.
+            // Bump this deliberately if the pass structure changes again.
             Assert.AreEqual(1, _shader.passCount,
                 "Expected exactly one pass in the HUD shader.");
         }

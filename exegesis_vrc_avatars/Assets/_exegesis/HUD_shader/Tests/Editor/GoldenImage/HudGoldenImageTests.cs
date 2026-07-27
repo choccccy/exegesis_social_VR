@@ -44,7 +44,7 @@ namespace Exegesis.HudShader.Tests
                 try
                 {
                     capMat = HudRenderHarness.BuildTestMaterial(state.Overrides);
-                    capTex = HudRenderHarness.Render(capMat);
+                    capTex = HudRenderHarness.Render(capMat, HudRenderHarness.DefaultSize, HudRenderHarness.DefaultSize, state.Background);
                     HudRenderHarness.WritePng(capTex, baselinePath);
                     Debug.Log($"[HUD golden] captured baseline: {baselinePath}");
                 }
@@ -71,7 +71,7 @@ namespace Exegesis.HudShader.Tests
             {
                 mat = HudRenderHarness.BuildTestMaterial(state.Overrides);
                 Assert.IsNotNull(mat, "Could not build test material.");
-                actual = HudRenderHarness.Render(mat);
+                actual = HudRenderHarness.Render(mat, HudRenderHarness.DefaultSize, HudRenderHarness.DefaultSize, state.Background);
 
                 var diff = HudRenderHarness.Compare(actual, baseline, ChannelTolerance);
 

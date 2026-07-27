@@ -129,11 +129,6 @@ MonoBehaviour:
     saved: 1
     defaultValue: 1
     networkSynced: 1
-  - name: left_arm_panels
-    valueType: 2
-    saved: 1
-    defaultValue: 1
-    networkSynced: 1
   - name: chest_panels
     valueType: 2
     saved: 1
@@ -144,14 +139,29 @@ MonoBehaviour:
     saved: 1
     defaultValue: 1
     networkSynced: 1
+  - name: groin_panels
+    valueType: 2
+    saved: 0
+    defaultValue: 1
+    networkSynced: 1
+  - name: left_arm_panels
+    valueType: 2
+    saved: 1
+    defaultValue: 1
+    networkSynced: 1
+  - name: right_arm_panels
+    valueType: 2
+    saved: 1
+    defaultValue: 1
+    networkSynced: 1
   - name: left_thigh_panels
     valueType: 2
     saved: 1
     defaultValue: 1
     networkSynced: 1
-  - name: groin_panels
+  - name: right_thigh_panels
     valueType: 2
-    saved: 0
+    saved: 1
     defaultValue: 1
     networkSynced: 1
   - name: blushie

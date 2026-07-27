@@ -48,7 +48,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2152432195
+      attribute: 2182787724
       script: {fileID: 0}
       typeID: 137
       customType: 22

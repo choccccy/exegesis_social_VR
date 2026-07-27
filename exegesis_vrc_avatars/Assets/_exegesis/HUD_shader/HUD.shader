@@ -220,6 +220,40 @@
         [Toggle(_)] _PD_RArmDamage    ("Right Arm Damage", Int) = 0
         [Toggle(_)] _PD_LLegDamage    ("Left Leg Damage",  Int) = 0
         [Toggle(_)] _PD_RLegDamage    ("Right Leg Damage", Int) = 0
+
+        // ------------------------------------------------------------------
+        // Sensor Scanner - PC-only, first-person. Driven by scene DEPTH +
+        // reconstructed normals (real geometry), not the color image. Depth is
+        // world-provided (a world's realtime shadow light generates it for free,
+        // no avatar light); blank in fullbright/no-depth worlds. Composable modes.
+        // ------------------------------------------------------------------
+        [Toggle(_)] _ScanEnabled         ("Enable Sensor Scanner", Int) = 0
+        [HDR]_ScanColor                  ("Base / Tint Color", Color) = (0.2, 0.9, 1.0, 1)
+        _ScanBrightness                  ("Brightness", Range(0, 4)) = 1
+
+        [Toggle(_)] _ScanNormalShade     ("Mode: Normal Shade", Int) = 1
+        _ScanNormalContrast              ("  Normal Shade Contrast", Range(0.25, 4)) = 1.5
+
+        [Toggle(_)] _ScanEdges           ("Mode: Geometry Edges", Int) = 1
+        [HDR]_ScanEdgeColor              ("  Edge Color", Color) = (0.7, 1, 1, 1)
+        _ScanEdgeDepthThreshold          ("  Edge: Depth Sensitivity", Range(0, 4)) = 0.6
+        _ScanEdgeNormalThreshold         ("  Edge: Normal Sensitivity", Range(0, 4)) = 1.0
+
+        [Toggle(_)] _ScanRange           ("Mode: Range Tint", Int) = 0
+        [HDR]_ScanRangeNearColor         ("  Range Near Color", Color) = (0.2, 1, 0.6, 1)
+        [HDR]_ScanRangeFarColor          ("  Range Far Color", Color) = (0.04, 0.1, 0.35, 1)
+        _ScanRangeNear                   ("  Range Near (m)", Float) = 0.5
+        _ScanRangeFar                    ("  Range Far (m)", Float) = 30
+
+        [Toggle(_)] _ScanContours        ("Mode: Depth Contours", Int) = 0
+        [HDR]_ScanContourColor           ("  Contour Color", Color) = (0.4, 1, 1, 1)
+        _ScanContourSpacing              ("  Contour Spacing (m)", Float) = 1.0
+
+        [Toggle(_)] _ScanSweep           ("Mode: Scan Sweep", Int) = 0
+        [HDR]_ScanSweepColor             ("  Sweep Color", Color) = (1, 1, 1, 1)
+        _ScanSweepSpeed                  ("  Sweep Speed (m/s)", Float) = 8
+        _ScanSweepRange                  ("  Sweep Range (m)", Float) = 30
+        _ScanSweepThickness              ("  Sweep Thickness (m)", Float) = 0.6
     }
     SubShader {
         Tags { "Queue" = "Transparent+3" "VRCFallback"="Hidden" }
@@ -244,12 +278,8 @@
 
         Pass {
             CGPROGRAM
-            #define CANCERFREE
-            #define SCREENTEXNAME _Garb
             #define SCREEN_SIZE (float4(rcp(_ScreenParams.xy), _ScreenParams.xy))
             #include "UnityCG.cginc"
-            UNITY_DECLARE_SCREENSPACE_TEXTURE(_Garb);
-            float4 _Garb_TexelSize;
             #include "HUD_core.cginc"
             #pragma vertex vert
             #pragma fragment frag

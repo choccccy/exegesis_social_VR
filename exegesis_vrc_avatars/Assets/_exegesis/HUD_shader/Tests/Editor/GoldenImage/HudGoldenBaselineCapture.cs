@@ -32,7 +32,7 @@ namespace Exegesis.HudShader.Tests
                     try
                     {
                         mat = HudRenderHarness.BuildTestMaterial(state.Overrides);
-                        tex = HudRenderHarness.Render(mat);
+                        tex = HudRenderHarness.Render(mat, HudRenderHarness.DefaultSize, HudRenderHarness.DefaultSize, state.Background);
                         HudRenderHarness.WritePng(tex, HudRenderHarness.BaselinePath(state.Name));
                         count++;
                     }

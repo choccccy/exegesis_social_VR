@@ -195,6 +195,10 @@ Material:
     - _HorizonUpperBandsDotted: 1
     - _HueAdd: 0
     - _HueMultiply: 1
+    - _IREdgeBoost: 2
+    - _IRGain: 0.8
+    - _IRGreyscale: 0
+    - _IRVisionEnabled: 0
     - _InversionAmount: 0
     - _LifetimeFalloff: 0
     - _LifetimeFalloffCurve: 1
@@ -272,10 +276,30 @@ Material:
     - _ProjectionRotZ: 0
     - _ProjectionType: 0
     - _Puffiness: 0
+    - _RadarBgDim: 1
+    - _RadarEdgeThreshold: 0.425
+    - _RadarEnabled: 0
     - _SaturationAdd: 0
     - _SaturationMultiply: 1
+    - _ScanBrightness: 1
+    - _ScanContourSpacing: 1
+    - _ScanContours: 0
+    - _ScanEdgeDepthThreshold: 0.6
+    - _ScanEdgeNormalThreshold: 1
+    - _ScanEdges: 0
+    - _ScanEnabled: 0
+    - _ScanNormalContrast: 4
+    - _ScanNormalShade: 0
+    - _ScanRange: 1
+    - _ScanRangeFar: 10
+    - _ScanRangeNear: 1
+    - _ScanSweep: 0
+    - _ScanSweepRange: 30
+    - _ScanSweepSpeed: 8
+    - _ScanSweepThickness: 0.6
     - _ScreenBoundaryHandling: 0
     - _ScreenColorBlendMode: 0
+    - _ScreenFXUseDepth: 0
     - _ScreenReprojection: 0
     - _ScreenRotationAngle: 0
     - _ScreenXMultiplierA: 1
@@ -343,12 +367,20 @@ Material:
     - _HorizonColor: {r: 1, g: 1, b: 1, a: 1}
     - _HorizonColorDown90: {r: 0.03137255, g: 0.40784314, b: 0.03137255, a: 1}
     - _HorizonColorUp90: {r: 0.40784314, g: 0.03137255, b: 0.03137255, a: 1}
+    - _IRTint: {r: 1, g: 1, b: 1, a: 1}
     - _Overlay2Color: {r: 1, g: 1, b: 1, a: 1}
     - _OverlayColor: {r: 1, g: 1, b: 1, a: 1}
     - _PaperDollBaseColor: {r: 1, g: 1, b: 1, a: 0}
     - _PaperDollDamageColor: {r: 1, g: 0, b: 0, a: 1}
     - _PaperDollIndicatorColor: {r: 1, g: 1, b: 1, a: 1}
     - _PaperDollTouchColor: {r: 1, g: 1, b: 0, a: 1}
+    - _RadarLineColor: {r: 0, g: 1, b: 0.4, a: 1}
+    - _ScanColor: {r: 1, g: 1, b: 1, a: 1}
+    - _ScanContourColor: {r: 0.4, g: 1, b: 1, a: 1}
+    - _ScanEdgeColor: {r: 0.7, g: 1, b: 1, a: 1}
+    - _ScanRangeFarColor: {r: 0.04, g: 0.1, b: 0.35, a: 1}
+    - _ScanRangeNearColor: {r: 0.2, g: 1, b: 0.6, a: 1}
+    - _ScanSweepColor: {r: 1, g: 1, b: 1, a: 1}
     - _StatusBar0Layout: {r: 0.781, g: 0.624, b: 0.036, a: 0.191}
     - _StatusBar1Layout: {r: 0.781, g: 0.375, b: 0.036, a: 0.191}
     - _StatusBar2Layout: {r: 0.219, g: 0.375, b: 0.036, a: 0.191}

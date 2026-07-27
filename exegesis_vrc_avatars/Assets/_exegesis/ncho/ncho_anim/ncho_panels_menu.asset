@@ -34,6 +34,16 @@ MonoBehaviour:
     subMenu: {fileID: 0}
     subParameters: []
     labels: []
+  - name: Right Arm Panels
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: right_arm_panels
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
   - name: Chest Panels
     icon: {fileID: 0}
     type: 102
@@ -59,6 +69,16 @@ MonoBehaviour:
     type: 102
     parameter:
       name: left_thigh_panels
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Right Thigh Panels
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: right_thigh_panels
     value: 1
     style: 0
     subMenu: {fileID: 0}

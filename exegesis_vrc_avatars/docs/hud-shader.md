@@ -15,19 +15,18 @@ A screen-space HUD composited from several sub-effects: an **image overlay**, a
 - **GPLv3** (`LICENSE`). Fork of [VRC-Cancerspace](https://github.com/AkaiMage/VRC-Cancerspace)
   by AkaiMage. Preserve the license and attribution. Copyleft only bites if the avatar
   is distributed publicly.
-- `#define CANCERFREE` is set **unconditionally** in `HUD.shader`. In Cancerspace that
-  flag selects the "no screen-grab" build; here it means the shader is a **pure additive
-  screen-space overlay with no GrabPass / no screen read**. A large amount of the
-  inherited Cancerspace machinery (screen-grab compositing, blur, wobble, distortion,
-  screen-color adjustment) is therefore **dead code**.
+- The inherited Cancerspace `CANCERFREE` machinery (screen-grab compositing, blur,
+  wobble, distortion, screen-color adjustment) was **stripped in Step 1**. The shader is
+  a clean additive HUD overlay, **plus** the Step-2 depth-driven sensor scanner below
+  (no GrabPass). See [Sensor scanner](#sensor-scanner-step-2).
 
 ## File structure
 
 | File | Role |
 |---|---|
-| `HUD.shader` | Properties + single Pass; sets `CANCERFREE`, includes `HUD_core.cginc`. |
+| `HUD.shader` | Properties + a single Pass; includes `HUD_core.cginc`. |
 | `HUD_core.cginc` | The bulk: uniforms, `vert`, `frag`, and per-sub-effect sampling helpers. |
-| `CGInclude/CS*.cginc` | Shared, well-factored helpers: enums, HSV/blend, rotation, depth, UV projection, falloff, mirror/eye discrimination, central uniform/macro declarations (`CSProps`). The cleanest part; the reusable foundation for future features. |
+| `CGInclude/CS*.cginc` | Shared helpers: enums, HSV/blend, rotation, depth, UV projection, falloff, mirror/eye discrimination, uniform/macro declarations (`CSProps`), and the screen effects (`CSScreenFX`). |
 | `Editor/HUD_inspector.cs` | Custom `ShaderGUI` (~20 collapsible categories). A copy-paste fork of the orphaned `Cancerspace/Editor/CancerspaceInspector.cs`. |
 
 ## Render model (important for tests and for reasoning about it)
@@ -72,20 +71,38 @@ The other ~140 properties are free to reorganize/rename. Related VRC params:
   and dev/test duplicates; its cameras are orthographic studio rigs (NOT how the HUD is
   seen in-game). It also contains a stray inactive `Cube` with the HUD material — scratch.
 
-## Known cruft (cleanup targets)
+## Sensor scanner (Step 2)
 
-Dead `CANCERFREE` branches in `frag` and `CSProps`; 102 commented-out properties in
-`HUD.shader`; the orphaned `Cancerspace/` inspector; `!cancerfree`-gated dead inspector
-categories + a file-writing "Render Queue Exporter"; triplicated status-bar and 16x
-paper-doll code; a `BlendMode` enum duplicated between `HUD_inspector.cs` and
-`CSEnums.cginc`; `CSFalloff.cginc` included twice; duplicate `getCameraForwardWS`/
-`camFwdWS`; magic-number paper-doll region colors.
+A first-person, PC-focused geometry visualization, integrated into the same shader/material
+(no extra slot, **no GrabPass**, no added light). It is driven by **real scene geometry** —
+the frag already reconstructs `depth`, world position, and a world-space normal from
+`_CameraDepthTexture` (see the render model above), and the scanner reads those. Runs in
+`frag()` **before** the HUD layers (HUD draws on top). Off by default (`_ScanEnabled = 0`);
+when off the render is byte-identical to the plain HUD (golden-pinned).
+
+Why this replaced the first IR/radar attempt: that one read the **color image** (thermal
+ramp on luminance, Sobel on albedo), so it couldn't sense 3D structure and felt fake. The
+scanner reads depth/normals, so it responds to actual geometry.
+
+Composable modes (`CSScreenFX::csScanCompose`), each a toggle + knobs:
+- **`_ScanNormalShade`** — facing-ratio shading from the reconstructed normal (albedo-independent "3D reconstruction" base).
+- **`_ScanEdges`** — silhouette + crease edges from `fwidth(depth)` / `fwidth(normal)` (true geometry wireframe, **no extra texture taps**).
+- **`_ScanRange`** — near→far color by real distance (lidar/radar range).
+- **`_ScanContours`** — iso-depth bands (`frac(depth/spacing)`) hugging geometry.
+- **`_ScanSweep`** — animated depth band (`_Time`-driven).
+Plus `_ScanColor`/`_ScanBrightness` and per-mode colors/thresholds.
+
+Constraints: **depth is world-provided** — present in worlds with a realtime shadow-casting
+light (and on shadow-caster props/avatars), **blank in fullbright/no-depth worlds** (honest
+"no signal"). Only shadow-caster-pass geometry appears in depth (misses transparents/some
+avatars). PC-focused. Gated off in mirrors (`isInMirror()`) and the VRChat camera
+(`_VRChatCameraMode`). `HudGoldenImageTests` pins `scan_normals`/`scan_edges`/`scan_range`/
+`scan_all` against a shadow-casting background scene (the harness forces depth for tests).
 
 ## Roadmap
 
-Current: clean the shader to a professional BiRP standard while keeping behavior
-pixel-identical (pinned by [testing.md](testing.md)). **Next (not built yet):**
-fullscreen **IR vision** (greyscale world + bright avatars) and **radar** (wireframe
-overlay). Both are *screen-grab* effects and will need a new **GrabPass**-based
-screen-read path — the current shader has none, so that's greenfield, and the reusable
-starting point is the `CGInclude/` utilities, not the dead Cancerspace frag code.
+Step 1 (cleanup) and Step 2 (sensor scanner) are done and pinned. Possible follow-ups: tune
+the look after in-headset play (which modes, colors, thresholds); wire the VRChat expression
+menu/params/animator to toggle the scanner + modes (touches `ncho_params.asset`,
+`ncho_main_menu.asset`, `ncho_fx.controller`); optionally convert runtime feature branches to
+`shader_feature` keywords for a leaner variant.

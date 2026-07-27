@@ -34,6 +34,7 @@ struct v2f {
 #include "CGInclude/CSDepth.cginc"
 #include "CGInclude/CSDiscriminate.cginc"
 #include "CGInclude/CSFalloff.cginc"
+#include "CGInclude/CSScreenFX.cginc"
 
 // -----------------------------------------------------------------------------
 // HUD uniforms
@@ -871,26 +872,40 @@ fixed4 frag (v2f i) : SV_Target {
     fixed allAmp = calculateFalloffAmplitude(effectDistance, screenSpaceOverlayUV, i.color, depth, particleAge01);
     float2 distortion = 0; // HUD is a pure overlay (CANCERFREE): no screen distortion
 
-    // Composite the HUD layers back-to-front; each contributes color and alpha.
-    // Order: secondary overlay (back) -> main overlay -> compass -> horizon ->
-    // status bars -> paper doll (front).
-    float4 color = 0;
-    color = compositeHudLayer(color, sampleSecondaryOverlay(screenSpaceOverlayUV, distortion));
-    color = compositeHudLayer(color, calculateOverlayColor(screenSpaceOverlayUV, distortion, i.cubemapSampler));
-    color = compositeHudLayer(color, sampleCompass(screenSpaceOverlayUV));
-    color = compositeHudLayer(color, sampleHorizon(screenSpaceOverlayUV));
-    color = compositeHudLayer(color, sampleStatusBars(screenSpaceOverlayUV));
-    color = compositeHudLayer(color, samplePaperDoll(screenSpaceOverlayUV));
-    
+    // Sensor scanner: a first-person geometry visualization built from the
+    // reconstructed depth/normal above. PC-only; skipped in mirrors and the
+    // VRChat camera to avoid artifacts.
+    bool scanOn = (_ScanEnabled > 0.5) && !isInMirror() && _VRChatCameraMode == 0;
+
+    // Build the HUD overlay exactly as before (transparent-black base, composited
+    // back-to-front): secondary overlay -> main overlay -> compass -> horizon ->
+    // status bars -> paper doll.
+    float4 hud = 0;
+    hud = compositeHudLayer(hud, sampleSecondaryOverlay(screenSpaceOverlayUV, distortion));
+    hud = compositeHudLayer(hud, calculateOverlayColor(screenSpaceOverlayUV, distortion, i.cubemapSampler));
+    hud = compositeHudLayer(hud, sampleCompass(screenSpaceOverlayUV));
+    hud = compositeHudLayer(hud, sampleHorizon(screenSpaceOverlayUV));
+    hud = compositeHudLayer(hud, sampleStatusBars(screenSpaceOverlayUV));
+    hud = compositeHudLayer(hud, samplePaperDoll(screenSpaceOverlayUV));
+
     float overlayMask = _OverlayMaskOpacity * tex2Dlod(_OverlayMask, float4(.5+TRANSFORM_TEX((screenSpaceOverlayUV-.5), _OverlayMask), 0, 0)).r;
     float overallMask = _OverallEffectMaskOpacity * tex2Dlod(_OverallEffectMask, float4(.5+TRANSFORM_TEX((screenSpaceOverlayUV-.5), _OverallEffectMask), 0, 0)).r;
-    color.a *= _BlendAmount * overlayMask * overallMask * allAmp;
+    hud.a *= _BlendAmount * overlayMask * overallMask * allAmp;
 
     // Blend in HUDOpacity
-    color.rgb *= _HUDOpacity;
-    color.a   *= _HUDOpacity;
+    hud.rgb *= _HUDOpacity;
+    hud.a   *= _HUDOpacity;
 
-    return float4(color.rgb, color.a);
+    if (scanOn) {
+        // Full-screen geometry scan replaces the view (built from scene depth +
+        // normals reconstructed above); the HUD composites on top. Opaque.
+        float3 viewDir = normalize(_WorldSpaceCameraPos - triplanarWorld);
+        float3 scan = csScanCompose(depth, triplanarWorld, triplanarNormal, viewDir);
+        float3 outRGB = lerp(scan, hud.rgb, saturate(hud.a));
+        return float4(outRGB, 1.0);
+    }
+
+    return float4(hud.rgb, hud.a);
 }
 
 #endif
