@@ -4978,8 +4978,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774048, y: -0.5496826, z: 6.035894}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 745328923}
@@ -15773,8 +15773,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 850857297}
@@ -20152,8 +20152,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1433906196}
@@ -26140,7 +26140,7 @@ MonoBehaviour:
     contentTypes: -1
   snapToHand: 0
   grabMovement: 1
-  maxStretch: 2
+  maxStretch: 3
   maxStretchCurve:
     serializedVersion: 2
     m_Curve: []
@@ -26163,7 +26163,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   isAnimated: 0
   resetWhenDisabled: 0
-  parameter: 
+  parameter: ab_wire
   showGizmos: 1
   boneOpacity: 0.5
   limitOpacity: 0.5
@@ -30097,8 +30097,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 850857297}
@@ -104930,8 +104930,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: 18.45792, y: 55.86763, z: 15.669644}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 745328923}
@@ -134729,8 +134729,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774048, y: -0.5496826, z: 6.035894}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 850857297}
@@ -150941,6 +150941,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8843280007996062309, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.225
@@ -151102,6 +151106,10 @@ PrefabInstance:
       value: 0.00000005960465
       objectReference: {fileID: 0}
     - target: {fileID: -3225470663099305978, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2779099152873015741, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -151376,6 +151384,10 @@ PrefabInstance:
     - target: {fileID: 4942509703399939685, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.058077052
+      objectReference: {fileID: 0}
+    - target: {fileID: 6299402103672624421, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6879211132826700984, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -152230,6 +152242,8 @@ MonoBehaviour:
     name: empty
   - hash: 1187905595
     name: prox_heat_add
+  - hash: 875011273
+    name: internal_heat_add
   - hash: -193755815
     name: empty
   - hash: 747308311
@@ -152328,6 +152342,10 @@ MonoBehaviour:
     name: face_panels_on
   - hash: 913770966
     name: face_panels_off
+  - hash: 1029313421
+    name: right_thigh_panels_off
+  - hash: -2093506025
+    name: right_thigh_panels_on
   - hash: -1116505468
     name: vertex_rounding_on
   - hash: 1415746987
@@ -157714,6 +157732,221 @@ MonoBehaviour:
   receiverType: 0
   parameter: ProxBlush
   minVelocity: 0.05
+--- !u!1 &1432943673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1432943674}
+  - component: {fileID: 1432943675}
+  m_Layer: 0
+  m_Name: Ab Wire Dynamics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1432943674
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432943673}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.377778, y: 0, z: -7.502223}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1438701526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1432943675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432943673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1661641543, guid: 2a2c05204084d904aa4945ccff20d8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foldout_transforms: 1
+  foldout_forces: 1
+  foldout_collision: 1
+  foldout_stretchsquish: 1
+  foldout_limits: 1
+  foldout_grabpose: 1
+  foldout_options: 1
+  foldout_gizmos: 0
+  version: 1
+  integrationType: 0
+  rootTransform: {fileID: 1928829839}
+  ignoreTransforms: []
+  ignoreOtherPhysBones: 1
+  endpointPosition: {x: 0, y: 0.1, z: 0}
+  multiChildType: 0
+  pull: 0.2
+  pullCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spring: 0.2
+  springCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  stiffness: 0.2
+  stiffnessCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  gravity: 0
+  gravityCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  gravityFalloff: 0
+  gravityFalloffCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  immobileType: 0
+  immobile: 0.95
+  immobileCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  allowCollision: 1
+  collisionFilter:
+    allowSelf: 1
+    allowOthers: 1
+    contentTypes: -1
+  radius: 0.1
+  radiusCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.60769135
+      value: 1
+      inSlope: Infinity
+      outSlope: Infinity
+      tangentMode: 103
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  colliders: []
+  limitType: 0
+  maxAngleX: 45
+  maxAngleXCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxAngleZ: 45
+  maxAngleZCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  limitRotation: {x: 0, y: 0, z: 0}
+  limitRotationXCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  limitRotationYCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  limitRotationZCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  allowGrabbing: 1
+  grabFilter:
+    allowSelf: 1
+    allowOthers: 1
+    contentTypes: -1
+  allowPosing: 0
+  poseFilter:
+    allowSelf: 1
+    allowOthers: 1
+    contentTypes: -1
+  snapToHand: 0
+  grabMovement: 1
+  maxStretch: 3
+  maxStretchCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxSquish: 0
+  maxSquishCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  stretchMotion: 1
+  stretchMotionCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  isAnimated: 0
+  resetWhenDisabled: 0
+  parameter: ab_wire
+  showGizmos: 1
+  boneOpacity: 0.5
+  limitOpacity: 0.5
 --- !u!1 &1433254224
 GameObject:
   m_ObjectHideFlags: 0
@@ -159756,6 +159989,7 @@ Transform:
   - {fileID: 1843058450}
   - {fileID: 190249134}
   - {fileID: 630547003}
+  - {fileID: 1432943674}
   m_Father: {fileID: 850857300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1440784999
@@ -161822,8 +162056,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 745328923}
@@ -201077,8 +201311,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1433906196}
@@ -230203,8 +230437,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1396905953}
@@ -230546,8 +230780,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1396905953}
@@ -232461,8 +232695,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 745328923}
@@ -232575,8 +232809,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 18.45792, y: 55.86763, z: 15.669644}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 850857297}

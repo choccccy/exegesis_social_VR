@@ -47,9 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 8
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   addLight: 1
   name: Bottom Socket
+  oscId: 
   enableHandTouchZone2: 0
   length: 0
   unitsInMeters: 1
@@ -84,6 +85,15 @@ MonoBehaviour:
     actions:
     - rid: 3453823788001525775
   useHipAvoidance: 1
+  useSharedTag: 1
+  useLights: 1
+  overrideLegacySocketType: 0
+  legacySocketType: 0
+  useRadiusOffset: 0
+  overrideLegacyOffset: 0
+  legacyOffset: {x: 0, y: 0, z: 0}
+  tags: []
+  guidedPathStops: []
   enablePlugLengthParameter: 0
   plugLengthParameterName: 
   enablePlugWidthParameter: 0
@@ -144,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -236,7 +246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -257,6 +267,7 @@ MonoBehaviour:
           objRef: {fileID: 2800000, guid: 3bdb37dc9cca3cf4096075def1495f66, type: 3}
         menuPath: Expression/SPS
         saveSockets: 0
+        legacyModeEnabledOnAvatarLoad: 1
 --- !u!114 &8244280367038662820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -300,7 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -404,9 +415,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 8
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   addLight: 3
   name: Right Hand Socket
+  oscId: 
   enableHandTouchZone2: 0
   length: 0
   unitsInMeters: 1
@@ -415,7 +427,7 @@ MonoBehaviour:
     version: 1
     fileID: 0
     guid: 
-    id: c6a915ea2b0d0cb4badeda05c0c9bbd7|Assets/_ChoccyMk3/icons/icons8-hand-96.png
+    id: c6a915ea2b0d0cb4badeda05c0c9bbd7|Assets/_exegesis/icons/icons8-hand-96.png
     objRef: {fileID: 2800000, guid: c6a915ea2b0d0cb4badeda05c0c9bbd7, type: 3}
   enableAuto: 1
   position: {x: 0, y: 0, z: 0}
@@ -432,6 +444,15 @@ MonoBehaviour:
   activeActions:
     actions: []
   useHipAvoidance: 1
+  useSharedTag: 1
+  useLights: 1
+  overrideLegacySocketType: 0
+  legacySocketType: 0
+  useRadiusOffset: 0
+  overrideLegacyOffset: 0
+  legacyOffset: {x: 0, y: 0, z: 0}
+  tags: []
+  guidedPathStops: []
   enablePlugLengthParameter: 0
   plugLengthParameterName: 
   enablePlugWidthParameter: 0
@@ -466,7 +487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -585,9 +606,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 8
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   addLight: 3
   name: Left Hand Socket
+  oscId: 
   enableHandTouchZone2: 0
   length: 0
   unitsInMeters: 1
@@ -596,7 +618,7 @@ MonoBehaviour:
     version: 1
     fileID: 0
     guid: 
-    id: e22e02c6757e28f4f8b7311dc2d72f54|Assets/_ChoccyMk3/icons/icons8-hand-96 L.png
+    id: e22e02c6757e28f4f8b7311dc2d72f54|Assets/_exegesis/icons/icons8-hand-96 L.png
     objRef: {fileID: 2800000, guid: e22e02c6757e28f4f8b7311dc2d72f54, type: 3}
   enableAuto: 1
   position: {x: 0, y: 0, z: 0}
@@ -613,6 +635,15 @@ MonoBehaviour:
   activeActions:
     actions: []
   useHipAvoidance: 1
+  useSharedTag: 1
+  useLights: 1
+  overrideLegacySocketType: 0
+  legacySocketType: 0
+  useRadiusOffset: 0
+  overrideLegacyOffset: 0
+  legacyOffset: {x: 0, y: 0, z: 0}
+  tags: []
+  guidedPathStops: []
   enablePlugLengthParameter: 0
   plugLengthParameterName: 
   enablePlugWidthParameter: 0
@@ -647,7 +678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -734,9 +765,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 8
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   addLight: 1
   name: Face Socket
+  oscId: 
   enableHandTouchZone2: 0
   length: 0
   unitsInMeters: 1
@@ -745,7 +777,7 @@ MonoBehaviour:
     version: 1
     fileID: 0
     guid: 
-    id: bf6f1d0ced463114b8a9dbcd78159b72|Assets/_ChoccyMk3/icons/icons8-open-mouth-64.png
+    id: bf6f1d0ced463114b8a9dbcd78159b72|Assets/_exegesis/icons/icons8-open-mouth-64.png
     objRef: {fileID: 2800000, guid: bf6f1d0ced463114b8a9dbcd78159b72, type: 3}
   enableAuto: 1
   position: {x: 0, y: 0, z: 0}
@@ -763,6 +795,15 @@ MonoBehaviour:
     actions:
     - rid: 3453823788001525774
   useHipAvoidance: 1
+  useSharedTag: 1
+  useLights: 1
+  overrideLegacySocketType: 0
+  legacySocketType: 0
+  useRadiusOffset: 0
+  overrideLegacyOffset: 0
+  legacyOffset: {x: 0, y: 0, z: 0}
+  tags: []
+  guidedPathStops: []
   enablePlugLengthParameter: 0
   plugLengthParameterName: 
   enablePlugWidthParameter: 0
@@ -795,7 +836,7 @@ MonoBehaviour:
           version: 1
           fileID: 0
           guid: 
-          id: 32a9b69077667a440b013218fa69246b|Assets/_exegesis/[panels]_face_off.anim
+          id: 32a9b69077667a440b013218fa69246b|Assets/_exegesis/ncho/ncho_anim/[panels]_face_off.anim
           objRef: {fileID: 7400000, guid: 32a9b69077667a440b013218fa69246b, type: 2}
 --- !u!114 &3271247996891457108
 MonoBehaviour:
@@ -811,7 +852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []

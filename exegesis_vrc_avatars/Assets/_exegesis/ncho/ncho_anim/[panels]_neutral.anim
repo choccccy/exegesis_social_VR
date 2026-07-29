@@ -668,6 +668,27 @@ AnimationClip:
     classID: 137
     script: {fileID: 0}
     flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: PhysBones/Ab Wire Dynamics
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -676,6 +697,15 @@ AnimationClip:
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
     genericBindings:
+    - serializedVersion: 2
+      path: 1059987855
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
       attribute: 2154249776
@@ -822,7 +852,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2388242351
+      attribute: 2170360932
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -831,7 +861,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2294980977
+      attribute: 2338547284
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -840,7 +870,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2394794693
+      attribute: 2151658993
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -849,7 +879,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2404757592
+      attribute: 2259404639
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -858,7 +888,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2300754924
+      attribute: 2381780218
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -867,7 +897,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2284758043
+      attribute: 2315372481
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -876,7 +906,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2311503494
+      attribute: 2358621551
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -885,7 +915,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2410788146
+      attribute: 2278123210
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -894,7 +924,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2278855530
+      attribute: 2412909447
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -903,7 +933,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2174982366
+      attribute: 2223947810
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -912,7 +942,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2152432195
+      attribute: 2182787724
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -921,7 +951,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2252114423
+      attribute: 2303090985
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -930,7 +960,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2268108288
+      attribute: 2393944594
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -939,7 +969,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2168954292
+      attribute: 2246861239
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -948,7 +978,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2073732236
-      attribute: 2262338717
+      attribute: 2284110012
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -1626,6 +1656,27 @@ AnimationClip:
     attribute: material._UVTileDissolveAlpha_Row0_1_ncho
     path: Body
     classID: 137
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: PhysBones/Ab Wire Dynamics
+    classID: 1
     script: {fileID: 0}
     flags: 0
   m_EulerEditorCurves: []
