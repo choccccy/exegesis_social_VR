@@ -164,6 +164,11 @@ MonoBehaviour:
     saved: 1
     defaultValue: 1
     networkSynced: 1
+  - name: pouches
+    valueType: 2
+    saved: 1
+    defaultValue: 1
+    networkSynced: 1
   - name: blushie
     valueType: 2
     saved: 0
@@ -197,5 +202,20 @@ MonoBehaviour:
   - name: ab_wire_Stretch
     valueType: 1
     saved: 0
+    defaultValue: 0
+    networkSynced: 1
+  - name: hard-case_mounts
+    valueType: 2
+    saved: 1
+    defaultValue: 1
+    networkSynced: 1
+  - name: thigh_hard-cases
+    valueType: 2
+    saved: 1
+    defaultValue: 1
+    networkSynced: 1
+  - name: arm_hard-cases
+    valueType: 2
+    saved: 1
     defaultValue: 0
     networkSynced: 1
