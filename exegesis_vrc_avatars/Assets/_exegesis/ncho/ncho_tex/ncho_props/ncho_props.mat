@@ -36,6 +36,24 @@ Material:
     OriginalShader: .poiyomi/Old Versions/9.3/Poiyomi Pro
     OriginalShaderGUID: 77f45810ea400c74e929db1f8ea09c47
     RenderType: TransparentCutout
+    _RGBMask_texPack_a_channel: 4
+    _RGBMask_texPack_a_fallback: 1
+    _RGBMask_texPack_a_guid: 2796584a9decd14458bb2fcac96944f7
+    _RGBMask_texPack_a_inverted: False
+    _RGBMask_texPack_a_srcRange: (0.00, 1.00, 0.00, 1.00)
+    _RGBMask_texPack_b_channel: 4
+    _RGBMask_texPack_b_fallback: 1
+    _RGBMask_texPack_b_inverted: False
+    _RGBMask_texPack_b_srcRange: (0.00, 1.00, 0.00, 1.00)
+    _RGBMask_texPack_g_channel: 4
+    _RGBMask_texPack_g_fallback: 1
+    _RGBMask_texPack_g_inverted: False
+    _RGBMask_texPack_g_srcRange: (0.00, 1.00, 0.00, 1.00)
+    _RGBMask_texPack_lastConfirmTime: 1785380063
+    _RGBMask_texPack_r_channel: 4
+    _RGBMask_texPack_r_fallback: 1
+    _RGBMask_texPack_r_inverted: False
+    _RGBMask_texPack_r_srcRange: (0.00, 1.00, 0.00, 1.00)
     _UVTileDissolveAlpha_Row0_0Animated: 2
     _UVTileDissolveAlpha_Row0_1Animated: 2
     _UVTileDissolveAlpha_Row0_2Animated: 2
@@ -659,7 +677,7 @@ Material:
     - _DecalHueShiftSpeed1: 0
     - _DecalHueShiftSpeed2: 0
     - _DecalHueShiftSpeed3: 0
-    - _DecalMaskUV: 0
+    - _DecalMaskUV: 2
     - _DecalMirroredUVMode: 0
     - _DecalMirroredUVMode1: 0
     - _DecalMirroredUVMode2: 0
@@ -1936,25 +1954,25 @@ Material:
     - _PolarSpiralPower: 0
     - _PolarUV: 0
     - _PostProcess: 0
-    - _RGBAAlphaBlendType: 0
+    - _RGBAAlphaBlendType: 5
     - _RGBAAlphaEmissionStrength: 0
-    - _RGBAAlphaEnable: 0
+    - _RGBAAlphaEnable: 1
     - _RGBAAlphaMetallicInvert: 0
     - _RGBAAlphaPBRSplitMaskSample: 0
     - _RGBAAlphaPBRSplitMaskStochastic: 0
     - _RGBAAlphaPBRUV: 0
     - _RGBAAlphaSmoothnessInvert: 0
-    - _RGBABlueBlendType: 0
+    - _RGBABlueBlendType: 5
     - _RGBABlueEmissionStrength: 0
-    - _RGBABlueEnable: 0
+    - _RGBABlueEnable: 1
     - _RGBABlueMetallicInvert: 0
     - _RGBABluePBRSplitMaskSample: 0
     - _RGBABluePBRSplitMaskStochastic: 0
     - _RGBABluePBRUV: 0
     - _RGBABlueSmoothnessInvert: 0
-    - _RGBAGreenBlendType: 0
+    - _RGBAGreenBlendType: 5
     - _RGBAGreenEmissionStrength: 0
-    - _RGBAGreenEnable: 0
+    - _RGBAGreenEnable: 1
     - _RGBAGreenMetallicInvert: 0
     - _RGBAGreenPBRSplitMaskSample: 0
     - _RGBAGreenPBRSplitMaskStochastic: 0
@@ -1966,9 +1984,9 @@ Material:
     - _RGBAPBRBlueEnabled: 0
     - _RGBAPBRGreenEnabled: 0
     - _RGBAPBRRedEnabled: 0
-    - _RGBARedBlendType: 0
+    - _RGBARedBlendType: 5
     - _RGBARedEmissionStrength: 0
-    - _RGBARedEnable: 0
+    - _RGBARedEnable: 1
     - _RGBARedMetallicInvert: 0
     - _RGBARedPBRSplitMaskSample: 0
     - _RGBARedPBRSplitMaskStochastic: 0
@@ -1978,7 +1996,7 @@ Material:
     - _RGBASmoothnessMapsUV: 0
     - _RGBMaskEnabled: 0
     - _RGBMaskType: 0
-    - _RGBMaskUV: 0
+    - _RGBMaskUV: 2
     - _RedAlphaAdd: 0
     - _RedColorThemeIndex: 0
     - _RedTextureStochastic: 0
@@ -2416,9 +2434,9 @@ Material:
     - _UVModWorldPos0: 0
     - _UVModWorldPos1: 2
     - _UVSec: 0
-    - _UVTileDissolveAlpha_Row0_0: 1
+    - _UVTileDissolveAlpha_Row0_0: 0
     - _UVTileDissolveAlpha_Row0_0_ncho_props: 0
-    - _UVTileDissolveAlpha_Row0_1: 1
+    - _UVTileDissolveAlpha_Row0_1: 0
     - _UVTileDissolveAlpha_Row0_1_ncho_props: 0
     - _UVTileDissolveAlpha_Row0_2: 0
     - _UVTileDissolveAlpha_Row0_2_ncho_props: 1
@@ -2743,7 +2761,7 @@ Material:
     - m_end_voronoi: 0
     - m_end_voronoiRandom: 0
     - m_lightingCategory: 0
-    - m_mainCategory: 0
+    - m_mainCategory: 1
     - m_modifierCategory: 0
     - m_renderingCategory: 0
     - m_specialFXCategory: 1
@@ -3239,7 +3257,7 @@ Material:
     - s_start_LookAtGreenMask: 0
     - s_start_LookAtRedMask: 1
     - s_start_LookAtVisibility: 0
-    - s_start_MainHueShift: 1
+    - s_start_MainHueShift: 0
     - s_start_MainHueShiftAL: 0
     - s_start_MainHueShiftGlobalMask: 0
     - s_start_MaskingMenu: 0
@@ -3296,10 +3314,10 @@ Material:
     - s_start_PathSourceDirections: 1
     - s_start_PathTypes: 1
     - s_start_Positioning: 1
-    - s_start_RGBAlpha: 0
-    - s_start_RGBBlue: 0
-    - s_start_RGBGreen: 0
-    - s_start_RGBRed: 0
+    - s_start_RGBAlpha: 1
+    - s_start_RGBBlue: 1
+    - s_start_RGBGreen: 1
+    - s_start_RGBRed: 1
     - s_start_RimLight0Color: 1
     - s_start_RimLight0GlobalMasking: 0
     - s_start_RimLight0HueShift: 0
@@ -3383,7 +3401,7 @@ Material:
     - _ALVolumeColorLow: {r: 0, g: 0, b: 1, a: 1}
     - _ALVolumeColorMid: {r: 0, g: 1, b: 0, a: 1}
     - _AlphaAudioLinkAddRange: {r: 0, g: 0, b: 0, a: 1}
-    - _AlphaColor: {r: 1, g: 1, b: 1, a: 1}
+    - _AlphaColor: {r: 0.6, g: 0.9647059, b: 1, a: 1}
     - _AlphaMaskPan: {r: 0, g: 0, b: 0, a: 0}
     - _AlphaTexturePan: {r: 0, g: 0, b: 0, a: 0}
     - _AngleForwardDirection: {r: 0, g: 0, b: 1, a: 1}
@@ -3465,7 +3483,7 @@ Material:
     - _BlackLightMasking1Range: {r: 0.1, g: 0.5, b: 0, a: 0}
     - _BlackLightMasking2Range: {r: 0.1, g: 0.5, b: 0, a: 0}
     - _BlackLightMasking3Range: {r: 0.1, g: 0.5, b: 0, a: 0}
-    - _BlueColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BlueColor: {r: 0, g: 0, b: 1, a: 1}
     - _BlueTexturePan: {r: 0, g: 0, b: 0, a: 0}
     - _BumpMapPan: {r: 0, g: 0, b: 0, a: 0}
     - _CenterOutDissolveDirection: {r: 0, g: 0, b: 1, a: 0}
@@ -3625,7 +3643,7 @@ Material:
     - _GlobalThemeColor1: {r: 1, g: 1, b: 1, a: 1}
     - _GlobalThemeColor2: {r: 1, g: 1, b: 1, a: 1}
     - _GlobalThemeColor3: {r: 1, g: 1, b: 1, a: 1}
-    - _GreenColor: {r: 1, g: 1, b: 1, a: 1}
+    - _GreenColor: {r: 0, g: 1, b: 0, a: 1}
     - _GreenTexturePan: {r: 0, g: 0, b: 0, a: 0}
     - _HeightMapPan: {r: 0, g: 0, b: 0, a: 0}
     - _HeightmaskPan: {r: 0, g: 0, b: 0, a: 0}
@@ -3776,7 +3794,7 @@ Material:
     - _RGBARedScaleOffset: {r: 1, g: 1, b: 0, a: 0}
     - _RGBASmoothnessMapsPan: {r: 0, g: 0, b: 0, a: 0}
     - _RGBMaskPan: {r: 0, g: 0, b: 0, a: 0}
-    - _RedColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RedColor: {r: 1, g: 0, b: 0, a: 1}
     - _RedTexturePan: {r: 0, g: 0, b: 0, a: 0}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _ReflectionCubeColor: {r: 0, g: 0, b: 0, a: 1}
