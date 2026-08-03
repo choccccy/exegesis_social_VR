@@ -64,3 +64,33 @@ MonoBehaviour:
     subMenu: {fileID: 0}
     subParameters: []
     labels: []
+  - name: Thruster Backpack
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: thruster_backpack
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Wings Up
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: wings_deployed
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Arm Backpack
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: arm_backpack
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []

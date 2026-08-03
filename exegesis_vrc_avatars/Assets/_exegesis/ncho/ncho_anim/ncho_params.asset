@@ -147,7 +147,7 @@ MonoBehaviour:
   - name: left_arm_panels
     valueType: 2
     saved: 1
-    defaultValue: 1
+    defaultValue: 0
     networkSynced: 1
   - name: right_arm_panels
     valueType: 2
@@ -215,6 +215,21 @@ MonoBehaviour:
     defaultValue: 1
     networkSynced: 1
   - name: arm_hard-cases
+    valueType: 2
+    saved: 1
+    defaultValue: 0
+    networkSynced: 1
+  - name: thruster_backpack
+    valueType: 2
+    saved: 1
+    defaultValue: 1
+    networkSynced: 1
+  - name: wings_deployed
+    valueType: 2
+    saved: 1
+    defaultValue: 0
+    networkSynced: 1
+  - name: arm_backpack
     valueType: 2
     saved: 1
     defaultValue: 0

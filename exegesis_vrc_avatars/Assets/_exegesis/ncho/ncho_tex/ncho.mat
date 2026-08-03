@@ -1119,7 +1119,7 @@ Material:
     - _EmissionScrollingVertexColor2: 0
     - _EmissionScrollingVertexColor3: 0
     - _EmissionStrength: 1
-    - _EmissionStrength1: 8
+    - _EmissionStrength1: 3
     - _EmissionStrength2: 0.1
     - _EmissionStrength3: 0
     - _EmissiveBlink_Max: 1
@@ -3105,7 +3105,7 @@ Material:
     - m_start_depthRimLightOptions: 0
     - m_start_dissolve: 1
     - m_start_dissolveHueShift: 0
-    - m_start_emission1Options: 0
+    - m_start_emission1Options: 1
     - m_start_emission2Options: 0
     - m_start_emission3Options: 0
     - m_start_emissionOptions: 0
@@ -3799,7 +3799,7 @@ Material:
     - _EmissionAL3Multipliers: {r: 1, g: 1, b: 0, a: 0}
     - _EmissionAL3StrengthMod: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0.5529412, g: 0.31764707, b: 1, a: 1}
-    - _EmissionColor1: {r: 1, g: 0.1254902, b: 0, a: 1}
+    - _EmissionColor1: {r: 1, g: 0.6, b: 0.36078432, a: 1}
     - _EmissionColor2: {r: 1, g: 0, b: 0, a: 1}
     - _EmissionColor3: {r: 0.3254717, g: 0.7921569, b: 1, a: 1}
     - _EmissionMap1Pan: {r: 0, g: 0, b: 0, a: 0}

@@ -16,6 +16,8 @@ Material:
   - AUTO_EXPOSURE
   - BSSBLOOMFOGTYPE_HEIGHT
   - DISTORT
+  - MOCHIE_PBR
+  - POI_EMISSION_1
   - POI_LTCGI
   - POI_UZUMORE
   - VIGNETTE_MASKED
@@ -30,12 +32,33 @@ Material:
   m_CustomRenderQueue: 2450
   stringTagMap:
     AllLockedGUIDS: f51e7a8b3f3d0264a93a7d0471e1fe3c
-    OriginalKeywords: AUTO_EXPOSURE BSSBLOOMFOGTYPE_HEIGHT DISTORT POI_LTCGI POI_UZUMORE
-      VIGNETTE_MASKED _LIGHTINGMODE_REALISTIC _RIM2STYLE_POIYOMI _RIMSTYLE_POIYOMI
-      _STOCHASTICMODE_DELIOT_HEITZ _STYLIZEDREFLECTIONMODE_UNITYCHAN
+    OriginalKeywords: AUTO_EXPOSURE BSSBLOOMFOGTYPE_HEIGHT DISTORT MOCHIE_PBR POI_EMISSION_1
+      POI_LTCGI POI_UZUMORE VIGNETTE_MASKED _LIGHTINGMODE_REALISTIC _RIM2STYLE_POIYOMI
+      _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ _STYLIZEDREFLECTIONMODE_UNITYCHAN
     OriginalShader: .poiyomi/Old Versions/9.3/Poiyomi Pro
     OriginalShaderGUID: 77f45810ea400c74e929db1f8ea09c47
     RenderType: TransparentCutout
+    _EmissionColor1Animated: 1
+    _EmissionStrength1Animated: 1
+    _MochieMetallicMaps_texPack_a_channel: 4
+    _MochieMetallicMaps_texPack_a_fallback: 1
+    _MochieMetallicMaps_texPack_a_inverted: False
+    _MochieMetallicMaps_texPack_a_srcRange: (0.00, 1.00, 0.00, 1.00)
+    _MochieMetallicMaps_texPack_b_channel: 4
+    _MochieMetallicMaps_texPack_b_fallback: 1
+    _MochieMetallicMaps_texPack_b_inverted: False
+    _MochieMetallicMaps_texPack_b_srcRange: (0.00, 1.00, 0.00, 1.00)
+    _MochieMetallicMaps_texPack_g_channel: 4
+    _MochieMetallicMaps_texPack_g_fallback: 1
+    _MochieMetallicMaps_texPack_g_guid: d20125d50e821594da0619036bab9105
+    _MochieMetallicMaps_texPack_g_inverted: False
+    _MochieMetallicMaps_texPack_g_srcRange: (0.00, 1.00, 0.00, 1.00)
+    _MochieMetallicMaps_texPack_lastConfirmTime: 1785709417
+    _MochieMetallicMaps_texPack_r_channel: 4
+    _MochieMetallicMaps_texPack_r_fallback: 1
+    _MochieMetallicMaps_texPack_r_guid: b128147a16519bc40b6d57d6cb703c97
+    _MochieMetallicMaps_texPack_r_inverted: False
+    _MochieMetallicMaps_texPack_r_srcRange: (0.00, 1.00, 0.00, 1.00)
     _RGBMask_texPack_a_channel: 4
     _RGBMask_texPack_a_fallback: 1
     _RGBMask_texPack_a_guid: 2796584a9decd14458bb2fcac96944f7
@@ -85,6 +108,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _AnisotropyMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 3e6ced272f4ff3848a2da82db1828923, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -109,6 +136,18 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EmissionMap1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMask1:
+        m_Texture: {fileID: 2800000, guid: 5c22edaa25a1ca74c993d639d8949708, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionScrollingCurve1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _LightDataSDFMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -127,6 +166,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 2be05380cb5296c4aaae4eeb441323a6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MochieMetallicMaps:
+        m_Texture: {fileID: 2800000, guid: ae0ce5dc713e2394eb0d63abbb44eb3b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MochieReflCube:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _UzumoreMask:
@@ -936,7 +983,7 @@ Material:
     - _EmissionScrollingVertexColor2: 0
     - _EmissionScrollingVertexColor3: 0
     - _EmissionStrength: 0
-    - _EmissionStrength1: 0
+    - _EmissionStrength1: 3
     - _EmissionStrength2: 0
     - _EmissionStrength3: 0
     - _EmissiveBlink_Max: 1
@@ -973,7 +1020,7 @@ Material:
     - _EnableDistortion: 0
     - _EnableDistortionAudioLink: 0
     - _EnableEmission: 0
-    - _EnableEmission1: 0
+    - _EnableEmission1: 1
     - _EnableEmission2: 0
     - _EnableEmission3: 0
     - _EnableEnvironmentalRim: 0
@@ -1737,7 +1784,7 @@ Material:
     - _MirrorTextureEnabled: 0
     - _MirrorTextureForceEnabled: 0
     - _MirrorTextureUV: 0
-    - _MochieBRDF: 0
+    - _MochieBRDF: 1
     - _MochieForceFallback: 0
     - _MochieGSAAEnabled: 1
     - _MochieLitFallback: 1
@@ -2438,7 +2485,7 @@ Material:
     - _UVTileDissolveAlpha_Row0_0_ncho_props: 0
     - _UVTileDissolveAlpha_Row0_1: 0
     - _UVTileDissolveAlpha_Row0_1_ncho_props: 0
-    - _UVTileDissolveAlpha_Row0_2: 0
+    - _UVTileDissolveAlpha_Row0_2: 1
     - _UVTileDissolveAlpha_Row0_2_ncho_props: 1
     - _UVTileDissolveAlpha_Row0_3: 0
     - _UVTileDissolveAlpha_Row0_3_ncho_props: 0
@@ -2460,8 +2507,8 @@ Material:
     - _UVTileDissolveAlpha_Row2_3_ncho_props: 0
     - _UVTileDissolveAlpha_Row3_0: 0
     - _UVTileDissolveAlpha_Row3_0_ncho_props: 0
-    - _UVTileDissolveAlpha_Row3_1: 0
-    - _UVTileDissolveAlpha_Row3_1_ncho_props: 0
+    - _UVTileDissolveAlpha_Row3_1: 1
+    - _UVTileDissolveAlpha_Row3_1_ncho_props: 1
     - _UVTileDissolveAlpha_Row3_2: 0
     - _UVTileDissolveAlpha_Row3_2_ncho_props: 0
     - _UVTileDissolveAlpha_Row3_3: 0
@@ -2760,7 +2807,7 @@ Material:
     - m_end_videoEffects: 0
     - m_end_voronoi: 0
     - m_end_voronoiRandom: 0
-    - m_lightingCategory: 0
+    - m_lightingCategory: 1
     - m_mainCategory: 1
     - m_modifierCategory: 0
     - m_renderingCategory: 0
@@ -2864,7 +2911,7 @@ Material:
     - m_start_backFace: 0
     - m_start_backlight: 0
     - m_start_blending: 0
-    - m_start_brdf: 0
+    - m_start_brdf: 1
     - m_start_clearCoat: 0
     - m_start_clearcoatadvanced: 0
     - m_start_clearcoatglobalmask: 0
@@ -2872,7 +2919,7 @@ Material:
     - m_start_depthRimLightOptions: 0
     - m_start_dissolve: 1
     - m_start_dissolveHueShift: 0
-    - m_start_emission1Options: 0
+    - m_start_emission1Options: 1
     - m_start_emission2Options: 0
     - m_start_emission3Options: 0
     - m_start_emissionOptions: 0
@@ -2906,12 +2953,12 @@ Material:
     - m_start_uvPolar: 0
     - m_start_vertexGlitching: 0
     - m_start_vertexLookAt: 0
-    - m_start_vertexManipulation: 0
+    - m_start_vertexManipulation: 1
     - m_start_videoEffects: 0
     - m_start_voronoi: 0
     - m_start_voronoiRandom: 0
     - m_thirdpartyCategory: 0
-    - m_vertexCategory: 0
+    - m_vertexCategory: 1
     - s_end_ALAlpha: 0
     - s_end_ALDecalAudioModsOptions: 0
     - s_end_ALDecalBand: 0
@@ -3380,7 +3427,7 @@ Material:
     - s_start_matcapApplyToAlpha: 0
     - s_start_outline_al_color: 0
     - s_start_parallaxAdvanced: 0
-    - s_start_vertexRounding: 0
+    - s_start_vertexRounding: 1
     - s_start_vertexRoundingAL: 0
     - shader_is_using_thry_editor: 0
     - shader_locale: 0
@@ -3560,7 +3607,7 @@ Material:
     - _EmissionAL3Multipliers: {r: 1, g: 1, b: 0, a: 0}
     - _EmissionAL3StrengthMod: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _EmissionColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor1: {r: 1, g: 0.6, b: 0.35999998, a: 1}
     - _EmissionColor2: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor3: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionMap1Pan: {r: 0, g: 0, b: 0, a: 0}
