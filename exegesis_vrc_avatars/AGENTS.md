@@ -9,6 +9,7 @@ VRChat avatar Unity project ("ncho"), **Unity 2022.3.22f1 LTS, Built-in Render P
 
 - **[docs/project.md](docs/project.md)** — repo layout, Unity/BiRP, build/test entry points.
 - **[docs/hud-shader.md](docs/hud-shader.md)** — the custom HUD shader (current focus).
+- **[docs/rcs-thrusters.md](docs/rcs-thrusters.md)** — the RCS thruster shader + its FX layers.
 - **[docs/testing.md](docs/testing.md)** — regression test suite + headless-clone workflow.
 
 ## Two things that will bite you if you forget

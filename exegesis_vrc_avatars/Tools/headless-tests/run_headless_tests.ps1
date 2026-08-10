@@ -16,8 +16,8 @@
     See docs/testing.md for the full workflow and gotchas.
 
 .EXAMPLE
-    pwsh Tools/headless-tests/run_headless_tests.ps1            # compare vs baselines
-    pwsh Tools/headless-tests/run_headless_tests.ps1 -Capture   # (re)capture baselines
+    powershell Tools/headless-tests/run_headless_tests.ps1            # compare vs baselines
+    powershell Tools/headless-tests/run_headless_tests.ps1 -Capture   # (re)capture baselines
 #>
 [CmdletBinding()]
 param(

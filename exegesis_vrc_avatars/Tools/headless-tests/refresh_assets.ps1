@@ -18,8 +18,8 @@
     See docs/testing.md.
 
 .EXAMPLE
-    pwsh Tools/headless-tests/refresh_assets.ps1            # refresh MAIN (must be closed)
-    pwsh Tools/headless-tests/refresh_assets.ps1 -Clone     # refresh the headless clone
+    powershell Tools/headless-tests/refresh_assets.ps1            # refresh MAIN (must be closed)
+    powershell Tools/headless-tests/refresh_assets.ps1 -Clone     # refresh the headless clone
 #>
 [CmdletBinding()]
 param(

@@ -74,15 +74,15 @@ the result artifact, (4) summarizes pass/fail.
 
 ```powershell
 # compare against committed baselines (normal regression run)
-pwsh Tools/headless-tests/run_headless_tests.ps1
+powershell Tools/headless-tests/run_headless_tests.ps1
 
 # (re)capture baselines from the current shader
-pwsh Tools/headless-tests/run_headless_tests.ps1 -Capture
+powershell Tools/headless-tests/run_headless_tests.ps1 -Capture
 
 # reuse the clone as-is (skip the mirror), or filter, or extend the wait
-pwsh Tools/headless-tests/run_headless_tests.ps1 -SkipSync
-pwsh Tools/headless-tests/run_headless_tests.ps1 -TestFilter Exegesis.HudShader.Tests.ShaderCompileTests
-pwsh Tools/headless-tests/run_headless_tests.ps1 -MaxMinutes 45
+powershell Tools/headless-tests/run_headless_tests.ps1 -SkipSync
+powershell Tools/headless-tests/run_headless_tests.ps1 -TestFilter Exegesis.HudShader.Tests.ShaderCompileTests
+powershell Tools/headless-tests/run_headless_tests.ps1 -MaxMinutes 45
 ```
 
 - **Clone location** (default): `<...>/unity/exegesis_headless_clone` (sibling of the
@@ -101,8 +101,8 @@ New assets under `Assets/` need Unity-generated `.meta` files before they're com
 To do it without the GUI:
 
 ```powershell
-pwsh Tools/headless-tests/refresh_assets.ps1          # refresh MAIN (Editor must be CLOSED)
-pwsh Tools/headless-tests/refresh_assets.ps1 -Clone   # refresh the headless clone
+powershell Tools/headless-tests/refresh_assets.ps1          # refresh MAIN (Editor must be CLOSED)
+powershell Tools/headless-tests/refresh_assets.ps1 -Clone   # refresh the headless clone
 ```
 
 It runs `Unity -batchmode -quit -projectPath <target>`, which imports pending assets and

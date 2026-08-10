@@ -24,11 +24,11 @@ MonoBehaviour:
     subMenu: {fileID: 11400000, guid: 57587d3fba5d64845bc203cb10fac161, type: 2}
     subParameters: []
     labels: []
-  - name: Snub
+  - name: RCS
     icon: {fileID: 0}
-    type: 103
+    type: 102
     parameter:
-      name: 
+      name: rcs
     value: 1
     style: 0
     subMenu: {fileID: 0}

@@ -3143,7 +3143,7 @@ Material:
     - m_start_uvPolar: 0
     - m_start_vertexGlitching: 0
     - m_start_vertexLookAt: 0
-    - m_start_vertexManipulation: 0
+    - m_start_vertexManipulation: 1
     - m_start_videoEffects: 0
     - m_start_voronoi: 0
     - m_start_voronoiRandom: 0
