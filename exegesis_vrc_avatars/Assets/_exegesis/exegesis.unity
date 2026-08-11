@@ -2211,7 +2211,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 0.6000004, y: 0.20109823, z: 0.00090448855}
   PositionOffset: {x: 0, y: 0, z: 0}
@@ -5378,7 +5378,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: -0.60000044, y: 4.480387, z: -0.00000047683716}
   AffectsPositionX: 1
@@ -41607,7 +41607,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 3
   latestValidExecutionGroupIndex: 3
   RotationAtRest: {x: 15.389135, y: -0, z: -0}
   RotationOffset: {x: 88.82747, y: 0.00065864087, z: 0.0006671525}
@@ -42377,7 +42377,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 2
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -78.44348, y: 0, z: -0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -62384,8 +62384,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: 18.45792, y: 55.86763, z: 15.669644}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204354}
@@ -62498,7 +62498,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -9.624786, y: -0, z: 0}
@@ -64206,8 +64206,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204354}
@@ -71956,7 +71956,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 68.863106, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -74587,8 +74587,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -0, y: -0, z: -0}
   WorldUpTransform: {fileID: 1384204305}
@@ -83756,8 +83756,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 0, y: -0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204311}
@@ -86456,8 +86456,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 0
+  latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: 0, y: -0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 648113988}
@@ -99584,8 +99584,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204354}
@@ -116537,8 +116537,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 0
+  latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: 0}
   RotationOffset: {x: 0, y: -0, z: -0}
   WorldUpTransform: {fileID: 648113987}
@@ -121840,7 +121840,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 0.3, y: 0.187, z: 0.466}
   AffectsPositionX: 1
@@ -125852,7 +125852,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 0.006000012, y: 0, z: -4.656613e-10}
   AffectsPositionX: 1
@@ -132058,8 +132058,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774048, y: -0.5496826, z: 6.035894}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204354}
@@ -145416,7 +145416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 925688826560892448, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_IsActive
@@ -149080,8 +149080,6 @@ MonoBehaviour:
     name: wings_stowed
   - hash: -1347445021
     name: wings_deployed
-  - hash: -2063482563
-    name: force
   autoFootsteps: 1
   autoLocomotion: 1
   collider_head:
@@ -159377,7 +159375,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 3.8735266, y: 6.502057, z: -0.11467278}
   AffectsPositionX: 1
@@ -182524,7 +182522,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: -0.6000004, y: 0.20109862, z: 0.0009022534}
   PositionOffset: {x: 0, y: 0, z: 0}
@@ -194713,7 +194711,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 68.86327, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -201628,7 +201626,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 2
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -78.48303, y: 0, z: -0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -206084,7 +206082,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 3
   latestValidExecutionGroupIndex: 3
   RotationAtRest: {x: 15.42838, y: -0, z: -0}
   RotationOffset: {x: 88.82731, y: 0, z: -0}
@@ -206877,7 +206875,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 2
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: 0, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}

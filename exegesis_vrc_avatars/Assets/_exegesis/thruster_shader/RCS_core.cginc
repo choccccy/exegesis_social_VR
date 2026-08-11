@@ -47,6 +47,8 @@ float  _ThrustDirFlip;
 float  _CapNormalFlip;
 float  _BellFlare;
 float  _BellFlareProps;
+float  _RotThrusterLinGain;
+float  _TransThrusterRotGain;
 float  _DebugView;
 float4 _GroupEnable;
 float  _GroupGateEnabled;
@@ -70,7 +72,7 @@ struct v2f
     // before master and gate. All constant across a flat-shaded nozzle face, so
     // interpolation costs nothing.
     float4 drive  : TEXCOORD2;
-    float3 dbgDir : TEXCOORD3;  // posed thrust direction, for _DebugView
+    float4 dbgDir : TEXCOORD3;  // xyz = posed thrust direction, w = rotation bias
     UNITY_VERTEX_OUTPUT_STEREO
 };
 
@@ -277,7 +279,20 @@ float3 rcsExhaustDir(appdata v)
 // rotation authority. A thruster far off-axis has a large lever arm, so it answers
 // strongly to commanded rotation and weakly to translation - exactly what a small
 // outboard attitude thruster should do, with no per-thruster authoring.
-float rcsThrottle(float3 posOS, float3 exhaustOS)
+// rotBias comes from vertex BLUE: 0 = translation thruster, 1 = rotation thruster.
+//
+// This biases which job a thruster serves. It reinforces what the allocation already
+// does rather than fighting it - rotation authority is dot(cross(lever, thrust), angA),
+// so the wingtips, wrists and ankles have the largest lever arms and the strongest
+// torque terms before any weighting is applied.
+//
+// The two gains are how much authority a thruster keeps in the OTHER job. Both default
+// to 0, giving a hard split; raise either if the separation reads too stark, since a
+// real RCS quad does contribute to both.
+//
+// Unpainted geometry reports vertex WHITE, so blue arrives as 1 and everything becomes
+// rotation-only. Paint new thruster meshes explicitly.
+float rcsThrottle(float3 posOS, float3 exhaustOS, float rotBias)
 {
     float3 linA = rcsLinearAccel();
     float3 angA = rcsAngularAccel(linA);
@@ -286,7 +301,9 @@ float rcsThrottle(float3 posOS, float3 exhaustOS)
     float3 lever  = posOS - _CoM.xyz;
     float3 torque = cross(lever, thrust);
 
-    float u = dot(thrust, linA) + dot(torque, angA);
+    float wLin = lerp(1.0, _RotThrusterLinGain, rotBias);
+    float wRot = lerp(_TransThrusterRotGain, 1.0, rotBias);
+    float u = dot(thrust, linA) * wLin + dot(torque, angA) * wRot;
 
     u = saturate((u - _Deadzone) / max(1e-4, 1.0 - _Deadzone));
     u = pow(u, max(1e-3, _Sharpness));
@@ -337,13 +354,13 @@ v2f vert(appdata v)
     o.uvGlow = TRANSFORM_TEX(v.uv, _GlowMask);
     // The group gate scales the finished allocation, so it is unaffected by the deadzone
     // and sharpness shaping, and fades rather than pops if the toggle blends.
-    float alloc = rcsThrottle(v.vertex.xyz, exhaust);
+    float alloc = rcsThrottle(v.vertex.xyz, exhaust, v.color.b);
     float gate  = rcsGroupGate(v.color.g);
     o.drive  = float4(alloc * _RCS_Master * gate,
                       rcsFlickerPhase(v.vertex.xyz),
                       rcsGroupIndex(v.color.g),
                       alloc);
-    o.dbgDir = normalize(exhaust);
+    o.dbgDir = float4(normalize(exhaust), v.color.b);
     return o;
 }
 
@@ -360,7 +377,7 @@ float4 frag(v2f i) : SV_Target
         //     and two cones pointing opposite ways should be complementary. A cone
         //     showing a rainbow around its circumference means the direction source
         //     is picking up radial surface normals rather than the axis.
-        if (_DebugView < 1.5) return float4(i.dbgDir * 0.5 + 0.5, 0.0);
+        if (_DebugView < 1.5) return float4(i.dbgDir.xyz * 0.5 + 0.5, 0.0);
         // 2 - raw throttle, before masks and flicker.
         if (_DebugView < 2.5) return float4(u, u, u, 0.0);
         // 3 - visibility group, as three flat colours. This is how you confirm the
@@ -385,9 +402,18 @@ float4 frag(v2f i) : SV_Target
         // reports a group as gated off while the throttle is actually using an open
         // gate - a debug view that disagrees with the thing it is describing is worse
         // than none.
-        float gate = (_GroupGateEnabled < 0.5) ? 1.0
-                   : ((gi < 0.5) ? 1.0 : ((gi < 1.5) ? _GroupEnable.x : _GroupEnable.y));
-        return float4(saturate(_RCS_Master), saturate(gate), saturate(i.drive.w), 0.0);
+        if (_DebugView < 4.5)
+        {
+            float gate = (_GroupGateEnabled < 0.5) ? 1.0
+                       : ((gi < 0.5) ? 1.0 : ((gi < 1.5) ? _GroupEnable.x : _GroupEnable.y));
+            return float4(saturate(_RCS_Master), saturate(gate), saturate(i.drive.w), 0.0);
+        }
+
+        // 5 - translation vs rotation bias from vertex blue. Orange = translation
+        // (blue 0), cyan = rotation (blue 1), so the split is obvious at a glance and
+        // the paint can be confirmed without inferring it from firing behaviour.
+        float rb = saturate(i.dbgDir.w);
+        return float4(lerp(1.0, 0.0, rb), lerp(0.5, 0.8, rb), lerp(0.0, 1.0, rb), 0.0);
     }
 
     // Two layers with different ramps: the core snaps in hot past its ignition

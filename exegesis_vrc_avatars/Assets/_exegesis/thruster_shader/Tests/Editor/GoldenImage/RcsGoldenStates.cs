@@ -162,6 +162,18 @@ namespace Exegesis.RcsThruster.Tests
                 ExpectDark = true,
             },
 
+            // A rotation-biased thruster must ignore pure translation. The cube reports
+            // vertex blue = 1 (no colour attribute), so with the split hard every face is
+            // rotation-only and a linear-only command has to leave it dark - the same
+            // command that lights it brightly in accel_neg_x.
+            new State
+            {
+                Name = "bias_rotation_only",
+                Floats = F(("_RotThrusterLinGain", 0f)),
+                Vectors = V(("_RCS_Vel", new Vector4(-1, 0, 0, 0))),
+                ExpectDark = true,
+            },
+
             // Everything at once: the broad "did the composite change" pin.
             new State
             {

@@ -342,7 +342,16 @@ without a gate the Props plumes fire with the pack stowed; and the Body thruster
 backpack physically covers must go quiet while it is deployed.
 
 Membership rides in **vertex green**, encoded as levels rather than one channel per group,
-so blue stays free for the planned translation-vs-rotation weighting.
+which keeps blue free for the translation-versus-rotation bias.
+
+The full vertex-colour budget:
+
+| Channel | Use |
+|---|---|
+| **R** | Direction source — normal (diaphragm) versus bitangent (bell) |
+| **G** | Visibility group |
+| **B** | Translation versus rotation bias |
+| A | Unused |
 
 | Painted G | Band | Group | Gated by | Used for |
 |---|---|---|---|---|

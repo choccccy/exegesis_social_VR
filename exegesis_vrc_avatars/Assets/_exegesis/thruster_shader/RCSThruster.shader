@@ -40,6 +40,10 @@ Shader "exegesis/RCSThruster"
         // value is read as a plain float, so no keyword is wanted.
         [ToggleUI] _AccelTimeCorrect ("Frame Rate Compensation", Float) = 1
         _SustainWeight ("Velocity Sustain", Range(0, 2)) = 0
+        // Translation vs rotation split, from vertex BLUE (0 = translation, 1 = rotation).
+        // These are how much authority a thruster keeps in the OTHER job; 0 = hard split.
+        _RotThrusterLinGain ("Rotation Thruster   Linear Keep", Range(0, 1)) = 0
+        _TransThrusterRotGain ("Translation Thruster   Rotation Keep", Range(0, 1)) = 0
         _Deadzone ("Deadzone", Range(0, 0.99)) = 0.05
         _Sharpness ("Throttle Sharpness", Range(0.1, 8)) = 1.5
         _MinThrottle ("Min Lit Throttle", Range(0, 1)) = 0
@@ -83,7 +87,7 @@ Shader "exegesis/RCSThruster"
         [ToggleUI] _GroupGateEnabled ("Group Gating Enabled", Float) = 1
 
         [Header(Debug)]
-        [Enum(Off, 0, ThrustDirection, 1, Throttle, 2, Groups, 3, Factors, 4)] _DebugView ("Debug View", Float) = 0
+        [Enum(Off, 0, ThrustDirection, 1, Throttle, 2, Groups, 3, Factors, 4, RotationBias, 5)] _DebugView ("Debug View", Float) = 0
     }
 
     SubShader

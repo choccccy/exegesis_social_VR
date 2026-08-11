@@ -26,6 +26,7 @@ namespace Exegesis.RcsThruster
         private static readonly string[] AllocationProps =
         {
             "_CoM", "_AccelGain", "_AngAccelGain", "_AccelTimeCorrect", "_SustainWeight",
+            "_RotThrusterLinGain", "_TransThrusterRotGain",
             "_Deadzone", "_Sharpness", "_MinThrottle",
         };
 

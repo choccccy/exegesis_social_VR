@@ -54,10 +54,12 @@ Material:
     - _ImuLinearReject: 0
     - _MinThrottle: 0
     - _RCS_Master: 1
+    - _RotThrusterLinGain: 0
     - _Sharpness: 1
     - _SustainWeight: 2
     - _ThrustDirFlip: 1
     - _ThrustDirSource: 4
+    - _TransThrusterRotGain: 0
     - _VelSpace: 0
     m_Colors:
     - _CoM: {r: 0, g: 0.9, b: 0, a: 0}

@@ -151,6 +151,12 @@ namespace Exegesis.RcsThruster.Tests
             { "_CapNormalFlip", 0f },
             { "_BellFlare", 0f },      // no correction, so baselines are unaffected
             { "_BellFlareProps", 0f },
+            // The cube has no vertex colours, so it reports blue = 1 and every face reads
+            // as a ROTATION thruster. Neutralising the bias here keeps the fourteen
+            // allocation baselines measuring allocation rather than the split; the
+            // `bias_rotation_only` state exercises the split deliberately instead.
+            { "_RotThrusterLinGain", 1f },
+            { "_TransThrusterRotGain", 0f },
             { "_DebugView", 0f },      // debug views bypass the composite entirely
             // Forced ON so the goldens keep exercising the real gate logic even while
             // the production material has it switched off.
