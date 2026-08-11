@@ -252,6 +252,34 @@ axial. Keep the wall/diaphragm boundary sharp too.
 This requires tangents on the mesh — check `Import Tangents` is Calculate (the default) and
 not None on the FBX, or the bitangent is garbage.
 
+## How to debug this system
+
+**Measure with the shader. Do not measure from editor scripts.**
+
+This is not a stylistic preference — it was learned the hard way. An editor-side readout of
+the live material was wrong in four separate ways in one evening, and *every one of them
+produced plausible zeros rather than an error*:
+
+| Mistake | Why it looks like a real fault |
+|---|---|
+| Read `renderer.material` | That is slot **[0]**, the Poiyomi base. `thrusters.mat` is slot [1]. |
+| Read the material instance | Animated properties can live in a **MaterialPropertyBlock**; the instance still holds the asset's saved value. |
+| Scene-wide search for the renderer | Av3Emulator spawns Clone / ShadowClone / MirrorReflection copies, whose animator state is unrelated to the avatar you are looking at. |
+| `Animator.GetFloat` for parameters | The emulator drives controllers through a **PlayableGraph**, so `runtimeAnimatorController` is null and parameters are unreachable that way. |
+
+The common trap: **`Material.GetFloat`/`GetVector` return 0 for a property the material does
+not declare.** A zero therefore means either "the value is zero" or "you asked the wrong
+object", and nothing distinguishes them. Hours were spent concluding the animator was broken
+when the avatar was working correctly.
+
+The shader cannot be fooled by any of this — it reads whatever the renderer actually has.
+So the debug views below are the source of truth, and `Tools > Exegesis > RCS Test Driver`
+deliberately only *drives* the system rather than reporting on it.
+
+**And the meta-rule:** when a measurement says something is impossible and your eyes say
+otherwise, suspect the measurement. In this case the panel insisted the group gates were
+never changing while the plumes were visibly switching colour on screen. The eyes were right.
+
 ### Debugging with `_DebugView`
 
 Emission alone cannot distinguish a wrong *direction* from a wrong *command*, and guessing
@@ -261,6 +289,19 @@ between the two is how the cone-normal bug survived as long as it did.
   cones pointing opposite ways should be complementary. A cone showing a rainbow around its
   circumference means the direction source is reading radial normals rather than the axis.
 - **2 — Raw throttle**, greyscale, before masks and flicker.
+- **3 — Visibility group.** Grey = never gated, green = group 1, blue = group 2.
+- **4 — Factors.** The one that says *why* a thruster is dark. Throttle is
+  `allocation × master × gate`, and each becomes a colour channel:
+
+  | Channel | Factor | Dark means |
+  |---|---|---|
+  | **Red** | `_RCS_Master` | the master toggle is off |
+  | **Green** | group gate | that group is gated off |
+  | **Blue** | raw allocation | no commanded motion is reaching it |
+
+  White means all three are live. Read it **while moving** — blue is supposed to be dark at
+  rest, since a stationary avatar commands no acceleration. Yellow (red+green, no blue) at
+  rest is the correct resting state, not a fault.
 
 Masks are imported as **R8**; the shader samples `.r`, so that is the right format.
 

@@ -149080,6 +149080,8 @@ MonoBehaviour:
     name: wings_stowed
   - hash: -1347445021
     name: wings_deployed
+  - hash: -2063482563
+    name: force
   autoFootsteps: 1
   autoLocomotion: 1
   collider_head:

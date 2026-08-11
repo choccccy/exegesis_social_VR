@@ -359,7 +359,12 @@ float4 frag(v2f i) : SV_Target
         //   GREEN = group gate         (dark green -> this group is gated off)
         //   BLUE  = raw allocation     (dark blue -> no commanded motion reaches it)
         // White-ish means all three are live. Black means all three are dead.
-        float gate = (gi < 0.5) ? 1.0 : ((gi < 1.5) ? _GroupEnable.x : _GroupEnable.y);
+        // Must honour _GroupGateEnabled exactly as rcsGroupGate does, or the readout
+        // reports a group as gated off while the throttle is actually using an open
+        // gate - a debug view that disagrees with the thing it is describing is worse
+        // than none.
+        float gate = (_GroupGateEnabled < 0.5) ? 1.0
+                   : ((gi < 0.5) ? 1.0 : ((gi < 1.5) ? _GroupEnable.x : _GroupEnable.y));
         return float4(saturate(_RCS_Master), saturate(gate), saturate(i.drive.w), 0.0);
     }
 

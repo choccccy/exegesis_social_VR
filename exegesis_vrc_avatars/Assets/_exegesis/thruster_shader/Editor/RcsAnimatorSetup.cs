@@ -126,6 +126,59 @@ namespace Exegesis.RcsThruster
                       $"Generated clips are in {GeneratedClipDir}.");
         }
 
+        // ---------------------------------------------------------------- diagnostic
+
+        private const string LayerForceVel = "rcs_debug_forcevel";
+
+        /// <summary>
+        /// Adds ONE layer that writes a constant _RCS_Vel.z from a plain AnimationClip -
+        /// no blend tree, no parameter, nothing to go wrong.
+        ///
+        /// This exists to split the two remaining explanations for _RCS_Vel never moving
+        /// while VelocityZ demonstrably does:
+        ///
+        ///   census shows vel 0.500  -> plain clips DO reach _RCS_Vel, so the fault is
+        ///                              specific to blend-tree motions.
+        ///   census shows vel 0.000  -> _RCS_Vel is unreachable by any means, so the
+        ///                              fault is the binding or something clobbering it,
+        ///                              and blend trees were never the issue.
+        ///
+        /// A normal rebuild removes it, since teardown matches the rcs_ prefix.
+        /// </summary>
+        [MenuItem("Tools/Exegesis/RCS Debug - Add Forced Velocity Layer")]
+        private static void AddForcedVelocityLayer()
+        {
+            var c = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
+            if (c == null) { Debug.LogError($"[RCS] No controller at {ControllerPath}"); return; }
+
+            // Drop any previous copy so this is repeatable.
+            var keep = new List<AnimatorControllerLayer>();
+            foreach (var layer in c.layers)
+            {
+                if (layer.name == LayerForceVel) DestroyStateMachineAssets(layer.stateMachine);
+                else keep.Add(layer);
+            }
+            c.layers = keep.ToArray();
+
+            if (!AssetDatabase.IsValidFolder(GeneratedClipDir))
+            {
+                var parent = Path.GetDirectoryName(GeneratedClipDir).Replace('\\', '/');
+                AssetDatabase.CreateFolder(parent, Path.GetFileName(GeneratedClipDir));
+            }
+
+            var state = AddLayerWithState(c, LayerForceVel, "force", out _);
+            state.motion = MaterialClip("rcs_debug_forcevel", "_RCS_Vel.z", 0.5f);
+
+            EditorUtility.SetDirty(c);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+            Debug.Log("[RCS] Added " + LayerForceVel + " writing _RCS_Vel.z = 0.5 from a plain " +
+                      "clip. Enter play mode and read the 'vel' column in the RCS Test Driver. " +
+                      "0.500 means blend trees are the problem; 0.000 means _RCS_Vel cannot be " +
+                      "reached at all. Re-run Build RCS Animator Layers to remove.");
+        }
+
         // ------------------------------------------------------------------ params
 
         private static void EnsureParameters(AnimatorController c)

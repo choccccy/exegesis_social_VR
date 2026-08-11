@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: rcs_group_wings_stowed
+  m_Name: rcs_debug_forcevel
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -23,7 +23,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -32,7 +32,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 0.016666668
-        value: 0
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -42,7 +42,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._GroupEnable.y
+    attribute: material._RCS_Vel.z
     path: Body
     classID: 137
     script: {fileID: 0}
@@ -53,7 +53,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -62,7 +62,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 0.016666668
-        value: 0
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -72,7 +72,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._GroupEnable.y
+    attribute: material._RCS_Vel.z
     path: Props
     classID: 137
     script: {fileID: 0}
@@ -87,7 +87,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 2073732236
-      attribute: 372848598
+      attribute: 750842915
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -96,7 +96,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 2596242860
-      attribute: 372848598
+      attribute: 750842915
       script: {fileID: 0}
       typeID: 137
       customType: 22
@@ -131,7 +131,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -140,7 +140,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 0.016666668
-        value: 0
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -150,7 +150,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._GroupEnable.y
+    attribute: material._RCS_Vel.z
     path: Body
     classID: 137
     script: {fileID: 0}
@@ -161,7 +161,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -170,7 +170,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 0.016666668
-        value: 0
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -180,7 +180,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: material._GroupEnable.y
+    attribute: material._RCS_Vel.z
     path: Props
     classID: 137
     script: {fileID: 0}
