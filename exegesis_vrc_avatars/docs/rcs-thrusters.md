@@ -281,6 +281,26 @@ It is a material slider rather than per-vertex data so it needs no repainting, c
 live against the debug view, and can differ per material if the Body and Props bells ever
 have different flare angles. Vertex red stays purely the bell-versus-diaphragm selector.
 
+## Rule: every vertex-channel feature must default to a no-op
+
+A mesh with no colour attribute reports vertex colour **white**, so any feature keyed to a
+channel is *maximally active* on unpainted geometry. This has bitten three times:
+
+| Channel | Feature | What the default did |
+|---|---|---|
+| G | Visibility groups | Unpainted → group 2 → gated by `wings_deployed`, which is off → dark |
+| B | Rotation bias | Blue 0 with a hard split → torque multiplied by zero → **rotation dead avatar-wide** |
+| — | Group gating | Needed `_GroupGateEnabled` retrofitted as an off-switch mid-debug |
+
+So: **ship the neutral value, make the behaviour opt-in.** `_RotThrusterLinGain` and
+`_TransThrusterRotGain` default to **1** (no split); lower them toward 0 only once the paint
+exists. `_GroupGateEnabled` exists for the same reason. An added feature must never silently
+remove behaviour that already worked — if the avatar looks broken after adding one, check its
+defaults before anything else.
+
+Corollary for debugging: a feature that appears to break the system the moment it is added is
+usually defaulting to "on" against unpainted data, not malfunctioning.
+
 ## How to debug this system
 
 **Measure with the shader. Do not measure from editor scripts.**
@@ -308,6 +328,45 @@ deliberately only *drives* the system rather than reporting on it.
 **And the meta-rule:** when a measurement says something is impossible and your eyes say
 otherwise, suspect the measurement. In this case the panel insisted the group gates were
 never changing while the plumes were visibly switching colour on screen. The eyes were right.
+
+### Failure mode: a generated clip that writes nothing
+
+Every RCS state runs with **Write Defaults off** — that is what lets these layers stack
+without fighting each other. The cost is that *a state playing an empty clip does not reset
+anything*: the property simply keeps whatever it last held, which for a freshly-loaded avatar
+is the value saved in `thrusters.mat`.
+
+So a gate clip that should force `_GroupEnable.z` to 0 but contains **no curve at all** does
+not fail loudly. The component holds the material's `1`, the group never gates, and the
+symptom is *"the thrusters fire even when the bool is false"* — which reads as a shader bug or
+a vertex-paint bug and sends the search a long way from the cause.
+
+This is not hypothetical. In one otherwise-clean build, exactly one clip out of 38
+(`rcs_group_thighs_stowed.anim`) serialized with `m_FloatCurves: []` and
+`m_StopTime: 1`; every other clip in the same run, including the identically-built
+`rcs_group_wings_stowed`, was correct. Three defences are now in place:
+
+1. `MaterialClip`/`ParamClip` author curves on the in-memory clip and call `PersistClip`
+   **afterwards**, so the asset is serialized with its curves already present rather than
+   depending on a later `SetDirty`/`SaveAssets` flush.
+2. `VerifyGeneratedClips()` runs at the end of every build, reloads each clip **from disk**
+   and logs an error naming any that carry no curves. Reloading is the point — it checks
+   what was serialized, not what the in-memory object believes.
+3. `GeneratedClipTests` pins it from the other side: no generated clip may be curve-less, and
+   each gate pair must drive its component to 0 in the off state and 1 in the on state, on
+   **both** `Body` and `Props`.
+
+**How to check by hand:** an empty clip is obvious in the YAML (`m_FloatCurves: []`) and by
+size — a two-path gate clip is ~4.3 KB, an empty one ~1.3 KB.
+
+```bash
+for f in Assets/_exegesis/ncho/ncho_anim/rcs_generated/*.anim; do
+  printf "%-42s %s\n" "$(basename $f)" "$(grep -c 'attribute: material' $f)"
+done
+```
+
+Zero is expected only for the `*_smoothed_hi/lo` clips, which drive Animator *parameters*
+rather than material properties. Any other zero is this bug.
 
 ### Debugging with `_DebugView`
 
@@ -355,9 +414,19 @@ The full vertex-colour budget:
 
 | Painted G | Band | Group | Gated by | Used for |
 |---|---|---|---|---|
-| `0.0` | `< 0.1` | 0 | never gated | every ordinary thruster |
-| `0.5` | `0.1 … 0.9` | 1 | `_GroupEnable.x` | Body back thrusters the packs cover |
-| `1.0` | `≥ 0.9` | 2 | `_GroupEnable.y` | Props plumes |
+| `0.00` | `< 0.125` | 0 | never gated | every ordinary thruster |
+| `0.25` | `0.125 … 0.375` | **3** | `_GroupEnable.z` | thigh pack plumes |
+| `0.50` | `0.375 … 0.75` | 1 | `_GroupEnable.x` | Body back thrusters the packs cover |
+| `1.00` | `≥ 0.75` | 2 | `_GroupEnable.y` | backpack plumes |
+
+Index 3 is out of numeric order on purpose: keeping `0.5 → 1` and `1.0 → 2` preserves what
+existing paint already means, so adding a group repaints nothing. Both Props levels (`0.75`
+and `1.0`) resolve to index ≥ 2, which is exactly what the flare selector tests, so they
+inherit the Props flare automatically.
+
+**Convention worth keeping:** Body groups take indices 0–1, Props groups take 2 and up. The
+flare selector is `index >= 1.5 → _BellFlareProps`, so following that convention keeps flare
+selection correct as props are added, with no per-group maintenance.
 
 | Group | Live when |
 |---|---|
@@ -373,13 +442,19 @@ group **2**, not group 0 — and group 2 is gated by `wings_deployed`, which def
 mesh explicitly; do not rely on the default. (`group_gated` in the golden suite exists to
 keep this fact from being forgotten again — it was a real bug caught by that test.)
 
-**One wide middle band, on purpose.** Vertex colours may or may not be colour-space
-converted on import, and the direction is unknown — an authored `0.5` can arrive as `0.214`
-(sRGB→linear) or `0.735` (linear→sRGB). A single band spanning `0.1 … 0.9` swallows all of
-those, while `0` and `1` are fixed points under any conversion. Splitting the middle into
-two narrower bands would leave an authored value a whisker from a boundary, so **two groups
-is the honest maximum for one channel**. Confirm with `_DebugView 3` rather than assuming —
-it paints each group a flat colour (grey / green / blue).
+**Colour-space conversion: measured, not assumed.** This was the design's biggest unknown,
+because an authored `0.5` could in principle arrive as `0.214` (sRGB→linear) or `0.735`
+(linear→sRGB), and that spread is wider than any usable band — which is why the encoding
+originally allowed only two gated groups.
+
+`_DebugView 6` settled it: **this pipeline applies no conversion at all.** Authored `1.0`
+arrives as `1.0`, `0` as `0`, and `0.5` as `0.498` — byte 127/255, integer quantisation
+only. Evenly spaced levels are therefore safe, every level above sits ~0.125 from its
+nearest boundary, and green has room for **5–6 levels** if more prop groups are ever needed.
+
+Re-run that calibration if the FBX export settings or Unity's colour space ever change, and
+confirm group membership with `_DebugView 3` — grey / green / blue / magenta for groups
+0 / 1 / 2 / 3.
 
 #### Painting the groups
 
@@ -445,6 +520,7 @@ it over hand-editing: the controller has 52 layers and 117 states.
 | `rcs_master` | Two-state menu toggle on the `rcs` bool. |
 | `rcs_group_packs` | `_GroupEnable.x` — off while `thruster_backpack` **or** `arm_backpack` is on. |
 | `rcs_group_wings` | `_GroupEnable.y` — on while `wings_deployed` is on. |
+| `rcs_group_thighs` | `_GroupEnable.z` — on while `thigh_thrusters` is on. |
 
 Two things make this fit in four layers instead of a dozen:
 

@@ -229,6 +229,11 @@ MonoBehaviour:
     saved: 1
     defaultValue: 0
     networkSynced: 1
+  - name: thigh_thrusters
+    valueType: 2
+    saved: 1
+    defaultValue: 0
+    networkSynced: 1
   - name: arm_backpack
     valueType: 2
     saved: 1

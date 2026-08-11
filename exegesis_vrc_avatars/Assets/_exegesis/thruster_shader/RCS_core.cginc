@@ -68,7 +68,7 @@ struct v2f
     float4 pos    : SV_POSITION;
     float2 uvCore : TEXCOORD0;
     float2 uvGlow : TEXCOORD1;
-    // x = final throttle, y = flicker phase, z = group index, w = raw allocation
+    // x = final throttle, y = flicker phase, z = RAW vertex green, w = raw allocation
     // before master and gate. All constant across a flat-shaded nozzle face, so
     // interpolation costs nothing.
     float4 drive  : TEXCOORD2;
@@ -156,6 +156,30 @@ float3 rcsAngularAccel(float3 linAccel)
 // Visibility groups
 // ---------------------------------------------------------------------------
 
+// Authored green -> group index.
+//
+// Measured, not assumed: _DebugView 6 showed this pipeline applies NO colour-space
+// conversion to vertex colour. An authored 1.0 arrives as 1.0, 0 as 0, and 0.5 as 0.498
+// - byte 127/255, integer quantisation only. Evenly spaced levels are therefore safe,
+// and every value below sits about 0.125 from its nearest boundary.
+//
+// Index 3 is deliberately out of numeric order. Keeping 0.5 -> 1 and 1.0 -> 2 preserves
+// what the existing paint already means, so adding the thigh group repaints nothing. Both
+// Props levels (0.75 and 1.0) land at index >= 2, which is what the flare selector tests,
+// so they keep getting the Props flare automatically.
+//
+//   0.00 -> 0   never gated
+//   0.25 -> 3   thigh packs              _GroupEnable.z
+//   0.50 -> 1   Body back thrusters      _GroupEnable.x
+//   1.00 -> 2   backpack plumes          _GroupEnable.y   (also unpainted white)
+float rcsGroupIndex(float g)
+{
+    if (g < 0.125) return 0.0;
+    if (g < 0.375) return 3.0;
+    if (g < 0.750) return 1.0;
+    return 2.0;
+}
+
 // Some thrusters must go quiet regardless of what the allocation says - the Props
 // plumes when the backpack is stowed, and the Body thrusters the backpack covers when
 // it is deployed. Poiyomi's UV tile dissolve hides the prop GEOMETRY but not this
@@ -186,18 +210,13 @@ float rcsGroupGate(float g)
     // Props, meaning it was already fully open.
     if (_GroupGateEnabled < 0.5) return 1.0;
 
-    if (g < 0.1) return 1.0;              // group 0 - authored 0, never gated
-    if (g < 0.9) return _GroupEnable.x;   // group 1 - authored 0.5
-    return _GroupEnable.y;                // group 2 - authored 1, and unpainted white
+    float gi = rcsGroupIndex(g);
+    if (gi < 0.5) return 1.0;             // 0 - never gated
+    if (gi < 1.5) return _GroupEnable.x;  // 1 - Body back thrusters, under the packs
+    if (gi < 2.5) return _GroupEnable.y;  // 2 - backpack plumes, with the wings
+    return _GroupEnable.z;                // 3 - thigh packs
 }
 
-// Matching index for the debug view only.
-float rcsGroupIndex(float g)
-{
-    if (g < 0.1) return 0.0;
-    if (g < 0.9) return 1.0;
-    return 2.0;
-}
 
 // ---------------------------------------------------------------------------
 // Per-thruster allocation
@@ -356,9 +375,12 @@ v2f vert(appdata v)
     // and sharpness shaping, and fades rather than pops if the toggle blends.
     float alloc = rcsThrottle(v.vertex.xyz, exhaust, v.color.b);
     float gate  = rcsGroupGate(v.color.g);
+    // Raw green rather than the resolved index: the index is a pure function of it, so
+    // the fragment stage can recover it, and passing the raw value additionally allows
+    // _DebugView 6 to report what the colour-space conversion actually did to the paint.
     o.drive  = float4(alloc * _RCS_Master * gate,
                       rcsFlickerPhase(v.vertex.xyz),
-                      rcsGroupIndex(v.color.g),
+                      v.color.g,
                       alloc);
     o.dbgDir = float4(normalize(exhaust), v.color.b);
     return o;
@@ -383,12 +405,13 @@ float4 frag(v2f i) : SV_Target
         // 3 - visibility group, as three flat colours. This is how you confirm the
         // green paint landed in the intended buckets, rather than inferring it from
         // behaviour - which matters because the colour-space conversion is unknown.
-        float gi = i.drive.z;
+        float gi = rcsGroupIndex(i.drive.z);
         if (_DebugView < 3.5)
         {
-            if (gi < 0.5) return float4(0.6, 0.6, 0.6, 0.0);   // group 0 - never gated
-            if (gi < 1.5) return float4(0.0, 1.0, 0.0, 0.0);   // group 1 - authored G 0.5
-            return float4(0.0, 0.4, 1.0, 0.0);                 // group 2 - authored G 1.0
+            if (gi < 0.5) return float4(0.6, 0.6, 0.6, 0.0);   // 0 - never gated
+            if (gi < 1.5) return float4(0.0, 1.0, 0.0, 0.0);   // 1 - authored G 0.5
+            if (gi < 2.5) return float4(0.0, 0.4, 1.0, 0.0);   // 2 - authored G 1.0
+            return float4(1.0, 0.0, 0.8, 0.0);                 // 3 - authored G 0.25
         }
 
         // 4 - the three factors of throttle, one per channel. Throttle is
@@ -404,16 +427,42 @@ float4 frag(v2f i) : SV_Target
         // than none.
         if (_DebugView < 4.5)
         {
-            float gate = (_GroupGateEnabled < 0.5) ? 1.0
-                       : ((gi < 0.5) ? 1.0 : ((gi < 1.5) ? _GroupEnable.x : _GroupEnable.y));
+            float gate = rcsGroupGate(i.drive.z);
             return float4(saturate(_RCS_Master), saturate(gate), saturate(i.drive.w), 0.0);
         }
 
-        // 5 - translation vs rotation bias from vertex blue. Orange = translation
-        // (blue 0), cyan = rotation (blue 1), so the split is obvious at a glance and
-        // the paint can be confirmed without inferring it from firing behaviour.
-        float rb = saturate(i.dbgDir.w);
-        return float4(lerp(1.0, 0.0, rb), lerp(0.5, 0.8, rb), lerp(0.0, 1.0, rb), 0.0);
+        if (_DebugView < 5.5)
+        {
+            // 5 - translation vs rotation bias from vertex blue. Orange = translation
+            // (blue 0), cyan = rotation (blue 1), so the split is obvious at a glance and
+            // the paint can be confirmed without inferring it from firing behaviour.
+            float rb = saturate(i.dbgDir.w);
+            return float4(lerp(1.0, 0.0, rb), lerp(0.5, 0.8, rb), lerp(0.0, 1.0, rb), 0.0);
+        }
+
+        // 6 - CALIBRATION. Raw vertex green in eight bands of 0.125, so the value the
+        // shader actually receives can be read off directly. Adding a fourth group level
+        // needs this: an authored 0.35 can arrive as 0.1, 0.35 or 0.63 depending on
+        // which way the pipeline converts vertex colour, and that spread is wider than
+        // any band would be - so the boundaries cannot be chosen without measuring first.
+        //
+        // Paint is already in place to calibrate against: the back thrusters were
+        // authored at 0.5. Whichever band they land in tells us the conversion, and the
+        // boundaries for four levels follow from it.
+        //
+        //   0.000-0.125 dark grey     0.500-0.625 green
+        //   0.125-0.250 red           0.625-0.750 cyan
+        //   0.250-0.375 orange        0.750-0.875 blue
+        //   0.375-0.500 yellow        0.875-1.000 white
+        float g = saturate(i.drive.z);
+        if (g < 0.125) return float4(0.15, 0.15, 0.15, 0.0);
+        if (g < 0.250) return float4(1.00, 0.00, 0.00, 0.0);
+        if (g < 0.375) return float4(1.00, 0.45, 0.00, 0.0);
+        if (g < 0.500) return float4(1.00, 1.00, 0.00, 0.0);
+        if (g < 0.625) return float4(0.00, 1.00, 0.00, 0.0);
+        if (g < 0.750) return float4(0.00, 1.00, 1.00, 0.0);
+        if (g < 0.875) return float4(0.00, 0.30, 1.00, 0.0);
+        return float4(1.00, 1.00, 1.00, 0.0);
     }
 
     // Two layers with different ramps: the core snaps in hot past its ignition

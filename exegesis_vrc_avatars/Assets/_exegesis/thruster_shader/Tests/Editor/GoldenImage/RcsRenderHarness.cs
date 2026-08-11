@@ -156,7 +156,7 @@ namespace Exegesis.RcsThruster.Tests
             // allocation baselines measuring allocation rather than the split; the
             // `bias_rotation_only` state exercises the split deliberately instead.
             { "_RotThrusterLinGain", 1f },
-            { "_TransThrusterRotGain", 0f },
+            { "_TransThrusterRotGain", 1f },
             { "_DebugView", 0f },      // debug views bypass the composite entirely
             // Forced ON so the goldens keep exercising the real gate logic even while
             // the production material has it switched off.

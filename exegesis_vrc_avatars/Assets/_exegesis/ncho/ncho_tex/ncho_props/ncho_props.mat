@@ -2508,11 +2508,11 @@ Material:
     - _UVTileDissolveAlpha_Row3_0: 0
     - _UVTileDissolveAlpha_Row3_0_ncho_props: 0
     - _UVTileDissolveAlpha_Row3_1: 1
-    - _UVTileDissolveAlpha_Row3_1_ncho_props: 1
+    - _UVTileDissolveAlpha_Row3_1_ncho_props: 0
     - _UVTileDissolveAlpha_Row3_2: 0
-    - _UVTileDissolveAlpha_Row3_2_ncho_props: 0
+    - _UVTileDissolveAlpha_Row3_2_ncho_props: 1
     - _UVTileDissolveAlpha_Row3_3: 0
-    - _UVTileDissolveAlpha_Row3_3_ncho_props: 0
+    - _UVTileDissolveAlpha_Row3_3_ncho_props: 1
     - _UVTileDissolveDiscardAtMax: 1
     - _UVTileDissolveEnabled: 1
     - _UVTileDissolveUV: 1

@@ -63,11 +63,16 @@ namespace Exegesis.RcsThruster
         private const string ArmPackParam = "arm_backpack";
         private const string WingsParam = "wings_deployed";
 
+        // Drives the thigh thruster packs. Unrelated to thigh_hard-cases, which is a
+        // different item entirely. The build warns if it is missing from the controller.
+        private const string ThighParam = "thigh_thrusters";
+
         private const string LayerSmooth = "rcs_smooth";
         private const string LayerImu = "rcs_imu";
         private const string LayerMaster = "rcs_master";
         private const string LayerGroupPacks = "rcs_group_packs";
         private const string LayerGroupWings = "rcs_group_wings";
+        private const string LayerGroupThighs = "rcs_group_thighs";
 
         // Teardown matches on PREFIX, not an explicit list. An earlier rename left the
         // old layer orphaned in the controller because its name was no longer in the
@@ -116,10 +121,13 @@ namespace Exegesis.RcsThruster
             BuildMasterLayer(controller);
             BuildGroupPacksLayer(controller);
             BuildGroupWingsLayer(controller);
+            BuildGroupThighsLayer(controller);
 
             EditorUtility.SetDirty(controller);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+
+            VerifyGeneratedClips();
 
             int rcsLayers = controller.layers.Count(l => l.name != null && l.name.StartsWith(LayerPrefix));
             Debug.Log($"[RCS] Rebuilt {rcsLayers} '{LayerPrefix}*' layers in {ControllerPath}. " +
@@ -258,6 +266,16 @@ namespace Exegesis.RcsThruster
                 EnsureFloat(c, param, 0f);
 
             EnsureBool(c, MasterParam, true);
+
+            // The group layers condition on these, and a transition referencing a
+            // parameter the controller does not declare is not a valid animator. Ensuring
+            // them means the layers build cleanly before the VRChat expression parameters
+            // exist - which matters for thigh_thrusters, whose hardware is not authored
+            // yet. EnsureBool leaves existing parameters and their saved values alone.
+            EnsureBool(c, ThrusterPackParam, false);
+            EnsureBool(c, ArmPackParam, false);
+            EnsureBool(c, WingsParam, false);
+            EnsureBool(c, ThighParam, false);
 
             // The built-ins are already declared on this controller, but assert rather
             // than assume - a missing one would silently produce a dead layer.
@@ -620,6 +638,31 @@ namespace Exegesis.RcsThruster
             sm.defaultState = stowed;
         }
 
+        // Group 3 - the thigh pack plumes, which only exist while those packs are worn.
+        private static void BuildGroupThighsLayer(AnimatorController c)
+        {
+            WarnIfMissing(c, ThighParam, LayerGroupThighs);
+
+            var stowed = AddLayerWithState(c, LayerGroupThighs, "thighs_stowed", out var sm);
+            stowed.motion = MaterialClip("rcs_group_thighs_stowed", "_GroupEnable.z", 0f);
+
+            var worn = sm.AddState("thighs_worn");
+            worn.writeDefaultValues = false;
+            worn.motion = MaterialClip("rcs_group_thighs_worn", "_GroupEnable.z", 1f);
+
+            var toWorn = stowed.AddTransition(worn);
+            toWorn.hasExitTime = false;
+            toWorn.duration = 0f;
+            toWorn.AddCondition(AnimatorConditionMode.If, 0f, ThighParam);
+
+            var toStowed = worn.AddTransition(stowed);
+            toStowed.hasExitTime = false;
+            toStowed.duration = 0f;
+            toStowed.AddCondition(AnimatorConditionMode.IfNot, 0f, ThighParam);
+
+            sm.defaultState = stowed;
+        }
+
         private static void WarnIfMissing(AnimatorController c, string param, string layer)
         {
             if (!HasParameter(c, param))
@@ -640,11 +683,26 @@ namespace Exegesis.RcsThruster
             AssetDatabase.CreateFolder(parent, Path.GetFileName(GeneratedClipDir));
         }
 
+        // Curves are authored on the in-memory clip and the asset is written AFTERWARDS,
+        // by PersistClip. The reverse order - CreateAsset first, then SetEditorCurve, then
+        // rely on SetDirty/SaveAssets to flush - lost the curves on exactly one clip out of
+        // 38 in a build where every other clip came out correct
+        // (rcs_group_thighs_stowed.anim, serialized with m_FloatCurves: [] and StopTime 1).
+        // A clip that writes nothing is the worst possible failure here: with Write
+        // Defaults off, its state leaves the property at whatever the material shipped,
+        // so a gate that should force 0 silently holds 1 and the feature reads as
+        // "the shader is ignoring my bool". Persisting a fully-built clip in one step
+        // removes the flush from the critical path entirely.
         private static AnimationClip NewClip(string name)
         {
+            return new AnimationClip { name = Sanitize(name) };
+        }
+
+        private static AnimationClip PersistClip(AnimationClip clip, string name)
+        {
             var path = $"{GeneratedClipDir}/{Sanitize(name)}.anim";
-            var clip = new AnimationClip { name = Sanitize(name) };
             AssetDatabase.CreateAsset(clip, path);
+            EditorUtility.SetDirty(clip);
             return clip;
         }
 
@@ -672,8 +730,7 @@ namespace Exegesis.RcsThruster
                     AnimationUtility.SetEditorCurve(clip, binding, curve);
                 }
             }
-            EditorUtility.SetDirty(clip);
-            return clip;
+            return PersistClip(clip, name);
         }
 
         /// <summary>
@@ -685,8 +742,37 @@ namespace Exegesis.RcsThruster
             var clip = NewClip(name);
             var binding = EditorCurveBinding.FloatCurve("", typeof(Animator), param);
             AnimationUtility.SetEditorCurve(clip, binding, AnimationCurve.Constant(0f, 1f / 60f, value));
-            EditorUtility.SetDirty(clip);
-            return clip;
+            return PersistClip(clip, name);
+        }
+
+        // ------------------------------------------------------------ post-build audit
+
+        /// <summary>
+        /// Reloads every generated clip from disk and reports any that carry no curves.
+        /// Reloading is the point: it checks what was actually SERIALIZED rather than what
+        /// the in-memory object thinks it has, which is the only version the animator will
+        /// ever play. Silent per-clip write failures are otherwise invisible until someone
+        /// notices a gate not gating.
+        /// </summary>
+        private static void VerifyGeneratedClips()
+        {
+            var empty = new List<string>();
+            foreach (var guid in AssetDatabase.FindAssets("t:AnimationClip", new[] { GeneratedClipDir }))
+            {
+                var path = AssetDatabase.GUIDToAssetPath(guid);
+                var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
+                if (clip == null) { empty.Add($"{path} (failed to load)"); continue; }
+                if (AnimationUtility.GetCurveBindings(clip).Length == 0)
+                    empty.Add(Path.GetFileName(path));
+            }
+
+            if (empty.Count == 0) return;
+
+            Debug.LogError($"[RCS] {empty.Count} generated clip(s) were written with NO curves: " +
+                           string.Join(", ", empty) + ". A state playing an empty clip writes " +
+                           "nothing, so with Write Defaults off the property keeps its material " +
+                           "value - a gate meant to force 0 will hold whatever the material ships. " +
+                           "Re-run Tools > Exegesis > Build RCS Animator Layers.");
         }
     }
 }

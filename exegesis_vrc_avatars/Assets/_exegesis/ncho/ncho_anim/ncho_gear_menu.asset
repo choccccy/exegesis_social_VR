@@ -74,11 +74,11 @@ MonoBehaviour:
     subMenu: {fileID: 0}
     subParameters: []
     labels: []
-  - name: Wings Up
+  - name: Thigh Thrusters
     icon: {fileID: 0}
     type: 102
     parameter:
-      name: wings_deployed
+      name: thigh_thrusters
     value: 1
     style: 0
     subMenu: {fileID: 0}
