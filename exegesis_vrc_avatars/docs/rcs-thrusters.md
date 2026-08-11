@@ -252,6 +252,35 @@ axial. Keep the wall/diaphragm boundary sharp too.
 This requires tangents on the mesh — check `Import Tangents` is Calculate (the default) and
 not None on the FBX, or the bitangent is garbage.
 
+### `_BellFlare` — correcting for the cone's slant
+
+A truncated cone's wall is **slanted**, so V, and therefore the bitangent, runs along the
+slant rather than the axis — tilted outward by the flare half-angle. Each facet tilts along
+its *own* radial direction, so around the circumference the facets leaning toward the
+commanded acceleration score a higher dot product than those leaning away. The symptom is a
+cone that lights **brightest on the side facing the thrust** rather than uniformly, and
+thrusters faintly firing for directions they are not really part of.
+
+The true axis is recoverable exactly, since for half-angle `a`:
+
+```
+axis = cos(a) * bitangent + sin(a) * normal
+```
+
+`_BellFlare` is that angle in degrees, applied to the bitangent-derived sources (modes 3
+and 4). Default 0. **Sign depends on the winding and the UV direction**, so it takes a
+signed range rather than a guess: set it near your actual flare half-angle, then adjust in
+`_DebugView 1` until each bell reads as **one flat colour** matching its own diaphragm. If
+the gradient worsens, go negative.
+
+Expect the correction to change *which* thrusters fire at the margins — the direction is
+more accurate afterwards, so borderline cones may switch on or off. That is the fix
+working, not a regression.
+
+It is a material slider rather than per-vertex data so it needs no repainting, can be tuned
+live against the debug view, and can differ per material if the Body and Props bells ever
+have different flare angles. Vertex red stays purely the bell-versus-diaphragm selector.
+
 ## How to debug this system
 
 **Measure with the shader. Do not measure from editor scripts.**

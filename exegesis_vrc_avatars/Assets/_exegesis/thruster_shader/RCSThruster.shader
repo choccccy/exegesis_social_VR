@@ -69,6 +69,12 @@ Shader "exegesis/RCSThruster"
         // Separate from the above on purpose: a plume diaphragm at the base of the cup has
         // its normal pointing back at the nozzle, opposite the bell that surrounds it.
         [Enum(Forward, 0, Reversed, 1)] _CapNormalFlip ("Reverse Cap Normal", Float) = 0
+        // Rotates the bell's axis off the slant and back onto the true cone axis. Set to
+        // the flare half-angle; sign depends on winding, so adjust until each bell reads as
+        // one flat colour in _DebugView 1. Plain Floats, not sliders, because the useful
+        // values are small and need to be typed exactly rather than dragged. 0 = off.
+        _BellFlare ("Bell Flare deg   groups 0 and 1", Float) = 0
+        _BellFlareProps ("Bell Flare deg   group 2", Float) = 0
 
         [Header(Visibility groups)]
         // Membership rides in vertex GREEN: 0 = never gated, 0.5 = group 1 (x),

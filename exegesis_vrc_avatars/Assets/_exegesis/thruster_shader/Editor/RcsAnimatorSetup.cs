@@ -179,6 +179,68 @@ namespace Exegesis.RcsThruster
                       "reached at all. Re-run Build RCS Animator Layers to remove.");
         }
 
+        private const string LayerTreeProbe = "rcs_debug_treeprobe";
+
+        /// <summary>
+        /// Adds ONE layer whose motion is a 1D blend tree with a SINGLE child writing a
+        /// constant. A one-child tree plays that child at full weight whatever the blend
+        /// parameter does, so the parameter is taken out of the equation entirely.
+        ///
+        /// This separates the two explanations for the publish layers writing nothing:
+        ///
+        ///   blue appears (_RCS_Vel.z = 0.7)  -> blend trees DO deliver material
+        ///       animation. The publish layers are therefore working and writing ZERO,
+        ///       because a 1D tree at parameter 0 between -20 and +20 interpolates its
+        ///       -1 and +1 clips to exactly 0. The real fault is VelocityZ never
+        ///       reaching the FX controller.
+        ///
+        ///   no blue                          -> blend-tree motions genuinely do not
+        ///       deliver in this build, while plain clips do, and publish has to be
+        ///       rebuilt without them.
+        ///
+        /// Pair it with the plain-clip probe: that one is known to work, so the two
+        /// together isolate the blend tree as the only difference.
+        /// </summary>
+        [MenuItem("Tools/Exegesis/RCS Debug - Add Blend Tree Probe Layer")]
+        private static void AddBlendTreeProbeLayer()
+        {
+            var c = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
+            if (c == null) { Debug.LogError($"[RCS] No controller at {ControllerPath}"); return; }
+
+            var keep = new List<AnimatorControllerLayer>();
+            foreach (var layer in c.layers)
+            {
+                if (layer.name == LayerTreeProbe) DestroyStateMachineAssets(layer.stateMachine);
+                else keep.Add(layer);
+            }
+            c.layers = keep.ToArray();
+
+            EnsureClipFolder();
+
+            var state = AddLayerWithState(c, LayerTreeProbe, "probe", out _);
+            var tree = NewTree(c, "rcs_debug_treeprobe_tree", BlendTreeType.Simple1D);
+            tree.blendParameter = "VelocityZ";
+            tree.AddChild(MaterialClip("rcs_debug_treeprobe", "_RCS_Vel.z", 0.7f), 0f);
+            state.motion = tree;
+
+            EditorUtility.SetDirty(c);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+
+            Debug.Log("[RCS] Added " + LayerTreeProbe + ": a 1D tree with one child writing " +
+                      "_RCS_Vel.z = 0.7 regardless of the blend parameter. Enter play mode with " +
+                      "_DebugView 4. Blue means blend trees work and VelocityZ is the problem; " +
+                      "no blue means blend trees do not deliver. Re-run Build RCS Animator " +
+                      "Layers to remove.");
+        }
+
+        private static void EnsureClipFolder()
+        {
+            if (AssetDatabase.IsValidFolder(GeneratedClipDir)) return;
+            var parent = Path.GetDirectoryName(GeneratedClipDir).Replace('\\', '/');
+            AssetDatabase.CreateFolder(parent, Path.GetFileName(GeneratedClipDir));
+        }
+
         // ------------------------------------------------------------------ params
 
         private static void EnsureParameters(AnimatorController c)

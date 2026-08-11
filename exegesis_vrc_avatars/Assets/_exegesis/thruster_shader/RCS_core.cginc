@@ -45,6 +45,8 @@ float  _VelSpace;
 float  _ThrustDirSource;
 float  _ThrustDirFlip;
 float  _CapNormalFlip;
+float  _BellFlare;
+float  _BellFlareProps;
 float  _DebugView;
 float4 _GroupEnable;
 float  _GroupGateEnabled;
@@ -149,88 +151,6 @@ float3 rcsAngularAccel(float3 linAccel)
 }
 
 // ---------------------------------------------------------------------------
-// Per-thruster allocation
-// ---------------------------------------------------------------------------
-
-// Which way does this thruster's exhaust point, in posed object space?
-//
-// The obvious answer - the surface normal - is only right for a FLAT nozzle disc.
-// These thrusters are truncated cones, and a cone's side wall normals point radially
-// outward, perpendicular to the axis. Using them makes the half of each cone facing
-// away from the commanded acceleration light up, on every cone at once, which looks
-// like "half of everything is firing" no matter what the masks do.
-//
-// The cone axis is instead recoverable from the tangent frame. The masks run their
-// gradient along the cone's length, so V is the axial UV direction, which makes the
-// BITANGENT - the direction of increasing V - the axis. Unity skins tangents along
-// with normals, so this stays correct through any pose, exactly like the normal did.
-float3 rcsExhaustDir(appdata v)
-{
-    float3 bitangent = cross(v.normal, v.tangent.xyz) * v.tangent.w;
-    float3 fromColor = v.color.rgb * 2.0 - 1.0;   // static: never skinned, rest pose only
-
-    // Two knobs, deliberately factored as RELATIVE and GLOBAL rather than one per source.
-    //
-    // _CapNormalFlip is relative: it only makes the diaphragm agree with the bell around
-    // it, since the two derive their axis from different quantities whose signs need not
-    // match.
-    //
-    // _ThrustDirFlip is global: it reverses the whole resolved direction, after the source
-    // has been picked. That is the knob for "everything fires backwards", and because it
-    // applies last it flips bell and diaphragm together, so their agreement survives.
-    float capSign    = (_CapNormalFlip < 0.5) ? 1.0 : -1.0;
-    float globalSign = (_ThrustDirFlip < 0.5) ? 1.0 : -1.0;
-    float3 capNormal = v.normal * capSign;
-
-    float3 dir;
-    if      (_ThrustDirSource < 0.5) dir = capNormal;            // 0 - flat nozzle discs
-    else if (_ThrustDirSource < 1.5) dir = fromColor;            // 1 - baked vertex colour
-    else if (_ThrustDirSource < 2.5) dir = v.tangent.xyz;        // 2 - axis along U
-    else if (_ThrustDirSource < 3.5) dir = bitangent;            // 3 - axis along V (cones)
-    // 4 - mixed geometry. A thruster made of a cone BELL plus a flat cap needs both:
-    // the bell's axis is its bitangent, but a flat cap's tangent and bitangent both lie
-    // in its own plane, so no UV layout can ever point them along its normal - for the
-    // cap the axis simply IS the normal. Vertex colour red selects between them, so one
-    // thruster resolves to one direction across all of its faces.
-    //   R = 1 (white, the default when a mesh has no colours) -> bitangent, for bells
-    //   R = 0 (painted)                                       -> normal,    for caps
-    // Defaulting white to the bell case means only the caps need painting.
-    else                             dir = lerp(capNormal, bitangent, v.color.r);
-
-    return dir * globalSign;
-}
-
-// The core of the system.
-//   thrust  - reaction force, opposite the exhaust
-//   lever   - displacement from the centre of mass
-//   torque  - what firing this thruster would rotate the avatar about
-// Dotting each against its commanded counterpart gives translation authority and
-// rotation authority. A thruster far off-axis has a large lever arm, so it answers
-// strongly to commanded rotation and weakly to translation - exactly what a small
-// outboard attitude thruster should do, with no per-thruster authoring.
-float rcsThrottle(float3 posOS, float3 exhaustOS)
-{
-    float3 linA = rcsLinearAccel();
-    float3 angA = rcsAngularAccel(linA);
-
-    float3 thrust = -normalize(exhaustOS);
-    float3 lever  = posOS - _CoM.xyz;
-    float3 torque = cross(lever, thrust);
-
-    float u = dot(thrust, linA) + dot(torque, angA);
-
-    u = saturate((u - _Deadzone) / max(1e-4, 1.0 - _Deadzone));
-    u = pow(u, max(1e-3, _Sharpness));
-    // Optional floor so a thruster that lights at all lights visibly. Default 0.
-    u = (u > 0.0) ? lerp(_MinThrottle, 1.0, u) : 0.0;
-
-    // Returns the ALLOCATION alone. Master authority and the group gate are applied by
-    // the caller so that _DebugView 4 can show the three factors separately - when
-    // nothing fires, the whole question is which of them is zero.
-    return u;
-}
-
-// ---------------------------------------------------------------------------
 // Visibility groups
 // ---------------------------------------------------------------------------
 
@@ -275,6 +195,108 @@ float rcsGroupIndex(float g)
     if (g < 0.1) return 0.0;
     if (g < 0.9) return 1.0;
     return 2.0;
+}
+
+// ---------------------------------------------------------------------------
+// Per-thruster allocation
+// ---------------------------------------------------------------------------
+
+// Which way does this thruster's exhaust point, in posed object space?
+//
+// The obvious answer - the surface normal - is only right for a FLAT nozzle disc.
+// These thrusters are truncated cones, and a cone's side wall normals point radially
+// outward, perpendicular to the axis. Using them makes the half of each cone facing
+// away from the commanded acceleration light up, on every cone at once, which looks
+// like "half of everything is firing" no matter what the masks do.
+//
+// The cone axis is instead recoverable from the tangent frame. The masks run their
+// gradient along the cone's length, so V is the axial UV direction, which makes the
+// BITANGENT - the direction of increasing V - the axis. Unity skins tangents along
+// with normals, so this stays correct through any pose, exactly like the normal did.
+float3 rcsExhaustDir(appdata v)
+{
+    float3 bitangent = cross(v.normal, v.tangent.xyz) * v.tangent.w;
+    float3 fromColor = v.color.rgb * 2.0 - 1.0;   // static: never skinned, rest pose only
+
+    // Two knobs, deliberately factored as RELATIVE and GLOBAL rather than one per source.
+    //
+    // _CapNormalFlip is relative: it only makes the diaphragm agree with the bell around
+    // it, since the two derive their axis from different quantities whose signs need not
+    // match.
+    //
+    // _ThrustDirFlip is global: it reverses the whole resolved direction, after the source
+    // has been picked. That is the knob for "everything fires backwards", and because it
+    // applies last it flips bell and diaphragm together, so their agreement survives.
+    float capSign    = (_CapNormalFlip < 0.5) ? 1.0 : -1.0;
+    float globalSign = (_ThrustDirFlip < 0.5) ? 1.0 : -1.0;
+    float3 capNormal = v.normal * capSign;
+
+    // Flare correction. A truncated cone's wall is SLANTED, so V - and therefore the
+    // bitangent - runs along the slant rather than the axis, tilted outward by the flare
+    // half-angle. Crucially each facet tilts along its OWN radial direction, so around
+    // the circumference the facets leaning toward the commanded acceleration score a
+    // larger dot product than those leaning away, and the cone lights brightest on the
+    // side facing the thrust instead of uniformly.
+    //
+    // The true axis is recoverable exactly, because for half-angle a:
+    //     axis = cos(a) * bitangent + sin(a) * normal
+    // Sign is left to the user via a signed angle rather than guessed, since which way
+    // the correction leans depends on the winding and the UV direction.
+    // Body and Props bells are modelled with different flare angles, so the correction
+    // needs two values. It selects on GROUP 2 membership, which piggybacks on the green
+    // paint purely because "group 2" and "the Props plumes" are currently the same set of
+    // geometry - it costs no extra authoring. If those two ever stop coinciding, move the
+    // selector to vertex alpha, which is still free.
+    float flareDeg = (rcsGroupIndex(v.color.g) >= 1.5) ? _BellFlareProps : _BellFlare;
+    float fa = radians(flareDeg);
+    float3 bellDir = bitangent * cos(fa) + v.normal * sin(fa);
+
+    float3 dir;
+    if      (_ThrustDirSource < 0.5) dir = capNormal;            // 0 - flat nozzle discs
+    else if (_ThrustDirSource < 1.5) dir = fromColor;            // 1 - baked vertex colour
+    else if (_ThrustDirSource < 2.5) dir = v.tangent.xyz;        // 2 - axis along U
+    else if (_ThrustDirSource < 3.5) dir = bellDir;              // 3 - axis along V (cones)
+    // 4 - mixed geometry. A thruster made of a cone BELL plus a flat cap needs both:
+    // the bell's axis is its bitangent, but a flat cap's tangent and bitangent both lie
+    // in its own plane, so no UV layout can ever point them along its normal - for the
+    // cap the axis simply IS the normal. Vertex colour red selects between them, so one
+    // thruster resolves to one direction across all of its faces.
+    //   R = 1 (white, the default when a mesh has no colours) -> bitangent, for bells
+    //   R = 0 (painted)                                       -> normal,    for caps
+    // Defaulting white to the bell case means only the caps need painting.
+    else                             dir = lerp(capNormal, bellDir, v.color.r);
+
+    return dir * globalSign;
+}
+
+// The core of the system.
+//   thrust  - reaction force, opposite the exhaust
+//   lever   - displacement from the centre of mass
+//   torque  - what firing this thruster would rotate the avatar about
+// Dotting each against its commanded counterpart gives translation authority and
+// rotation authority. A thruster far off-axis has a large lever arm, so it answers
+// strongly to commanded rotation and weakly to translation - exactly what a small
+// outboard attitude thruster should do, with no per-thruster authoring.
+float rcsThrottle(float3 posOS, float3 exhaustOS)
+{
+    float3 linA = rcsLinearAccel();
+    float3 angA = rcsAngularAccel(linA);
+
+    float3 thrust = -normalize(exhaustOS);
+    float3 lever  = posOS - _CoM.xyz;
+    float3 torque = cross(lever, thrust);
+
+    float u = dot(thrust, linA) + dot(torque, angA);
+
+    u = saturate((u - _Deadzone) / max(1e-4, 1.0 - _Deadzone));
+    u = pow(u, max(1e-3, _Sharpness));
+    // Optional floor so a thruster that lights at all lights visibly. Default 0.
+    u = (u > 0.0) ? lerp(_MinThrottle, 1.0, u) : 0.0;
+
+    // Returns the ALLOCATION alone. Master authority and the group gate are applied by
+    // the caller so that _DebugView 4 can show the three factors separately - when
+    // nothing fires, the whole question is which of them is zero.
+    return u;
 }
 
 // ---------------------------------------------------------------------------

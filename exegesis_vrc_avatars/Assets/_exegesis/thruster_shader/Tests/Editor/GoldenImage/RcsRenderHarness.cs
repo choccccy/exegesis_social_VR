@@ -149,6 +149,8 @@ namespace Exegesis.RcsThruster.Tests
             { "_ThrustDirSource", 0f },
             { "_ThrustDirFlip", 0f },  // 0 = forward
             { "_CapNormalFlip", 0f },
+            { "_BellFlare", 0f },      // no correction, so baselines are unaffected
+            { "_BellFlareProps", 0f },
             { "_DebugView", 0f },      // debug views bypass the composite entirely
             // Forced ON so the goldens keep exercising the real gate logic even while
             // the production material has it switched off.

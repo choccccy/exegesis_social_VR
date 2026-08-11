@@ -41,7 +41,7 @@ namespace Exegesis.RcsThruster
 
         private static readonly string[] EscapeHatchProps =
         {
-            "_VelSpace", "_ThrustDirSource", "_ThrustDirFlip", "_CapNormalFlip",
+            "_VelSpace", "_ThrustDirSource", "_ThrustDirFlip", "_CapNormalFlip", "_BellFlare", "_BellFlareProps",
             "_Cull", "_GroupEnable", "_GroupGateEnabled", "_DebugView",
         };
 
