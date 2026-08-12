@@ -165,7 +165,7 @@ float3 rcsAngularAccel(float3 linAccel)
 //
 // Index 3 is deliberately out of numeric order. Keeping 0.5 -> 1 and 1.0 -> 2 preserves
 // what the existing paint already means, so adding the thigh group repaints nothing. Both
-// Props levels (0.75 and 1.0) land at index >= 2, which is what the flare selector tests,
+// Props levels (0.25 and 1.0) land at index >= 2, which is what the flare selector tests,
 // so they keep getting the Props flare automatically.
 //
 //   0.00 -> 0   never gated
@@ -186,28 +186,21 @@ float rcsGroupIndex(float g)
 // material, so without a gate those plumes would light up out of thin air.
 //
 // Membership rides in vertex GREEN as levels rather than one channel per group, so
-// blue stays free for the planned translation-vs-rotation weighting.
+// blue stays free for the translation-vs-rotation weighting. Band edges are above, in
+// rcsGroupIndex; they are evenly spaced because the conversion question was MEASURED
+// and came back "no conversion" - see the note there, and re-measure with _DebugView 6
+// if the FBX export settings or Unity's colour space ever change.
 //
-// ONE wide middle band, on purpose. Vertex colours may or may not be colour-space
-// converted on import, and the direction of any conversion is unknown - an authored 0.5
-// can arrive as 0.214 (sRGB->linear) or 0.735 (linear->sRGB). A single band spanning
-// 0.1..0.9 swallows every one of those, while 0 and 1 are fixed points under any
-// conversion. Splitting the middle into two narrower bands would put an authored value
-// within a whisker of a boundary, so two groups is the honest maximum for one channel.
-// Confirm with _DebugView 3 rather than assuming.
-//
-// Note a mesh with NO colour attribute reports WHITE, so unpainted geometry lands in
-// group 2, not group 0. That is survivable here only because thruster_backpack defaults
-// to on, which enables group 2 - but paint any new thruster geometry rather than relying
-// on it, or it will vanish the moment the backpack is stowed.
+// FOOTGUN: a mesh with NO colour attribute reports WHITE, so unpainted thruster geometry
+// lands in group 2 - which is gated by wings_deployed, off by default. Unpainted geometry
+// is therefore DARK, not ungated. Paint every thruster mesh explicitly. (The group_gated
+// golden state exists to keep this from being forgotten a fourth time.)
 float rcsGroupGate(float g)
 {
-    // Off-switch as a material property rather than commented-out code: it can be
-    // flipped without a recompile, and the golden suite can keep exercising the real
-    // logic instead of a stub. Currently 0 on thrusters.mat while the velocity path is
-    // debugged - though the gate was verified NOT to be the cause of thrusters not
-    // firing, since the renderer census read master 1.00 and grp (1,1) on both Body and
-    // Props, meaning it was already fully open.
+    // Off-switch as a material property rather than commented-out code: it can be flipped
+    // without a recompile, so gating can be ruled out as the cause of a dark avatar in one
+    // click, and the golden suite keeps exercising the real logic instead of a stub. Ships
+    // at 1; NeutralDefaultTests pins that, since 0 here silently disables every group.
     if (_GroupGateEnabled < 0.5) return 1.0;
 
     float gi = rcsGroupIndex(g);

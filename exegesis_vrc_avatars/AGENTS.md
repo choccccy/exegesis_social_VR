@@ -8,11 +8,12 @@ VRChat avatar Unity project ("ncho"), **Unity 2022.3.22f1 LTS, Built-in Render P
 ## Read these
 
 - **[docs/project.md](docs/project.md)** — repo layout, Unity/BiRP, build/test entry points.
-- **[docs/hud-shader.md](docs/hud-shader.md)** — the custom HUD shader (current focus).
-- **[docs/rcs-thrusters.md](docs/rcs-thrusters.md)** — the RCS thruster shader + its FX layers.
+- **[docs/rcs-thrusters.md](docs/rcs-thrusters.md)** — the RCS thruster shader + its FX layers
+  (current focus). Its **Footguns** section is the most useful page in the repo.
+- **[docs/hud-shader.md](docs/hud-shader.md)** — the custom HUD shader.
 - **[docs/testing.md](docs/testing.md)** — regression test suite + headless-clone workflow.
 
-## Two things that will bite you if you forget
+## Three things that will bite you if you forget
 
 1. **The Unity Editor is usually open on this project.** You CANNOT run a headless
    `Unity.exe -batchmode` against this folder while it's open (exclusive lock; risks
@@ -22,6 +23,13 @@ VRChat avatar Unity project ("ncho"), **Unity 2022.3.22f1 LTS, Built-in Render P
 2. **Material properties are a VRChat contract.** Animations drive shader properties by
    name; renaming a driven one silently breaks the avatar. The HUD shader's do-not-rename
    list is in docs/hud-shader.md. Grep `.anim`/`.controller` before renaming anything.
+3. **"Everything is broken" usually means one new thing has a bad default.** This project
+   has lost hours to it repeatedly, always in the same shape: a feature added with an
+   *active* default silently disables behaviour that already worked, somewhere unrelated.
+   Before investigating a system-wide failure, check what changed last and what its default
+   is. And do not diagnose from editor scripts reading live material state — they return a
+   plausible `0` for anything you asked wrongly. Measure inside the shader. Both traps, with
+   the specific cases, are in docs/rcs-thrusters.md ▸ Footguns.
 
 ## Repo layout
 
