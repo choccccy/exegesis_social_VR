@@ -209,36 +209,31 @@ MonoBehaviour:
     saved: 1
     defaultValue: 1
     networkSynced: 1
-  - name: thigh_hard-cases
-    valueType: 2
-    saved: 1
-    defaultValue: 1
-    networkSynced: 1
   - name: arm_hard-cases
     valueType: 2
     saved: 1
     defaultValue: 0
-    networkSynced: 1
-  - name: thruster_backpack
-    valueType: 2
-    saved: 1
-    defaultValue: 1
     networkSynced: 1
   - name: wings_deployed
     valueType: 2
     saved: 1
     defaultValue: 0
     networkSynced: 1
-  - name: thigh_thrusters
-    valueType: 2
+  - name: back_slot
+    valueType: 0
     saved: 1
-    defaultValue: 0
+    defaultValue: 1
     networkSynced: 1
-  - name: arm_backpack
-    valueType: 2
+  - name: thigh_slot
+    valueType: 0
     saved: 1
-    defaultValue: 0
+    defaultValue: 1
     networkSynced: 1
+  - name: loadout
+    valueType: 0
+    saved: 0
+    defaultValue: 0
+    networkSynced: 0
   - name: rcs
     valueType: 2
     saved: 0

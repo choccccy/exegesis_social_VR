@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Exegesis.RcsThruster
 {
     /// <summary>
-    /// Play-mode test rig for the RCS system. `Tools > Exegesis > RCS Test Driver`.
+    /// Play-mode test rig for the RCS system. `Tools > Exegesis > Debug > RCS Test Driver`.
     ///
     /// This window DRIVES the system. It deliberately does not MEASURE it.
     ///
@@ -73,7 +73,7 @@ namespace Exegesis.RcsThruster
         private static FieldInfo _velocityField;
         private static FieldInfo _angularYField;
 
-        [MenuItem("Tools/Exegesis/RCS Test Driver")]
+        [MenuItem("Tools/Exegesis/Debug/RCS Test Driver", false, 100)]
         private static void Open() => GetWindow<RcsTestDriver>("RCS Test");
 
         private void OnEnable()

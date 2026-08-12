@@ -13,7 +13,10 @@ namespace Exegesis.RcsThruster.Tests
     /// </summary>
     internal static class RcsGoldenBaselineCapture
     {
-        [MenuItem("Tools/Exegesis/Capture RCS Golden Baselines")]
+        // Priority leaves a gap above, so Unity draws a separator between the debugging aids
+        // and these two - they overwrite the committed source of truth for the tests, which is
+        // a different kind of action from poking a probe layer into the animator.
+        [MenuItem("Tools/Exegesis/Debug/Capture RCS Golden Baselines", false, 120)]
         private static void Capture()
         {
             int written = 0;

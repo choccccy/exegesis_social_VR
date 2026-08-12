@@ -11,6 +11,9 @@ VRChat avatar Unity project ("ncho"), **Unity 2022.3.22f1 LTS, Built-in Render P
 - **[docs/rcs-thrusters.md](docs/rcs-thrusters.md)** — the RCS thruster shader + its FX layers
   (current focus). Its **Footguns** section is the most useful page in the repo.
 - **[docs/hud-shader.md](docs/hud-shader.md)** — the custom HUD shader.
+- **[docs/animator-generation.md](docs/animator-generation.md)** — the FX controller is partly
+  **generated**. Read this before editing any `rcs_*` or `slot_*` layer by hand: re-run the tool
+  instead. Also carries the Animator As Code migration notes.
 - **[docs/testing.md](docs/testing.md)** — regression test suite + headless-clone workflow.
 
 ## Three things that will bite you if you forget

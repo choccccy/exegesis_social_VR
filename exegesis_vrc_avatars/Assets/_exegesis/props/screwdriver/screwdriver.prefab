@@ -81,6 +81,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.025
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0.6}
   rotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
   localOnly: 0
@@ -101,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -254,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -308,7 +309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -321,7 +322,7 @@ MonoBehaviour:
       type: {class: Toggle, ns: VF.Model.Feature, asm: VRCFury}
       data:
         version: 3
-        name: Tools/Screwdriver
+        name: Equipment/Screwdriver
         state:
           actions:
           - rid: 2589806632127955282

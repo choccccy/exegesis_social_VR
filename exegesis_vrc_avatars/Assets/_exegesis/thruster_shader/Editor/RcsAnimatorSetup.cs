@@ -10,16 +10,20 @@ namespace Exegesis.RcsThruster
     /// <summary>
     /// Builds the RCS layers into ncho_fx.controller.
     ///
-    /// This is a script rather than hand-edited YAML because the controller has 52
-    /// layers and 117 states; surgery on that by hand is how GUIDs get mangled. It is
-    /// also idempotent - it deletes and rebuilds anything named rcs_* - so it can be
-    /// re-run after tweaking the constants below.
+    /// This is a script rather than hand-edited YAML because the controller carries dozens of
+    /// layers; surgery on that by hand is how GUIDs get mangled. It is also idempotent - it
+    /// deletes and rebuilds anything named rcs_* - so it can be re-run after tweaking the
+    /// constants below.
     ///
     /// What it creates:
-    ///   rcs_smooth   - exponential lag copies of the built-in locomotion params
-    ///   rcs_publish  - normalised velocity + lag pushed onto the material
-    ///   rcs_imu      - pendulum contact readout pushed onto the material
-    ///   rcs_master   - the menu on/off toggle
+    ///   rcs_smooth     - exponential lag copies of the built-in locomotion params
+    ///   rcs_pub_*      - normalised velocity + lag pushed onto the material
+    ///   rcs_imu        - pendulum contact readout pushed onto the material
+    ///   rcs_master     - the menu on/off toggle
+    ///   rcs_group_*    - visibility gates, driven by the accessory slots
+    ///
+    /// The group layers read the slot ints that NchoSlotSetup owns, so run that tool first
+    /// when both are being rebuilt. See docs/accessories.md.
     ///
     /// The shader does the differentiation (live minus lagged) and the whole thrust
     /// allocation, so nothing here needs to do arithmetic beyond a lerp.
@@ -57,15 +61,25 @@ namespace Exegesis.RcsThruster
 
         private const string MasterParam = "rcs";
 
-        // All three already exist as expression parameters; the group layers ride on them.
-        // Either pack covers the Body back thrusters, so that gate is an OR.
-        private const string ThrusterPackParam = "thruster_backpack";
-        private const string ArmPackParam = "arm_backpack";
-        private const string WingsParam = "wings_deployed";
+        // Accessory SLOT ints, built by NchoSlotSetup - see docs/accessories.md. 0 = nothing
+        // worn on that mount, 1 = first accessory, 2 = second.
+        //
+        // These replaced four bools (thruster_backpack, arm_backpack, thigh_hard-cases,
+        // thigh_thrusters), and this layer is the clearest illustration of why. The back gate
+        // used to be an OR across two bools, expressed as two separate transitions because
+        // conditions within one transition are ANDed - and every new back accessory would
+        // have had to be added to it. "Is anything on the back" is now one condition,
+        // back_slot != 0, and a third back accessory needs no change here at all.
+        private const string BackSlotParam = "back_slot";
+        private const string ThighSlotParam = "thigh_slot";
 
-        // Drives the thigh thruster packs. Unrelated to thigh_hard-cases, which is a
-        // different item entirely. The build warns if it is missing from the controller.
-        private const string ThighParam = "thigh_thrusters";
+        // The value of thigh_slot that means the thruster packs specifically, as opposed to
+        // the hard-cases (1), which carry no thrusters. Must match the slot table in
+        // NchoSlotSetup; SlotParameterTests pins the pair.
+        private const int ThighSlotThrusters = 2;
+
+        // Still a plain bool: the wings are not a mount point, they are deployed or stowed.
+        private const string WingsParam = "wings_deployed";
 
         private const string LayerSmooth = "rcs_smooth";
         private const string LayerImu = "rcs_imu";
@@ -97,7 +111,8 @@ namespace Exegesis.RcsThruster
             ("rcs_imu_zn", "_RCS_ImuDeflect.z", -1f),
         };
 
-        [MenuItem("Tools/Exegesis/Build RCS Animator Layers")]
+        // Priority 2: sits directly under Build ncho Slot Layers, which must be run first.
+        [MenuItem("Tools/Exegesis/Build RCS Animator Layers", false, 2)]
         private static void Build()
         {
             var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
@@ -153,7 +168,7 @@ namespace Exegesis.RcsThruster
         ///
         /// A normal rebuild removes it, since teardown matches the rcs_ prefix.
         /// </summary>
-        [MenuItem("Tools/Exegesis/RCS Debug - Add Forced Velocity Layer")]
+        [MenuItem("Tools/Exegesis/Debug/RCS - Add Forced Velocity Layer", false, 101)]
         private static void AddForcedVelocityLayer()
         {
             var c = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
@@ -209,7 +224,7 @@ namespace Exegesis.RcsThruster
         /// Pair it with the plain-clip probe: that one is known to work, so the two
         /// together isolate the blend tree as the only difference.
         /// </summary>
-        [MenuItem("Tools/Exegesis/RCS Debug - Add Blend Tree Probe Layer")]
+        [MenuItem("Tools/Exegesis/Debug/RCS - Add Blend Tree Probe Layer", false, 102)]
         private static void AddBlendTreeProbeLayer()
         {
             var c = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
@@ -265,17 +280,20 @@ namespace Exegesis.RcsThruster
             foreach (var (param, _, _) in ImuAxes)
                 EnsureFloat(c, param, 0f);
 
-            EnsureBool(c, MasterParam, true);
+            EnsureParameter(c, MasterParam, AnimatorControllerParameterType.Bool);
 
-            // The group layers condition on these, and a transition referencing a
-            // parameter the controller does not declare is not a valid animator. Ensuring
-            // them means the layers build cleanly before the VRChat expression parameters
-            // exist - which matters for thigh_thrusters, whose hardware is not authored
-            // yet. EnsureBool leaves existing parameters and their saved values alone.
-            EnsureBool(c, ThrusterPackParam, false);
-            EnsureBool(c, ArmPackParam, false);
-            EnsureBool(c, WingsParam, false);
-            EnsureBool(c, ThighParam, false);
+            // The group layers condition on these, and a transition referencing a parameter
+            // the controller does not declare is not a valid animator. Ensuring them means
+            // the layers build cleanly whatever order the two setup tools are run in.
+            //
+            // TYPE matters as much as existence here. An Equals condition on a parameter the
+            // controller believes is a Bool never matches, so a leftover Bool named back_slot
+            // would leave both group layers permanently in one state with nothing to report
+            // it - which is precisely the shape of failure this project keeps losing hours to.
+            // EnsureParameter corrects the type and says so.
+            EnsureParameter(c, BackSlotParam, AnimatorControllerParameterType.Int);
+            EnsureParameter(c, ThighSlotParam, AnimatorControllerParameterType.Int);
+            EnsureParameter(c, WingsParam, AnimatorControllerParameterType.Bool);
 
             // The built-ins are already declared on this controller, but assert rather
             // than assume - a missing one would silently produce a dead layer.
@@ -315,17 +333,35 @@ namespace Exegesis.RcsThruster
             });
         }
 
-        private static void EnsureBool(AnimatorController c, string name, bool defaultValue)
+        /// <summary>
+        /// Declares a parameter if it is missing, and CORRECTS ITS TYPE if it exists as
+        /// something else. Existing defaults are left alone - these are VRChat expression
+        /// parameters with saved user values, and this tool has no business resetting them.
+        ///
+        /// The type correction replaces an earlier EnsureBool that returned early whenever the
+        /// name already existed. That was fine while every one of these was a bool, but it
+        /// meant retyping a parameter left the OLD type in place and silently inert: no error,
+        /// no warning, just conditions that never match. Getting a loud message instead is the
+        /// entire value of this function.
+        /// </summary>
+        private static void EnsureParameter(AnimatorController c, string name,
+                                           AnimatorControllerParameterType type)
         {
-            foreach (var p in c.parameters)
-                if (p.name == name) return;
-
-            c.AddParameter(new AnimatorControllerParameter
+            var ps = c.parameters;
+            for (int i = 0; i < ps.Length; i++)
             {
-                name = name,
-                type = AnimatorControllerParameterType.Bool,
-                defaultBool = defaultValue,
-            });
+                if (ps[i].name != name) continue;
+                if (ps[i].type == type) return;
+
+                Debug.LogWarning($"[RCS] Parameter '{name}' was declared {ps[i].type}; corrected " +
+                                 $"to {type}. Anything else conditioning on it as {ps[i].type} is " +
+                                 "now inert - check the hand-built layers.");
+                ps[i].type = type;
+                c.parameters = ps;
+                return;
+            }
+
+            c.AddParameter(new AnimatorControllerParameter { name = name, type = type });
         }
 
         // ------------------------------------------------------------------ layers
@@ -577,13 +613,14 @@ namespace Exegesis.RcsThruster
         // Membership lives in vertex green, so both components are written on both
         // renderer paths - which renderer a thruster sits on decides nothing, the
         // painting decides everything. One layer per group: they switch on different
-        // parameters, and one of them is an OR that needs its own transitions.
+        // parameters.
 
-        // Group 1 - Body back thrusters the packs cover. Silent while EITHER pack is on.
+        // Group 1 - Body back thrusters, covered by whatever is on the back mount. Silent
+        // whenever the back slot holds anything at all, which is one condition regardless of
+        // how many back accessories exist.
         private static void BuildGroupPacksLayer(AnimatorController c)
         {
-            WarnIfMissing(c, ThrusterPackParam, LayerGroupPacks);
-            WarnIfMissing(c, ArmPackParam, LayerGroupPacks);
+            WarnIfMissing(c, BackSlotParam, LayerGroupPacks);
 
             var clear = AddLayerWithState(c, LayerGroupPacks, "packs_stowed", out var sm);
             clear.motion = MaterialClip("rcs_group_packs_clear", "_GroupEnable.x", 1f);
@@ -592,23 +629,15 @@ namespace Exegesis.RcsThruster
             covered.writeDefaultValues = false;
             covered.motion = MaterialClip("rcs_group_packs_covered", "_GroupEnable.x", 0f);
 
-            // OR needs two separate transitions - conditions within one transition are
-            // ANDed, so a single transition could only express "both packs on".
-            foreach (var p in new[] { ThrusterPackParam, ArmPackParam })
-            {
-                var t = clear.AddTransition(covered);
-                t.hasExitTime = false;
-                t.duration = 0f;
-                t.AddCondition(AnimatorConditionMode.If, 0f, p);
-            }
+            var toCovered = clear.AddTransition(covered);
+            toCovered.hasExitTime = false;
+            toCovered.duration = 0f;
+            toCovered.AddCondition(AnimatorConditionMode.NotEqual, 0f, BackSlotParam);
 
-            // Back only once BOTH are off, which is a plain AND: one transition, two
-            // conditions.
             var back = covered.AddTransition(clear);
             back.hasExitTime = false;
             back.duration = 0f;
-            back.AddCondition(AnimatorConditionMode.IfNot, 0f, ThrusterPackParam);
-            back.AddCondition(AnimatorConditionMode.IfNot, 0f, ArmPackParam);
+            back.AddCondition(AnimatorConditionMode.Equals, 0f, BackSlotParam);
 
             sm.defaultState = clear;
         }
@@ -638,10 +667,13 @@ namespace Exegesis.RcsThruster
             sm.defaultState = stowed;
         }
 
-        // Group 3 - the thigh pack plumes, which only exist while those packs are worn.
+        // Group 3 - the thigh pack plumes, which exist only for one specific member of the
+        // thigh slot. Note this is Equals a member value, not "anything worn": the thigh
+        // hard-cases occupy the same mount but carry no thrusters, so their plumes must stay
+        // dark. That distinction is exactly what a slot int expresses and a bool cannot.
         private static void BuildGroupThighsLayer(AnimatorController c)
         {
-            WarnIfMissing(c, ThighParam, LayerGroupThighs);
+            WarnIfMissing(c, ThighSlotParam, LayerGroupThighs);
 
             var stowed = AddLayerWithState(c, LayerGroupThighs, "thighs_stowed", out var sm);
             stowed.motion = MaterialClip("rcs_group_thighs_stowed", "_GroupEnable.z", 0f);
@@ -653,12 +685,12 @@ namespace Exegesis.RcsThruster
             var toWorn = stowed.AddTransition(worn);
             toWorn.hasExitTime = false;
             toWorn.duration = 0f;
-            toWorn.AddCondition(AnimatorConditionMode.If, 0f, ThighParam);
+            toWorn.AddCondition(AnimatorConditionMode.Equals, ThighSlotThrusters, ThighSlotParam);
 
             var toStowed = worn.AddTransition(stowed);
             toStowed.hasExitTime = false;
             toStowed.duration = 0f;
-            toStowed.AddCondition(AnimatorConditionMode.IfNot, 0f, ThighParam);
+            toStowed.AddCondition(AnimatorConditionMode.NotEqual, ThighSlotThrusters, ThighSlotParam);
 
             sm.defaultState = stowed;
         }

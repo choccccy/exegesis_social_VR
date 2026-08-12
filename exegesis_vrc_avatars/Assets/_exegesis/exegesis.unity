@@ -20016,7 +20016,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   colliders: []
   limitType: 2
-  maxAngleX: 5
+  maxAngleX: 15
   maxAngleXCurve:
     serializedVersion: 2
     m_Curve: []
@@ -25438,7 +25438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &237602558
 Transform:
   m_ObjectHideFlags: 0
@@ -25516,7 +25516,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  immobileType: 0
+  immobileType: 1
   immobile: 0.95
   immobileCurve:
     serializedVersion: 2
@@ -25610,7 +25610,7 @@ MonoBehaviour:
     contentTypes: -1
   snapToHand: 0
   grabMovement: 1
-  maxStretch: 3
+  maxStretch: 6
   maxStretchCurve:
     serializedVersion: 2
     m_Curve: []
@@ -89125,7 +89125,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   colliders: []
   limitType: 2
-  maxAngleX: 5
+  maxAngleX: 15
   maxAngleXCurve:
     serializedVersion: 2
     m_Curve: []
@@ -146716,30 +146716,14 @@ MonoBehaviour:
     name: '[props]_hard-case_mounts_on'
   - hash: -1753791718
     name: empty
-  - hash: -909695488
-    name: empty
-  - hash: 457208893
-    name: '[props]_thigh_hard-cases_on'
   - hash: -841854469
     name: '[props]_arm_hard-cases_on'
   - hash: -879885166
     name: empty
-  - hash: -794887854
-    name: empty
-  - hash: -1813852590
-    name: '[props]_thruster_backpack_on'
   - hash: -1528477262
     name: empty
   - hash: 364164441
     name: '[props]_wings_deployed'
-  - hash: -767108731
-    name: empty
-  - hash: -693870166
-    name: '[props]_thigh_thrusters_on'
-  - hash: -1094870028
-    name: empty
-  - hash: -1543942605
-    name: '[props]_arm_backpack_on'
   - hash: -1273056761
     name: empty
   - hash: 518630372
@@ -146824,6 +146808,26 @@ MonoBehaviour:
     name: '[ncho]_eyeshadow_off'
   - hash: 139445988
     name: '[ncho]_eyeshadow_on'
+  - hash: -1158227781
+    name: idle
+  - hash: -1218213988
+    name: thruster_backpack
+  - hash: -1834241777
+    name: arm_backpack
+  - hash: 2110359754
+    name: idle
+  - hash: 2079511354
+    name: thigh_hard-cases
+  - hash: 1904782767
+    name: thigh_thrusters
+  - hash: -565549104
+    name: idle
+  - hash: -608100891
+    name: bare
+  - hash: 489286490
+    name: rcs_full
+  - hash: -1230831910
+    name: hard_cases
   - hash: -1469022152
     name: smooth
   - hash: 2146267610
@@ -148988,30 +148992,14 @@ MonoBehaviour:
     name: '[props]_hard-case_mounts_on'
   - hash: -1753791718
     name: empty
-  - hash: -909695488
-    name: empty
-  - hash: 457208893
-    name: '[props]_thigh_hard-cases_on'
   - hash: -841854469
     name: '[props]_arm_hard-cases_on'
   - hash: -879885166
     name: empty
-  - hash: -794887854
-    name: empty
-  - hash: -1813852590
-    name: '[props]_thruster_backpack_on'
   - hash: -1528477262
     name: empty
   - hash: 364164441
     name: '[props]_wings_deployed'
-  - hash: -767108731
-    name: empty
-  - hash: -693870166
-    name: '[props]_thigh_thrusters_on'
-  - hash: -1094870028
-    name: empty
-  - hash: -1543942605
-    name: '[props]_arm_backpack_on'
   - hash: -1273056761
     name: empty
   - hash: 518630372
@@ -149096,6 +149084,26 @@ MonoBehaviour:
     name: '[ncho]_eyeshadow_off'
   - hash: 139445988
     name: '[ncho]_eyeshadow_on'
+  - hash: -1158227781
+    name: idle
+  - hash: -1218213988
+    name: thruster_backpack
+  - hash: -1834241777
+    name: arm_backpack
+  - hash: 2110359754
+    name: idle
+  - hash: 2079511354
+    name: thigh_hard-cases
+  - hash: 1904782767
+    name: thigh_thrusters
+  - hash: -565549104
+    name: idle
+  - hash: -608100891
+    name: bare
+  - hash: 489286490
+    name: rcs_full
+  - hash: -1230831910
+    name: hard_cases
   - hash: -1469022152
     name: smooth
   - hash: 2146267610
@@ -225769,7 +225777,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  immobileType: 0
+  immobileType: 1
   immobile: 0.95
   immobileCurve:
     serializedVersion: 2

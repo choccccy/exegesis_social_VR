@@ -27,7 +27,7 @@ shader**, so `Material.HasProperty` is (correctly) false for them.
 
 1. **Capture baselines on the CURRENT (known-good) shader**, then eyeball them, then
    commit. Two ways:
-   - In-Editor: `Tools > Exegesis > Capture HUD Golden Baselines`.
+   - In-Editor: `Tools > Exegesis > Debug > Capture HUD Golden Baselines`.
    - Headless: run the suite with env `HUD_CAPTURE_BASELINES=1` (the run script's
      `-Capture` switch) — the golden test writes the baseline instead of comparing.
 2. Baselines are committed PNGs in `Tests/Editor/GoldenImage/Baselines/`. They are the

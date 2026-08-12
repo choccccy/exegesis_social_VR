@@ -12,7 +12,7 @@ namespace Exegesis.HudShader.Tests
     /// </summary>
     internal static class HudGoldenBaselineCapture
     {
-        [MenuItem("Tools/Exegesis/Capture HUD Golden Baselines")]
+        [MenuItem("Tools/Exegesis/Debug/Capture HUD Golden Baselines", false, 121)]
         public static void CaptureAll()
         {
             if (HudTestConstants.LoadMaterial() == null)

@@ -13,6 +13,10 @@ Project documentation for the exegesis ncho VRChat avatar (Unity 2022.3.22f1, Bi
   that is worth reading before touching any of it.
 - **[rcs-imu.md](rcs-imu.md)** — build spec for the optional PhysBone pendulum that gives
   the thrusters pitch and roll. Not currently on the avatar.
+- **[accessories.md](accessories.md)** — the accessory slot system: one int per mount point,
+  the Poiyomi tile census, the preset layer, and how the RCS visibility gates read it.
+- **[animator-generation.md](animator-generation.md)** — the two generator tools, the animator
+  invariants they encode, and what a migration to Animator As Code would have to preserve.
 
 `AGENTS.md` at the project root is the tool-agnostic entry point that points here.
 `CLAUDE.md` is a thin file that `@import`s `AGENTS.md` (Claude Code auto-loads

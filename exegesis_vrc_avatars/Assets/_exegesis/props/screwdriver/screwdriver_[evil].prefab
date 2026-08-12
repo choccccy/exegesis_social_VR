@@ -113,6 +113,7 @@ MonoBehaviour:
   shapeType: 1
   radius: 0.025
   height: 0.6
+  size: {x: 1, y: 1, z: 1}
   position: {x: 0, y: 0, z: 0.6}
   rotation: {x: 0.70710677, y: 0, z: 0, w: 0.70710677}
   localOnly: 0
@@ -133,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -219,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -232,7 +233,7 @@ MonoBehaviour:
       type: {class: Toggle, ns: VF.Model.Feature, asm: VRCFury}
       data:
         version: 3
-        name: Tools/Screwdriver/Plug Mode
+        name: Equipment/Screwdriver/Plug Mode
         state:
           actions:
           - rid: 2589806632127955286
@@ -314,7 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 10
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   autoRenderer: 1
   autoPosition: 1
   autoLength: 1
@@ -345,6 +346,10 @@ MonoBehaviour:
   depthActions: []
   depthActions2: []
   useHipAvoidance: 1
+  useSharedTag: 1
+  useLights: 1
+  includeTags: []
+  excludeTags: []
   configureSps: 0
   spsBoneMask: 1
   spsTextureMask:
@@ -477,7 +482,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -531,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -544,7 +549,7 @@ MonoBehaviour:
       type: {class: Toggle, ns: VF.Model.Feature, asm: VRCFury}
       data:
         version: 3
-        name: Tools/Screwdriver/Enabled
+        name: Equipment/Screwdriver/Enabled
         state:
           actions:
           - rid: 2589806632127955282
@@ -615,7 +620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1279.0
+  vrcfuryVersion: 1.1352.0
   somethingIsBroken: 0
   config:
     features: []
@@ -628,7 +633,7 @@ MonoBehaviour:
       type: {class: SetIcon, ns: VF.Model.Feature, asm: VRCFury}
       data:
         version: 1
-        path: Tools/Screwdriver
+        path: Equipment/Screwdriver
         icon:
           version: 1
           fileID: 0

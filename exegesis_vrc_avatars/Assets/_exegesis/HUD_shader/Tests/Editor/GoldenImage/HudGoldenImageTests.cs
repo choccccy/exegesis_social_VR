@@ -9,7 +9,7 @@ namespace Exegesis.HudShader.Tests
     /// baseline PNG. This is the only layer that catches *visual* regressions from
     /// cginc edits that still compile cleanly.
     ///
-    /// Baselines are captured deliberately via Tools > Exegesis > Capture HUD Golden
+    /// Baselines are captured deliberately via Tools > Exegesis > Debug > Capture HUD Golden
     /// Baselines (so a human eyeballs them before they become the source of truth).
     /// A missing baseline fails the test rather than silently self-healing.
     /// </summary>
@@ -61,7 +61,7 @@ namespace Exegesis.HudShader.Tests
             {
                 Assert.Fail(
                     $"No baseline for '{stateName}' at {baselinePath}. " +
-                    "Run: Tools > Exegesis > Capture HUD Golden Baselines (on the CURRENT shader) " +
+                    "Run: Tools > Exegesis > Debug > Capture HUD Golden Baselines (on the CURRENT shader) " +
                     "and eyeball the PNGs before committing them.");
             }
 

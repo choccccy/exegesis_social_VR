@@ -88,7 +88,7 @@ namespace Exegesis.RcsThruster.Tests
                 {
                     Assert.Fail(
                         $"No baseline for '{stateName}' at {baselinePath}. " +
-                        "Run: Tools > Exegesis > Capture RCS Golden Baselines (on the CURRENT shader), " +
+                        "Run: Tools > Exegesis > Debug > Capture RCS Golden Baselines (on the CURRENT shader), " +
                         "eyeball the PNGs, then commit them.");
                 }
 

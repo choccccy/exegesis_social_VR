@@ -128,8 +128,8 @@ material does not declare.** A zero means either "the value is zero" or "you ask
 object", and nothing distinguishes them.
 
 The shader cannot be fooled by any of this — it reads whatever the renderer actually has. So
-`_DebugView` is the source of truth, and `Tools > Exegesis > RCS Test Driver` deliberately only
-*drives* the system rather than reporting on it.
+`_DebugView` is the source of truth, and `Tools > Exegesis > Debug > RCS Test Driver`
+deliberately only *drives* the system rather than reporting on it.
 
 **Meta-rule:** when a measurement says something is impossible and your eyes say otherwise,
 suspect the measurement. The panel insisted the group gates never changed while the plumes were
@@ -372,9 +372,14 @@ blue free:
 | Painted G | Band | Group | Gated by | Live when | Used for |
 |---|---|---|---|---|---|
 | `0.00` | `< 0.125` | 0 | never gated | always | every ordinary thruster |
-| `0.25` | `0.125 … 0.375` | **3** | `_GroupEnable.z` | `thigh_thrusters` on | thigh pack plumes |
-| `0.50` | `0.375 … 0.75` | 1 | `_GroupEnable.x` | **neither** `thruster_backpack` **nor** `arm_backpack` on | Body back thrusters the packs cover |
+| `0.25` | `0.125 … 0.375` | **3** | `_GroupEnable.z` | `thigh_slot == 2` | thigh pack plumes |
+| `0.50` | `0.375 … 0.75` | 1 | `_GroupEnable.x` | `back_slot == 0` | Body back thrusters the packs cover |
 | `1.00` | `≥ 0.75` | 2 | `_GroupEnable.y` | `wings_deployed` on | backpack plumes |
+
+Those conditions read **accessory slot ints** — one int per mount point, `0` = bare — which is
+why the back gate is a single condition rather than an OR across every back accessory. See
+[accessories.md](accessories.md); it also covers why the thigh gate tests one specific member
+(`== 2`) while the back gate tests "anything worn" (`!= 0`).
 
 Index 3 is out of numeric order on purpose: keeping `0.5 → 1` and `1.0 → 2` preserves what
 existing paint already means, so adding a group repaints nothing.
@@ -468,9 +473,13 @@ the controller has far too many layers to edit safely by hand.
 | `rcs_pub_*` (one per axis, live and lagged) | Normalises each value onto the material. |
 | `rcs_imu` | Sums the four contact proximities into a signed `_RCS_ImuDeflect`. |
 | `rcs_master` | Two-state menu toggle on the `rcs` bool. |
-| `rcs_group_packs` | `_GroupEnable.x` |
-| `rcs_group_wings` | `_GroupEnable.y` |
-| `rcs_group_thighs` | `_GroupEnable.z` |
+| `rcs_group_packs` | `_GroupEnable.x`, from `back_slot` |
+| `rcs_group_wings` | `_GroupEnable.y`, from `wings_deployed` |
+| `rcs_group_thighs` | `_GroupEnable.z`, from `thigh_slot` |
+
+The group layers read parameters that a **different** tool declares, so when rebuilding both,
+run `Build ncho Slot Layers` first — see [accessories.md](accessories.md).
+`SlotParameterTests` fails with both menu paths in its message if either half is missing.
 
 Two Unity behaviours make this compact:
 
@@ -570,6 +579,7 @@ See [testing.md](testing.md) for the headless clone workflow; the RCS suite plug
 | `MaterialBindingTests` | That a **slot-[1]** material is reachable by the plain `material._Prop` binding the clips use. |
 | `NeutralDefaultTests` | Footgun 1 — vertex-keyed features ship a no-op default. |
 | `GeneratedClipTests` | Footgun 2 — no generated clip is curve-less; every gate pair drives 0 and 1 on both renderers. |
+| `SlotParameterTests` | That the group layers gate on the accessory slot ints with `Equals`/`NotEqual`, and that no retired bool is still wired up. See [accessories.md](accessories.md). |
 | `GoldenImage/` | The allocation maths, rendered. |
 
 **The golden rig is a cube**, which is close to ideal: its six faces have exactly the six
