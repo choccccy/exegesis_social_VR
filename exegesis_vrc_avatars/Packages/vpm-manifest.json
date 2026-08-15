@@ -116,6 +116,9 @@
     },
     "com.i5ucc.vrcmultiuploader": {
       "version": "0.1.7"
+    },
+    "dev.vrlabs.world-constraint": {
+      "version": "1.2.5"
     }
   },
   "locked": {
@@ -334,6 +337,17 @@
     },
     "com.i5ucc.vrcmultiuploader": {
       "version": "0.1.7",
+      "dependencies": {}
+    },
+    "dev.vrlabs.world-constraint": {
+      "version": "1.2.5",
+      "dependencies": {
+        "com.vrchat.avatars": "^3.7.0",
+        "dev.vrlabs.instancer": ">=1.0.2"
+      }
+    },
+    "dev.vrlabs.instancer": {
+      "version": "1.0.6",
       "dependencies": {}
     }
   }

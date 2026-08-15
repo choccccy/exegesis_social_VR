@@ -1,7 +1,11 @@
 {
     "name": "Exegesis.RcsThruster.Editor",
     "rootNamespace": "Exegesis.RcsThruster",
-    "references": [],
+    "references": [
+        "AnimatorAsCode.V1",
+        "Exegesis.Aac.Editor",
+        "Exegesis.Shared.Editor"
+    ],
     "includePlatforms": [
         "Editor"
     ],

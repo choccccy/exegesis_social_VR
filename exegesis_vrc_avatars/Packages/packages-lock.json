@@ -371,8 +371,20 @@
       "source": "embedded",
       "dependencies": {}
     },
+    "dev.vrlabs.instancer": {
+      "version": "file:dev.vrlabs.instancer",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "dev.vrlabs.vrcsdkplus": {
       "version": "file:dev.vrlabs.vrcsdkplus",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
+    "dev.vrlabs.world-constraint": {
+      "version": "file:dev.vrlabs.world-constraint",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}

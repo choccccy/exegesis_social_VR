@@ -100,12 +100,14 @@ defences now exist:
    each gate pair must drive its component to 0 in the off state and 1 in the on state, on
    **both** `Body` and `Props`.
 
-To check by hand — an empty clip is ~1.3 KB against ~4.3 KB for a two-path gate clip:
+To check by hand: the clips are sub-assets of `ncho_fx.controller` now, not files, so count the
+material attributes per clip block in the controller YAML.
 
 ```bash
-for f in Assets/_exegesis/ncho/ncho_anim/rcs_generated/*.anim; do
-  printf "%-42s %s\n" "$(basename $f)" "$(grep -c 'attribute: material' $f)"
-done
+awk '/^AnimationClip:/{name=""} /^  m_Name: rcs_/{name=$2; n=0}
+     /attribute: material/{n++}
+     /^  m_ClipBindingConstant:/{if(name) printf "%-42s %s\n", name, n}' \
+  Assets/_exegesis/ncho/ncho_anim/ncho_fx.controller
 ```
 
 Zero is expected **only** for the `*_smoothed_hi/lo` clips, which drive Animator *parameters*
@@ -462,10 +464,15 @@ rename.
 ## FX layers
 
 Built by `Tools > Exegesis > Build RCS Animator Layers`, which is idempotent: it deletes and
-rebuilds every layer whose name starts `rcs_` and wipes `ncho_anim/rcs_generated/`. Teardown
-matches on that **prefix**, not a name list — an earlier rename left an orphan layer behind
-because its old name was no longer in the list. Prefer re-running the tool over hand-editing;
-the controller has far too many layers to edit safely by hand.
+rebuilds every layer whose name starts `rcs_`, and sweeps the sub-assets that leaves orphaned.
+Teardown matches on that **prefix**, not a name list — an earlier rename left an orphan layer
+behind because its old name was no longer in the list. Prefer re-running the tool over
+hand-editing; the controller has far too many layers to edit safely by hand, and
+`GeneratorIdempotenceTests` fails if the committed asset stops matching a fresh build.
+
+The generated clips are **sub-assets of `ncho_fx.controller`**, not files. They used to be 38
+`.anim` files in `ncho_anim/rcs_generated/`; that folder is gone. See
+[animator-generation.md](animator-generation.md).
 
 | Layer | Does |
 |---|---|

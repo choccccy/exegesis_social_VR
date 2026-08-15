@@ -1,7 +1,12 @@
 {
     "name": "Exegesis.Ncho.Editor",
     "rootNamespace": "Exegesis.Ncho",
-    "references": [],
+    "references": [
+        "AnimatorAsCode.V1",
+        "AnimatorAsCode.V1.VRChat",
+        "Exegesis.Aac.Editor",
+        "Exegesis.Shared.Editor"
+    ],
     "includePlatforms": [
         "Editor"
     ],

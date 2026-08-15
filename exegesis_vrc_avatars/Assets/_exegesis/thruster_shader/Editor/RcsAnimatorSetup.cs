@@ -1,6 +1,8 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using AnimatorAsCode.V1;
+using Exegesis.Aac;
+using Exegesis.Shared;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -27,13 +29,19 @@ namespace Exegesis.RcsThruster
     ///
     /// The shader does the differentiation (live minus lagged) and the whole thrust
     /// allocation, so nothing here needs to do arithmetic beyond a lerp.
+    ///
+    /// Built with Animator As Code, including the clips - which now live as sub-assets of the
+    /// controller rather than as files in an rcs_generated folder. Three things AAC does not
+    /// do are handled here: parameter declaration (AAC matches by name and will not correct a
+    /// wrong type), Direct blend tree normalisation (AAC never touches it, and this design
+    /// depends on it), and cleanup of the sub-assets it orphans.
+    ///
+    /// No VRChat SDK dependency, deliberately - see the header of NchoSlotSetup.
     /// </summary>
-    internal static class RcsAnimatorSetup
+    public static class RcsAnimatorSetup
     {
-        private const string ControllerPath =
+        public const string DefaultControllerPath =
             "Assets/_exegesis/ncho/ncho_anim/ncho_fx.controller";
-        private const string GeneratedClipDir =
-            "Assets/_exegesis/ncho/ncho_anim/rcs_generated";
 
         // Renderers carrying thrusters.mat in material slot [1].
         private static readonly string[] RendererPaths = { "Body", "Props" };
@@ -81,18 +89,25 @@ namespace Exegesis.RcsThruster
         // Still a plain bool: the wings are not a mount point, they are deployed or stowed.
         private const string WingsParam = "wings_deployed";
 
-        private const string LayerSmooth = "rcs_smooth";
-        private const string LayerImu = "rcs_imu";
-        private const string LayerMaster = "rcs_master";
-        private const string LayerGroupPacks = "rcs_group_packs";
-        private const string LayerGroupWings = "rcs_group_wings";
-        private const string LayerGroupThighs = "rcs_group_thighs";
+        // AAC layer suffixes. With ExegesisDefaultsProvider these compose as "rcs" + "_" +
+        // suffix, so "smooth" produces the layer rcs_smooth.
+        private const string SystemName = "rcs";
+        private const string SuffixSmooth = "smooth";
+        private const string SuffixImu = "imu";
+        private const string SuffixMaster = "master";
+        private const string SuffixGroupPacks = "group_packs";
+        private const string SuffixGroupWings = "group_wings";
+        private const string SuffixGroupThighs = "group_thighs";
 
         // Teardown matches on PREFIX, not an explicit list. An earlier rename left the
         // old layer orphaned in the controller because its name was no longer in the
-        // list that RemoveExistingLayers consults - prefix matching makes renames safe.
+        // list that the teardown consulted - prefix matching makes renames safe.
         private const string LayerPrefix = "rcs_";
 
+        // Namespaces the sub-assets AAC creates. Must differ from the slot tool's key.
+        private const string AssetKey = "rcs";
+
+        private const string LogPrefix = "[RCS]";
 
         // Built-in param -> the material vector component it drives.
         private static readonly (string Param, string Prop, float Max)[] Axes =
@@ -113,40 +128,56 @@ namespace Exegesis.RcsThruster
 
         // Priority 2: sits directly under Build ncho Slot Layers, which must be run first.
         [MenuItem("Tools/Exegesis/Build RCS Animator Layers", false, 2)]
-        private static void Build()
+        private static void BuildFromMenu()
         {
-            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
+            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(DefaultControllerPath);
             if (controller == null)
             {
                 EditorUtility.DisplayDialog("RCS setup",
-                    $"Could not load the FX controller at:\n{ControllerPath}", "OK");
+                    $"Could not load the FX controller at:\n{DefaultControllerPath}", "OK");
                 return;
             }
 
-            // Deliberately NOT wrapped in StartAssetEditing/StopAssetEditing: this
-            // creates assets as it goes, and AssetDatabase.CreateAsset inside a batched
-            // edit is unreliable.
-            RemoveExistingLayers(controller);
-            ResetClipDir();
+            Build(controller);
+        }
+
+        /// <summary>
+        /// Rebuilds every rcs_* layer in the given controller. The menu item passes the
+        /// committed controller; the tests pass a scratch copy.
+        /// </summary>
+        public static void Build(AnimatorController controller)
+        {
+            // Teardown BEFORE AAC sees the controller, so AAC always appends a new layer rather
+            // than clearing an existing one - the clearing path detaches states and transitions
+            // without destroying them and leaks them into the committed file.
+            ExegesisAac.RemoveLayersByPrefix(controller, LayerPrefix);
             EnsureParameters(controller);
 
-            BuildSmoothLayer(controller);
-            BuildPublishLayers(controller);
-            BuildImuLayer(controller);
-            BuildMasterLayer(controller);
-            BuildGroupPacksLayer(controller);
-            BuildGroupWingsLayer(controller);
-            BuildGroupThighsLayer(controller);
+            var aac = ExegesisAac.Create(controller, SystemName, AssetKey);
+
+            BuildSmoothLayer(aac, controller);
+            BuildPublishLayers(aac, controller);
+            BuildImuLayer(aac, controller);
+            BuildMasterLayer(aac, controller);
+            BuildGroupPacksLayer(aac, controller);
+            BuildGroupWingsLayer(aac, controller);
+            BuildGroupThighsLayer(aac, controller);
+
+            // AAC creates a throwaway empty clip per layer, and the previous build's clips and
+            // trees are now unreferenced. Without this the committed controller grows on every
+            // rebuild, and no other test would notice - the snapshot only walks what the layers
+            // still reference.
+            AnimatorAssets.SweepUnreachableSubAssets(controller, LogPrefix);
 
             EditorUtility.SetDirty(controller);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            VerifyGeneratedClips();
+            VerifyGeneratedClips(controller);
 
             int rcsLayers = controller.layers.Count(l => l.name != null && l.name.StartsWith(LayerPrefix));
-            Debug.Log($"[RCS] Rebuilt {rcsLayers} '{LayerPrefix}*' layers in {ControllerPath}. " +
-                      $"Generated clips are in {GeneratedClipDir}.");
+            Debug.Log($"{LogPrefix} Rebuilt {rcsLayers} '{LayerPrefix}*' layers in " +
+                      $"{AssetDatabase.GetAssetPath(controller)}.");
         }
 
         // ---------------------------------------------------------------- diagnostic
@@ -171,35 +202,24 @@ namespace Exegesis.RcsThruster
         [MenuItem("Tools/Exegesis/Debug/RCS - Add Forced Velocity Layer", false, 101)]
         private static void AddForcedVelocityLayer()
         {
-            var c = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
-            if (c == null) { Debug.LogError($"[RCS] No controller at {ControllerPath}"); return; }
+            var c = AssetDatabase.LoadAssetAtPath<AnimatorController>(DefaultControllerPath);
+            if (c == null) { Debug.LogError($"{LogPrefix} No controller at {DefaultControllerPath}"); return; }
 
-            // Drop any previous copy so this is repeatable.
-            var keep = new List<AnimatorControllerLayer>();
-            foreach (var layer in c.layers)
-            {
-                if (layer.name == LayerForceVel) DestroyStateMachineAssets(layer.stateMachine);
-                else keep.Add(layer);
-            }
-            c.layers = keep.ToArray();
+            ExegesisAac.RemoveLayersByName(c, new[] { LayerForceVel });
 
-            if (!AssetDatabase.IsValidFolder(GeneratedClipDir))
-            {
-                var parent = Path.GetDirectoryName(GeneratedClipDir).Replace('\\', '/');
-                AssetDatabase.CreateFolder(parent, Path.GetFileName(GeneratedClipDir));
-            }
-
-            var state = AddLayerWithState(c, LayerForceVel, "force", out _);
-            state.motion = MaterialClip("rcs_debug_forcevel", "_RCS_Vel.z", 0.5f);
+            var aac = ExegesisAac.Create(c, SystemName, AssetKey + "_debug");
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, "debug_forcevel");
+            layer.NewState("force")
+                 .WithAnimation(MaterialClip(aac, "rcs_debug_forcevel", "_RCS_Vel.z", 0.5f));
 
             EditorUtility.SetDirty(c);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            Debug.Log("[RCS] Added " + LayerForceVel + " writing _RCS_Vel.z = 0.5 from a plain " +
-                      "clip. Enter play mode and read the 'vel' column in the RCS Test Driver. " +
-                      "0.500 means blend trees are the problem; 0.000 means _RCS_Vel cannot be " +
-                      "reached at all. Re-run Build RCS Animator Layers to remove.");
+            Debug.Log($"{LogPrefix} Added " + LayerForceVel + " writing _RCS_Vel.z = 0.5 from a " +
+                      "plain clip. Enter play mode and read the 'vel' column in the RCS Test " +
+                      "Driver. 0.500 means blend trees are the problem; 0.000 means _RCS_Vel " +
+                      "cannot be reached at all. Re-run Build RCS Animator Layers to remove.");
         }
 
         private const string LayerTreeProbe = "rcs_debug_treeprobe";
@@ -227,286 +247,114 @@ namespace Exegesis.RcsThruster
         [MenuItem("Tools/Exegesis/Debug/RCS - Add Blend Tree Probe Layer", false, 102)]
         private static void AddBlendTreeProbeLayer()
         {
-            var c = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
-            if (c == null) { Debug.LogError($"[RCS] No controller at {ControllerPath}"); return; }
+            var c = AssetDatabase.LoadAssetAtPath<AnimatorController>(DefaultControllerPath);
+            if (c == null) { Debug.LogError($"{LogPrefix} No controller at {DefaultControllerPath}"); return; }
 
-            var keep = new List<AnimatorControllerLayer>();
-            foreach (var layer in c.layers)
-            {
-                if (layer.name == LayerTreeProbe) DestroyStateMachineAssets(layer.stateMachine);
-                else keep.Add(layer);
-            }
-            c.layers = keep.ToArray();
+            ExegesisAac.RemoveLayersByName(c, new[] { LayerTreeProbe });
 
-            EnsureClipFolder();
+            var aac = ExegesisAac.Create(c, SystemName, AssetKey + "_debug");
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, "debug_treeprobe");
 
-            var state = AddLayerWithState(c, LayerTreeProbe, "probe", out _);
-            var tree = NewTree(c, "rcs_debug_treeprobe_tree", BlendTreeType.Simple1D);
-            tree.blendParameter = "VelocityZ";
-            tree.AddChild(MaterialClip("rcs_debug_treeprobe", "_RCS_Vel.z", 0.7f), 0f);
-            state.motion = tree;
+            var tree = ExegesisAac.Tree1D(aac, "rcs_debug_treeprobe_tree",
+                                          Float(aac, "VelocityZ"));
+            tree.WithAnimation(MaterialClip(aac, "rcs_debug_treeprobe", "_RCS_Vel.z", 0.7f), 0f);
+            ExegesisAac.FinishTree1D(tree);
+
+            layer.NewState("probe").WithAnimation(tree);
 
             EditorUtility.SetDirty(c);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            Debug.Log("[RCS] Added " + LayerTreeProbe + ": a 1D tree with one child writing " +
-                      "_RCS_Vel.z = 0.7 regardless of the blend parameter. Enter play mode with " +
-                      "_DebugView 4. Blue means blend trees work and VelocityZ is the problem; " +
-                      "no blue means blend trees do not deliver. Re-run Build RCS Animator " +
-                      "Layers to remove.");
-        }
-
-        private static void EnsureClipFolder()
-        {
-            if (AssetDatabase.IsValidFolder(GeneratedClipDir)) return;
-            var parent = Path.GetDirectoryName(GeneratedClipDir).Replace('\\', '/');
-            AssetDatabase.CreateFolder(parent, Path.GetFileName(GeneratedClipDir));
+            Debug.Log($"{LogPrefix} Added " + LayerTreeProbe + ": a 1D tree with one child " +
+                      "writing _RCS_Vel.z = 0.7 regardless of the blend parameter. Enter play " +
+                      "mode with _DebugView 4. Blue means blend trees work and VelocityZ is the " +
+                      "problem; no blue means blend trees do not deliver. Re-run Build RCS " +
+                      "Animator Layers to remove.");
         }
 
         // ------------------------------------------------------------------ params
 
+        /// <summary>
+        /// Declared here rather than left to AAC. AAC's CreateParamIfNotExists matches by NAME
+        /// only, so a parameter already declared with the wrong type is silently kept - and an
+        /// Equals condition against something the controller believes is a Bool never matches
+        /// and never logs. That is precisely the shape of failure this project keeps losing
+        /// hours to; AnimatorParameters corrects the type and says so.
+        /// </summary>
         private static void EnsureParameters(AnimatorController c)
         {
             // Weight drivers for the direct blend trees. Never animated, so with Write
             // Defaults OFF across this controller they simply sit at their defaults.
-            EnsureFloat(c, "RCS_One", 1f);
-            EnsureFloat(c, "RCS_Lag", Lag);
-            EnsureFloat(c, "RCS_LagInv", 1f - Lag);
+            AnimatorParameters.EnsureFloat(c, "RCS_One", 1f);
+            AnimatorParameters.EnsureFloat(c, "RCS_Lag", Lag);
+            AnimatorParameters.EnsureFloat(c, "RCS_LagInv", 1f - Lag);
 
             foreach (var (param, _, _) in Axes)
-                EnsureFloat(c, Smoothed(param), 0f);
+                AnimatorParameters.EnsureFloat(c, Smoothed(param), 0f);
 
             foreach (var (param, _, _) in ImuAxes)
-                EnsureFloat(c, param, 0f);
+                AnimatorParameters.EnsureFloat(c, param, 0f);
 
-            EnsureParameter(c, MasterParam, AnimatorControllerParameterType.Bool);
+            AnimatorParameters.Ensure(c, MasterParam, AnimatorControllerParameterType.Bool, LogPrefix);
 
             // The group layers condition on these, and a transition referencing a parameter
             // the controller does not declare is not a valid animator. Ensuring them means
             // the layers build cleanly whatever order the two setup tools are run in.
-            //
-            // TYPE matters as much as existence here. An Equals condition on a parameter the
-            // controller believes is a Bool never matches, so a leftover Bool named back_slot
-            // would leave both group layers permanently in one state with nothing to report
-            // it - which is precisely the shape of failure this project keeps losing hours to.
-            // EnsureParameter corrects the type and says so.
-            EnsureParameter(c, BackSlotParam, AnimatorControllerParameterType.Int);
-            EnsureParameter(c, ThighSlotParam, AnimatorControllerParameterType.Int);
-            EnsureParameter(c, WingsParam, AnimatorControllerParameterType.Bool);
+            AnimatorParameters.Ensure(c, BackSlotParam, AnimatorControllerParameterType.Int, LogPrefix);
+            AnimatorParameters.Ensure(c, ThighSlotParam, AnimatorControllerParameterType.Int, LogPrefix);
+            AnimatorParameters.Ensure(c, WingsParam, AnimatorControllerParameterType.Bool, LogPrefix);
 
             // The built-ins are already declared on this controller, but assert rather
             // than assume - a missing one would silently produce a dead layer.
             foreach (var (param, _, _) in Axes)
-                if (!HasParameter(c, param))
-                    Debug.LogWarning($"[RCS] Built-in parameter '{param}' is not declared on the " +
-                                     "controller. VRChat drives it anyway, but add it so the blend " +
-                                     "tree can reference it.");
+                if (!AnimatorParameters.Has(c, param))
+                    Debug.LogWarning($"{LogPrefix} Built-in parameter '{param}' is not declared " +
+                                     "on the controller. VRChat drives it anyway, but add it so " +
+                                     "the blend tree can reference it.");
         }
 
         private static string Smoothed(string param) => param + "_smoothed";
 
-        private static bool HasParameter(AnimatorController c, string name)
-        {
-            foreach (var p in c.parameters) if (p.name == name) return true;
-            return false;
-        }
-
-        private static void EnsureFloat(AnimatorController c, string name, float defaultValue)
-        {
-            // c.parameters hands back an array that has to be written back wholesale;
-            // mutating an element in place does not persist to the asset.
-            var parameters = c.parameters;
-            for (int i = 0; i < parameters.Length; i++)
-            {
-                if (parameters[i].name != name) continue;
-                parameters[i].type = AnimatorControllerParameterType.Float;
-                parameters[i].defaultFloat = defaultValue;
-                c.parameters = parameters;
-                return;
-            }
-            c.AddParameter(new AnimatorControllerParameter
-            {
-                name = name,
-                type = AnimatorControllerParameterType.Float,
-                defaultFloat = defaultValue,
-            });
-        }
-
         /// <summary>
-        /// Declares a parameter if it is missing, and CORRECTS ITS TYPE if it exists as
-        /// something else. Existing defaults are left alone - these are VRChat expression
-        /// parameters with saved user values, and this tool has no business resetting them.
+        /// A float parameter handle for blend trees and clip bindings, WITHOUT registering it.
         ///
-        /// The type correction replaces an earlier EnsureBool that returned early whenever the
-        /// name already existed. That was fine while every one of these was a bool, but it
-        /// meant retyping a parameter left the OLD type in place and silently inert: no error,
-        /// no warning, just conditions that never match. Getting a loud message instead is the
-        /// entire value of this function.
+        /// layer.FloatParameter would declare anything missing, guessing a type. Everything
+        /// referenced here is already declared by EnsureParameters - which is the code that gets
+        /// to decide types and defaults - so a bare name is all that is wanted.
         /// </summary>
-        private static void EnsureParameter(AnimatorController c, string name,
-                                           AnimatorControllerParameterType type)
-        {
-            var ps = c.parameters;
-            for (int i = 0; i < ps.Length; i++)
-            {
-                if (ps[i].name != name) continue;
-                if (ps[i].type == type) return;
-
-                Debug.LogWarning($"[RCS] Parameter '{name}' was declared {ps[i].type}; corrected " +
-                                 $"to {type}. Anything else conditioning on it as {ps[i].type} is " +
-                                 "now inert - check the hand-built layers.");
-                ps[i].type = type;
-                c.parameters = ps;
-                return;
-            }
-
-            c.AddParameter(new AnimatorControllerParameter { name = name, type = type });
-        }
+        private static AacFlFloatParameter Float(AacFlBase aac, string name) =>
+            aac.NoAnimator().FloatParameter(name);
 
         // ------------------------------------------------------------------ layers
-
-        private static void RemoveExistingLayers(AnimatorController c)
-        {
-            var keep = new List<AnimatorControllerLayer>();
-            foreach (var layer in c.layers)
-            {
-                if (layer.name == null || !layer.name.StartsWith(LayerPrefix))
-                {
-                    keep.Add(layer);
-                    continue;
-                }
-                // Destroy the sub-assets the old layer owned, or they leak into the file.
-                DestroyStateMachineAssets(layer.stateMachine);
-            }
-            c.layers = keep.ToArray();
-        }
-
-        private static void DestroyStateMachineAssets(AnimatorStateMachine sm)
-        {
-            if (sm == null) return;
-
-            // Transitions are sub-assets in their own right; skipping them leaks a few
-            // orphaned objects into the controller file on every rebuild.
-            foreach (var t in sm.anyStateTransitions) Object.DestroyImmediate(t, true);
-            foreach (var t in sm.entryTransitions) Object.DestroyImmediate(t, true);
-
-            foreach (var child in sm.states)
-            {
-                if (child.state == null) continue;
-                foreach (var t in child.state.transitions) Object.DestroyImmediate(t, true);
-                DestroyMotionAssets(child.state.motion);
-                Object.DestroyImmediate(child.state, true);
-            }
-            foreach (var child in sm.stateMachines)
-                DestroyStateMachineAssets(child.stateMachine);
-            Object.DestroyImmediate(sm, true);
-        }
-
-        private static void DestroyMotionAssets(Motion motion)
-        {
-            // Only blend trees are sub-assets of the controller; clips are real files.
-            if (!(motion is BlendTree tree)) return;
-            foreach (var child in tree.children) DestroyMotionAssets(child.motion);
-            Object.DestroyImmediate(tree, true);
-        }
-
-        private static AnimatorState AddLayerWithState(AnimatorController c, string layerName,
-                                                       string stateName, out AnimatorStateMachine sm)
-        {
-            c.AddLayer(layerName);
-            var layers = c.layers;
-            var layer = layers[layers.Length - 1];
-            layer.defaultWeight = 1f;
-            layer.blendingMode = AnimatorLayerBlendingMode.Override;
-            c.layers = layers;
-
-            sm = layer.stateMachine;
-            var state = sm.AddState(stateName);
-            // Match the rest of this controller: every state is Write Defaults OFF.
-            state.writeDefaultValues = false;
-            sm.defaultState = state;
-            return state;
-        }
-
-        private static BlendTree NewTree(AnimatorController c, string name, BlendTreeType type)
-        {
-            var tree = new BlendTree
-            {
-                name = name,
-                blendType = type,
-                useAutomaticThresholds = false,
-                hideFlags = HideFlags.HideInHierarchy,
-            };
-            AssetDatabase.AddObjectToAsset(tree, c);
-
-            if (type == BlendTreeType.Direct)
-            {
-                // Load-bearing for the whole design: with normalisation OFF a Direct tree
-                // SUMS its children, which is what lets one tree drive several different
-                // properties at once (publish) and lets two children targeting the same
-                // property form a lerp (smooth) or a signed pair (imu). It defaults to
-                // off, but this is too important to leave to a default. No public
-                // scripting property exposes it, hence SerializedObject.
-                var so = new SerializedObject(tree);
-                var prop = so.FindProperty("m_NormalizedBlendValues");
-                if (prop != null)
-                {
-                    prop.boolValue = false;
-                    so.ApplyModifiedPropertiesWithoutUndo();
-                }
-                else
-                {
-                    Debug.LogWarning("[RCS] Could not find m_NormalizedBlendValues on the blend " +
-                                     "tree; verify in the Animator window that Normalize Blend " +
-                                     "Values is unchecked on the rcs_* trees.");
-                }
-            }
-
-            return tree;
-        }
-
-        /// <summary>
-        /// Adds a child to a Direct blend tree and binds its weight to a parameter.
-        /// The children array is a struct copy, so it has to be written back wholesale.
-        /// </summary>
-        private static void AddDirectChild(BlendTree parent, Motion motion, string weightParam)
-        {
-            parent.AddChild(motion);
-            var children = parent.children;
-            children[children.Length - 1].directBlendParameter = weightParam;
-            parent.children = children;
-        }
 
         // rcs_smooth: one direct tree evaluating smoothed = Lag*smoothed + LagInv*live
         // for each axis. Feeding a parameter back into itself through a blend tree is
         // the standard VRChat float-smoothing pattern; it works because animation clips
         // can drive Animator parameters, not just component properties.
-        private static void BuildSmoothLayer(AnimatorController c)
+        private static void BuildSmoothLayer(AacFlBase aac, AnimatorController c)
         {
-            var state = AddLayerWithState(c, LayerSmooth, "smooth", out _);
-            var root = NewTree(c, "rcs_smooth_root", BlendTreeType.Direct);
-            state.motion = root;
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, SuffixSmooth);
+            var root = ExegesisAac.DirectTree(aac, "rcs_smooth_root", LogPrefix);
+            layer.NewState("smooth").WithAnimation(root);
 
             foreach (var (param, _, max) in Axes)
             {
                 var target = Smoothed(param);
-                var lo = ParamClip($"rcs_{target}_lo", target, -max);
-                var hi = ParamClip($"rcs_{target}_hi", target, max);
+                var lo = ParamClip(aac, $"rcs_{target}_lo", target, -max);
+                var hi = ParamClip(aac, $"rcs_{target}_hi", target, max);
 
                 // Feedback term: read the smoothed value, write it back scaled by Lag.
-                var feedback = NewTree(c, $"rcs_{target}_feedback", BlendTreeType.Simple1D);
-                feedback.blendParameter = target;
-                feedback.AddChild(lo, -max);
-                feedback.AddChild(hi, max);
-                AddDirectChild(root, feedback, "RCS_Lag");
+                var feedback = ExegesisAac.Tree1D(aac, $"rcs_{target}_feedback", Float(aac, target));
+                feedback.WithAnimation(lo, -max).WithAnimation(hi, max);
+                ExegesisAac.FinishTree1D(feedback);
+                root.WithAnimation(feedback, Float(aac, "RCS_Lag"));
 
                 // Target term: read the live value, write it scaled by 1-Lag.
-                var live = NewTree(c, $"rcs_{target}_live", BlendTreeType.Simple1D);
-                live.blendParameter = param;
-                live.AddChild(lo, -max);
-                live.AddChild(hi, max);
-                AddDirectChild(root, live, "RCS_LagInv");
+                var live = ExegesisAac.Tree1D(aac, $"rcs_{target}_live", Float(aac, param));
+                live.WithAnimation(lo, -max).WithAnimation(hi, max);
+                ExegesisAac.FinishTree1D(live);
+                root.WithAnimation(live, Float(aac, "RCS_LagInv"));
             }
         }
 
@@ -521,22 +369,24 @@ namespace Exegesis.RcsThruster
         // Direct trees were dead. A 1D tree reads its blend parameter directly, so there
         // is no weight left to arrive as zero. The extra layers cost nothing - the
         // VRCFury optimiser merges them straight back.
-        private static void BuildPublishLayers(AnimatorController c)
+        //
+        // Do not "simplify" this back into one Direct tree.
+        private static void BuildPublishLayers(AacFlBase aac, AnimatorController c)
         {
             foreach (var (param, prop, max) in PublishAxes())
             {
-                var state = AddLayerWithState(c, PublishLayerName(prop), "publish", out _);
+                var layer = aac.CreateSupportingArbitraryControllerLayer(c, PublishLayerSuffix(prop));
 
-                var lo = MaterialClip($"rcs_pub{prop}_lo", prop, -1f);
-                var hi = MaterialClip($"rcs_pub{prop}_hi", prop, 1f);
+                var lo = MaterialClip(aac, $"rcs_pub{prop}_lo", prop, -1f);
+                var hi = MaterialClip(aac, $"rcs_pub{prop}_hi", prop, 1f);
 
-                var tree = NewTree(c, $"rcs_pub{prop}", BlendTreeType.Simple1D);
-                tree.blendParameter = param;
+                var tree = ExegesisAac.Tree1D(aac, $"rcs_pub{prop}", Float(aac, param));
                 // 1D trees clamp outside their thresholds, which gives the velocity
                 // clamp for free - see the note on VelMax about keeping headroom.
-                tree.AddChild(lo, -max);
-                tree.AddChild(hi, max);
-                state.motion = tree;
+                tree.WithAnimation(lo, -max).WithAnimation(hi, max);
+                ExegesisAac.FinishTree1D(tree);
+
+                layer.NewState("publish").WithAnimation(tree);
             }
         }
 
@@ -550,8 +400,9 @@ namespace Exegesis.RcsThruster
             }
         }
 
-        private static string PublishLayerName(string prop) =>
-            "rcs_pub_" + prop.Replace("_RCS_", "").Replace(".", "");
+        // "_RCS_Vel.x" -> "pub_Velx", which the defaults provider turns into rcs_pub_Velx.
+        private static string PublishLayerSuffix(string prop) =>
+            "pub_" + prop.Replace("_RCS_", "").Replace(".", "");
 
         // "_RCS_Vel.x" -> "_RCS_VelSmoothed.x"
         private static string SmoothedProp(string prop)
@@ -562,48 +413,49 @@ namespace Exegesis.RcsThruster
 
         // rcs_imu: each contact receiver's proximity (0..1) is used directly as a blend
         // weight against a clip holding +1 or -1, so the pair sums to a signed axis.
-        private static void BuildImuLayer(AnimatorController c)
+        private static void BuildImuLayer(AacFlBase aac, AnimatorController c)
         {
-            var state = AddLayerWithState(c, LayerImu, "imu", out _);
-            var root = NewTree(c, "rcs_imu_root", BlendTreeType.Direct);
-            state.motion = root;
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, SuffixImu);
+            var root = ExegesisAac.DirectTree(aac, "rcs_imu_root", LogPrefix);
+            layer.NewState("imu").WithAnimation(root);
 
             // Base child at constant weight 1 writing zero. A Direct tree whose weights
             // are all zero is ill-defined; this guarantees a written neutral value when
             // no receiver is triggered (and when Avatar Dynamics is disabled entirely).
-            var zero = MaterialClip("rcs_imu_zero", null, 0f,
+            //
+            // Note this still leans on RCS_One arriving at its default of 1 - the same
+            // assumption that failed for the publish layers. It has not misbehaved here, but
+            // if the IMU ever reads as stuck at zero, start with this.
+            var zero = MaterialClip(aac, "rcs_imu_zero", null, 0f,
                                     "_RCS_ImuDeflect.x", "_RCS_ImuDeflect.z");
-            AddDirectChild(root, zero, "RCS_One");
+            root.WithAnimation(zero, Float(aac, "RCS_One"));
 
             foreach (var (param, prop, sign) in ImuAxes)
             {
-                var clip = MaterialClip($"rcs_imu{prop}_{(sign > 0 ? "pos" : "neg")}", prop, sign);
-                AddDirectChild(root, clip, param);
+                var clip = MaterialClip(aac, $"rcs_imu{prop}_{(sign > 0 ? "pos" : "neg")}", prop, sign);
+                root.WithAnimation(clip, Float(aac, param));
             }
         }
 
         // rcs_master: plain two-state toggle, matching the hud / transponder layers
         // rather than introducing a blend tree where the controller has none.
-        private static void BuildMasterLayer(AnimatorController c)
+        private static void BuildMasterLayer(AacFlBase aac, AnimatorController c)
         {
-            var offState = AddLayerWithState(c, LayerMaster, "rcs_off", out var sm);
-            offState.motion = MaterialClip("rcs_master_off", "_RCS_Master", 0f);
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, SuffixMaster);
+            var master = layer.BoolParameter(MasterParam);
 
-            var onState = sm.AddState("rcs_on");
-            onState.writeDefaultValues = false;
-            onState.motion = MaterialClip("rcs_master_on", "_RCS_Master", 1f);
+            var off = layer.NewState("rcs_off")
+                           .WithAnimation(MaterialClip(aac, "rcs_master_off", "_RCS_Master", 0f));
+            var on = layer.NewState("rcs_on")
+                          .WithAnimation(MaterialClip(aac, "rcs_master_on", "_RCS_Master", 1f));
 
-            var toOn = offState.AddTransition(onState);
-            toOn.hasExitTime = false;
-            toOn.duration = 0f;
-            toOn.AddCondition(AnimatorConditionMode.If, 0f, MasterParam);
+            off.TransitionsTo(on).When(master.IsTrue());
+            on.TransitionsTo(off).When(master.IsFalse());
 
-            var toOff = onState.AddTransition(offState);
-            toOff.hasExitTime = false;
-            toOff.duration = 0f;
-            toOff.AddCondition(AnimatorConditionMode.IfNot, 0f, MasterParam);
-
-            sm.defaultState = onState;
+            // Master defaults ON. rcs_off is created first only because it reads better in the
+            // Animator window; the default state is set explicitly and is not an accident of
+            // creation order.
+            layer.StateMachine.WithDefaultState(on);
         }
 
         // Visibility groups silence whole sets of thrusters regardless of what the
@@ -618,193 +470,160 @@ namespace Exegesis.RcsThruster
         // Group 1 - Body back thrusters, covered by whatever is on the back mount. Silent
         // whenever the back slot holds anything at all, which is one condition regardless of
         // how many back accessories exist.
-        private static void BuildGroupPacksLayer(AnimatorController c)
+        private static void BuildGroupPacksLayer(AacFlBase aac, AnimatorController c)
         {
-            WarnIfMissing(c, BackSlotParam, LayerGroupPacks);
+            WarnIfMissing(c, BackSlotParam, LayerPrefix + SuffixGroupPacks);
 
-            var clear = AddLayerWithState(c, LayerGroupPacks, "packs_stowed", out var sm);
-            clear.motion = MaterialClip("rcs_group_packs_clear", "_GroupEnable.x", 1f);
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, SuffixGroupPacks);
+            var backSlot = layer.IntParameter(BackSlotParam);
 
-            var covered = sm.AddState("packs_worn");
-            covered.writeDefaultValues = false;
-            covered.motion = MaterialClip("rcs_group_packs_covered", "_GroupEnable.x", 0f);
+            var clear = layer.NewState("packs_stowed")
+                             .WithAnimation(MaterialClip(aac, "rcs_group_packs_clear", "_GroupEnable.x", 1f));
+            var covered = layer.NewState("packs_worn")
+                               .WithAnimation(MaterialClip(aac, "rcs_group_packs_covered", "_GroupEnable.x", 0f));
 
-            var toCovered = clear.AddTransition(covered);
-            toCovered.hasExitTime = false;
-            toCovered.duration = 0f;
-            toCovered.AddCondition(AnimatorConditionMode.NotEqual, 0f, BackSlotParam);
+            clear.TransitionsTo(covered).When(backSlot.IsNotEqualTo(0));
+            covered.TransitionsTo(clear).When(backSlot.IsEqualTo(0));
 
-            var back = covered.AddTransition(clear);
-            back.hasExitTime = false;
-            back.duration = 0f;
-            back.AddCondition(AnimatorConditionMode.Equals, 0f, BackSlotParam);
-
-            sm.defaultState = clear;
+            layer.StateMachine.WithDefaultState(clear);
         }
 
         // Group 2 - the Props plumes, which only exist while the wings are deployed.
-        private static void BuildGroupWingsLayer(AnimatorController c)
+        private static void BuildGroupWingsLayer(AacFlBase aac, AnimatorController c)
         {
-            WarnIfMissing(c, WingsParam, LayerGroupWings);
+            WarnIfMissing(c, WingsParam, LayerPrefix + SuffixGroupWings);
 
-            var stowed = AddLayerWithState(c, LayerGroupWings, "wings_stowed", out var sm);
-            stowed.motion = MaterialClip("rcs_group_wings_stowed", "_GroupEnable.y", 0f);
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, SuffixGroupWings);
+            var wings = layer.BoolParameter(WingsParam);
 
-            var deployed = sm.AddState("wings_deployed");
-            deployed.writeDefaultValues = false;
-            deployed.motion = MaterialClip("rcs_group_wings_out", "_GroupEnable.y", 1f);
+            var stowed = layer.NewState("wings_stowed")
+                              .WithAnimation(MaterialClip(aac, "rcs_group_wings_stowed", "_GroupEnable.y", 0f));
+            var deployed = layer.NewState("wings_deployed")
+                                .WithAnimation(MaterialClip(aac, "rcs_group_wings_out", "_GroupEnable.y", 1f));
 
-            var toOut = stowed.AddTransition(deployed);
-            toOut.hasExitTime = false;
-            toOut.duration = 0f;
-            toOut.AddCondition(AnimatorConditionMode.If, 0f, WingsParam);
+            stowed.TransitionsTo(deployed).When(wings.IsTrue());
+            deployed.TransitionsTo(stowed).When(wings.IsFalse());
 
-            var toIn = deployed.AddTransition(stowed);
-            toIn.hasExitTime = false;
-            toIn.duration = 0f;
-            toIn.AddCondition(AnimatorConditionMode.IfNot, 0f, WingsParam);
-
-            sm.defaultState = stowed;
+            layer.StateMachine.WithDefaultState(stowed);
         }
 
         // Group 3 - the thigh pack plumes, which exist only for one specific member of the
         // thigh slot. Note this is Equals a member value, not "anything worn": the thigh
         // hard-cases occupy the same mount but carry no thrusters, so their plumes must stay
         // dark. That distinction is exactly what a slot int expresses and a bool cannot.
-        private static void BuildGroupThighsLayer(AnimatorController c)
+        private static void BuildGroupThighsLayer(AacFlBase aac, AnimatorController c)
         {
-            WarnIfMissing(c, ThighSlotParam, LayerGroupThighs);
+            WarnIfMissing(c, ThighSlotParam, LayerPrefix + SuffixGroupThighs);
 
-            var stowed = AddLayerWithState(c, LayerGroupThighs, "thighs_stowed", out var sm);
-            stowed.motion = MaterialClip("rcs_group_thighs_stowed", "_GroupEnable.z", 0f);
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, SuffixGroupThighs);
+            var thighSlot = layer.IntParameter(ThighSlotParam);
 
-            var worn = sm.AddState("thighs_worn");
-            worn.writeDefaultValues = false;
-            worn.motion = MaterialClip("rcs_group_thighs_worn", "_GroupEnable.z", 1f);
+            var stowed = layer.NewState("thighs_stowed")
+                              .WithAnimation(MaterialClip(aac, "rcs_group_thighs_stowed", "_GroupEnable.z", 0f));
+            var worn = layer.NewState("thighs_worn")
+                            .WithAnimation(MaterialClip(aac, "rcs_group_thighs_worn", "_GroupEnable.z", 1f));
 
-            var toWorn = stowed.AddTransition(worn);
-            toWorn.hasExitTime = false;
-            toWorn.duration = 0f;
-            toWorn.AddCondition(AnimatorConditionMode.Equals, ThighSlotThrusters, ThighSlotParam);
+            stowed.TransitionsTo(worn).When(thighSlot.IsEqualTo(ThighSlotThrusters));
+            worn.TransitionsTo(stowed).When(thighSlot.IsNotEqualTo(ThighSlotThrusters));
 
-            var toStowed = worn.AddTransition(stowed);
-            toStowed.hasExitTime = false;
-            toStowed.duration = 0f;
-            toStowed.AddCondition(AnimatorConditionMode.NotEqual, ThighSlotThrusters, ThighSlotParam);
-
-            sm.defaultState = stowed;
+            layer.StateMachine.WithDefaultState(stowed);
         }
 
         private static void WarnIfMissing(AnimatorController c, string param, string layer)
         {
-            if (!HasParameter(c, param))
-                Debug.LogWarning($"[RCS] Parameter '{param}' not found; the {layer} layer " +
+            if (!AnimatorParameters.Has(c, param))
+                Debug.LogWarning($"{LogPrefix} Parameter '{param}' not found; the {layer} layer " +
                                  "will never switch.");
         }
 
         // ------------------------------------------------------------------- clips
-
-        // Wiped and recreated each run so clips left over from renamed constants do not
-        // accumulate. Safe because the layers referencing them are removed first.
-        private static void ResetClipDir()
-        {
-            if (AssetDatabase.IsValidFolder(GeneratedClipDir))
-                AssetDatabase.DeleteAsset(GeneratedClipDir);
-
-            var parent = Path.GetDirectoryName(GeneratedClipDir).Replace('\\', '/');
-            AssetDatabase.CreateFolder(parent, Path.GetFileName(GeneratedClipDir));
-        }
-
-        // Curves are authored on the in-memory clip and the asset is written AFTERWARDS,
-        // by PersistClip. The reverse order - CreateAsset first, then SetEditorCurve, then
-        // rely on SetDirty/SaveAssets to flush - lost the curves on exactly one clip out of
-        // 38 in a build where every other clip came out correct
-        // (rcs_group_thighs_stowed.anim, serialized with m_FloatCurves: [] and StopTime 1).
-        // A clip that writes nothing is the worst possible failure here: with Write
-        // Defaults off, its state leaves the property at whatever the material shipped,
-        // so a gate that should force 0 silently holds 1 and the feature reads as
-        // "the shader is ignoring my bool". Persisting a fully-built clip in one step
-        // removes the flush from the critical path entirely.
-        private static AnimationClip NewClip(string name)
-        {
-            return new AnimationClip { name = Sanitize(name) };
-        }
-
-        private static AnimationClip PersistClip(AnimationClip clip, string name)
-        {
-            var path = $"{GeneratedClipDir}/{Sanitize(name)}.anim";
-            AssetDatabase.CreateAsset(clip, path);
-            EditorUtility.SetDirty(clip);
-            return clip;
-        }
+        //
+        // Clips are sub-assets of the controller now, not files in an rcs_generated folder.
+        // That folder and its 38 .anim files are gone: AAC owns clip creation, and its assets
+        // live in the container it is given.
+        //
+        // The name passed in is used verbatim as the clip's name, via ExegesisAac.Clip, which
+        // strips AAC's random-integer decoration. Dots become underscores, as they always have -
+        // the names are a contract GeneratedClipTests asserts on.
 
         private static string Sanitize(string name) => name.Replace(".", "_");
 
         /// <summary>
         /// A two-key constant clip driving one or more material properties on every
         /// renderer that carries thrusters.mat.
+        ///
+        /// WithOneFrame produces AnimationCurve.Constant(0, 1/60, value) - the same two-key,
+        /// one-frame shape the hand-rolled version built.
         /// </summary>
-        private static AnimationClip MaterialClip(string name, string prop, float value,
-                                                  params string[] extraProps)
+        private static AacFlClip MaterialClip(AacFlBase aac, string name, string prop, float value,
+                                              params string[] extraProps)
         {
-            var clip = NewClip(name);
             var props = new List<string>();
             if (!string.IsNullOrEmpty(prop)) props.Add(prop);
             props.AddRange(extraProps);
 
-            var curve = AnimationCurve.Constant(0f, 1f / 60f, value);
-            foreach (var rendererPath in RendererPaths)
+            var clip = ExegesisAac.Clip(aac, Sanitize(name));
+            clip.Animating(edit =>
             {
-                foreach (var p in props)
-                {
-                    var binding = EditorCurveBinding.FloatCurve(
-                        rendererPath, typeof(SkinnedMeshRenderer), "material." + p);
-                    AnimationUtility.SetEditorCurve(clip, binding, curve);
-                }
-            }
-            return PersistClip(clip, name);
+                foreach (var rendererPath in RendererPaths)
+                    foreach (var p in props)
+                        edit.Animates(rendererPath, typeof(SkinnedMeshRenderer), "material." + p)
+                            .WithOneFrame(value);
+            });
+            return clip;
         }
 
         /// <summary>
         /// A two-key constant clip driving an Animator parameter. This is what makes the
-        /// smoothing feedback loop possible.
+        /// smoothing feedback loop possible - clips can write parameters, not just component
+        /// properties, so the lag needs no arithmetic anywhere in the animator.
         /// </summary>
-        private static AnimationClip ParamClip(string name, string param, float value)
+        private static AacFlClip ParamClip(AacFlBase aac, string name, string param, float value)
         {
-            var clip = NewClip(name);
-            var binding = EditorCurveBinding.FloatCurve("", typeof(Animator), param);
-            AnimationUtility.SetEditorCurve(clip, binding, AnimationCurve.Constant(0f, 1f / 60f, value));
-            return PersistClip(clip, name);
+            var clip = ExegesisAac.Clip(aac, Sanitize(name));
+            clip.Animating(edit => edit.AnimatesAnimator(Float(aac, param)).WithOneFrame(value));
+            return clip;
         }
 
         // ------------------------------------------------------------ post-build audit
 
         /// <summary>
         /// Reloads every generated clip from disk and reports any that carry no curves.
+        ///
         /// Reloading is the point: it checks what was actually SERIALIZED rather than what
         /// the in-memory object thinks it has, which is the only version the animator will
-        /// ever play. Silent per-clip write failures are otherwise invisible until someone
-        /// notices a gate not gating.
+        /// ever play. This caught a real failure once - one clip out of 38 written with
+        /// m_FloatCurves: [] while every other clip in the same build came out correct. With
+        /// Write Defaults off, a state playing an empty clip writes nothing, so a gate meant to
+        /// force 0 silently holds whatever the material shipped and the feature reads as "the
+        /// shader is ignoring my bool".
         /// </summary>
-        private static void VerifyGeneratedClips()
+        private static void VerifyGeneratedClips(AnimatorController controller)
         {
-            var empty = new List<string>();
-            foreach (var guid in AssetDatabase.FindAssets("t:AnimationClip", new[] { GeneratedClipDir }))
-            {
-                var path = AssetDatabase.GUIDToAssetPath(guid);
-                var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
-                if (clip == null) { empty.Add($"{path} (failed to load)"); continue; }
-                if (AnimationUtility.GetCurveBindings(clip).Length == 0)
-                    empty.Add(Path.GetFileName(path));
-            }
+            var path = AssetDatabase.GetAssetPath(controller);
+            if (string.IsNullOrEmpty(path)) return;
 
-            if (empty.Count == 0) return;
+            // Reload the controller from disk so this inspects what was SERIALIZED, not what
+            // the in-memory objects believe. Scoped to clips the rcs_* layers actually
+            // reference: ncho_fx also carries two orphaned clips from an old duplication, one
+            // of them legitimately empty, and auditing every clip in the file would report that
+            // as a failure on every single build.
+            var reloaded = AssetDatabase.LoadAssetAtPath<AnimatorController>(path);
+            if (reloaded == null) return;
 
-            Debug.LogError($"[RCS] {empty.Count} generated clip(s) were written with NO curves: " +
-                           string.Join(", ", empty) + ". A state playing an empty clip writes " +
-                           "nothing, so with Write Defaults off the property keeps its material " +
-                           "value - a gate meant to force 0 will hold whatever the material ships. " +
-                           "Re-run Tools > Exegesis > Build RCS Animator Layers.");
+            var empty = AnimatorAssets.ClipsReachableFrom(reloaded, LayerPrefix)
+                .Where(clip => AnimationUtility.GetCurveBindings(clip).Length == 0
+                            && AnimationUtility.GetObjectReferenceCurveBindings(clip).Length == 0)
+                .Select(clip => clip.name)
+                .ToArray();
+
+            if (empty.Length == 0) return;
+
+            Debug.LogError($"{LogPrefix} {empty.Length} generated clip(s) were written with NO " +
+                           "curves: " + string.Join(", ", empty) + ". A state playing an empty " +
+                           "clip writes nothing, so with Write Defaults off the property keeps " +
+                           "its material value - a gate meant to force 0 will hold whatever the " +
+                           "material ships. Re-run Tools > Exegesis > Build RCS Animator Layers.");
         }
     }
 }

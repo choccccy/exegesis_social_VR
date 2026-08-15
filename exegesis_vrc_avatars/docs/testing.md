@@ -1,4 +1,19 @@
-# HUD shader testing
+# Testing
+
+Three EditMode suites, all run together from the same Test Runner or the same headless
+invocation:
+
+| Suite | Assembly | Covers |
+|---|---|---|
+| HUD shader | `Exegesis.HudShader.Tests.Editor` | the HUD shader — compile, material state, golden images |
+| RCS thruster | `Exegesis.RcsThruster.Tests.Editor` | the RCS shader, **and the generated animator layers** |
+| — | — | see [Animator generation tests](#animator-generation-tests) below |
+
+Most of this page is about the HUD suite, which came first. The animator tests are the
+newer half and are summarised in their own section; the full account of what they pin and
+why lives in [animator-generation.md](animator-generation.md).
+
+## HUD shader testing
 
 A regression test suite that **pins the current behavior** of the HUD shader so
 future edits (cleanup, then the IR/radar features) can't silently break it. Written
@@ -22,6 +37,57 @@ graphics asset.
 `MaterialStateTests` deliberately does **not** assert `_Cutoff` etc. — those are stale
 values serialized in the `.mat` from an old template and are **not declared by the
 shader**, so `Material.HasProperty` is (correctly) false for them.
+
+## Animator generation tests
+
+In `Assets/_exegesis/thruster_shader/Tests/Editor/`, alongside the RCS shader tests. They
+inspect `ncho_fx.controller` — the committed asset, not an avatar built in memory — which is
+the whole reason the generator tools write into a real file rather than generating at build
+time. See [animator-generation.md](animator-generation.md) for what each invariant is for.
+
+| File | Pins |
+|---|---|
+| `SlotParameterTests.cs` | Slot layers exist, slot ints are typed `Int`, gates use `Equals`/`NotEqual` only, the 0.25 s fade with `hasFixedDuration`, swaps route through `idle`, Write Defaults off, no two members share a value. |
+| `GeneratedClipTests.cs` | Every generated clip writes at least one curve, and each `_GroupEnable` gate pair drives its component to both 0 and 1 on **both** `Body` and `Props`. |
+| `ControllerSnapshotTests.cs` | The committed controller matches its golden snapshot — **and** that the snapshot itself can detect each of 17 specific breakages. |
+| `GeneratorIdempotenceTests.cs` | Rebuilding the committed controller reproduces it exactly, and rebuilding twice does not grow the file. |
+
+### The controller snapshot
+
+`ControllerSnapshot` (in `Exegesis.Shared.Editor`) serialises an `AnimatorController` to
+canonical text: parameters, layer weights and blending, every state field, every transition
+field including interruption settings, conditions with their modes, blend trees including
+`m_NormalizedBlendValues`, state machine behaviours, and full clip curve data. It excludes
+node positions, GUIDs and the random suffix Animator As Code puts on generated asset names —
+each exclusion is commented in the source with its reason.
+
+The committed baseline is `Tests/Editor/Baselines/ncho_fx.snapshot.txt`, written in *Compact*
+detail: clip curve data is hashed rather than inlined, because the controller references over
+a hundred clips and a baseline nobody can read is a baseline nobody reviews. A changed
+keyframe still fails — `CompactDetail_StillNoticesAChangedKeyframe` pins that.
+
+Re-bless with `Tools > Exegesis > Debug > Capture Controller Snapshot Baseline`, or headlessly
+by setting `EXEGESIS_CAPTURE_SNAPSHOT=1`. It is deliberately **not** wired to the
+`HUD_CAPTURE_BASELINES` variable the run script's `-Capture` switch sets: the golden-image
+suites share that one, and re-blessing the controller as a side effect of recapturing a render
+would be silent, since a rewritten baseline never fails.
+
+Re-bless *deliberately*. The baseline covers the hand-built layers too, so a diff after an
+intentional hand edit is expected — but a diff after only touching the generators means
+something moved that should not have.
+
+### The negative control
+
+`Snapshot_DetectsInjectedDifference` builds a small synthetic controller, breaks it in one
+specific way, and requires the snapshot to notice. Seventeen cases, each named for the failure
+it stands guard against: *layers stop stacking*, *the accessory fade is dropped*, *Equals
+becomes If and never matches an Int*, *Direct trees average instead of summing*, *a preset
+stops self-resetting loadout*, and so on.
+
+This exists because a snapshot that quietly captures nothing compares equal to everything and
+passes forever, which is indistinguishable from a perfect result right up until something
+breaks in the headset. **If one of these cases ever starts passing without its mutation, the
+snapshot has gone blind — add the property to `ControllerSnapshot`, do not delete the case.**
 
 ## Golden-image workflow
 

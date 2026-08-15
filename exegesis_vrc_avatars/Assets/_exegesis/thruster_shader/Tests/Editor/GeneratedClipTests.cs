@@ -1,14 +1,16 @@
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Text;
+using Exegesis.Shared;
 using NUnit.Framework;
 using UnityEditor;
+using UnityEditor.Animations;
 using UnityEngine;
 
 namespace Exegesis.RcsThruster.Tests
 {
     /// <summary>
-    /// Guards the generated clips in rcs_generated/ against writing NOTHING.
+    /// Guards the generated clips against writing NOTHING.
     ///
     /// Every RCS state runs with Write Defaults off, which is what lets the layers stack
     /// without fighting each other - but it also means a state playing an empty clip
@@ -19,35 +21,42 @@ namespace Exegesis.RcsThruster.Tests
     /// the shader and the vertex paint - a long way from the actual cause.
     ///
     /// That happened: one clip out of 38 in an otherwise-clean build serialized with
-    /// m_FloatCurves: [] (rcs_group_thighs_stowed.anim). RcsAnimatorSetup now persists
-    /// each clip only after its curves are authored, and audits the folder afterwards;
-    /// this test pins the invariant from the other side, against what is on disk.
+    /// m_FloatCurves: [] (rcs_group_thighs_stowed). RcsAnimatorSetup audits every clip after
+    /// the build; this test pins the invariant from the other side, against what is on disk.
+    ///
+    /// WHERE the clips live changed with the Animator As Code migration and nothing else did.
+    /// They used to be 38 .anim files in ncho_anim/rcs_generated/; AAC owns clip creation now,
+    /// and its assets live in the container it is given - the controller. Both assertions below
+    /// are the ones this file has always made. Only the lookup moved.
     /// </summary>
     [TestFixture]
     public class GeneratedClipTests
     {
-        private const string ClipDir = "Assets/_exegesis/ncho/ncho_anim/rcs_generated";
+        private const string ControllerPath =
+            "Assets/_exegesis/ncho/ncho_anim/ncho_fx.controller";
 
-        private static AnimationClip[] LoadClips()
+        /// <summary>
+        /// Every clip the rcs_* layers reference.
+        ///
+        /// Reachability, not "every clip sub-asset in the file". The controller carries two
+        /// orphaned clips from an old duplicate-the-controller operation ("Copied from
+        /// ncho_fx/..."), and one of them has no curves - so the blunter query would report a
+        /// permanent, unfixable failure that has nothing to do with the generators.
+        /// </summary>
+        private static AnimationClip[] LoadGeneratedClips()
         {
-            var clips = new List<AnimationClip>();
-            foreach (var guid in AssetDatabase.FindAssets("t:AnimationClip", new[] { ClipDir }))
-            {
-                var path = AssetDatabase.GUIDToAssetPath(guid);
-                var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
-                if (clip != null) clips.Add(clip);
-            }
-            return clips.ToArray();
+            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
+            Assert.IsNotNull(controller, $"No AnimatorController at {ControllerPath}.");
+            return AnimatorAssets.ClipsReachableFrom(controller, "rcs_").ToArray();
         }
 
         [Test]
         public void EveryGeneratedClip_WritesAtLeastOneCurve()
         {
-            if (!AssetDatabase.IsValidFolder(ClipDir))
-                Assert.Ignore($"{ClipDir} does not exist - run Build RCS Animator Layers first.");
-
-            var clips = LoadClips();
-            Assert.IsNotEmpty(clips, $"No clips found in {ClipDir}.");
+            var clips = LoadGeneratedClips();
+            Assert.IsNotEmpty(clips,
+                $"No generated clips found inside {ControllerPath} - run Build RCS Animator " +
+                "Layers first.");
 
             var empty = new List<string>();
             foreach (var clip in clips)
@@ -75,18 +84,22 @@ namespace Exegesis.RcsThruster.Tests
         [TestCase("rcs_group_thighs_stowed", "rcs_group_thighs_worn", "_GroupEnable.z")]
         public void GatePair_DrivesItsComponentBothWays(string offClip, string onClip, string prop)
         {
-            if (!AssetDatabase.IsValidFolder(ClipDir))
-                Assert.Ignore($"{ClipDir} does not exist - run Build RCS Animator Layers first.");
-
-            AssertGateClip(offClip, prop, 0f);
-            AssertGateClip(onClip, prop, 1f);
+            var clips = LoadGeneratedClips();
+            AssertGateClip(clips, offClip, prop, 0f);
+            AssertGateClip(clips, onClip, prop, 1f);
         }
 
-        private static void AssertGateClip(string clipName, string prop, float expected)
+        private static void AssertGateClip(AnimationClip[] clips, string clipName, string prop,
+                                           float expected)
         {
-            var path = $"{ClipDir}/{clipName}.anim";
-            var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
-            Assert.IsNotNull(clip, $"{path} missing - re-run Build RCS Animator Layers.");
+            // Clip names are a contract, not a convenience: this is how the gates are found
+            // here, and how anyone reading the controller in the Animator window tells them
+            // apart. ExegesisAac.Clip exists to keep them stable in the face of AAC's
+            // random-suffixed generated naming.
+            var clip = clips.FirstOrDefault(c => c.name == clipName);
+            Assert.IsNotNull(clip,
+                $"No clip named '{clipName}' inside {ControllerPath} - re-run Build RCS " +
+                $"Animator Layers. Present: {string.Join(", ", clips.Select(c => c.name).OrderBy(n => n))}");
 
             var binding = "material." + prop;
             var found = new List<string>();

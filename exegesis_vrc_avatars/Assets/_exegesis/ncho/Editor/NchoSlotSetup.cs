@@ -5,11 +5,13 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using AnimatorAsCode.V1;
+using AnimatorAsCode.V1.VRC;
+using Exegesis.Aac;
+using Exegesis.Shared;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
-using VRC.SDK3.Avatars.Components;
-using VRC.SDKBase;
 
 namespace Exegesis.Ncho
 {
@@ -36,14 +38,20 @@ namespace Exegesis.Ncho
     /// Idempotent, like RcsAnimatorSetup: it deletes and rebuilds anything named slot_*.
     /// Menu: Tools > Exegesis > Build ncho Slot Layers.
     ///
+    /// Layers, states, transitions and drivers are built with Animator As Code. Four things are
+    /// NOT, and each is documented where it appears: parameter declaration (AAC matches by name
+    /// only and will leave a wrongly-typed parameter alone), layer teardown (AAC's clear-in-place
+    /// leaks the sub-assets it detaches), the wing_deploy surgery (not expressible in AAC at
+    /// all), and sub-asset cleanup.
+    ///
     /// Deliberately a separate assembly from Exegesis.RcsThruster.Editor. This one needs the
     /// SDK for VRCAvatarParameterDriver, and docs/rcs-thrusters.md records why the shader
     /// tooling must not take an SDK dependency: a version bump would otherwise break the
     /// shader inspector and the RCS animator tool along with it.
     /// </summary>
-    internal static class NchoSlotSetup
+    public static class NchoSlotSetup
     {
-        private const string ControllerPath =
+        public const string DefaultControllerPath =
             "Assets/_exegesis/ncho/ncho_anim/ncho_fx.controller";
         private const string AnimDir = "Assets/_exegesis/ncho/ncho_anim";
 
@@ -51,11 +59,26 @@ namespace Exegesis.Ncho
         // does not exist on the avatar. With Write Defaults off this is a true no-op, which
         // is what an `idle` state needs: writing nothing is how the props_neutral layer
         // below gets to win.
+        //
+        // Used EXPLICITLY rather than letting AAC assign its own empty clip. AAC gives every
+        // state a generated one-frame clip animating "_ignored"/m_IsActive, which is also a
+        // no-op under Write Defaults off - but it is a different no-op, and this project's
+        // clips are a thing people read.
         private const string EmptyClipPath = "Assets/_exegesis/generic_anim/_Empty.anim";
 
         private const string LayerPrefix = "slot_";
-        private const string LoadoutLayer = "slot_loadout";
+        private const string LoadoutSuffix = "loadout";
         private const string LoadoutParam = "loadout";
+
+        // AAC's SystemName. With ExegesisDefaultsProvider this composes as "slot" + "_" +
+        // suffix, so the layer names come out exactly as they always have.
+        private const string SystemName = "slot";
+
+        // Namespaces the sub-assets AAC creates in the controller. Must differ from the RCS
+        // tool's key so the two tools cannot collide.
+        private const string AssetKey = "slot";
+
+        private const string LogPrefix = "[slots]";
 
         /// <summary>
         /// Accessories dissolve in and out over this many seconds rather than popping. This is
@@ -65,12 +88,15 @@ namespace Exegesis.Ncho
         /// props_neutral's hidden value below, which is what produces the fade.
         ///
         /// The hand-built bool layers this replaced all used 0.25s, and losing it was
-        /// immediately visible. SlotTransitionTests pins it now.
+        /// immediately visible. SlotTransitions_KeepTheFade pins it now.
         ///
         /// Seconds, not a fraction of the clip: hasFixedDuration is set explicitly for the same
         /// reason. These clips are one frame long, so a normalised 0.25 would be ~4ms and read
         /// as an instant pop - the exact bug this constant exists to prevent, wearing a
-        /// different hat.
+        /// different hat. AAC's WithTransitionDurationSeconds relies on hasFixedDuration coming
+        /// from the defaults provider, which is why ExegesisDefaultsProvider sets it and why
+        /// nothing here may call WithTransitionDurationNormalized or ...Percent first - those
+        /// flip the flag and silently reinterpret every duration set afterwards.
         /// </summary>
         private const float FadeSeconds = 0.25f;
 
@@ -104,7 +130,7 @@ namespace Exegesis.Ncho
         {
             public string Param;
             public int Default;
-            public string Layer;
+            public string Suffix;
             public Member[] Members;
         }
 
@@ -122,12 +148,16 @@ namespace Exegesis.Ncho
         /// Values are a per-slot enumeration and MUST stay stable once uploaded - they are
         /// what the menu writes and what a saved parameter restores. Append new members with
         /// new numbers; never renumber existing ones.
+        ///
+        /// Suffix is what AAC appends to the system name, so "back" produces the layer
+        /// slot_back. Renaming one renames a layer, which the docs, the tests and the
+        /// teardown prefix all assume.
         /// </summary>
         private static readonly Slot[] Slots =
         {
             new Slot
             {
-                Param = "back_slot", Default = 1, Layer = "slot_back",
+                Param = "back_slot", Default = 1, Suffix = "back",
                 Members = new[]
                 {
                     Props(1, "thruster_backpack"),
@@ -136,7 +166,7 @@ namespace Exegesis.Ncho
             },
             new Slot
             {
-                Param = "thigh_slot", Default = 1, Layer = "slot_thigh",
+                Param = "thigh_slot", Default = 1, Suffix = "thigh",
                 Members = new[]
                 {
                     Props(1, "thigh_hard-cases"),
@@ -199,26 +229,49 @@ namespace Exegesis.Ncho
         // Priority 1 puts this ABOVE Build RCS Animator Layers, which is the order the two
         // must actually be run in - this tool declares the slot ints those layers condition on.
         [MenuItem("Tools/Exegesis/Build ncho Slot Layers", false, 1)]
-        private static void Build()
+        private static void BuildFromMenu()
         {
-            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(ControllerPath);
+            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(DefaultControllerPath);
             if (controller == null)
             {
                 EditorUtility.DisplayDialog("ncho slots",
-                    $"Could not load the FX controller at:\n{ControllerPath}", "OK");
+                    $"Could not load the FX controller at:\n{DefaultControllerPath}", "OK");
                 return;
             }
 
+            Build(controller);
+        }
+
+        /// <summary>
+        /// Rebuilds every slot_* layer in the given controller, removes the hand-built layers it
+        /// replaced, and decouples wing_deploy from `rcs`. The menu item passes the committed
+        /// controller; the tests pass a scratch copy.
+        /// </summary>
+        public static void Build(AnimatorController controller)
+        {
             if (!ClipsExist()) return;
 
-            RemoveExistingLayers(controller);
-            int legacyRemoved = RemoveLegacyLayers(controller);
+            // Teardown BEFORE AAC sees the controller, so AAC always takes its
+            // append-a-new-layer path. Its alternative, clearing a layer that already exists,
+            // empties the state machine by assigning empty arrays over states and transitions -
+            // which detaches those sub-assets without destroying them, and they accumulate in
+            // the committed file on every rebuild.
+            ExegesisAac.RemoveLayersByPrefix(controller, LayerPrefix);
+            int legacyRemoved = ExegesisAac.RemoveLayersByName(controller, LegacyLayers);
+
             EnsureParameters(controller);
 
-            foreach (var slot in Slots) BuildSlotLayer(controller, slot);
-            BuildLoadoutLayer(controller);
+            var aac = ExegesisAac.Create(controller, SystemName, AssetKey);
+
+            foreach (var slot in Slots) BuildSlotLayer(aac, controller, slot);
+            BuildLoadoutLayer(aac, controller);
 
             var wings = DecoupleWingsFromRcs(controller);
+
+            // AAC creates one throwaway empty clip per layer as the default motion for its
+            // states. Every state here overrides it, so they end up unreferenced; the sweep is
+            // what stops them piling up in the committed asset.
+            AnimatorAssets.SweepUnreachableSubAssets(controller, LogPrefix);
 
             EditorUtility.SetDirty(controller);
             AssetDatabase.SaveAssets();
@@ -228,7 +281,8 @@ namespace Exegesis.Ncho
 
             int slotLayers = controller.layers.Count(
                 l => l.name != null && l.name.StartsWith(LayerPrefix));
-            Debug.Log($"[slots] Rebuilt {slotLayers} '{LayerPrefix}*' layers in {ControllerPath}. " +
+            Debug.Log($"{LogPrefix} Rebuilt {slotLayers} '{LayerPrefix}*' layers in " +
+                      $"{AssetDatabase.GetAssetPath(controller)}. " +
                       $"Removed {legacyRemoved} legacy accessory layer(s). " +
                       $"wing_deploy: dropped {wings.Transitions} '{MasterParam}' transition(s) and " +
                       $"{wings.Conditions} '{MasterParam}' condition(s).\n" +
@@ -239,7 +293,8 @@ namespace Exegesis.Ncho
         /// <summary>
         /// Fails the whole build if any member clip is missing, rather than producing a state
         /// with a null motion - which animates nothing and therefore looks exactly like the
-        /// accessory being permanently stowed.
+        /// accessory being permanently stowed. Runs before any mutation, so a missing clip
+        /// leaves the controller untouched.
         /// </summary>
         private static bool ClipsExist()
         {
@@ -255,7 +310,7 @@ namespace Exegesis.Ncho
 
             if (missing.Count == 0) return true;
 
-            Debug.LogError("[slots] Aborted - these clips are missing:\n  " +
+            Debug.LogError($"{LogPrefix} Aborted - these clips are missing:\n  " +
                            string.Join("\n  ", missing) +
                            "\nA slot state with no motion writes nothing, which is " +
                            "indistinguishable from the accessory being stowed, so this fails " +
@@ -265,46 +320,20 @@ namespace Exegesis.Ncho
 
         // --------------------------------------------------------------- parameters
 
+        /// <summary>
+        /// Declared here rather than left to AAC. AAC's CreateParamIfNotExists matches by NAME
+        /// only: a parameter that already exists as the wrong type is silently kept, and an
+        /// Equals condition against something the controller believes is a Bool never matches
+        /// and never logs. AnimatorParameters corrects the type and says so.
+        /// </summary>
         private static void EnsureParameters(AnimatorController c)
         {
-            foreach (var slot in Slots) EnsureInt(c, slot.Param, slot.Default);
+            foreach (var slot in Slots)
+                AnimatorParameters.EnsureInt(c, slot.Param, slot.Default, LogPrefix);
 
             // Not saved and not synced as an expression parameter: the driver runs locally
             // and the slot ints it writes are what replicate. See docs/accessories.md.
-            EnsureInt(c, LoadoutParam, 0);
-        }
-
-        /// <summary>
-        /// Adds the parameter, or CORRECTS ITS TYPE if it already exists as something else.
-        ///
-        /// The type correction is the point. Retyping a parameter that a transition already
-        /// conditions on leaves the transition silently inert - an Equals on what the
-        /// controller thinks is a Bool never matches - and nothing reports it. An existing
-        /// Int's default is left alone, since it may have been tuned deliberately.
-        /// </summary>
-        private static void EnsureInt(AnimatorController c, string name, int defaultValue)
-        {
-            var ps = c.parameters;
-            for (int i = 0; i < ps.Length; i++)
-            {
-                if (ps[i].name != name) continue;
-                if (ps[i].type == AnimatorControllerParameterType.Int) return;
-
-                Debug.LogWarning($"[slots] '{name}' was declared {ps[i].type} on the controller; " +
-                                 "correcting to Int. Any hand-built transition conditioning on it " +
-                                 "as the old type is now inert - check it.");
-                ps[i].type = AnimatorControllerParameterType.Int;
-                ps[i].defaultInt = defaultValue;
-                c.parameters = ps;
-                return;
-            }
-
-            c.AddParameter(new AnimatorControllerParameter
-            {
-                name = name,
-                type = AnimatorControllerParameterType.Int,
-                defaultInt = defaultValue,
-            });
+            AnimatorParameters.EnsureInt(c, LoadoutParam, 0, LogPrefix);
         }
 
         /// <summary>
@@ -324,14 +353,14 @@ namespace Exegesis.Ncho
 
             if (stillUsed.Count > 0)
             {
-                Debug.LogWarning("[slots] Retired parameters are still referenced by layers this " +
-                                 "tool does not own:\n  " + string.Join("\n  ", stillUsed) +
+                Debug.LogWarning($"{LogPrefix} Retired parameters are still referenced by layers " +
+                                 "this tool does not own:\n  " + string.Join("\n  ", stillUsed) +
                                  "\nMigrate or delete those layers before removing the parameters.");
                 return;
             }
 
-            Debug.Log("[slots] These retired parameters are now unreferenced and safe to delete " +
-                      "from the controller and from ncho_params.asset:\n  " +
+            Debug.Log($"{LogPrefix} These retired parameters are now unreferenced and safe to " +
+                      "delete from the controller and from ncho_params.asset:\n  " +
                       string.Join("\n  ", declared));
         }
 
@@ -367,83 +396,6 @@ namespace Exegesis.Ncho
 
         // ------------------------------------------------------------------- layers
 
-        private static void RemoveExistingLayers(AnimatorController c)
-        {
-            var keep = new List<AnimatorControllerLayer>();
-            foreach (var layer in c.layers)
-            {
-                if (layer.name == null || !layer.name.StartsWith(LayerPrefix))
-                {
-                    keep.Add(layer);
-                    continue;
-                }
-                DestroyStateMachineAssets(layer.stateMachine);
-            }
-            c.layers = keep.ToArray();
-        }
-
-        private static int RemoveLegacyLayers(AnimatorController c)
-        {
-            var keep = new List<AnimatorControllerLayer>();
-            int removed = 0;
-            foreach (var layer in c.layers)
-            {
-                if (layer.name == null || !LegacyLayers.Contains(layer.name))
-                {
-                    keep.Add(layer);
-                    continue;
-                }
-                DestroyStateMachineAssets(layer.stateMachine);
-                removed++;
-            }
-            c.layers = keep.ToArray();
-            return removed;
-        }
-
-        private static void DestroyStateMachineAssets(AnimatorStateMachine sm)
-        {
-            if (sm == null) return;
-
-            foreach (var t in sm.anyStateTransitions) Object.DestroyImmediate(t, true);
-            foreach (var t in sm.entryTransitions) Object.DestroyImmediate(t, true);
-
-            foreach (var child in sm.states)
-            {
-                if (child.state == null) continue;
-                foreach (var t in child.state.transitions) Object.DestroyImmediate(t, true);
-
-                // Parameter drivers are sub-assets too. The loadout layer is rebuilt on every
-                // run, so skipping these would leak a driver per preset per build.
-                foreach (var b in child.state.behaviours)
-                    if (b != null) Object.DestroyImmediate(b, true);
-
-                Object.DestroyImmediate(child.state, true);
-            }
-
-            foreach (var child in sm.stateMachines)
-                DestroyStateMachineAssets(child.stateMachine);
-
-            Object.DestroyImmediate(sm, true);
-        }
-
-        private static AnimatorState AddLayerWithState(AnimatorController c, string layerName,
-                                                       string stateName,
-                                                       out AnimatorStateMachine sm)
-        {
-            c.AddLayer(layerName);
-            var layers = c.layers;
-            var layer = layers[layers.Length - 1];
-            layer.defaultWeight = 1f;
-            layer.blendingMode = AnimatorLayerBlendingMode.Override;
-            c.layers = layers;
-
-            sm = layer.stateMachine;
-            var state = sm.AddState(stateName);
-            state.writeDefaultValues = false;
-            sm.defaultState = state;
-            return state;
-        }
-
         /// <summary>
         /// One layer per slot: an `idle` state plus one state per member.
         ///
@@ -465,49 +417,42 @@ namespace Exegesis.Ncho
         ///
         /// SlotMembers_SwapViaIdleNotDirectly pins it, because "optimising" the extra step away
         /// looks like an obvious win until you see it move.
+        ///
+        /// The two transition loops are separate, and stay separate: transitions are evaluated
+        /// in creation order, so this produces idle's two entry transitions first and then one
+        /// exit transition per member, which is the order the controller has always had.
         /// </summary>
-        private static void BuildSlotLayer(AnimatorController c, Slot slot)
+        private static void BuildSlotLayer(AacFlBase aac, AnimatorController c, Slot slot)
         {
             var empty = AssetDatabase.LoadAssetAtPath<AnimationClip>(EmptyClipPath);
 
-            var idle = AddLayerWithState(c, slot.Layer, "idle", out var sm);
-            idle.motion = empty;
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, slot.Suffix);
+            var param = layer.IntParameter(slot.Param);
 
-            // Every member state first, so the direct swaps below have something to point at.
-            var states = new List<(Member Member, AnimatorState State)>();
+            var idle = layer.NewState("idle").WithAnimation(empty);
+
+            // Every member state first, so the transitions below have something to point at.
+            var states = new List<(Member Member, AacFlState State)>();
             foreach (var m in slot.Members)
             {
-                var state = sm.AddState(m.StateName);
-                state.writeDefaultValues = false;
-                state.motion = AssetDatabase.LoadAssetAtPath<AnimationClip>(m.ClipPath);
-                states.Add((m, state));
+                var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(m.ClipPath);
+                states.Add((m, layer.NewState(m.StateName).WithAnimation(clip)));
             }
 
             foreach (var (m, state) in states)
-                Wire(idle.AddTransition(state), AnimatorConditionMode.Equals, m.Value, slot.Param);
+                idle.TransitionsTo(state)
+                    .WithTransitionDurationSeconds(FadeSeconds)
+                    .When(param.IsEqualTo(m.Value));
 
             // One way out of each member, and it goes to idle. Any change to the slot - to
             // another member or to bare - takes this same path, which is what makes every
             // swap "old one leaves, then new one arrives" rather than a crossfade.
             foreach (var (m, state) in states)
-                Wire(state.AddTransition(idle),
-                     AnimatorConditionMode.NotEqual, m.Value, slot.Param);
+                state.TransitionsTo(idle)
+                     .WithTransitionDurationSeconds(FadeSeconds)
+                     .When(param.IsNotEqualTo(m.Value));
 
-            sm.defaultState = idle;
-        }
-
-        /// <summary>
-        /// One place where every slot transition gets its timing, so the fade cannot be lost
-        /// from some of them and kept in others.
-        /// </summary>
-        private static void Wire(AnimatorStateTransition t, AnimatorConditionMode mode,
-                                 float threshold, string param)
-        {
-            t.hasExitTime = false;
-            t.hasFixedDuration = true;
-            t.duration = FadeSeconds;
-            t.offset = 0f;
-            t.AddCondition(mode, threshold, param);
+            layer.StateMachine.WithDefaultState(idle);
         }
 
         /// <summary>
@@ -515,56 +460,50 @@ namespace Exegesis.Ncho
         /// nothing, so this layer can never fight the slot layers over a property - it only
         /// writes parameters, which the slot layers then react to.
         /// </summary>
-        private static void BuildLoadoutLayer(AnimatorController c)
+        private static void BuildLoadoutLayer(AacFlBase aac, AnimatorController c)
         {
             var empty = AssetDatabase.LoadAssetAtPath<AnimationClip>(EmptyClipPath);
 
-            var idle = AddLayerWithState(c, LoadoutLayer, "idle", out var sm);
-            idle.motion = empty;
+            var layer = aac.CreateSupportingArbitraryControllerLayer(c, LoadoutSuffix);
+            var loadout = layer.IntParameter(LoadoutParam);
+
+            var idle = layer.NewState("idle").WithAnimation(empty);
 
             foreach (var preset in Presets)
             {
-                var state = sm.AddState(preset.StateName);
-                state.writeDefaultValues = false;
-                state.motion = empty;
+                var state = layer.NewState(preset.StateName).WithAnimation(empty);
 
-                var driver = state.AddStateMachineBehaviour<VRCAvatarParameterDriver>();
-                driver.localOnly = false;
-                driver.parameters = preset.Sets
-                    .Select(s => new VRC_AvatarParameterDriver.Parameter
-                    {
-                        name = s.Param,
-                        value = s.Value,
-                        type = VRC_AvatarParameterDriver.ChangeType.Set,
-                    })
-                    .ToList();
-
-                // The self-reset, appended to every preset. Without it this state re-enters
-                // forever and pins the slot ints - see the Presets comment.
-                driver.parameters.Add(new VRC_AvatarParameterDriver.Parameter
+                // Driving() rather than Drives(): it creates the driver and sets localOnly
+                // false explicitly, which is what the hand-built version did. Drives() would
+                // leave localOnly at whatever the SDK defaults to, and mixing the two on one
+                // state produces two separate drivers.
+                //
+                // Parameters come from NoAnimator() because a preset names parameters this tool
+                // does not own - hard-case_mounts, arm_hard-cases - and layer.FloatParameter
+                // would DECLARE any that were missing, quietly adding them to the controller
+                // with a type it guessed. A driver only needs the name.
+                state.Driving(driver =>
                 {
-                    name = LoadoutParam,
-                    value = 0f,
-                    type = VRC_AvatarParameterDriver.ChangeType.Set,
+                    foreach (var (param, value) in preset.Sets)
+                        driver.Sets(aac.NoAnimator().FloatParameter(param), value);
+
+                    // The self-reset, appended to every preset. Without it this state re-enters
+                    // forever and pins the slot ints - see the Presets comment.
+                    driver.Sets(aac.NoAnimator().FloatParameter(LoadoutParam), 0f);
                 });
 
                 // Instant on purpose, unlike the slot layers: these transitions carry no
                 // visuals, they only gate a driver. The fade happens downstream, when the slot
-                // layers react to the ints this writes.
-                var on = idle.AddTransition(state);
-                on.hasExitTime = false;
-                on.duration = 0f;
-                on.AddCondition(AnimatorConditionMode.Equals, preset.Value, LoadoutParam);
+                // layers react to the ints this writes. Duration 0 comes from the defaults
+                // provider, so nothing is set here.
+                idle.TransitionsTo(state).When(loadout.IsEqualTo(preset.Value));
 
                 // Fires the frame after the driver has run, because the driver set loadout
                 // to 0 on entry.
-                var off = state.AddTransition(idle);
-                off.hasExitTime = false;
-                off.duration = 0f;
-                off.AddCondition(AnimatorConditionMode.NotEqual, preset.Value, LoadoutParam);
+                state.TransitionsTo(idle).When(loadout.IsNotEqualTo(preset.Value));
             }
 
-            sm.defaultState = idle;
+            layer.StateMachine.WithDefaultState(idle);
         }
 
         // ------------------------------------------------------------------- wings
@@ -584,13 +523,16 @@ namespace Exegesis.Ncho
         /// into the deployed state, which is strictly worse than the bug being fixed. So a
         /// transition that ends up with no conditions is deleted outright, and only
         /// transitions with other conditions surviving are edited in place.
+        ///
+        /// Stays hand-written: this edits a layer NEITHER tool owns, and AAC has no vocabulary
+        /// for "modify what is already there" - everything it touches, it rebuilds.
         /// </summary>
         private static (int Transitions, int Conditions) DecoupleWingsFromRcs(AnimatorController c)
         {
             var layer = c.layers.FirstOrDefault(l => l.name == WingLayer);
             if (layer == null || layer.stateMachine == null)
             {
-                Debug.LogWarning($"[slots] Layer '{WingLayer}' not found; skipped decoupling " +
+                Debug.LogWarning($"{LogPrefix} Layer '{WingLayer}' not found; skipped decoupling " +
                                  $"'{MasterParam}' from the wings.");
                 return (0, 0);
             }
