@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ncho_props
-  m_Shader: {fileID: 4800000, guid: 99e9ef73884773845ae0f46d8431bc24, type: 3}
+  m_Name: lemaitre_core
+  m_Shader: {fileID: 4800000, guid: 604e34f2a57003a4f9a7c9b42add3653, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -181,7 +181,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MochieMetallicMaps:
-        m_Texture: {fileID: 2800000, guid: 15ac4c381e33ad942b1478fa9faccacf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 870b26b2a3d900a45b9cc89e77dc9a33, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MochieReflCube:
@@ -2943,36 +2943,52 @@ Material:
     - _UVSettingsRotate3: 0
     - _UVSettingsShiftBackfaceUV: 0
     - _UVTileDissolveAlpha_Row0_0: 0
+    - _UVTileDissolveAlpha_Row0_0_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row0_0_ncho_props: 0
     - _UVTileDissolveAlpha_Row0_1: 1
+    - _UVTileDissolveAlpha_Row0_1_lemaitre_core: 1
     - _UVTileDissolveAlpha_Row0_1_ncho_props: 1
     - _UVTileDissolveAlpha_Row0_2: 1
+    - _UVTileDissolveAlpha_Row0_2_lemaitre_core: 1
     - _UVTileDissolveAlpha_Row0_2_ncho_props: 1
     - _UVTileDissolveAlpha_Row0_3: 0
+    - _UVTileDissolveAlpha_Row0_3_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row0_3_ncho_props: 0
     - _UVTileDissolveAlpha_Row1_0: 0
+    - _UVTileDissolveAlpha_Row1_0_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row1_0_ncho_props: 0
     - _UVTileDissolveAlpha_Row1_1: 0
+    - _UVTileDissolveAlpha_Row1_1_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row1_1_ncho_props: 0
     - _UVTileDissolveAlpha_Row1_2: 0
+    - _UVTileDissolveAlpha_Row1_2_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row1_2_ncho_props: 0
     - _UVTileDissolveAlpha_Row1_3: 0
+    - _UVTileDissolveAlpha_Row1_3_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row1_3_ncho_props: 0
     - _UVTileDissolveAlpha_Row2_0: 0
+    - _UVTileDissolveAlpha_Row2_0_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row2_0_ncho_props: 0
     - _UVTileDissolveAlpha_Row2_1: 0
+    - _UVTileDissolveAlpha_Row2_1_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row2_1_ncho_props: 0
     - _UVTileDissolveAlpha_Row2_2: 0
+    - _UVTileDissolveAlpha_Row2_2_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row2_2_ncho_props: 0
     - _UVTileDissolveAlpha_Row2_3: 0
+    - _UVTileDissolveAlpha_Row2_3_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row2_3_ncho_props: 0
     - _UVTileDissolveAlpha_Row3_0: 0
+    - _UVTileDissolveAlpha_Row3_0_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row3_0_ncho_props: 0
     - _UVTileDissolveAlpha_Row3_1: 0
+    - _UVTileDissolveAlpha_Row3_1_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row3_1_ncho_props: 0
     - _UVTileDissolveAlpha_Row3_2: 0
+    - _UVTileDissolveAlpha_Row3_2_lemaitre_core: 0
     - _UVTileDissolveAlpha_Row3_2_ncho_props: 0
     - _UVTileDissolveAlpha_Row3_3: 1
+    - _UVTileDissolveAlpha_Row3_3_lemaitre_core: 1
     - _UVTileDissolveAlpha_Row3_3_ncho_props: 1
     - _UVTileDissolveDiscardAtMax: 1
     - _UVTileDissolveEnabled: 1
