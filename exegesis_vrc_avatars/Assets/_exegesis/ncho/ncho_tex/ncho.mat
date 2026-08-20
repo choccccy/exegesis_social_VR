@@ -92,13 +92,13 @@ Material:
     _MochieMetallicMaps_texPack_b_srcRange: (0.00, 1.00, 0.00, 1.00)
     _MochieMetallicMaps_texPack_g_channel: 4
     _MochieMetallicMaps_texPack_g_fallback: 0
-    _MochieMetallicMaps_texPack_g_guid: 4a3b19f455a02a44c83863a152253651
+    _MochieMetallicMaps_texPack_g_guid: ad3350df3429c39429911833fcb10c64
     _MochieMetallicMaps_texPack_g_inverted: False
     _MochieMetallicMaps_texPack_g_srcRange: (0.00, 1.00, 0.00, 1.00)
     _MochieMetallicMaps_texPack_lastConfirmTime: 1764628295
     _MochieMetallicMaps_texPack_r_channel: 4
     _MochieMetallicMaps_texPack_r_fallback: 1
-    _MochieMetallicMaps_texPack_r_guid: eb916db9fd8b95c4289a93d28d7bcf2d
+    _MochieMetallicMaps_texPack_r_guid: 9397cb6f0a7a97745a47ea896c82110f
     _MochieMetallicMaps_texPack_r_inverted: False
     _MochieMetallicMaps_texPack_r_srcRange: (0.00, 1.00, 0.00, 1.00)
     _PathEmissionStrengthAnimated: 1
@@ -178,7 +178,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: efe925681a7639b418d28092228196bf, type: 3}
+        m_Texture: {fileID: 2800000, guid: 84d04b197ba431f4ea901c547d2917a8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ConstellationMask:
@@ -250,7 +250,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GlobalMaskTexture0:
-        m_Texture: {fileID: 2800000, guid: b27597fefb508dc4b9ce47b20b0e6e6e, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GlobalMaskTexture1:
