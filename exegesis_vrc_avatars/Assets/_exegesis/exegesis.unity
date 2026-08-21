@@ -512,7 +512,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 0.6000004, y: 0.20109823, z: 0.00090448855}
   PositionOffset: {x: 0, y: 0, z: 0}
@@ -1286,7 +1286,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: -0.60000044, y: 4.480387, z: -0.00000047683716}
   AffectsPositionX: 1
@@ -6026,7 +6026,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 3
   latestValidExecutionGroupIndex: 3
   RotationAtRest: {x: 15.389135, y: -0, z: -0}
   RotationOffset: {x: 88.82747, y: 0.00065864087, z: 0.0006671525}
@@ -6310,7 +6310,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 2
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -78.44348, y: 0, z: -0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -9330,6 +9330,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.000000029802322
       objectReference: {fileID: 0}
+    - target: {fileID: -2766413951026514399, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e543ae8320093c14186e7f1226937558, type: 2}
     - target: {fileID: -1906187957724969722, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.5
@@ -9385,7 +9389,11 @@ PrefabInstance:
     - target: {fileID: 1630794972795428178, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 2100000, guid: e543ae8320093c14186e7f1226937558, type: 2}
+    - target: {fileID: 1630794972795428178, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: e2b8c3a806f86054381e05fdd416be81, type: 2}
     - target: {fileID: 2511591596197681763, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.50000006
@@ -9648,6 +9656,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2825573892079737799, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1419331611}
+    - targetCorrespondingSourceObject: {fileID: 2825573892079737799, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1419331612}
     - targetCorrespondingSourceObject: {fileID: 840785416883709231, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 535491439}
@@ -9943,6 +9954,11 @@ MonoBehaviour:
     height: 1.0037314
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+--- !u!4 &557436058 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8726815866700363362, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
+  m_PrefabInstance: {fileID: 557436054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &557990045
 GameObject:
   m_ObjectHideFlags: 0
@@ -10653,7 +10669,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 18.45792, y: 55.86763, z: 15.669644}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -10767,7 +10783,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -9.624786, y: -0, z: 0}
@@ -11096,7 +11112,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -11898,7 +11914,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 68.863106, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -12224,8 +12240,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -0, y: -0, z: -0}
   WorldUpTransform: {fileID: 1384204305}
@@ -13725,7 +13741,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: 0, y: -0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -14537,7 +14553,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 0, y: -0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -16462,7 +16478,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 2
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -18988,8 +19004,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 0
+  latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: 0}
   RotationOffset: {x: 0, y: -0, z: -0}
   WorldUpTransform: {fileID: 648113987}
@@ -20087,7 +20103,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 0.3, y: 0.187, z: 0.466}
   AffectsPositionX: 1
@@ -20963,7 +20979,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 0.006000012, y: 0, z: -4.656613e-10}
   AffectsPositionX: 1
@@ -23737,7 +23753,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 2
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774048, y: -0.5496826, z: 6.035894}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -26322,7 +26338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 925688826560892448, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_IsActive
@@ -30225,6 +30241,23 @@ MonoBehaviour:
   AffectsRotationX: 1
   AffectsRotationY: 1
   AffectsRotationZ: 1
+--- !u!114 &1419331612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419331609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1888410255, guid: 67cc4cb7839cd3741b63733d5adf0442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetBones:
+  - transform: {fileID: 557436058}
+    scaleFactor: 0
+    applyCondition: 0
+  globalScaleFactor: 1
 --- !u!114 &1423162242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32197,7 +32230,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 3.8735266, y: 6.502057, z: -0.11467278}
   AffectsPositionX: 1
@@ -32733,7 +32766,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 0
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -0, y: 0, z: 0}
   RotationOffset: {x: 0, y: -0, z: 0}
   WorldUpTransform: {fileID: 1831474644}
@@ -36024,7 +36057,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 0
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: -0.6000004, y: 0.20109862, z: 0.0009022534}
   PositionOffset: {x: 0, y: 0, z: 0}
@@ -37555,7 +37588,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 68.86327, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -38140,7 +38173,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -0, y: -0, z: -0}
   WorldUpTransform: {fileID: 1493484011}
@@ -38253,7 +38286,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 2
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -78.48303, y: 0, z: -0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -39064,7 +39097,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 3
   latestValidExecutionGroupIndex: 3
   RotationAtRest: {x: 15.42838, y: -0, z: -0}
   RotationOffset: {x: 88.82731, y: 0, z: -0}
@@ -39237,7 +39270,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: -1
+  cachedExecutionGroupIndex: 2
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: 0, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -45135,7 +45168,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 0
+  latestValidExecutionGroupIndex: 1
   PositionAtRest: {x: -17.777779, y: 0, z: 0}
   AffectsPositionX: 1
   AffectsPositionY: 1
@@ -45390,7 +45423,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 0
   ScaleAtRest: {x: 4.4444447, y: 4.4444447, z: 4.4444447}
   ScaleOffset: {x: 1, y: 1, z: 1}
   AffectsScaleX: 1
