@@ -16,10 +16,10 @@ Material:
   - AUTO_EXPOSURE
   - BSSBLOOMFOGTYPE_HEIGHT
   - DISTORT
-  - MOCHIE_PBR
   - POI_ANISOTROPICS
   - POI_AUDIOLINK
   - POI_EMISSION_1
+  - POI_EMISSION_2
   - POI_EMISSION_3
   - POI_GLOBALMASK_TEXTURES
   - POI_LTCGI
@@ -37,9 +37,9 @@ Material:
   m_CustomRenderQueue: 2450
   stringTagMap:
     AllLockedGUIDS: b3cd4167ddb0bf5429e2af0df261d16e
-    OriginalKeywords: AUTO_EXPOSURE BSSBLOOMFOGTYPE_HEIGHT DISTORT MOCHIE_PBR POI_ANISOTROPICS
-      POI_AUDIOLINK POI_EMISSION_1 POI_EMISSION_3 POI_GLOBALMASK_TEXTURES POI_LTCGI
-      POI_UZUMORE VIGNETTE_MASKED _EMISSION _LIGHTINGMODE_REALISTIC _RIM2STYLE_POIYOMI
+    OriginalKeywords: AUTO_EXPOSURE BSSBLOOMFOGTYPE_HEIGHT DISTORT POI_ANISOTROPICS
+      POI_AUDIOLINK POI_EMISSION_1 POI_EMISSION_2 POI_EMISSION_3 POI_GLOBALMASK_TEXTURES
+      POI_LTCGI POI_UZUMORE VIGNETTE_MASKED _EMISSION _LIGHTINGMODE_REALISTIC _RIM2STYLE_POIYOMI
       _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ _STYLIZEDREFLECTIONMODE_UNITYCHAN
     OriginalShader: .poiyomi/Poiyomi Pro
     OriginalShaderGUID: a24c7f2b5aa9f75478a3abf1a4afc345
@@ -155,7 +155,7 @@ Material:
     _stripped_tex__ClothDFG: 76d65cbce584df7449699fb8406f60ea
     _stripped_tex__DistortionFlowTexture: 07f0a54a3a4e7754eabc8ced70d7b30c
     _stripped_tex__DistortionFlowTexture1: 70cd704e7a9550241b8a8b51fffc1a68
-    _stripped_tex__EmissionMask2: 0b239d0244f63594b812e78034d52ca2
+    _stripped_tex__MochieMetallicMaps: 7a7571dab3ef3804bba7a93dcb73ab0e
     _stripped_tex__PathingColorMap: d99dfa8b82cf6a5439129a8f7c42761c
     _stripped_tex__PathingMap: ce789231e8db88c4e8f52044977e60f6
     _stripped_tex__SkinLUT: d13510bb2be49aa40a66a0101efb6a36
@@ -171,10 +171,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _AnisoColorMap:
         m_Texture: {fileID: 2800000, guid: 018d462863bb0e84fa72844a75808aa6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _AnisotropyMap:
-        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -209,6 +205,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EmissionMap2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap3:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -221,6 +221,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 703217fd121862744a00b20d030d34cd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _EmissionMask2:
+        m_Texture: {fileID: 2800000, guid: 51f96c690b334914eadf4734ec73266f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMask3:
         m_Texture: {fileID: 2800000, guid: 9968b6e83d56dae49b6638daab1a36e8, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -230,6 +234,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionScrollingCurve1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionScrollingCurve2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -271,14 +279,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 396f09924581e3943853accd93f49fba, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MochieMetallicMaps:
-        m_Texture: {fileID: 2800000, guid: 7a7571dab3ef3804bba7a93dcb73ab0e, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MochieReflCube:
-        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PoiSkinLUT:
@@ -1390,7 +1390,7 @@ Material:
     - _EnableDistortionAudioLink: 0
     - _EnableEmission: 1
     - _EnableEmission1: 1
-    - _EnableEmission2: 0
+    - _EnableEmission2: 1
     - _EnableEmission3: 1
     - _EnableEnvironmentalRim: 0
     - _EnableFlipbook: 0
@@ -2278,7 +2278,7 @@ Material:
     - _MirrorTextureEnabled: 0
     - _MirrorTextureForceEnabled: 0
     - _MirrorTextureUV: 0
-    - _MochieBRDF: 1
+    - _MochieBRDF: 0
     - _MochieForceFallback: 0
     - _MochieGSAAEnabled: 1
     - _MochieLitFallback: 1
@@ -3484,12 +3484,12 @@ Material:
     - m_end_videoEffects: 0
     - m_end_voronoi: 0
     - m_end_voronoiRandom: 0
-    - m_lightingCategory: 0
+    - m_lightingCategory: 1
     - m_mainCategory: 0
     - m_modifierCategory: 0
     - m_raymarchingCategory: 0
     - m_renderingCategory: 0
-    - m_specialFXCategory: 0
+    - m_specialFXCategory: 1
     - m_start_ALDecalSpectrum: 0
     - m_start_ALVolumeColor: 0
     - m_start_Alpha: 0
@@ -3612,7 +3612,7 @@ Material:
     - m_start_dissolveHueShift: 0
     - m_start_emission1Options: 0
     - m_start_emission2Options: 0
-    - m_start_emission3Options: 0
+    - m_start_emission3Options: 1
     - m_start_emissionOptions: 0
     - m_start_flipBook: 0
     - m_start_flipBook1: 0

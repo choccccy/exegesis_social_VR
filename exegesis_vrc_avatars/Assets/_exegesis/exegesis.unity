@@ -512,7 +512,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 0.6000004, y: 0.20109823, z: 0.00090448855}
   PositionOffset: {x: 0, y: 0, z: 0}
@@ -545,7 +545,7 @@ Transform:
   m_GameObject: {fileID: 30661403}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7145405, y: 0.0000000528179, z: 0.000000053946312, w: 0.69959414}
-  m_LocalPosition: {x: 0.6000004, y: 0.20110035, z: 0.0009050369}
+  m_LocalPosition: {x: 0.59145546, y: -3.4602418, z: -0.8379879}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1286,7 +1286,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: -0.60000044, y: 4.480387, z: -0.00000047683716}
   AffectsPositionX: 1
@@ -2878,8 +2878,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190531825}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.00000004348988, z: -0.000000039316383, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000000007450581}
+  m_LocalRotation: {x: -0.25886467, y: 0.000000057318648, z: 7.887824e-10, w: 0.9659136}
+  m_LocalPosition: {x: -0.000085413456, y: 0.049391747, z: 0.0075366423}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5193,7 +5193,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774048, y: -0.5496826, z: 6.035894}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1206901881}
@@ -6026,7 +6026,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 3
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 3
   RotationAtRest: {x: 15.389135, y: -0, z: -0}
   RotationOffset: {x: 88.82747, y: 0.00065864087, z: 0.0006671525}
@@ -6310,7 +6310,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -78.44348, y: 0, z: -0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -7585,7 +7585,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: e6147645591de244fb9b8f18bf910a68, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 1
   Mute: 0
   Spatialize: 1
@@ -9333,7 +9333,7 @@ PrefabInstance:
     - target: {fileID: -2766413951026514399, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e543ae8320093c14186e7f1226937558, type: 2}
+      objectReference: {fileID: 2100000, guid: 0df8c7da931d23344bc28c5974da8c7d, type: 2}
     - target: {fileID: -1906187957724969722, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.5
@@ -9389,9 +9389,13 @@ PrefabInstance:
     - target: {fileID: 1630794972795428178, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e543ae8320093c14186e7f1226937558, type: 2}
+      objectReference: {fileID: 2100000, guid: b3cd4167ddb0bf5429e2af0df261d16e, type: 2}
     - target: {fileID: 1630794972795428178, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: c80ff6f22b1366140874c0e124242bdb, type: 2}
+    - target: {fileID: 1630794972795428178, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
+      propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: e2b8c3a806f86054381e05fdd416be81, type: 2}
     - target: {fileID: 2511591596197681763, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
@@ -9592,6 +9596,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1042887156}
+    - targetCorrespondingSourceObject: {fileID: -1122314837758968419, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1642324551}
     - targetCorrespondingSourceObject: {fileID: -1122314837758968419, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 886016883}
@@ -10669,7 +10676,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 18.45792, y: 55.86763, z: 15.669644}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -10783,7 +10790,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -9.624786, y: -0, z: 0}
@@ -11112,7 +11119,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -11914,7 +11921,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 68.863106, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -12240,8 +12247,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: -1
+  latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -0, y: -0, z: -0}
   WorldUpTransform: {fileID: 1384204305}
@@ -13326,9 +13333,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1630794972795428178, guid: c7d054404b2a07a4a9e73ea362890c03, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: c7d054404b2a07a4a9e73ea362890c03, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 34c9eaf13aa8f4748a04976b5674fda6, type: 2}
+    - target: {fileID: 1630794972795428178, guid: c7d054404b2a07a4a9e73ea362890c03, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: c80ff6f22b1366140874c0e124242bdb, type: 2}
     - target: {fileID: 2246372842161327034, guid: c7d054404b2a07a4a9e73ea362890c03, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -13741,7 +13756,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: 0, y: -0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -14553,7 +14568,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 0, y: -0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -15097,8 +15112,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886642893}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000017881396, y: 0.000000043489884, z: -0.000000039316372, w: 1}
-  m_LocalPosition: {x: 0.0119999945, y: 0, z: 0}
+  m_LocalRotation: {x: -0.2588649, y: 0.00000002716618, z: -0.000000028659219, w: 0.96591353}
+  m_LocalPosition: {x: 0.011914551, y: 0.04939152, z: 0.0075366423}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16478,7 +16493,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -19004,8 +19019,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
-  latestValidExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: -1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -0, y: 0, z: 0}
   RotationOffset: {x: 0, y: -0, z: -0}
   WorldUpTransform: {fileID: 648113987}
@@ -20103,7 +20118,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 0.3, y: 0.187, z: 0.466}
   AffectsPositionX: 1
@@ -20724,7 +20739,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1206901881}
@@ -20979,7 +20994,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 0.006000012, y: 0, z: -4.656613e-10}
   AffectsPositionX: 1
@@ -23047,40 +23062,40 @@ MonoBehaviour:
     isMirrored: 1
     state: 0
     transform: {fileID: 1206901820}
-    radius: 0.09428176
-    height: 0.37712705
-    position: {x: 0.034001395, y: 0.3187492, z: 0.00000020976186}
-    rotation: {x: 0.38766718, y: 0, z: -0.62842596, w: 0.67438495}
+    radius: 0.09428156
+    height: 0.37712625
+    position: {x: 0.034000434, y: 0.3187488, z: 0.0000011723769}
+    rotation: {x: 0.5775932, y: 0, z: 0.37096268, w: 0.7271677}
   collider_fingerIndexL:
     isMirrored: 1
     state: 0
     transform: {fileID: 1206901819}
-    radius: 0.049999867
-    height: 0.24999931
+    radius: 0.04999981
+    height: 0.24999906
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   collider_fingerMiddleL:
     isMirrored: 1
     state: 0
     transform: {fileID: 1206901818}
-    radius: 0.04999952
-    height: 0.2499976
+    radius: 0.05
+    height: 0.25
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   collider_fingerRingL:
     isMirrored: 1
     state: 0
     transform: {fileID: 1206901817}
-    radius: 0.049999904
-    height: 0.24999952
+    radius: 0.04999976
+    height: 0.2499988
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   collider_fingerLittleL:
     isMirrored: 1
     state: 0
     transform: {fileID: 1206901816}
-    radius: 0.05000024
-    height: 0.2500012
+    radius: 0.05000033
+    height: 0.25000164
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   collider_fingerIndexR:
@@ -23753,7 +23768,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774048, y: -0.5496826, z: 6.035894}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -24091,7 +24106,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1206901881}
@@ -26338,7 +26353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 925688826560892448, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_IsActive
@@ -29876,6 +29891,98 @@ MonoBehaviour:
   showGizmos: 1
   boneOpacity: 0.5
   limitOpacity: 0.5
+--- !u!1 &1404879307
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404879310}
+  - component: {fileID: 1404879309}
+  - component: {fileID: 1404879308}
+  m_Layer: 0
+  m_Name: Camera (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &1404879308
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404879307}
+  m_Enabled: 1
+--- !u!20 &1404879309
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404879307}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1404879310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404879307}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.170457, y: 2.1599658, z: 0.747}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1409539376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32230,7 +32337,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: 3.8735266, y: 6.502057, z: -0.11467278}
   AffectsPositionX: 1
@@ -32533,8 +32640,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493121922}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.4839273, y: -0.51609874, z: -0.5134082, w: 0.485663}
-  m_LocalPosition: {x: 3.8735266, y: 6.502057, z: -0.114673615}
+  m_LocalRotation: {x: 0.09979972, y: 0.6410751, z: 0.6651447, w: 0.3696558}
+  m_LocalPosition: {x: 1.3728294, y: 0.640409, z: 1.9424437}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -33859,7 +33966,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 0
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -0, y: 0, z: 0}
   RotationOffset: {x: 0, y: -0, z: -0}
   WorldUpTransform: {fileID: 606627914}
@@ -34110,7 +34217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1560602036
 Transform:
   m_ObjectHideFlags: 0
@@ -34608,7 +34715,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -0, y: -0, z: -0}
   WorldUpTransform: {fileID: 1206901824}
@@ -35643,6 +35750,153 @@ MonoBehaviour:
   UpAxis: {x: 0, y: 0, z: 1}
   WorldUp: 2
   WorldUpVector: {x: 0, y: 0, z: 1}
+--- !u!1 &1642324550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1642324551}
+  - component: {fileID: 1642324553}
+  - component: {fileID: 1642324552}
+  m_Layer: 0
+  m_Name: hum
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1642324551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642324550}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.63, z: -1.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2027413585}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1642324552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642324550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1610797297, guid: 67cc4cb7839cd3741b63733d5adf0442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gain: 10
+  Far: 1
+  Near: 0
+  VolumetricRadius: 0
+  EnableSpatialization: 1
+  UseAudioSourceVolumeCurve: 1
+--- !u!82 &1642324553
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642324550}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e6147645591de244fb9b8f18bf910a68, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 0.32
+  Loop: 1
+  Mute: 0
+  Spatialize: 1
+  SpatializePostEffects: 0
+  Priority: 200
+  DopplerLevel: 1
+  MinDistance: 0.24
+  MaxDistance: 5.76
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.33338645
+      value: 0.9999258
+      inSlope: Infinity
+      outSlope: 0.0010923645
+      tangentMode: 7
+      weightedMode: 0
+      inWeight: 0.028564818
+      outWeight: 0.27691108
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.6987134
+      outSlope: -1.6987134
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16092399
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1642465539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36057,7 +36311,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 0
   PositionAtRest: {x: -0.6000004, y: 0.20109862, z: 0.0009022534}
   PositionOffset: {x: 0, y: 0, z: 0}
@@ -37588,7 +37842,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 68.86327, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -38286,7 +38540,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -78.48303, y: 0, z: -0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -39097,7 +39351,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 3
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 3
   RotationAtRest: {x: 15.42838, y: -0, z: -0}
   RotationOffset: {x: 88.82731, y: 0, z: -0}
@@ -39270,7 +39524,7 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: -1
   latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: 0, y: 0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
@@ -39653,7 +39907,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: e6147645591de244fb9b8f18bf910a68, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 1
   Mute: 0
   Spatialize: 1
@@ -42354,7 +42608,7 @@ Transform:
   m_GameObject: {fileID: 1983323257}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7145406, y: -0.000000052817896, z: -0.000000053946305, w: 0.699594}
-  m_LocalPosition: {x: -0.6000004, y: 0.20110035, z: 0.0009050369}
+  m_LocalPosition: {x: -0.6085453, y: -3.4602427, z: -0.83798695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -42682,7 +42936,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: e6147645591de244fb9b8f18bf910a68, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
-  m_Pitch: 1
+  m_Pitch: 0.5
   Loop: 1
   Mute: 0
   Spatialize: 1
@@ -43917,7 +44171,7 @@ MonoBehaviour:
     totalLength: 1
     overflowList: []
   cachedExecutionGroupIndex: -1
-  latestValidExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 18.45792, y: 55.86763, z: 15.669644}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1206901881}
@@ -44626,7 +44880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2116366881
 Transform:
   m_ObjectHideFlags: 0
@@ -45449,3 +45703,4 @@ SceneRoots:
   - {fileID: 1497827423}
   - {fileID: 557436054}
   - {fileID: 814578497}
+  - {fileID: 1404879310}
