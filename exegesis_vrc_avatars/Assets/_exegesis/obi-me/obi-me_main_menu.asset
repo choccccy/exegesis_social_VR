@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -340790334, guid: 67cc4cb7839cd3741b63733d5adf0442, type: 3}
-  m_Name: lemaitre_main_menu
+  m_Name: obi-me_main_menu
   m_EditorClassIdentifier: 
   Parameters: {fileID: 11400000, guid: 0feacba8ced43f942bb99a164936f912, type: 2}
   controls:
-  - name: TEU Core
+  - name: Equipment
     icon: {fileID: 2800000, guid: 26f932c4382052a44bd754e68d59d7db, type: 3}
     type: 103
     parameter:
       name: 
     value: 1
     style: 0
-    subMenu: {fileID: 11400000, guid: c78649138a5c0614e805ccbcbf6a7a8d, type: 2}
+    subMenu: {fileID: 11400000, guid: b68c766701ed6e84193f45e639724423, type: 2}
     subParameters: []
     labels: []
-  - name: Snub
+  - name: RCS
     icon: {fileID: 0}
     type: 102
     parameter:

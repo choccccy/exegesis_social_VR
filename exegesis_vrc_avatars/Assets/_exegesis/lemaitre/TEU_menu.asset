@@ -13,24 +13,4 @@ MonoBehaviour:
   m_Name: TEU_menu
   m_EditorClassIdentifier: 
   Parameters: {fileID: 0}
-  controls:
-  - name: TEU Core
-    icon: {fileID: 0}
-    type: 102
-    parameter:
-      name: TEU_core
-    value: 1
-    style: 0
-    subMenu: {fileID: 0}
-    subParameters: []
-    labels: []
-  - name: Reset Location
-    icon: {fileID: 0}
-    type: 101
-    parameter:
-      name: TEU_reset
-    value: 1
-    style: 0
-    subMenu: {fileID: 0}
-    subParameters: []
-    labels: []
+  controls: []

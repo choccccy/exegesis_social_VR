@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: lower_head_cam
-  m_Shader: {fileID: 4800000, guid: 79530f27e2ddc7244b65b8d282e67121, type: 3}
+  m_Name: lower_head_mask
+  m_Shader: {fileID: 4800000, guid: fc5c0a16b2954b5498f0cc90e211665f, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -22,14 +22,15 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2451
+  m_CustomRenderQueue: 3000
   stringTagMap:
-    AllLockedGUIDS: b705521c4f77e5a4ab78ebd55f825163
+    AllLockedGUIDS: 740566f94f0faa140a7dafe58958c8dd
     OriginalKeywords: BSSBLOOMFOGTYPE_HEIGHT _LIGHTINGMODE_FLAT _RIM2STYLE_POIYOMI
       _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ _STYLIZEDREFLECTIONMODE_UNITYCHAN
     OriginalShader: .poiyomi/Poiyomi Pro
     OriginalShaderGUID: a24c7f2b5aa9f75478a3abf1a4afc345
-    RenderType: TransparentCutout
+    RenderType: Transparent
+    VRCFallback: None
     _stripped_tex__ClothDFG: 76d65cbce584df7449699fb8406f60ea
     _stripped_tex__DistortionFlowTexture: 07f0a54a3a4e7754eabc8ced70d7b30c
     _stripped_tex__DistortionFlowTexture1: 70cd704e7a9550241b8a8b51fffc1a68
@@ -65,7 +66,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 8400000, guid: b6ab0d5f3eeee2949b4ed5503cbb3631, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _PoiSkinLUT:
@@ -185,7 +186,7 @@ Material:
     - _AlphaMaskValue: 0
     - _AlphaMipScale: 0.25
     - _AlphaMod: 0
-    - _AlphaPremultiply: 0
+    - _AlphaPremultiply: 1
     - _AlphaSharpenedA2C: 0
     - _AlphaTextureStochastic: 0
     - _AlphaTextureUV: 0
@@ -579,12 +580,12 @@ Material:
     - _CubeMapUVMode: 1
     - _CubeMapWorldNormalsStrength: 1
     - _CubemapBlendType: 0
-    - _Cull: 2
+    - _Cull: 0
     - _CurvFix: 1
     - _CurvatureU: 0
     - _CurvatureV: 0
     - _CustomColors: 0
-    - _Cutoff: 0.5
+    - _Cutoff: 0
     - _DebugAutocorrelator: 0
     - _DebugBass: 0
     - _DebugCCColors: 0
@@ -968,7 +969,7 @@ Material:
     - _DistortionVoronoiScale: 1
     - _DistortionVoronoiSpeed: 2
     - _DistortionVoronoiStrength: 0.1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _DstBlendAlpha: 1
     - _EmissionAL0ColorOverrideBand: 0
     - _EmissionAL0ColorOverrideEnabled: 0
@@ -2054,7 +2055,7 @@ Material:
     - _MochieSpecularStrengthGlobalMask: 0
     - _MochieSpecularStrengthGlobalMaskBlendType: 2
     - _MochieSpecularTintThemeIndex: 0
-    - _Mode: 1
+    - _Mode: 3
     - _ModelAngleMax: 90
     - _ModelAngleMin: 45
     - _MultilayerMathBlurMapUV: 0
@@ -2076,7 +2077,7 @@ Material:
     - _OutlineBrightness: 0
     - _OutlineClipAtZeroWidth: 1
     - _OutlineCull: 1
-    - _OutlineDstBlend: 0
+    - _OutlineDstBlend: 10
     - _OutlineDstBlendAlpha: 1
     - _OutlineEmission: 0
     - _OutlineExpansionMode: 1
@@ -2658,7 +2659,7 @@ Material:
     - _StencilBackFailOp: 0
     - _StencilBackPassOp: 0
     - _StencilBackZFailOp: 0
-    - _StencilCompareFunction: 3
+    - _StencilCompareFunction: 8
     - _StencilFailOp: 0
     - _StencilFrontCompareFunction: 8
     - _StencilFrontFailOp: 0
@@ -2975,7 +2976,7 @@ Material:
     - _VoronoiType: 1
     - _VoronoiUV: 0
     - _ZClip: 1
-    - _ZTest: 5
+    - _ZTest: 4
     - _ZWrite: 0
     - _ppHueSelectOrShift: 1
     - footer_bluesky: 0
@@ -3138,7 +3139,7 @@ Material:
     - m_end_vertexManipulation: 0
     - m_end_videoEffects: 0
     - m_end_voronoi: 0
-    - m_lightingCategory: 1
+    - m_lightingCategory: 0
     - m_mainCategory: 1
     - m_modifierCategory: 0
     - m_raymarchingCategory: 0
@@ -3146,7 +3147,7 @@ Material:
     - m_specialFXCategory: 0
     - m_start_ALDecalSpectrum: 0
     - m_start_ALVolumeColor: 0
-    - m_start_Alpha: 0
+    - m_start_Alpha: 1
     - m_start_Aniso: 0
     - m_start_BeatsaberBloomFog: 0
     - m_start_BeatsaberOptions: 0
@@ -3215,7 +3216,7 @@ Material:
     - m_start_PoiGlobalCategory: 0
     - m_start_PoiLightData: 0
     - m_start_PoiPostProcessingCategory: 0
-    - m_start_PoiShading: 0
+    - m_start_PoiShading: 1
     - m_start_PoiSkin: 0
     - m_start_PoiTimeOptions: 0
     - m_start_PoiUVCategory: 0
@@ -4103,7 +4104,7 @@ Material:
     - _ClearCoatReflectionTint: {r: 1, g: 1, b: 1, a: 1}
     - _ClearCoatSpecularTint: {r: 1, g: 1, b: 1, a: 1}
     - _ClothMetallicSmoothnessMapPan: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _ConstellationALBrightnessMod: {r: 0, g: 0, b: 0, a: 0}
     - _ConstellationALColorOverride: {r: 1, g: 1, b: 1, a: 1}
     - _ConstellationALColorOverrideRamp: {r: 0, g: 1, b: 0, a: 1}

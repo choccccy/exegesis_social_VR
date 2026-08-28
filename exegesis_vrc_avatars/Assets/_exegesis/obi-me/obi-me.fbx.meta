@@ -490,6 +490,11 @@ ModelImporter:
       position: {x: -0, y: 0, z: 11.2}
       rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
       scale: {x: 1, y: 1, z: 1}
+    - name: Hips_fix
+      parentName: Hips
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: Spine
       parentName: Hips
       position: {x: -0, y: 1.5, z: 0}
@@ -525,6 +530,46 @@ ModelImporter:
       position: {x: 0.0000000754979, y: 4, z: 0.000000028979116}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_index.01.L
+      parentName: big_manipulator.05.L
+      position: {x: 0.39999777, y: 1.5, z: 0.4000001}
+      rotation: {x: 0.65328246, y: 0.27059707, z: -0.2705977, w: 0.6532811}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+    - name: manipulator_index.02.L
+      parentName: manipulator_index.01.L
+      position: {x: -0.0000011304712, y: 0.99999976, z: 0.0000016998752}
+      rotation: {x: -2.842171e-14, y: -6.217249e-14, z: -4.2008064e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_middle.01.L
+      parentName: big_manipulator.05.L
+      position: {x: 0.39999783, y: 1.5, z: -0.39999992}
+      rotation: {x: -0.270599, y: -0.65328056, z: 0.653282, w: -0.2705984}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+    - name: manipulator_middle.02.L
+      parentName: manipulator_middle.01.L
+      position: {x: 0.0000005268705, y: 0.99999887, z: 0.0000006773105}
+      rotation: {x: -2.842171e-14, y: -2.3092639e-14, z: 4.202194e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_pinky.01.L
+      parentName: big_manipulator.05.L
+      position: {x: -0.39999956, y: 1.5, z: 0.40000015}
+      rotation: {x: -0.27059773, y: 0.65328103, z: 0.65328246, w: 0.27059713}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: manipulator_pinky.02.L
+      parentName: manipulator_pinky.01.L
+      position: {x: -0.0000012198743, y: 0.9999989, z: -0.0000020925147}
+      rotation: {x: -5.684342e-14, y: -2.4868996e-14, z: -4.202194e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_ring.01.L
+      parentName: big_manipulator.05.L
+      position: {x: -0.3999995, y: 1.5, z: -0.39999998}
+      rotation: {x: -0.6532819, y: 0.2705983, z: 0.27059895, w: 0.65328056}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: manipulator_ring.02.L
+      parentName: manipulator_ring.01.L
+      position: {x: 0.0000015997566, y: 0.99999803, z: 0.0000008371469}
+      rotation: {x: 2.842171e-14, y: 2.4868996e-14, z: 4.2008057e-14, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     - name: big_manipulator.01.R
       parentName: Chest
       position: {x: 2.5, y: 5.5, z: -1}
@@ -549,6 +594,46 @@ ModelImporter:
       parentName: big_manipulator.04.R
       position: {x: -0.0000000754979, y: 4, z: 0.000000028979116}
       rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_index.01.R
+      parentName: big_manipulator.05.R
+      position: {x: -0.39999777, y: 1.5, z: 0.4000001}
+      rotation: {x: 0.6532824, y: -0.27059713, z: 0.27059767, w: 0.6532811}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: manipulator_index.02.R
+      parentName: manipulator_index.01.R
+      position: {x: -0.0000005659617, y: 1.0000012, z: -0.0000018476452}
+      rotation: {x: 3.59e-43, y: 1.0125234e-13, z: 2.660372e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_middle.01.R
+      parentName: big_manipulator.05.R
+      position: {x: -0.39999783, y: 1.5, z: -0.39999992}
+      rotation: {x: 0.27059892, y: -0.6532806, z: 0.6532818, w: 0.27059844}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: manipulator_middle.02.R
+      parentName: manipulator_middle.01.R
+      position: {x: 0.000000059424906, y: 1.0000004, z: -0.00000078820494}
+      rotation: {x: 1.4210855e-14, y: 8.348877e-14, z: -2.660372e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_pinky.01.R
+      parentName: big_manipulator.05.R
+      position: {x: 0.39999956, y: 1.5, z: 0.40000015}
+      rotation: {x: 0.2705977, y: 0.65328115, z: 0.6532824, w: -0.27059722}
+      scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_pinky.02.R
+      parentName: manipulator_pinky.01.R
+      position: {x: 0.0000004771143, y: 0.9999994, z: 0.0000015752772}
+      rotation: {x: -2.842171e-14, y: -1.687539e-14, z: 2.660372e-14, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_ring.01.R
+      parentName: big_manipulator.05.R
+      position: {x: 0.3999995, y: 1.5, z: -0.39999998}
+      rotation: {x: -0.65328187, y: -0.2705984, z: -0.27059895, w: 0.65328056}
+      scale: {x: 1, y: 1, z: 1}
+    - name: manipulator_ring.02.R
+      parentName: manipulator_ring.01.R
+      position: {x: -0.0000008942518, y: 0.99999845, z: 0.00000051559937}
+      rotation: {x: -2.842171e-14, y: -2.5757174e-14, z: -2.660372e-14, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: lower_head
       parentName: Chest
@@ -1020,11 +1105,6 @@ ModelImporter:
       position: {x: 0.00000023081614, y: 6.59, z: 0.00000015763288}
       rotation: {x: 0.80962765, y: 0.000000018221733, z: 0.00000010826268, w: 0.58694386}
       scale: {x: 1, y: 0.99999994, z: 0.9999999}
-    - name: arms_temp
-      parentName: obi-me(Clone)
-      position: {x: -0, y: 2.315, z: 1.3000001}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 2, y: 2, z: 2}
     - name: Body
       parentName: obi-me(Clone)
       position: {x: -0, y: 0, z: 0}

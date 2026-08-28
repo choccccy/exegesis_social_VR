@@ -239,3 +239,13 @@ MonoBehaviour:
     saved: 0
     defaultValue: 1
     networkSynced: 1
+  - name: lock_manipulator_L
+    valueType: 2
+    saved: 0
+    defaultValue: 0
+    networkSynced: 1
+  - name: lock_manipulator_R
+    valueType: 2
+    saved: 0
+    defaultValue: 0
+    networkSynced: 1

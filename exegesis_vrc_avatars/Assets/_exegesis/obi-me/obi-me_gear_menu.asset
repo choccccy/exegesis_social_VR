@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -340790334, guid: 67cc4cb7839cd3741b63733d5adf0442, type: 3}
+  m_Name: obi-me_gear_menu
+  m_EditorClassIdentifier: 
+  Parameters: {fileID: 0}
+  controls:
+  - name: Loadouts
+    icon: {fileID: 0}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 11400000, guid: 2d36eeb9466d47168560c570d25d69b6, type: 2}
+    subParameters: []
+    labels: []
+  - name: Lock LEFT Manipulator
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: lock_manipulator_L
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Lock RIGHT Manipulator
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: lock_manipulator_R
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Arm Hard-Cases
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: arm_hard-cases
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []
+  - name: Back
+    icon: {fileID: 0}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 11400000, guid: 4e07c6bb9ace426b9dd85661d44c564a, type: 2}
+    subParameters: []
+    labels: []
+  - name: Thighs
+    icon: {fileID: 0}
+    type: 103
+    parameter:
+      name: 
+    value: 1
+    style: 0
+    subMenu: {fileID: 11400000, guid: 02f516aefecf45b1ab8ab94b77df0d30, type: 2}
+    subParameters: []
+    labels: []
+  - name: Wings
+    icon: {fileID: 0}
+    type: 102
+    parameter:
+      name: wings_deployed
+    value: 1
+    style: 0
+    subMenu: {fileID: 0}
+    subParameters: []
+    labels: []

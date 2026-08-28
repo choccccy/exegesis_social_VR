@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 2460
   stringTagMap:
     AllLockedGUIDS: c5678ecbe3b508a4da0667178f4104bd
     OriginalKeywords: AUTO_EXPOSURE BSSBLOOMFOGTYPE_HEIGHT MOCHIE_PBR POI_EMISSION_1
@@ -37,7 +37,8 @@ Material:
       _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ _STYLIZEDREFLECTIONMODE_UNITYCHAN
     OriginalShader: .poiyomi/Poiyomi Pro
     OriginalShaderGUID: a24c7f2b5aa9f75478a3abf1a4afc345
-    RenderType: Opaque
+    RenderType: TransparentCutout
+    _ColorAnimated: 1
     _EmissionColor1Animated: 1
     _EmissionColorAnimated: 1
     _EmissionStrength1Animated: 1
@@ -255,7 +256,7 @@ Material:
     - _AddBlendOpAlpha: 4
     - _AddDstBlend: 1
     - _AddDstBlendAlpha: 1
-    - _AddSrcBlend: 1
+    - _AddSrcBlend: 5
     - _AddSrcBlendAlpha: 0
     - _Add_Antipodean_Rim2Light: 0
     - _Add_Antipodean_RimLight: 0
@@ -691,12 +692,12 @@ Material:
     - _CubeMapUVMode: 1
     - _CubeMapWorldNormalsStrength: 1
     - _CubemapBlendType: 0
-    - _Cull: 0
+    - _Cull: 2
     - _CurvFix: 1
     - _CurvatureU: 0
     - _CurvatureV: 0
     - _CustomColors: 0
-    - _Cutoff: 0.5
+    - _Cutoff: 0.01
     - _DebugAutocorrelator: 0
     - _DebugBass: 0
     - _DebugCCColors: 0
@@ -1080,7 +1081,7 @@ Material:
     - _DistortionVoronoiScale: 1
     - _DistortionVoronoiSpeed: 2
     - _DistortionVoronoiStrength: 0.1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _DstBlendAlpha: 1
     - _EmissionAL0ColorOverrideBand: 0
     - _EmissionAL0ColorOverrideEnabled: 0
@@ -2163,7 +2164,7 @@ Material:
     - _MochieSpecularStrengthGlobalMask: 0
     - _MochieSpecularStrengthGlobalMaskBlendType: 2
     - _MochieSpecularTintThemeIndex: 0
-    - _Mode: 1
+    - _Mode: 9
     - _ModelAngleMax: 90
     - _ModelAngleMin: 45
     - _MultilayerMathBlurMapUV: 0
@@ -2184,7 +2185,7 @@ Material:
     - _OutlineBrightness: 0
     - _OutlineClipAtZeroWidth: 1
     - _OutlineCull: 1
-    - _OutlineDstBlend: 0
+    - _OutlineDstBlend: 10
     - _OutlineDstBlendAlpha: 1
     - _OutlineEmission: 0
     - _OutlineExpansionMode: 1
@@ -2204,7 +2205,7 @@ Material:
     - _OutlineSaturationMethod: 1
     - _OutlineShadowStrength: 0
     - _OutlineSpace: 0
-    - _OutlineSrcBlend: 1
+    - _OutlineSrcBlend: 5
     - _OutlineSrcBlendAlpha: 1
     - _OutlineStencilBackCompareFunction: 8
     - _OutlineStencilBackFailOp: 0
@@ -2755,7 +2756,7 @@ Material:
     - _SquishSpread: 0.15
     - _SquishStrength: 1
     - _SquishWarning: 0
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _SrcBlendAlpha: 1
     - _SssBumpBlur: 0.7
     - _SssScale: 1
@@ -3278,7 +3279,7 @@ Material:
     - m_mainCategory: 1
     - m_modifierCategory: 0
     - m_raymarchingCategory: 0
-    - m_renderingCategory: 0
+    - m_renderingCategory: 1
     - m_specialFXCategory: 1
     - m_start_ALDecalSpectrum: 0
     - m_start_ALVolumeColor: 0
@@ -4239,7 +4240,7 @@ Material:
     - _ClearCoatReflectionTint: {r: 1, g: 1, b: 1, a: 1}
     - _ClearCoatSpecularTint: {r: 1, g: 1, b: 1, a: 1}
     - _ClothMetallicSmoothnessMapPan: {r: 0, g: 0, b: 0, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.0627451}
     - _ConstellationALBrightnessMod: {r: 0, g: 0, b: 0, a: 0}
     - _ConstellationALColorOverride: {r: 1, g: 1, b: 1, a: 1}
     - _ConstellationALColorOverrideRamp: {r: 0, g: 1, b: 0, a: 1}
