@@ -92,6 +92,24 @@ proxy.
 
 Drive the digi chain; the planti chain only needs solving when baking a clip back to Unity.
 
+### 3b. The rest pose is deliberately straight — leave it that way
+
+Both leg chains are perfectly **colinear along −Z in the rest pose**. That is an authoring
+choice, not an oversight: a straight leg is far easier to edit. The character's actual
+resting shape is the stored stance pose (footgun 1), which bends it into the digitigrade
+zig-zag — knee 68.9°, hock 78.4°, toe 15.4°.
+
+**Do not bake the stance into the rest pose.** Nothing needs it: a control rig binds through
+`Copy Transforms`, which drives world matrices, so the game bone's rest orientation does not
+affect the result — it only changes what the local pose numbers look like.
+
+The one place it does matter is **building a Rigify metarig**. Rigify infers the IK bend
+plane and pole direction from metarig *rest* geometry, and a colinear chain gives it no plane
+at all, so the knee direction would be undefined and the IK would flip. Build the metarig
+from the **posed** world-space joint positions (`pose_bone.head` / `.tail` with the stance
+applied), not from `head_local`/`tail_local`. Metarig bone lengths must still match the game
+bones exactly, or the driven chain separates at the joints.
+
 ### 4. `use_armature_deform_only` re-parents survivors
 
 The FBX exporter's *Only Deform Bones* option looks like the clean way to strip control bones
@@ -118,6 +136,9 @@ Editor holds the project lock (AGENTS.md ▸ 1).
 | `Tools/blender/export_avatar.py` | the **only** sanctioned way to export. Run through Blender |
 | `Tools/blender/housekeeping.py` | stale vertex groups, orphaned objects, `use_connect` asymmetries |
 | `Tools/blender/rename_arm_pack.py` | the ncho backpack-arm rename, as a worked example of a bone rename |
+| `Tools/blender/build_metarig.py` | builds the Rigify metarig from posed joints, generates, and moves the result out of the export scope |
+| `Tools/blender/bind_ctrl_rig.py` | the `Copy Transforms` binding + piston aims, with a self-check that can actually fail |
+| `Tools/blender/render_poses.py` | Workbench deformation check through a few poses |
 | `Tools/unity-repair/dump_fbx_ids.ps1` | name → Unity file ID map, headless. **Refuses to run while the Editor is open** |
 | `Tools/unity-repair/repair_refs.py` | re-points scene references after a rename, with an audit |
 | `Assets/_exegesis/shared/Editor/FbxIdDump.cs` | the Editor side of the ID dump; also `Tools > Exegesis > Debug > Dump FBX File IDs` |
@@ -174,6 +195,107 @@ Dynamics PhysBone roots and ignore-lists. Total references 1611 before and after
 override targets from earlier edits of the model. They are inert (Unity keeps stale overrides
 around and never applies them) and predate this tooling. `repair_refs.py`'s audit accounts for
 them: the check is that the *set* of unresolved references does not grow.
+
+## The ncho control rig (Rigify)
+
+`source/ncho/ncho.blend` holds three armatures, in three collections:
+
+```
+Collection "ncho"            <- the FBX export scope. Hierarchy FROZEN.
+    Body, Props              meshes, skinned to Armature
+    Armature                 the 132-bone game rig
+Collection "ncho_rig"        <- never exported
+    ncho_metarig             115 bones, the editable definition
+    ncho_ctrl                680 bones, Rigify's output
+    ncho_rig_widgets/        236 WGT- shape objects
+```
+
+Rigify links its generated rig into whatever collection is active, which is the
+*export* collection; `build_metarig.py`'s `finalize()` moves the rig and all 236
+widgets out. Without that they would ride along into the FBX.
+
+### The one switch
+
+`ncho_ctrl["use_ctrl_rig"]` drives the influence of all 115 constraints on the
+game rig — 111 `Copy Transforms` bindings plus 4 piston aims.
+
+    0  the game armature behaves exactly as it did before the rig existed
+    1  it follows the controls
+
+`export_avatar.py` sets it to 0, which is what keeps the FBX byte-identical.
+Verified: with the full rig and binding present, the export still compares
+IDENTICAL to the committed FBX on objects, hierarchy, bone transforms,
+topology, weights, `GlobalSettings` and shape keys.
+
+**Setting a custom property from Python does not re-evaluate the drivers that
+read it.** Tag the depsgraph (`obj.update_tag()`, then
+`view_layer.update()` and `evaluated_depsgraph_get().update()`) or every value
+you read back is stale. An earlier version of the binding self-check passed
+while the switch did nothing, for exactly this reason.
+
+### Rig types
+
+| Part | Rig type | Notes |
+|---|---|---|
+| Hips/Spine/Chest | `spines.basic_spine` | |
+| Neck/Head | `spines.super_head` | `connect_chain=True` |
+| Legs | `limbs.rear_paw` | purpose-built for digitigrade; see below |
+| Arms ×4 | `limbs.arm` | body pair + backpack (`pack_*`) pair |
+| Fingers ×20 | `limbs.super_finger` | one master curl control each |
+| Tail | `spines.basic_tail` | `connect_chain=False` — `TailRoot`'s head is offset from `Hips`' tail, and Rigify rejects a "connected" chain whose position is disjoint |
+| Ears, wings, `arm_pack_root`, pistons | `basic.super_copy` | |
+| ab-wires | `limbs.simple_tentacle` | |
+
+`segments=1` everywhere. The binding reads `ORG-` bones, and the character
+deforms rigidly off the `_fix` stubs, so Rigify's twist subdivision and its
+mid-limb tweak controls would drive `DEF-` bones that nothing follows. One
+segment keeps every control in the rig one that actually does something.
+
+### Two rules the metarig must follow
+
+1. **A bone with a `rigify_type` must not be `use_connect`.** Otherwise the
+   parent rig's chain walk swallows it and both rigs claim the same bones
+   (`CONFLICT: bone ORG-Neck is claimed by...`). Rigify's own metarigs follow
+   this without exception; `connect_chain` is how a sub-rig re-links logically.
+2. **Build it from posed joints, not rest.** See footgun 3b.
+
+### The legs
+
+`limbs.rear_paw` maps exactly onto `thigh → digiShin → digiAnkle → digiFoot`:
+a 4-bone chain, no heel bone, the same shape Rigify's own wolf metarig uses.
+
+- `digiAnkle_ik.L` places the foot; IK tracking is exact to ~0.001.
+- `digiAnkle_heel_ik.L` is a **positional** control that shapes the hock — it is
+  consumed via `COPY_LOCATION`, so rotating it does nothing. Moving it forward
+  or down swings the knee and compresses the leg.
+- **There is no heel-to-toe roll, and that is correct.** ncho has no heel and no
+  forward toe; `digiFoot` is a 0.2-unit vertical peg and the character stands on
+  its tip. Synthesising a forward-pointing toe would restore Rigify's foot roll
+  but leave the metarig toe pointing 90° away from `digiFoot`, so the binding
+  would mis-drive that bone.
+- **`IK_Stretch` defaults to 0**, set by `finalize()`. At full extension the
+  chain goes exactly colinear — the IK singularity — and because the rest pose
+  is straight, that is reachable about 0.6 units below the stance. With stretch
+  on it hits 0.00° and then scales the bones, which humanoid retargeting will
+  not carry back to Unity either.
+
+### The pistons
+
+Each game piston Damped Tracks the **control rig's** copy of the other
+(`ORG-piston_shaft.L` / `ORG-piston_sleeve.L`), never the other game bone
+directly: two game bones tracking each other is a dependency cycle, which
+Blender resolves arbitrarily. That cycle silently corrupted the exported bind
+pose — one shaft came out 349° off — while still "succeeding". Routing through
+the control rig breaks it, because the control rig has no dependency on the
+game rig. Aim only, no `Stretch To`. Never keyed.
+
+### Checking deformation
+
+`Tools/blender/render_poses.py` renders the character through a few control-rig
+poses using the Workbench engine — flat shading with cavity, which reads
+creasing and pinching far better than the real materials. Worth running after
+any weighting or rig change, because the mesh is modelled at the straight rest
+pose and bent into the stance, so the weighting is doing real work at the hock.
 
 ## Current state of the rigs
 
