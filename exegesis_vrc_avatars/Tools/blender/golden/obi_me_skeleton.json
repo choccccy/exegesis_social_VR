@@ -1,0 +1,890 @@
+{
+ "bones": {
+  "Armature": {
+   "parent": null,
+   "path": "Armature",
+   "type": "Null"
+  },
+  "Body": {
+   "parent": null,
+   "path": "Body",
+   "type": "Mesh"
+  },
+  "Chest": {
+   "parent": "Spine",
+   "path": "Armature/Hips/Spine/Chest",
+   "type": "LimbNode"
+  },
+  "Hips": {
+   "parent": "Armature",
+   "path": "Armature/Hips",
+   "type": "LimbNode"
+  },
+  "Hips_fix": {
+   "parent": "Hips",
+   "path": "Armature/Hips/Hips_fix",
+   "type": "LimbNode"
+  },
+  "Spine": {
+   "parent": "Hips",
+   "path": "Armature/Hips/Spine",
+   "type": "LimbNode"
+  },
+  "big_manipulator.01.L": {
+   "parent": "Chest",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L",
+   "type": "LimbNode"
+  },
+  "big_manipulator.01.R": {
+   "parent": "Chest",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R",
+   "type": "LimbNode"
+  },
+  "big_manipulator.02.L": {
+   "parent": "big_manipulator.01.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L",
+   "type": "LimbNode"
+  },
+  "big_manipulator.02.R": {
+   "parent": "big_manipulator.01.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R",
+   "type": "LimbNode"
+  },
+  "big_manipulator.03.L": {
+   "parent": "big_manipulator.02.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L",
+   "type": "LimbNode"
+  },
+  "big_manipulator.03.R": {
+   "parent": "big_manipulator.02.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R",
+   "type": "LimbNode"
+  },
+  "big_manipulator.04.L": {
+   "parent": "big_manipulator.03.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L",
+   "type": "LimbNode"
+  },
+  "big_manipulator.04.R": {
+   "parent": "big_manipulator.03.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R",
+   "type": "LimbNode"
+  },
+  "big_manipulator.05.L": {
+   "parent": "big_manipulator.04.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L/big_manipulator.05.L",
+   "type": "LimbNode"
+  },
+  "big_manipulator.05.R": {
+   "parent": "big_manipulator.04.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R/big_manipulator.05.R",
+   "type": "LimbNode"
+  },
+  "digiAnkle.L": {
+   "parent": "digiShin.L",
+   "path": "Armature/Hips/thigh.L/digiShin.L/digiAnkle.L",
+   "type": "LimbNode"
+  },
+  "digiAnkle.R": {
+   "parent": "digiShin.R",
+   "path": "Armature/Hips/thigh.R/digiShin.R/digiAnkle.R",
+   "type": "LimbNode"
+  },
+  "digiFoot.L": {
+   "parent": "digiAnkle.L",
+   "path": "Armature/Hips/thigh.L/digiShin.L/digiAnkle.L/digiFoot.L",
+   "type": "LimbNode"
+  },
+  "digiFoot.R": {
+   "parent": "digiAnkle.R",
+   "path": "Armature/Hips/thigh.R/digiShin.R/digiAnkle.R/digiFoot.R",
+   "type": "LimbNode"
+  },
+  "digiShin.L": {
+   "parent": "thigh.L",
+   "path": "Armature/Hips/thigh.L/digiShin.L",
+   "type": "LimbNode"
+  },
+  "digiShin.R": {
+   "parent": "thigh.R",
+   "path": "Armature/Hips/thigh.R/digiShin.R",
+   "type": "LimbNode"
+  },
+  "f_index.01.L": {
+   "parent": "hand.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L",
+   "type": "LimbNode"
+  },
+  "f_index.01.R": {
+   "parent": "hand.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R",
+   "type": "LimbNode"
+  },
+  "f_index.02.L": {
+   "parent": "f_index.01.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L",
+   "type": "LimbNode"
+  },
+  "f_index.02.R": {
+   "parent": "f_index.01.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R",
+   "type": "LimbNode"
+  },
+  "f_index.03.L": {
+   "parent": "f_index.02.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_index.01.L/f_index.02.L/f_index.03.L",
+   "type": "LimbNode"
+  },
+  "f_index.03.R": {
+   "parent": "f_index.02.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_index.01.R/f_index.02.R/f_index.03.R",
+   "type": "LimbNode"
+  },
+  "f_middle.01.L": {
+   "parent": "hand.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L",
+   "type": "LimbNode"
+  },
+  "f_middle.01.R": {
+   "parent": "hand.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R",
+   "type": "LimbNode"
+  },
+  "f_middle.02.L": {
+   "parent": "f_middle.01.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L",
+   "type": "LimbNode"
+  },
+  "f_middle.02.R": {
+   "parent": "f_middle.01.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R",
+   "type": "LimbNode"
+  },
+  "f_middle.03.L": {
+   "parent": "f_middle.02.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_middle.01.L/f_middle.02.L/f_middle.03.L",
+   "type": "LimbNode"
+  },
+  "f_middle.03.R": {
+   "parent": "f_middle.02.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_middle.01.R/f_middle.02.R/f_middle.03.R",
+   "type": "LimbNode"
+  },
+  "f_pinky.01.L": {
+   "parent": "hand.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L",
+   "type": "LimbNode"
+  },
+  "f_pinky.01.R": {
+   "parent": "hand.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R",
+   "type": "LimbNode"
+  },
+  "f_pinky.02.L": {
+   "parent": "f_pinky.01.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L",
+   "type": "LimbNode"
+  },
+  "f_pinky.02.R": {
+   "parent": "f_pinky.01.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R",
+   "type": "LimbNode"
+  },
+  "f_pinky.03.L": {
+   "parent": "f_pinky.02.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_pinky.01.L/f_pinky.02.L/f_pinky.03.L",
+   "type": "LimbNode"
+  },
+  "f_pinky.03.R": {
+   "parent": "f_pinky.02.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_pinky.01.R/f_pinky.02.R/f_pinky.03.R",
+   "type": "LimbNode"
+  },
+  "f_ring.01.L": {
+   "parent": "hand.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L",
+   "type": "LimbNode"
+  },
+  "f_ring.01.R": {
+   "parent": "hand.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R",
+   "type": "LimbNode"
+  },
+  "f_ring.02.L": {
+   "parent": "f_ring.01.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L",
+   "type": "LimbNode"
+  },
+  "f_ring.02.R": {
+   "parent": "f_ring.01.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R",
+   "type": "LimbNode"
+  },
+  "f_ring.03.L": {
+   "parent": "f_ring.02.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/f_ring.01.L/f_ring.02.L/f_ring.03.L",
+   "type": "LimbNode"
+  },
+  "f_ring.03.R": {
+   "parent": "f_ring.02.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/f_ring.01.R/f_ring.02.R/f_ring.03.R",
+   "type": "LimbNode"
+  },
+  "foot.L": {
+   "parent": "shin.L",
+   "path": "Armature/Hips/thigh.L/shin.L/foot.L",
+   "type": "LimbNode"
+  },
+  "foot.R": {
+   "parent": "shin.R",
+   "path": "Armature/Hips/thigh.R/shin.R/foot.R",
+   "type": "LimbNode"
+  },
+  "forearm.L": {
+   "parent": "upper_arm.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L",
+   "type": "LimbNode"
+  },
+  "forearm.R": {
+   "parent": "upper_arm.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R",
+   "type": "LimbNode"
+  },
+  "hand.L": {
+   "parent": "forearm.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L",
+   "type": "LimbNode"
+  },
+  "hand.R": {
+   "parent": "forearm.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R",
+   "type": "LimbNode"
+  },
+  "head": {
+   "parent": "neck",
+   "path": "Armature/Hips/Spine/Chest/neck/head",
+   "type": "LimbNode"
+  },
+  "lower_head": {
+   "parent": "Chest",
+   "path": "Armature/Hips/Spine/Chest/lower_head",
+   "type": "LimbNode"
+  },
+  "manipulator_index.01.L": {
+   "parent": "big_manipulator.05.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L/big_manipulator.05.L/manipulator_index.01.L",
+   "type": "LimbNode"
+  },
+  "manipulator_index.01.R": {
+   "parent": "big_manipulator.05.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R/big_manipulator.05.R/manipulator_index.01.R",
+   "type": "LimbNode"
+  },
+  "manipulator_index.02.L": {
+   "parent": "manipulator_index.01.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L/big_manipulator.05.L/manipulator_index.01.L/manipulator_index.02.L",
+   "type": "LimbNode"
+  },
+  "manipulator_index.02.R": {
+   "parent": "manipulator_index.01.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R/big_manipulator.05.R/manipulator_index.01.R/manipulator_index.02.R",
+   "type": "LimbNode"
+  },
+  "manipulator_middle.01.L": {
+   "parent": "big_manipulator.05.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L/big_manipulator.05.L/manipulator_middle.01.L",
+   "type": "LimbNode"
+  },
+  "manipulator_middle.01.R": {
+   "parent": "big_manipulator.05.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R/big_manipulator.05.R/manipulator_middle.01.R",
+   "type": "LimbNode"
+  },
+  "manipulator_middle.02.L": {
+   "parent": "manipulator_middle.01.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L/big_manipulator.05.L/manipulator_middle.01.L/manipulator_middle.02.L",
+   "type": "LimbNode"
+  },
+  "manipulator_middle.02.R": {
+   "parent": "manipulator_middle.01.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R/big_manipulator.05.R/manipulator_middle.01.R/manipulator_middle.02.R",
+   "type": "LimbNode"
+  },
+  "manipulator_pinky.01.L": {
+   "parent": "big_manipulator.05.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L/big_manipulator.05.L/manipulator_pinky.01.L",
+   "type": "LimbNode"
+  },
+  "manipulator_pinky.01.R": {
+   "parent": "big_manipulator.05.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R/big_manipulator.05.R/manipulator_pinky.01.R",
+   "type": "LimbNode"
+  },
+  "manipulator_pinky.02.L": {
+   "parent": "manipulator_pinky.01.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L/big_manipulator.05.L/manipulator_pinky.01.L/manipulator_pinky.02.L",
+   "type": "LimbNode"
+  },
+  "manipulator_pinky.02.R": {
+   "parent": "manipulator_pinky.01.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R/big_manipulator.05.R/manipulator_pinky.01.R/manipulator_pinky.02.R",
+   "type": "LimbNode"
+  },
+  "manipulator_ring.01.L": {
+   "parent": "big_manipulator.05.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L/big_manipulator.05.L/manipulator_ring.01.L",
+   "type": "LimbNode"
+  },
+  "manipulator_ring.01.R": {
+   "parent": "big_manipulator.05.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R/big_manipulator.05.R/manipulator_ring.01.R",
+   "type": "LimbNode"
+  },
+  "manipulator_ring.02.L": {
+   "parent": "manipulator_ring.01.L",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.L/big_manipulator.02.L/big_manipulator.03.L/big_manipulator.04.L/big_manipulator.05.L/manipulator_ring.01.L/manipulator_ring.02.L",
+   "type": "LimbNode"
+  },
+  "manipulator_ring.02.R": {
+   "parent": "manipulator_ring.01.R",
+   "path": "Armature/Hips/Spine/Chest/big_manipulator.01.R/big_manipulator.02.R/big_manipulator.03.R/big_manipulator.04.R/big_manipulator.05.R/manipulator_ring.01.R/manipulator_ring.02.R",
+   "type": "LimbNode"
+  },
+  "minor_f_index.01.L": {
+   "parent": "minor_hand.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_index.01.L",
+   "type": "LimbNode"
+  },
+  "minor_f_index.01.R": {
+   "parent": "minor_hand.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_index.01.R",
+   "type": "LimbNode"
+  },
+  "minor_f_index.02.L": {
+   "parent": "minor_f_index.01.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_index.01.L/minor_f_index.02.L",
+   "type": "LimbNode"
+  },
+  "minor_f_index.02.R": {
+   "parent": "minor_f_index.01.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_index.01.R/minor_f_index.02.R",
+   "type": "LimbNode"
+  },
+  "minor_f_index.03.L": {
+   "parent": "minor_f_index.02.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_index.01.L/minor_f_index.02.L/minor_f_index.03.L",
+   "type": "LimbNode"
+  },
+  "minor_f_index.03.R": {
+   "parent": "minor_f_index.02.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_index.01.R/minor_f_index.02.R/minor_f_index.03.R",
+   "type": "LimbNode"
+  },
+  "minor_f_middle.01.L": {
+   "parent": "minor_hand.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_middle.01.L",
+   "type": "LimbNode"
+  },
+  "minor_f_middle.01.R": {
+   "parent": "minor_hand.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_middle.01.R",
+   "type": "LimbNode"
+  },
+  "minor_f_middle.02.L": {
+   "parent": "minor_f_middle.01.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_middle.01.L/minor_f_middle.02.L",
+   "type": "LimbNode"
+  },
+  "minor_f_middle.02.R": {
+   "parent": "minor_f_middle.01.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_middle.01.R/minor_f_middle.02.R",
+   "type": "LimbNode"
+  },
+  "minor_f_middle.03.L": {
+   "parent": "minor_f_middle.02.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_middle.01.L/minor_f_middle.02.L/minor_f_middle.03.L",
+   "type": "LimbNode"
+  },
+  "minor_f_middle.03.R": {
+   "parent": "minor_f_middle.02.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_middle.01.R/minor_f_middle.02.R/minor_f_middle.03.R",
+   "type": "LimbNode"
+  },
+  "minor_f_pinky.01.L": {
+   "parent": "minor_hand.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_pinky.01.L",
+   "type": "LimbNode"
+  },
+  "minor_f_pinky.01.R": {
+   "parent": "minor_hand.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_pinky.01.R",
+   "type": "LimbNode"
+  },
+  "minor_f_pinky.02.L": {
+   "parent": "minor_f_pinky.01.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_pinky.01.L/minor_f_pinky.02.L",
+   "type": "LimbNode"
+  },
+  "minor_f_pinky.02.R": {
+   "parent": "minor_f_pinky.01.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_pinky.01.R/minor_f_pinky.02.R",
+   "type": "LimbNode"
+  },
+  "minor_f_pinky.03.L": {
+   "parent": "minor_f_pinky.02.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_pinky.01.L/minor_f_pinky.02.L/minor_f_pinky.03.L",
+   "type": "LimbNode"
+  },
+  "minor_f_pinky.03.R": {
+   "parent": "minor_f_pinky.02.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_pinky.01.R/minor_f_pinky.02.R/minor_f_pinky.03.R",
+   "type": "LimbNode"
+  },
+  "minor_f_ring.01.L": {
+   "parent": "minor_hand.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_ring.01.L",
+   "type": "LimbNode"
+  },
+  "minor_f_ring.01.R": {
+   "parent": "minor_hand.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_ring.01.R",
+   "type": "LimbNode"
+  },
+  "minor_f_ring.02.L": {
+   "parent": "minor_f_ring.01.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_ring.01.L/minor_f_ring.02.L",
+   "type": "LimbNode"
+  },
+  "minor_f_ring.02.R": {
+   "parent": "minor_f_ring.01.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_ring.01.R/minor_f_ring.02.R",
+   "type": "LimbNode"
+  },
+  "minor_f_ring.03.L": {
+   "parent": "minor_f_ring.02.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_f_ring.01.L/minor_f_ring.02.L/minor_f_ring.03.L",
+   "type": "LimbNode"
+  },
+  "minor_f_ring.03.R": {
+   "parent": "minor_f_ring.02.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_f_ring.01.R/minor_f_ring.02.R/minor_f_ring.03.R",
+   "type": "LimbNode"
+  },
+  "minor_forearm.L": {
+   "parent": "minor_upper_arm.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L",
+   "type": "LimbNode"
+  },
+  "minor_forearm.R": {
+   "parent": "minor_upper_arm.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R",
+   "type": "LimbNode"
+  },
+  "minor_forearm_fix.L": {
+   "parent": "minor_forearm.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_forearm_fix.L",
+   "type": "LimbNode"
+  },
+  "minor_forearm_fix.R": {
+   "parent": "minor_forearm.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_forearm_fix.R",
+   "type": "LimbNode"
+  },
+  "minor_hand.L": {
+   "parent": "minor_forearm.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L",
+   "type": "LimbNode"
+  },
+  "minor_hand.R": {
+   "parent": "minor_forearm.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R",
+   "type": "LimbNode"
+  },
+  "minor_thumb.01.L": {
+   "parent": "minor_hand.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_thumb.01.L",
+   "type": "LimbNode"
+  },
+  "minor_thumb.01.R": {
+   "parent": "minor_hand.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_thumb.01.R",
+   "type": "LimbNode"
+  },
+  "minor_thumb.02.L": {
+   "parent": "minor_thumb.01.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_thumb.01.L/minor_thumb.02.L",
+   "type": "LimbNode"
+  },
+  "minor_thumb.02.R": {
+   "parent": "minor_thumb.01.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_thumb.01.R/minor_thumb.02.R",
+   "type": "LimbNode"
+  },
+  "minor_thumb.03.L": {
+   "parent": "minor_thumb.02.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_forearm.L/minor_hand.L/minor_thumb.01.L/minor_thumb.02.L/minor_thumb.03.L",
+   "type": "LimbNode"
+  },
+  "minor_thumb.03.R": {
+   "parent": "minor_thumb.02.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_forearm.R/minor_hand.R/minor_thumb.01.R/minor_thumb.02.R/minor_thumb.03.R",
+   "type": "LimbNode"
+  },
+  "minor_upper_arm.L": {
+   "parent": "Chest",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L",
+   "type": "LimbNode"
+  },
+  "minor_upper_arm.R": {
+   "parent": "Chest",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R",
+   "type": "LimbNode"
+  },
+  "minor_upper_arm_fix.L": {
+   "parent": "minor_upper_arm.L",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.L/minor_upper_arm_fix.L",
+   "type": "LimbNode"
+  },
+  "minor_upper_arm_fix.R": {
+   "parent": "minor_upper_arm.R",
+   "path": "Armature/Hips/Spine/Chest/minor_upper_arm.R/minor_upper_arm_fix.R",
+   "type": "LimbNode"
+  },
+  "neck": {
+   "parent": "Chest",
+   "path": "Armature/Hips/Spine/Chest/neck",
+   "type": "LimbNode"
+  },
+  "shin.L": {
+   "parent": "thigh.L",
+   "path": "Armature/Hips/thigh.L/shin.L",
+   "type": "LimbNode"
+  },
+  "shin.R": {
+   "parent": "thigh.R",
+   "path": "Armature/Hips/thigh.R/shin.R",
+   "type": "LimbNode"
+  },
+  "shoulder.L": {
+   "parent": "Chest",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L",
+   "type": "LimbNode"
+  },
+  "shoulder.R": {
+   "parent": "Chest",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R",
+   "type": "LimbNode"
+  },
+  "thigh.L": {
+   "parent": "Hips",
+   "path": "Armature/Hips/thigh.L",
+   "type": "LimbNode"
+  },
+  "thigh.R": {
+   "parent": "Hips",
+   "path": "Armature/Hips/thigh.R",
+   "type": "LimbNode"
+  },
+  "thumb.01.L": {
+   "parent": "hand.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L",
+   "type": "LimbNode"
+  },
+  "thumb.01.R": {
+   "parent": "hand.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R",
+   "type": "LimbNode"
+  },
+  "thumb.02.L": {
+   "parent": "thumb.01.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L",
+   "type": "LimbNode"
+  },
+  "thumb.02.R": {
+   "parent": "thumb.01.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R",
+   "type": "LimbNode"
+  },
+  "thumb.03.L": {
+   "parent": "thumb.02.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L",
+   "type": "LimbNode"
+  },
+  "thumb.03.R": {
+   "parent": "thumb.02.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R/thumb.01.R/thumb.02.R/thumb.03.R",
+   "type": "LimbNode"
+  },
+  "upper_arm.L": {
+   "parent": "shoulder.L",
+   "path": "Armature/Hips/Spine/Chest/shoulder.L/upper_arm.L",
+   "type": "LimbNode"
+  },
+  "upper_arm.R": {
+   "parent": "shoulder.R",
+   "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R",
+   "type": "LimbNode"
+  },
+  "upper_head": {
+   "parent": "Chest",
+   "path": "Armature/Hips/Spine/Chest/upper_head",
+   "type": "LimbNode"
+  }
+ },
+ "fbx": "Assets/_exegesis/obi-me/obi-me.fbx",
+ "order": [
+  "Armature",
+  "Body",
+  "Hips",
+  "thigh.L",
+  "digiShin.L",
+  "digiAnkle.L",
+  "digiFoot.L",
+  "shin.L",
+  "foot.L",
+  "Spine",
+  "Chest",
+  "big_manipulator.01.L",
+  "big_manipulator.02.L",
+  "big_manipulator.03.L",
+  "big_manipulator.04.L",
+  "big_manipulator.05.L",
+  "manipulator_index.01.L",
+  "manipulator_index.02.L",
+  "manipulator_middle.01.L",
+  "manipulator_middle.02.L",
+  "manipulator_ring.01.L",
+  "manipulator_ring.02.L",
+  "manipulator_pinky.01.L",
+  "manipulator_pinky.02.L",
+  "big_manipulator.01.R",
+  "big_manipulator.02.R",
+  "big_manipulator.03.R",
+  "big_manipulator.04.R",
+  "big_manipulator.05.R",
+  "manipulator_index.01.R",
+  "manipulator_index.02.R",
+  "manipulator_middle.01.R",
+  "manipulator_middle.02.R",
+  "manipulator_ring.01.R",
+  "manipulator_ring.02.R",
+  "manipulator_pinky.01.R",
+  "manipulator_pinky.02.R",
+  "lower_head",
+  "upper_head",
+  "minor_upper_arm.L",
+  "minor_forearm.L",
+  "minor_hand.L",
+  "minor_f_middle.01.L",
+  "minor_f_middle.02.L",
+  "minor_f_middle.03.L",
+  "minor_f_ring.01.L",
+  "minor_f_ring.02.L",
+  "minor_f_ring.03.L",
+  "minor_f_pinky.01.L",
+  "minor_f_pinky.02.L",
+  "minor_f_pinky.03.L",
+  "minor_f_index.01.L",
+  "minor_f_index.02.L",
+  "minor_f_index.03.L",
+  "minor_thumb.01.L",
+  "minor_thumb.02.L",
+  "minor_thumb.03.L",
+  "minor_forearm_fix.L",
+  "minor_upper_arm_fix.L",
+  "minor_upper_arm.R",
+  "minor_forearm.R",
+  "minor_hand.R",
+  "minor_f_middle.01.R",
+  "minor_f_middle.02.R",
+  "minor_f_middle.03.R",
+  "minor_f_ring.01.R",
+  "minor_f_ring.02.R",
+  "minor_f_ring.03.R",
+  "minor_f_pinky.01.R",
+  "minor_f_pinky.02.R",
+  "minor_f_pinky.03.R",
+  "minor_f_index.01.R",
+  "minor_f_index.02.R",
+  "minor_f_index.03.R",
+  "minor_thumb.01.R",
+  "minor_thumb.02.R",
+  "minor_thumb.03.R",
+  "minor_forearm_fix.R",
+  "minor_upper_arm_fix.R",
+  "shoulder.L",
+  "upper_arm.L",
+  "forearm.L",
+  "hand.L",
+  "f_middle.01.L",
+  "f_middle.02.L",
+  "f_middle.03.L",
+  "f_ring.01.L",
+  "f_ring.02.L",
+  "f_ring.03.L",
+  "f_pinky.01.L",
+  "f_pinky.02.L",
+  "f_pinky.03.L",
+  "f_index.01.L",
+  "f_index.02.L",
+  "f_index.03.L",
+  "thumb.01.L",
+  "thumb.02.L",
+  "thumb.03.L",
+  "shoulder.R",
+  "upper_arm.R",
+  "forearm.R",
+  "hand.R",
+  "f_middle.01.R",
+  "f_middle.02.R",
+  "f_middle.03.R",
+  "f_ring.01.R",
+  "f_ring.02.R",
+  "f_ring.03.R",
+  "f_pinky.01.R",
+  "f_pinky.02.R",
+  "f_pinky.03.R",
+  "f_index.01.R",
+  "f_index.02.R",
+  "f_index.03.R",
+  "thumb.01.R",
+  "thumb.02.R",
+  "thumb.03.R",
+  "neck",
+  "head",
+  "thigh.R",
+  "digiShin.R",
+  "digiAnkle.R",
+  "digiFoot.R",
+  "shin.R",
+  "foot.R",
+  "Hips_fix"
+ ],
+ "shape_keys": [],
+ "weighted": [
+  "Chest",
+  "Hips",
+  "Hips_fix",
+  "Spine",
+  "big_manipulator.01.L",
+  "big_manipulator.01.R",
+  "big_manipulator.02.L",
+  "big_manipulator.02.R",
+  "big_manipulator.03.L",
+  "big_manipulator.03.R",
+  "big_manipulator.04.L",
+  "big_manipulator.04.R",
+  "big_manipulator.05.L",
+  "big_manipulator.05.R",
+  "digiAnkle.L",
+  "digiAnkle.R",
+  "digiFoot.L",
+  "digiFoot.R",
+  "digiShin.L",
+  "digiShin.R",
+  "f_index.01.L",
+  "f_index.01.R",
+  "f_index.02.L",
+  "f_index.02.R",
+  "f_index.03.L",
+  "f_index.03.R",
+  "f_middle.01.L",
+  "f_middle.01.R",
+  "f_middle.02.L",
+  "f_middle.02.R",
+  "f_middle.03.L",
+  "f_middle.03.R",
+  "f_pinky.01.L",
+  "f_pinky.01.R",
+  "f_pinky.02.L",
+  "f_pinky.02.R",
+  "f_pinky.03.L",
+  "f_pinky.03.R",
+  "f_ring.01.L",
+  "f_ring.01.R",
+  "f_ring.02.L",
+  "f_ring.02.R",
+  "f_ring.03.L",
+  "f_ring.03.R",
+  "foot.L",
+  "foot.R",
+  "forearm.L",
+  "forearm.R",
+  "hand.L",
+  "hand.R",
+  "head",
+  "lower_head",
+  "manipulator_index.01.L",
+  "manipulator_index.01.R",
+  "manipulator_index.02.L",
+  "manipulator_index.02.R",
+  "manipulator_middle.01.L",
+  "manipulator_middle.01.R",
+  "manipulator_middle.02.L",
+  "manipulator_middle.02.R",
+  "manipulator_pinky.01.L",
+  "manipulator_pinky.01.R",
+  "manipulator_pinky.02.L",
+  "manipulator_pinky.02.R",
+  "manipulator_ring.01.L",
+  "manipulator_ring.01.R",
+  "manipulator_ring.02.L",
+  "manipulator_ring.02.R",
+  "minor_f_index.01.L",
+  "minor_f_index.01.R",
+  "minor_f_index.02.L",
+  "minor_f_index.02.R",
+  "minor_f_index.03.L",
+  "minor_f_index.03.R",
+  "minor_f_middle.01.L",
+  "minor_f_middle.01.R",
+  "minor_f_middle.02.L",
+  "minor_f_middle.02.R",
+  "minor_f_middle.03.L",
+  "minor_f_middle.03.R",
+  "minor_f_pinky.01.L",
+  "minor_f_pinky.01.R",
+  "minor_f_pinky.02.L",
+  "minor_f_pinky.02.R",
+  "minor_f_pinky.03.L",
+  "minor_f_pinky.03.R",
+  "minor_f_ring.01.L",
+  "minor_f_ring.01.R",
+  "minor_f_ring.02.L",
+  "minor_f_ring.02.R",
+  "minor_f_ring.03.L",
+  "minor_f_ring.03.R",
+  "minor_forearm.L",
+  "minor_forearm.R",
+  "minor_forearm_fix.L",
+  "minor_forearm_fix.R",
+  "minor_hand.L",
+  "minor_hand.R",
+  "minor_thumb.01.L",
+  "minor_thumb.01.R",
+  "minor_thumb.02.L",
+  "minor_thumb.02.R",
+  "minor_thumb.03.L",
+  "minor_thumb.03.R",
+  "minor_upper_arm.L",
+  "minor_upper_arm.R",
+  "minor_upper_arm_fix.L",
+  "minor_upper_arm_fix.R",
+  "neck",
+  "shin.L",
+  "shin.R",
+  "shoulder.L",
+  "shoulder.R",
+  "thigh.L",
+  "thigh.R",
+  "thumb.01.L",
+  "thumb.01.R",
+  "thumb.02.L",
+  "thumb.02.R",
+  "thumb.03.L",
+  "thumb.03.R",
+  "upper_arm.L",
+  "upper_arm.R",
+  "upper_head"
+ ]
+}

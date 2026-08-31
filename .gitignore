@@ -34,3 +34,12 @@ Thumbs.db
 
 # Crash / debug
 *.stacktrace
+
+# Python tooling
+__pycache__/
+*.pyc
+
+# Headless Unity run logs
+fbx_id_dump.log
+hud_refresh.log
+hud_headless.log
