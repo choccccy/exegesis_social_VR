@@ -117,16 +117,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveDetailNoise:
-        m_Texture: {fileID: 2800000, guid: 2bd7d523c48efcf418414b4ba850c147, type: 3}
-        m_Scale: {x: 64, y: 64}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveNoiseTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 2bd7d523c48efcf418414b4ba850c147, type: 3}
+        m_Scale: {x: 64, y: 64}
         m_Offset: {x: 0, y: 0}
     - _DissolveToTexture:
         m_Texture: {fileID: 0}
@@ -994,15 +994,15 @@ Material:
     - _DissolveALColorOverrideEnabled: 0
     - _DissolveALColorOverrideThemeIndex: 0
     - _DissolveAlpha: 0
-    - _DissolveAlphaOnly: 0
+    - _DissolveAlphaOnly: 1
     - _DissolveApplyGlobalMaskBlendType: 0
     - _DissolveApplyGlobalMaskIndex: 0
     - _DissolveDebugGradient: 0
     - _DissolveDetailEdgeMask: 0
-    - _DissolveDetailNoiseEnabled: 1
+    - _DissolveDetailNoiseEnabled: 0
     - _DissolveDetailNoiseMode: 0
     - _DissolveDetailNoiseUV: 0
-    - _DissolveDetailStrength: 1
+    - _DissolveDetailStrength: 0.1
     - _DissolveEdgeBlur1: 0.1
     - _DissolveEdgeBlur2: 0.1
     - _DissolveEdgeBorder1: 0.5
@@ -1010,11 +1010,11 @@ Material:
     - _DissolveEdgeColor2ThemeIndex: 0
     - _DissolveEdgeColor3ThemeIndex: 0
     - _DissolveEdgeColorThemeIndex: 0
-    - _DissolveEdgeEmission: 0
+    - _DissolveEdgeEmission: 1
     - _DissolveEdgeEnabled: 0
     - _DissolveEdgeFlip: 0
     - _DissolveEdgeGradient: 0
-    - _DissolveEdgeWidth: 0
+    - _DissolveEdgeWidth: 0.1
     - _DissolveHueSelectOrShift: 1
     - _DissolveHueShift: 0
     - _DissolveHueShiftColorSpace: 0
@@ -3365,7 +3365,7 @@ Material:
     - m_start_clearCoat: 0
     - m_start_depthFX: 0
     - m_start_depthRimLightOptions: 0
-    - m_start_dissolve: 0
+    - m_start_dissolve: 1
     - m_start_emission1Options: 0
     - m_start_emission2Options: 0
     - m_start_emission3Options: 0
@@ -3714,7 +3714,7 @@ Material:
     - s_start_BRDFTPSMaskGroup: 0
     - s_start_BackFaceHueShift: 0
     - s_start_BackfaceMods: 0
-    - s_start_BasicDissolve: 0
+    - s_start_BasicDissolve: 1
     - s_start_CCopt: 1
     - s_start_CRT: 0
     - s_start_CenterOutDissolve: 0

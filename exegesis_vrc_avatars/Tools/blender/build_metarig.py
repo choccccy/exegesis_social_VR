@@ -44,11 +44,13 @@ every control in the rig one that actually does something.
 """
 
 import argparse
+import math
 import re
 import sys
 
 import addon_utils
 import bpy
+from mathutils import Vector
 
 RIG_COLLECTION = 'ncho_rig'
 WIDGET_COLLECTION = 'ncho_rig_widgets'
@@ -67,6 +69,14 @@ TYPES = {
     # Rigify rejects a "connected" chain whose position is disjoint.
     'TailRoot': ('spines.basic_tail', {'connect_chain': False}),
 
+    # UNRESOLVED: the bend DIRECTION. Rigify derives the bend plane from the
+    # metarig's rest geometry, and this rest pose is deliberately straight
+    # (footgun 3b), so there is nothing to derive from and 'automatic' lets the
+    # solver pick -- the arm buckles up instead of the elbow going +Y.
+    # Setting rotation_axis explicitly is NOT the fix on its own: 'z' on the arm
+    # freed an axis the chain cannot bend around, and the elbow then would not
+    # move at all. The real fix is a small pre-bend in the METARIG (which is not
+    # exported) to define the plane. See docs/rigging.md.
     'thigh.L': ('limbs.rear_paw', {'segments': 1}),
     'thigh.R': ('limbs.rear_paw', {'segments': 1}),
 
@@ -170,6 +180,99 @@ def collection_for(name):
     return 'Props'
 
 
+# The tightest fold allowed at the knee and the ankle, as an INTERIOR joint
+# angle -- 180 is straight, so 45 is a deep fold.
+JOINT_MIN_INTERIOR_DEG = 45.0
+
+# Which control actually orients each joint, the game bones that measure its
+# interior angle, and how its local X maps onto that angle.
+#
+# IK degrees of freedom are NOT the mechanism here. `ORG-digiAnkle` is driven by
+# Copy Transforms from `digiAnkle_fk` and `MCH-thigh_ik_target`, so clamping
+# `MCH-digiAnkle_ik3` changed nothing and the ankle stayed free on all three
+# axes -- rotating the heel control moved it 1:1 on X, Y and Z alike.
+#
+# Measured, rotating each control and reading the angle off the game rig:
+#   digiShin_fk    rest interior 111.14, X +45 -> 66.14, X -45 -> 156.14   (-1)
+#   digiAnkle_fk   rest interior 101.56, X +45 -> 146.56, X -45 -> 56.56   (+1)
+# Y moved the angle not at all and Z by under 3 deg, so X is the flexion axis
+# and the other two get pinned shut.
+JOINT_CONTROLS = (
+    ('digiShin_fk.%s', ('thigh.%s', 'digiShin.%s', 'digiAnkle.%s'), 'X', -1),
+    ('digiAnkle_fk.%s', ('digiShin.%s', 'digiAnkle.%s', 'digiFoot.%s'), 'X', +1),
+    # The elbow. Its rest is dead straight (interior 180), and Z is the axis
+    # that carries it toward +Y: forearm_fk Z+45 gives interior 135 with the
+    # hand swinging to +Y, while Y+45 does nothing at all. Allowing only
+    # positive Z keeps it out of the backward bend.
+    ('forearm_fk.%s', ('upper_arm.%s', 'forearm.%s', 'hand.%s'), 'Z', -1),
+    ('pack_forearm_fk.%s', ('pack_upper_arm.%s', 'pack_forearm.%s', 'pack_hand.%s'), 'Z', -1),
+)
+
+JOINT_PINNED = ('digiAnkle_heel_ik.%s',)
+
+PREBEND_DEG = 0.5
+
+# EMPTY, AND IT HAS TO STAY THAT WAY unless the binding changes.
+#
+# Nudging a limb joint off-colinear in the metarig does fix the bend direction:
+# with 0.5 deg at the elbow the arm led +Y cleanly instead of buckling up, and
+# the FBX stayed IDENTICAL. But it also makes Rigify RE-ROLL the limb, because
+# a defined bend plane is exactly what `rotation_axis: automatic` re-derives
+# the chain's axes from. Measured on ORG-upper_arm.L, whose direction barely
+# moved: Z went from (+0.14,-0.39,+0.91) to (+0.98,-0.09,-0.19), about 90 deg.
+#
+# The binding is Copy Transforms, so it copies that roll straight onto the game
+# bone -- the arms rotate 90 deg while the hands, a separate bone, do not. The
+# release self-check passed it, because that check compared head POSITIONS and
+# a roll about a bone's own axis moves no head. It now checks orientation too.
+PREBEND = {}
+
+
+def prebend(edit):
+    """Break the arm chains out of colinearity so Rigify has a bend plane.
+
+    Rigify derives a limb's bend plane from the metarig's rest geometry, and
+    this rest pose is deliberately straight (footgun 3b). With nothing to derive
+    from, the IK solver picks for itself: the elbow buckled upward instead of
+    leading with +Y. Naming the axis explicitly (`rotation_axis`) is NOT the
+    fix -- freeing 'z' on the arm freed an axis the chain cannot bend around and
+    the elbow then would not move at all. The plane has to come from geometry.
+
+    Only the metarig moves, and the metarig is never exported, so the FBX is
+    untouched. The one real consequence: the generated ORG bones rest at the
+    pre-bent angle, so switching `use_ctrl_rig` on shifts the game rig by the
+    offset -- 0.0127 units at 0.5 deg, on a character 8 units tall.
+
+    The angle cannot be made arbitrarily small. Measured: 1.0 and 0.5 deg bend
+    correctly, 0.25 and 0.05 deg do not bend at all -- below the threshold the
+    chain still reads as colinear. 0.5 deg is the smallest that works, so it is
+    the smallest shift that buys a defined bend direction.
+    """
+    bent = []
+    for name, direction in PREBEND.items():
+        lower = edit.get(name)
+        if lower is None or lower.parent is None:
+            continue
+        upper = lower.parent
+        chain = (lower.tail - upper.head)
+        if not chain.length:
+            continue
+        axis = chain.normalized()
+        offset = Vector(direction)
+        offset -= axis * offset.dot(axis)          # perpendicular component only
+        if not offset.length:
+            continue
+        span = (lower.head - upper.head).length
+        delta = offset.normalized() * (span * math.tan(math.radians(PREBEND_DEG)))
+        upper.tail = upper.tail + delta
+        lower.head = upper.tail
+        bent.append(name)
+    if bent:
+        print('  pre-bent %d joints by %.2f deg: %s'
+              % (len(bent), PREBEND_DEG, ', '.join(sorted(bent))))
+    return bent
+
+
 def build(src, dry_run):
     src.data.pose_position = 'POSE'
     bpy.context.view_layer.update()
@@ -235,6 +338,8 @@ def build(src, dry_run):
         if (game.parent.name == parent.name and game.use_connect
                 and (edit[name].head - edit[parent.name].tail).length < 1e-5):
             edit[name].use_connect = True
+
+    prebend(edit)
 
     bpy.ops.object.mode_set(mode='OBJECT')
 
@@ -374,6 +479,68 @@ def hide_scaffolding(rig, meta):
           % (WIDGET_COLLECTION, ', '.join(repr(n) for n in hidden), rig.name))
 
 
+def interior_angle(game, a, b, c):
+    """Interior angle at b, in degrees. 180 is straight."""
+    pa, pb_, pc = (game.pose.bones[n].head for n in (a, b, c))
+    u = (pa - pb_).normalized()
+    v = (pc - pb_).normalized()
+    return math.degrees(math.acos(max(-1.0, min(1.0, u.dot(v)))))
+
+
+def limit_rotation(pose_bone, axis, lo, hi):
+    """Pin a control to one local axis and clamp that axis to [lo, hi] degrees."""
+    for existing in [c for c in pose_bone.constraints if c.name == 'CTRL_joint_limit']:
+        pose_bone.constraints.remove(existing)
+    con = pose_bone.constraints.new('LIMIT_ROTATION')
+    con.name = 'CTRL_joint_limit'
+    con.owner_space = 'LOCAL'
+    for other in 'XYZ':
+        setattr(con, 'use_limit_' + other.lower(), True)
+        if other == axis:
+            setattr(con, 'min_' + other.lower(), math.radians(lo))
+            setattr(con, 'max_' + other.lower(), math.radians(hi))
+        else:
+            setattr(con, 'min_' + other.lower(), 0.0)     # pinned shut
+            setattr(con, 'max_' + other.lower(), 0.0)
+    pose_bone.lock_rotation = tuple(a != axis for a in 'XYZ')   # and say so in the UI
+
+
+def limit_joints(rig):
+    """Clamp the knee and the ankle to one axis and a real joint-angle range.
+
+    The range is derived from the stance rather than hardcoded: the interior
+    angle is measured off the game rig as generated, so this stays right if the
+    stance ever moves. Straight is 180, and the fold stops at
+    JOINT_MIN_INTERIOR_DEG.
+    """
+    game = bpy.data.objects.get('Armature')
+    if game is None:
+        return ['WARNING: no game armature, joints left unlimited']
+    notes = []
+    for template, probes, axis, sign in JOINT_CONTROLS:
+        for side in ('L', 'R'):
+            name = template % side
+            pose_bone = rig.pose.bones.get(name)
+            if pose_bone is None:
+                continue
+            rest = interior_angle(game, *(p % side for p in probes))
+            # interior = rest + sign * X  =>  X = sign * (interior - rest)
+            to_straight = sign * (180.0 - rest)
+            to_folded = sign * (JOINT_MIN_INTERIOR_DEG - rest)
+            lo, hi = sorted((to_straight, to_folded))
+            limit_rotation(pose_bone, axis, lo, hi)
+            notes.append('%-18s %s in [%+.1f, %+.1f] deg  (interior %.1f -> %.0f)'
+                         % (name, axis, lo, hi, rest, JOINT_MIN_INTERIOR_DEG))
+    for template in JOINT_PINNED:
+        for side in ('L', 'R'):
+            pose_bone = rig.pose.bones.get(template % side)
+            if pose_bone is None:
+                continue
+            limit_rotation(pose_bone, 'X', -180.0, 180.0)
+            notes.append('%-16s pinned to X' % (template % side))
+    return notes
+
+
 def finalize(rig, meta):
     """Get the generated rig out of the export scope and set its defaults.
 
@@ -412,8 +579,25 @@ def finalize(rig, meta):
             pose_bone['IK_Stretch'] = 0.0
             stretched += 1
 
-    # The single master switch the export script turns off (see export_avatar.py).
-    rig['use_ctrl_rig'] = 1.0
+    # IK_Stretch = 0 only clamps EXTENSION -- it drives a Limit Distance on the
+    # target, which caps how far the chain reaches and does nothing about the
+    # other direction. With use_stretch left on, pulling the IK target INWARD
+    # squashes the bones instead of bending the joint, which is what "moving the
+    # hand IK in and out scales the arm" is: the solver would rather scale a
+    # colinear chain than invent a bend direction for it. Verified -- with this
+    # off, pulling the IK target in leaves bone length at 1.4500 unchanged.
+    unstretched = 0
+    for pose_bone in rig.pose.bones:
+        for constraint in pose_bone.constraints:
+            if constraint.type == 'IK' and constraint.use_stretch:
+                constraint.use_stretch = False
+                unstretched += 1
+
+    limited = limit_joints(rig)
+
+    # Saved OFF: a file that links ncho then gets the character as that file
+    # poses it, and opts into rig-driving by overriding the property.
+    rig['use_ctrl_rig'] = 0.0
 
     filed = refile_controls(rig)
 
@@ -426,7 +610,10 @@ def finalize(rig, meta):
     print('  moved %d objects into %r / %r' % (moved, RIG_COLLECTION, WIDGET_COLLECTION))
     print('  re-filed %d controls into their (FK)/(Tweak)/(Detail) collections' % filed)
     print('  IK_Stretch defaulted to 0 on %d limb%s' % (stretched, '' if stretched == 1 else 's'))
-    print('  use_ctrl_rig = 1.0 on %r' % rig.name)
+    print('  use_stretch cleared on %d IK constraints' % unstretched)
+    for note in limited:
+        print('  %s' % note)
+    print('  use_ctrl_rig = 0.0 on %r' % rig.name)
 
 
 def main():
@@ -448,6 +635,15 @@ def main():
 
     if args.generate:
         print('\ngenerating...')
+        # Regenerate INTO the existing rig object. Rigify only reuses a rig
+        # when the metarig points at it, and this metarig is rebuilt from
+        # scratch every run -- without this it creates `ncho_ctrl.001`, leaves
+        # the old object behind, and the 115 CTRL_ bindings go on targeting
+        # the stale one.
+        existing = bpy.data.objects.get(CTRL_RIG)
+        if existing is not None and existing.type == 'ARMATURE':
+            meta.data.rigify_target_rig = existing
+            print('  regenerating into the existing %r' % existing.name)
         bpy.context.view_layer.objects.active = meta
         bpy.ops.object.select_all(action='DESELECT')
         meta.select_set(True)

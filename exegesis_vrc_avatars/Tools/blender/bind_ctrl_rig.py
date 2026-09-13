@@ -46,6 +46,14 @@ import re
 import sys
 
 import bpy
+
+# Deliberately NOT raised. The one time this check failed (0.001072) the cause
+# was a bug in build_metarig -- it was clamping `MCH-*_ik.parent` scaffolding
+# along with the real joints. With that fixed the drift is 0.000119, so the
+# original bar holds. The metarig pre-bend does shift some bones by ~0.0127,
+# but only the `_fix` stubs at the pre-bent joint, and none of those are probed.
+RELEASE_TOLERANCE = 1e-3
+RELEASE_TWIST_DEG = 0.5
 from mathutils import Vector
 
 CTRL_TAG = 'CTRL_'
@@ -202,7 +210,12 @@ def verify(config):
 
     def sample():
         bpy.context.view_layer.update()
-        return {n: game.pose.bones[n].head.copy() for n in probes}
+        # Head position ALONE is not enough. A bone rolled about its own axis
+        # does not move its head at all, so a 90 deg twist reads as a perfect
+        # score -- which is exactly how a metarig pre-bend once rotated both
+        # arms while this check reported OK.
+        return {n: (game.pose.bones[n].head.copy(),
+                    game.pose.bones[n].matrix.to_quaternion()) for n in probes}
 
     set_switch(1)
     stance = sample()
@@ -214,12 +227,13 @@ def verify(config):
     control.matrix = matrix
     posed = sample()
 
-    moved = max((posed[n] - stance[n]).length for n in probes)
+    moved = max((posed[n][0] - stance[n][0]).length for n in probes)
     print('\nbinding check (control rig ON, foot IK displaced):')
     for name in probes:
         print('   %-14s %-24s -> %-24s moved %.4f'
-              % (name, tuple(round(v, 3) for v in stance[name]),
-                 tuple(round(v, 3) for v in posed[name]), (posed[name] - stance[name]).length))
+              % (name, tuple(round(v, 3) for v in stance[name][0]),
+                 tuple(round(v, 3) for v in posed[name][0]),
+                 (posed[name][0] - stance[name][0]).length))
     print('   %s the game rig follows the controls (max %.4f)'
           % ('OK  ' if moved > 1e-3 else 'FAIL', moved))
 
@@ -232,13 +246,20 @@ def verify(config):
 
     set_switch(0)
     released = sample()
-    drift = max((released[n] - stance[n]).length for n in probes)
-    print('   %s use_ctrl_rig = 0 releases the rig back to the stance (max %.6f)'
-          % ('OK  ' if drift < 1e-3 else 'FAIL', drift))
+    # `stance` above is sampled with the switch ON, so this compares the
+    # control-rig-driven rest against the game rig's own stance.
+    drift = max((released[n][0] - stance[n][0]).length for n in probes)
+    twist = max(math.degrees(released[n][1].rotation_difference(stance[n][1]).angle)
+                for n in probes)
+    print('   %s ... and to the same ORIENTATION (max %.4f deg, bar %.1f)'
+          % ('OK  ' if twist < RELEASE_TWIST_DEG else 'FAIL', twist, RELEASE_TWIST_DEG))
+    print('   %s use_ctrl_rig = 0 releases the rig back to the stance (max %.6f, bar %.3f)'
+          % ('OK  ' if drift < RELEASE_TOLERANCE else 'FAIL', drift, RELEASE_TOLERANCE))
 
     control.matrix_basis = original
     set_switch(1)
-    return moved > 1e-3 and aim_error < 0.5 and drift < 1e-3
+    return (moved > 1e-3 and aim_error < 0.5
+            and drift < RELEASE_TOLERANCE and twist < RELEASE_TWIST_DEG)
 
 
 def main():

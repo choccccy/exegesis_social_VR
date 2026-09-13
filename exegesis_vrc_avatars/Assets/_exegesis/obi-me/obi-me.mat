@@ -171,16 +171,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveDetailNoise:
-        m_Texture: {fileID: 2800000, guid: 2bd7d523c48efcf418414b4ba850c147, type: 3}
-        m_Scale: {x: 64, y: 64}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveNoiseTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 2bd7d523c48efcf418414b4ba850c147, type: 3}
+        m_Scale: {x: 64, y: 64}
         m_Offset: {x: 0, y: 0}
     - _DissolveToTexture:
         m_Texture: {fileID: 0}
@@ -1130,7 +1130,7 @@ Material:
     - _DissolveDetailNoiseEnabled: 0
     - _DissolveDetailNoiseMode: 0
     - _DissolveDetailNoiseUV: 0
-    - _DissolveDetailStrength: 1
+    - _DissolveDetailStrength: 0.1
     - _DissolveEdgeBlur1: 0.1
     - _DissolveEdgeBlur2: 0.1
     - _DissolveEdgeBorder1: 0.5
@@ -1138,7 +1138,7 @@ Material:
     - _DissolveEdgeColor2ThemeIndex: 0
     - _DissolveEdgeColor3ThemeIndex: 0
     - _DissolveEdgeColorThemeIndex: 0
-    - _DissolveEdgeEmission: 0
+    - _DissolveEdgeEmission: 1
     - _DissolveEdgeEnabled: 0
     - _DissolveEdgeFlip: 0
     - _DissolveEdgeGradient: 0
@@ -1148,7 +1148,7 @@ Material:
     - _DissolveEdgeHueShiftColorSpace: 0
     - _DissolveEdgeHueShiftEnabled: 0
     - _DissolveEdgeHueShiftSpeed: 0
-    - _DissolveEdgeWidth: 0
+    - _DissolveEdgeWidth: 0.1
     - _DissolveHueSelectOrShift: 1
     - _DissolveHueShift: 0
     - _DissolveHueShiftColorSpace: 0
@@ -3107,9 +3107,9 @@ Material:
     - _UVTileDissolveAlpha_Row0_3_ncho: 0
     - _UVTileDissolveAlpha_Row0_3_obi2Dme: 0
     - _UVTileDissolveAlpha_Row0_3_rober: 0
-    - _UVTileDissolveAlpha_Row1_0: 1
+    - _UVTileDissolveAlpha_Row1_0: 0
     - _UVTileDissolveAlpha_Row1_0_ncho: 1
-    - _UVTileDissolveAlpha_Row1_0_obi2Dme: 1
+    - _UVTileDissolveAlpha_Row1_0_obi2Dme: 0
     - _UVTileDissolveAlpha_Row1_0_rober: 0
     - _UVTileDissolveAlpha_Row1_1: 0
     - _UVTileDissolveAlpha_Row1_1_ncho: 0
@@ -3486,7 +3486,7 @@ Material:
     - m_modifierCategory: 0
     - m_raymarchingCategory: 0
     - m_renderingCategory: 1
-    - m_specialFXCategory: 0
+    - m_specialFXCategory: 1
     - m_start_ALDecalSpectrum: 0
     - m_start_ALVolumeColor: 0
     - m_start_Alpha: 0
@@ -3599,7 +3599,7 @@ Material:
     - m_start_backFace: 0
     - m_start_backlight: 0
     - m_start_blending: 0
-    - m_start_brdf: 0
+    - m_start_brdf: 1
     - m_start_clearCoat: 0
     - m_start_clearcoatadvanced: 0
     - m_start_clearcoatglobalmask: 0
@@ -3608,7 +3608,7 @@ Material:
     - m_start_dissolve: 1
     - m_start_dissolveHueShift: 0
     - m_start_emission1Options: 1
-    - m_start_emission2Options: 0
+    - m_start_emission2Options: 1
     - m_start_emission3Options: 1
     - m_start_emissionOptions: 1
     - m_start_flipBook: 0
@@ -3639,7 +3639,7 @@ Material:
     - m_start_subsurfaceScattering: 0
     - m_start_tps_penetrator: 0
     - m_start_truchet: 0
-    - m_start_udimdiscardOptions: 1
+    - m_start_udimdiscardOptions: 0
     - m_start_udimfacediscardOptions: 0
     - m_start_uvDistortion: 0
     - m_start_uvLocalWorld: 0
@@ -4002,7 +4002,7 @@ Material:
     - s_start_BRDFTPSMaskGroup: 0
     - s_start_BackFaceHueShift: 0
     - s_start_BackfaceMods: 0
-    - s_start_BasicDissolve: 0
+    - s_start_BasicDissolve: 1
     - s_start_CCopt: 1
     - s_start_CRT: 0
     - s_start_CenterOutDissolve: 0
@@ -4402,10 +4402,10 @@ Material:
     - ss_start_TruchetALEmission: 0
     - ss_start_TruchetChronoPan: 0
     - ss_start_TruchetColorOverride: 0
-    - ss_start_UVTileDissolveRow0: 0
-    - ss_start_UVTileDissolveRow1: 0
+    - ss_start_UVTileDissolveRow0: 1
+    - ss_start_UVTileDissolveRow1: 1
     - ss_start_UVTileDissolveRow2: 0
-    - ss_start_UVTileDissolveRow3: 1
+    - ss_start_UVTileDissolveRow3: 0
     - ss_start_VertexScale: 0
     - ss_start_WorldTranslation: 0
     - ss_start_vertexRoundingAL: 0

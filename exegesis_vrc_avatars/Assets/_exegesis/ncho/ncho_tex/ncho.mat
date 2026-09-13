@@ -186,16 +186,16 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveDetailNoise:
-        m_Texture: {fileID: 2800000, guid: 2bd7d523c48efcf418414b4ba850c147, type: 3}
-        m_Scale: {x: 64, y: 64}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DissolveNoiseTexture:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 2bd7d523c48efcf418414b4ba850c147, type: 3}
+        m_Scale: {x: 64, y: 64}
         m_Offset: {x: 0, y: 0}
     - _DissolveToTexture:
         m_Texture: {fileID: 0}
@@ -1144,7 +1144,7 @@ Material:
     - _DissolveAlpha7: 0
     - _DissolveAlpha8: 0
     - _DissolveAlpha9: 0
-    - _DissolveAlphaOnly: 0
+    - _DissolveAlphaOnly: 1
     - _DissolveApplyGlobalMaskBlendType: 0
     - _DissolveApplyGlobalMaskIndex: 0
     - _DissolveDebugGradient: 0
@@ -1153,7 +1153,7 @@ Material:
     - _DissolveDetailNoiseEnabled: 0
     - _DissolveDetailNoiseMode: 0
     - _DissolveDetailNoiseUV: 0
-    - _DissolveDetailStrength: 1
+    - _DissolveDetailStrength: 0.1
     - _DissolveEdgeBlur1: 0.1
     - _DissolveEdgeBlur2: 0.1
     - _DissolveEdgeBorder1: 0.5
@@ -1161,7 +1161,7 @@ Material:
     - _DissolveEdgeColor2ThemeIndex: 0
     - _DissolveEdgeColor3ThemeIndex: 0
     - _DissolveEdgeColorThemeIndex: 0
-    - _DissolveEdgeEmission: 0
+    - _DissolveEdgeEmission: 1
     - _DissolveEdgeEnabled: 0
     - _DissolveEdgeFlip: 0
     - _DissolveEdgeGradient: 0
@@ -1171,7 +1171,7 @@ Material:
     - _DissolveEdgeHueShiftColorSpace: 0
     - _DissolveEdgeHueShiftEnabled: 0
     - _DissolveEdgeHueShiftSpeed: 0
-    - _DissolveEdgeWidth: 0
+    - _DissolveEdgeWidth: 0.1
     - _DissolveHueSelectOrShift: 1
     - _DissolveHueShift: 0
     - _DissolveHueShiftColorSpace: 0
@@ -3130,8 +3130,8 @@ Material:
     - _UVTileDissolveAlpha_Row1_0: 1
     - _UVTileDissolveAlpha_Row1_0_ncho: 1
     - _UVTileDissolveAlpha_Row1_0_rober: 0
-    - _UVTileDissolveAlpha_Row1_1: 0
-    - _UVTileDissolveAlpha_Row1_1_ncho: 0
+    - _UVTileDissolveAlpha_Row1_1: 1
+    - _UVTileDissolveAlpha_Row1_1_ncho: 1
     - _UVTileDissolveAlpha_Row1_1_rober: 0
     - _UVTileDissolveAlpha_Row1_2: 0
     - _UVTileDissolveAlpha_Row1_2_ncho: 0
@@ -3489,8 +3489,8 @@ Material:
     - m_end_videoEffects: 0
     - m_end_voronoi: 0
     - m_end_voronoiRandom: 0
-    - m_lightingCategory: 1
-    - m_mainCategory: 1
+    - m_lightingCategory: 0
+    - m_mainCategory: 0
     - m_modifierCategory: 0
     - m_raymarchingCategory: 0
     - m_renderingCategory: 0
@@ -3522,11 +3522,11 @@ Material:
     - m_start_DepthBulge: 0
     - m_start_DetailOptions: 0
     - m_start_DistortionAudioLink: 0
-    - m_start_FXProximityColor: 1
+    - m_start_FXProximityColor: 0
     - m_start_FlipbookAudioLink: 0
     - m_start_FlipbookAudioLink1: 0
     - m_start_Gameboy: 0
-    - m_start_GlobalMask: 1
+    - m_start_GlobalMask: 0
     - m_start_GlobalMaskDistanceM_0: 0
     - m_start_GlobalMaskDistanceM_1: 0
     - m_start_GlobalMaskDistanceM_10: 0
@@ -3556,7 +3556,7 @@ Material:
     - m_start_GlobalThemeColor2: 0
     - m_start_GlobalThemeColor3: 0
     - m_start_GlobalThemes: 0
-    - m_start_LTCGI: 1
+    - m_start_LTCGI: 0
     - m_start_MainVertexColors: 0
     - m_start_Matcap2: 0
     - m_start_Matcap3: 0
@@ -3571,7 +3571,7 @@ Material:
     - m_start_PoiGlobalCategory: 1
     - m_start_PoiLightData: 0
     - m_start_PoiPostProcessingCategory: 0
-    - m_start_PoiShading: 1
+    - m_start_PoiShading: 0
     - m_start_PoiSkin: 0
     - m_start_PoiTimeOptions: 0
     - m_start_PoiUVCategory: 0
@@ -3607,7 +3607,7 @@ Material:
     - m_start_backFace: 0
     - m_start_backlight: 0
     - m_start_blending: 1
-    - m_start_brdf: 1
+    - m_start_brdf: 0
     - m_start_clearCoat: 0
     - m_start_clearcoatadvanced: 0
     - m_start_clearcoatglobalmask: 0
@@ -3615,10 +3615,10 @@ Material:
     - m_start_depthRimLightOptions: 0
     - m_start_dissolve: 1
     - m_start_dissolveHueShift: 0
-    - m_start_emission1Options: 1
-    - m_start_emission2Options: 1
-    - m_start_emission3Options: 1
-    - m_start_emissionOptions: 1
+    - m_start_emission1Options: 0
+    - m_start_emission2Options: 0
+    - m_start_emission3Options: 0
+    - m_start_emissionOptions: 0
     - m_start_flipBook: 0
     - m_start_flipBook1: 0
     - m_start_glitter: 0
@@ -3660,8 +3660,8 @@ Material:
     - m_start_videoEffects: 0
     - m_start_voronoi: 0
     - m_start_voronoiRandom: 0
-    - m_thirdpartyCategory: 1
-    - m_vertexCategory: 1
+    - m_thirdpartyCategory: 0
+    - m_vertexCategory: 0
     - s_end_ALAlpha: 0
     - s_end_ALDecalAudioModsOptions: 0
     - s_end_ALDecalBand: 0
@@ -4010,7 +4010,7 @@ Material:
     - s_start_BRDFTPSMaskGroup: 0
     - s_start_BackFaceHueShift: 0
     - s_start_BackfaceMods: 0
-    - s_start_BasicDissolve: 0
+    - s_start_BasicDissolve: 1
     - s_start_CCopt: 1
     - s_start_CRT: 0
     - s_start_CenterOutDissolve: 0
@@ -4247,7 +4247,7 @@ Material:
     - s_start_TimingOptions: 1
     - s_start_TransitionMenu: 0
     - s_start_TruchetAudioLink: 0
-    - s_start_UVTileDissolve: 0
+    - s_start_UVTileDissolve: 1
     - s_start_UVTileDissolveRow0: 1
     - s_start_UVTileDissolveRow1: 1
     - s_start_UVTileDissolveRow2: 1
@@ -4410,10 +4410,10 @@ Material:
     - ss_start_TruchetALEmission: 0
     - ss_start_TruchetChronoPan: 0
     - ss_start_TruchetColorOverride: 0
-    - ss_start_UVTileDissolveRow0: 0
-    - ss_start_UVTileDissolveRow1: 0
-    - ss_start_UVTileDissolveRow2: 0
-    - ss_start_UVTileDissolveRow3: 0
+    - ss_start_UVTileDissolveRow0: 1
+    - ss_start_UVTileDissolveRow1: 1
+    - ss_start_UVTileDissolveRow2: 1
+    - ss_start_UVTileDissolveRow3: 1
     - ss_start_VertexScale: 0
     - ss_start_WorldTranslation: 0
     - ss_start_vertexRoundingAL: 0

@@ -249,3 +249,18 @@ MonoBehaviour:
     saved: 0
     defaultValue: 0
     networkSynced: 1
+  - name: lower_body
+    valueType: 2
+    saved: 1
+    defaultValue: 0
+    networkSynced: 1
+  - name: cage
+    valueType: 2
+    saved: 1
+    defaultValue: 1
+    networkSynced: 1
+  - name: bells
+    valueType: 2
+    saved: 1
+    defaultValue: 1
+    networkSynced: 1

@@ -1,0 +1,427 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: lower_head_view
+  m_Shader: {fileID: 4800000, guid: 8a17c7f4ad325de48acb452616b9e924, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _STOCHASTICMODE_DELIOT_HEITZ
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LightDataSDFMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LightingAOMaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LightingDetailShadowMaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LightingShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 8400000, guid: b6ab0d5f3eeee2949b4ed5503cbb3631, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _UzumoreMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - GeometryShader_Enabled: 1
+    - Instancing: 0
+    - Tessellation_Enabled: 1
+    - _AddBlendOp: 4
+    - _AddBlendOp2: 4
+    - _AddBlendOpAlpha: 4
+    - _AddBlendOpAlpha2: 4
+    - _AddDstBlend: 1
+    - _AddDstBlend2: 1
+    - _AddDstBlendAlpha: 1
+    - _AddDstBlendAlpha2: 1
+    - _AddSrcBlend: 1
+    - _AddSrcBlend2: 1
+    - _AddSrcBlendAlpha: 0
+    - _AddSrcBlendAlpha2: 0
+    - _AlphaForceOpaque: 1
+    - _AlphaForceOpaque2: 0
+    - _AlphaGlobalMask: 0
+    - _AlphaGlobalMaskBlendType: 2
+    - _AlphaMaskA: 0
+    - _AlphaMaskB: 0
+    - _AlphaMaskBlendStrength: 1
+    - _AlphaMaskChannelBlendMode: 2
+    - _AlphaMaskG: 0
+    - _AlphaMaskGamma: 1
+    - _AlphaMaskInvert: 0
+    - _AlphaMaskR: 1
+    - _AlphaMaskUV: 0
+    - _AlphaMaskValue: 0
+    - _AlphaMod: 0
+    - _AlphaPremultiply2: 0
+    - _BlendOp: 0
+    - _BlendOp2: 0
+    - _BlendOpAlpha: 0
+    - _BlendOpAlpha2: 0
+    - _BumpMapStochastic: 0
+    - _BumpMapUV: 0
+    - _BumpScale: 1
+    - _ColorMask: 15
+    - _ColorMask2: 15
+    - _ColorThemeIndex: 0
+    - _Cull: 2
+    - _Cull2: 2
+    - _Cutoff: 0.5
+    - _DisableDirectionalInAdd: 0
+    - _DstBlend: 0
+    - _DstBlend2: 0
+    - _DstBlendAlpha: 10
+    - _DstBlendAlpha2: 10
+    - _FFBFStencilHelp0: 0
+    - _FFBFStencilHelp1: 0
+    - _FlipBackfaceNormals: 1
+    - _ForgotToLockMaterial: 1
+    - _GlobalThemeBrightness0: 0
+    - _GlobalThemeBrightness1: 0
+    - _GlobalThemeBrightness2: 0
+    - _GlobalThemeBrightness3: 0
+    - _GlobalThemeHue0: 0
+    - _GlobalThemeHue1: 0
+    - _GlobalThemeHue2: 0
+    - _GlobalThemeHue3: 0
+    - _GlobalThemeHueShiftColorSpace0: 0
+    - _GlobalThemeHueShiftColorSpace1: 0
+    - _GlobalThemeHueShiftColorSpace2: 0
+    - _GlobalThemeHueShiftColorSpace3: 0
+    - _GlobalThemeHueSpeed0: 0
+    - _GlobalThemeHueSpeed1: 0
+    - _GlobalThemeHueSpeed2: 0
+    - _GlobalThemeHueSpeed3: 0
+    - _GlobalThemeSaturation0: 0
+    - _GlobalThemeSaturation1: 0
+    - _GlobalThemeSaturation2: 0
+    - _GlobalThemeSaturation3: 0
+    - _GlobalThemeSaturationMethod0: 1
+    - _GlobalThemeSaturationMethod1: 1
+    - _GlobalThemeSaturationMethod2: 1
+    - _GlobalThemeSaturationMethod3: 1
+    - _GlobalThemeValue0: 0
+    - _GlobalThemeValue1: 0
+    - _GlobalThemeValue2: 0
+    - _GlobalThemeValue3: 0
+    - _IgnoreFog: 0
+    - _LightDataAOGlobalMaskBlendTypeR: 2
+    - _LightDataAOGlobalMaskR: 0
+    - _LightDataAOStrengthA: 0
+    - _LightDataAOStrengthB: 0
+    - _LightDataAOStrengthG: 0
+    - _LightDataAOStrengthR: 1
+    - _LightDataDebugEnabled: 0
+    - _LightDataDetailShadowGlobalMaskBlendTypeR: 2
+    - _LightDataDetailShadowGlobalMaskR: 0
+    - _LightDataSDFBlendY: 1
+    - _LightDataSDFMapLOD: 0
+    - _LightDataSDFMapUV: 0
+    - _LightDataShadowMaskGlobalMaskBlendTypeR: 2
+    - _LightDataShadowMaskGlobalMaskR: 0
+    - _LightingAOMapsUV: 0
+    - _LightingAddDetailShadowStrengthA: 0
+    - _LightingAddDetailShadowStrengthB: 0
+    - _LightingAddDetailShadowStrengthG: 0
+    - _LightingAddDetailShadowStrengthR: 1
+    - _LightingAdditiveCastedShadows: 1
+    - _LightingAdditiveEnable: 1
+    - _LightingAdditiveLimit: 1
+    - _LightingAdditiveLimited: 1
+    - _LightingAdditiveMonochromatic: 0
+    - _LightingAdditivePassthrough: 0.5
+    - _LightingCap: 1
+    - _LightingCapEnabled: 1
+    - _LightingCastedShadows: 0
+    - _LightingColorMode: 0
+    - _LightingDebugVisualize: 0
+    - _LightingDetailShadowMapsUV: 0
+    - _LightingDetailShadowStrengthA: 0
+    - _LightingDetailShadowStrengthB: 0
+    - _LightingDetailShadowStrengthG: 0
+    - _LightingDetailShadowStrengthR: 1
+    - _LightingDirectionMode: 0
+    - _LightingEnableLightVolumes: 1
+    - _LightingForceColorEnabled: 0
+    - _LightingForcedColorThemeIndex: 0
+    - _LightingIndirectUsesNormals: 0
+    - _LightingLightVolumesNormalBias: 0
+    - _LightingMapMode: 0
+    - _LightingMinLightBrightness: 0
+    - _LightingMirrorVertexLightingEnabled: 1
+    - _LightingMonochromatic: 0
+    - _LightingShadowMaskStrengthA: 0
+    - _LightingShadowMaskStrengthB: 0
+    - _LightingShadowMaskStrengthG: 0
+    - _LightingShadowMaskStrengthR: 1
+    - _LightingShadowMasksUV: 0
+    - _LightingShadowSoftness: 0
+    - _LightingVertexLightingEnabled: 1
+    - _LightingViewDirOffsetPitch: 0
+    - _LightingViewDirOffsetYaw: 0
+    - _MainAlphaMaskMode: 2
+    - _MainIgnoreTexAlpha: 0
+    - _MainPixelMode: 0
+    - _MainTexStochastic: 0
+    - _MainTexUV: 0
+    - _Mode: 0
+    - _ModeTwoPass: 0
+    - _OffsetFactor: 0
+    - _OffsetUnits: 0
+    - _PPEmissionMultiplier: 1
+    - _PPFinalColorMultiplier: 1
+    - _PPHelp: 0
+    - _PPLightingAddition: 0
+    - _PPLightingMultiplier: 1
+    - _PanoUseBothEyes: 1
+    - _PoiTimeSource: 1
+    - _PolarLengthScale: 1
+    - _PolarMode: 0
+    - _PolarRadialScale: 1
+    - _PolarSpiralPower: 0
+    - _PolarUV: 0
+    - _RenderingEarlyZEnabled: 0
+    - _RenderingReduceClipDistance: 0
+    - _ShaderOptimizerEnabled: 1
+    - _ShaderUIWarning0: -0
+    - _ShaderUIWarning1: -0
+    - _SrcBlend: 1
+    - _SrcBlend2: 1
+    - _SrcBlendAlpha: 1
+    - _SrcBlendAlpha2: 1
+    - _Stencil2BackCompareFunction: 8
+    - _Stencil2BackFailOp: 0
+    - _Stencil2BackPassOp: 0
+    - _Stencil2BackZFailOp: 0
+    - _Stencil2CompareFunction: 8
+    - _Stencil2FailOp: 0
+    - _Stencil2FrontCompareFunction: 8
+    - _Stencil2FrontFailOp: 0
+    - _Stencil2FrontPassOp: 0
+    - _Stencil2FrontZFailOp: 0
+    - _Stencil2PassOp: 0
+    - _Stencil2ReadMask: 255
+    - _Stencil2Ref: 0
+    - _Stencil2Type: 0
+    - _Stencil2WriteMask: 255
+    - _Stencil2ZFailOp: 0
+    - _StencilBackCompareFunction: 8
+    - _StencilBackFailOp: 0
+    - _StencilBackPassOp: 0
+    - _StencilBackZFailOp: 0
+    - _StencilCompareFunction: 8
+    - _StencilFailOp: 0
+    - _StencilFrontCompareFunction: 8
+    - _StencilFrontFailOp: 0
+    - _StencilFrontPassOp: 0
+    - _StencilFrontZFailOp: 0
+    - _StencilPassOp: 0
+    - _StencilReadMask: 255
+    - _StencilRef: 0
+    - _StencilType: 0
+    - _StencilWriteMask: 255
+    - _StencilZFailOp: 0
+    - _StereoEnabled: 0
+    - _StochasticDeliotHeitzDensity: 1
+    - _StochasticMode: 0
+    - _TwoPassAlphaCutoff: 0.5
+    - _TwoPassAlphaCutoffInvert: 0
+    - _TwoPassAlphaOverride: 1
+    - _TwoPassAlphaPower: 1
+    - _TwoPassColorThemeIndex: 0
+    - _TwoPassFirstPassGlobalMaskIndex: 0
+    - _TwoPassFirtstPassApplyGlobalMaskBlendType: 0
+    - _TwoPassOverrideFirstPassColor: 0
+    - _TwoPassSecondPassApplyGlobalMaskBlendType: 0
+    - _TwoPassSecondPassGlobalMaskIndex: 0
+    - _UVModLocalPos0: 0
+    - _UVModLocalPos1: 1
+    - _UVModWorldPos0: 0
+    - _UVModWorldPos1: 2
+    - _UVSettingsAngle0: 0
+    - _UVSettingsAngle1: 0
+    - _UVSettingsAngle2: 0
+    - _UVSettingsAngle3: 0
+    - _UVSettingsRotate0: 0
+    - _UVSettingsRotate1: 0
+    - _UVSettingsRotate2: 0
+    - _UVSettingsRotate3: 0
+    - _UVSettingsShiftBackfaceUV: 0
+    - _Unlit_Intensity: 1
+    - _UzumoreAmount: 0.1
+    - _UzumoreBias: 0.001
+    - _UzumoreCategoryToggle: 0
+    - _UzumoreEnabled: 1
+    - _UzumoreMaskUV: 3
+    - _ZClip: 1
+    - _ZTest: 4
+    - _ZTest2: 4
+    - _ZWrite: 1
+    - _ZWrite2: 1
+    - footer_bluesky: 0
+    - footer_discord: 0
+    - footer_github: 0
+    - footer_patreon: 0
+    - footer_twitter: 0
+    - footer_website: 0
+    - footer_youtube: 0
+    - m_2ndPassCategory: 0
+    - m_OutlineCategory: 0
+    - m_end_2ndPassRenderingOptions: 0
+    - m_end_Alpha: 0
+    - m_end_GlobalMask: 0
+    - m_end_GlobalMaskModifiers: 0
+    - m_end_GlobalThemeColor0: 0
+    - m_end_GlobalThemeColor1: 0
+    - m_end_GlobalThemeColor2: 0
+    - m_end_GlobalThemeColor3: 0
+    - m_end_GlobalThemes: 0
+    - m_end_PPAnimations: 0
+    - m_end_PoiGlobalCategory: 0
+    - m_end_PoiLightData: 0
+    - m_end_PoiPostProcessingCategory: 0
+    - m_end_PoiTimeOptions: 0
+    - m_end_PoiUVCategory: 0
+    - m_end_Stencil2PassBackOptions: 0
+    - m_end_Stencil2PassFrontOptions: 0
+    - m_end_Stencil2PassOptions: 0
+    - m_end_StencilPassBackOptions: 0
+    - m_end_StencilPassFrontOptions: 0
+    - m_end_StencilPassOptions: 0
+    - m_end_Stochastic: 0
+    - m_end_Uzumore: 0
+    - m_end_alphaBlending: 0
+    - m_end_alphaBlending2: 0
+    - m_end_blending: 0
+    - m_end_blending2: 0
+    - m_end_uvLocalWorld: 0
+    - m_end_uvPanosphere: 0
+    - m_end_uvPolar: 0
+    - m_end_uvSettings: 0
+    - m_lightingCategory: 0
+    - m_mainCategory: 0
+    - m_modifierCategory: 0
+    - m_raymarchingCategory: 0
+    - m_renderingCategory: 0
+    - m_specialFXCategory: 0
+    - m_start_2ndPassRenderingOptions: 0
+    - m_start_Alpha: 0
+    - m_start_GlobalMask: 0
+    - m_start_GlobalMaskModifiers: 0
+    - m_start_GlobalThemeColor0: 0
+    - m_start_GlobalThemeColor1: 0
+    - m_start_GlobalThemeColor2: 0
+    - m_start_GlobalThemeColor3: 0
+    - m_start_GlobalThemes: 0
+    - m_start_PPAnimations: 0
+    - m_start_PoiGlobalCategory: 0
+    - m_start_PoiLightData: 0
+    - m_start_PoiPostProcessingCategory: 0
+    - m_start_PoiTimeOptions: 0
+    - m_start_PoiUVCategory: 0
+    - m_start_Stencil2PassBackOptions: 0
+    - m_start_Stencil2PassFrontOptions: 0
+    - m_start_Stencil2PassOptions: 0
+    - m_start_StencilPassBackOptions: 0
+    - m_start_StencilPassFrontOptions: 0
+    - m_start_StencilPassOptions: 0
+    - m_start_Stochastic: 0
+    - m_start_Uzumore: 0
+    - m_start_alphaBlending: 0
+    - m_start_alphaBlending2: 0
+    - m_start_blending: 0
+    - m_start_blending2: 0
+    - m_start_uvLocalWorld: 0
+    - m_start_uvPanosphere: 0
+    - m_start_uvPolar: 0
+    - m_start_uvSettings: 0
+    - m_thirdpartyCategory: 0
+    - m_vertexCategory: 0
+    - s_end_LightDataAddPass: 1
+    - s_end_LightDataBasePass: 1
+    - s_end_LightDataDebug: 0
+    - s_end_LightDataSDF: 1
+    - s_end_deliot: 0
+    - s_end_uvSettingsUV0: 0
+    - s_end_uvSettingsUV1: 0
+    - s_end_uvSettingsUV2: 0
+    - s_end_uvSettingsUV3: 0
+    - s_start_LightDataAddPass: 1
+    - s_start_LightDataBasePass: 1
+    - s_start_LightDataDebug: 0
+    - s_start_LightDataSDF: 1
+    - s_start_deliot: 0
+    - s_start_uvSettingsUV0: 0
+    - s_start_uvSettingsUV1: 0
+    - s_start_uvSettingsUV2: 0
+    - s_start_uvSettingsUV3: 0
+    - shader_is_using_thry_editor: 0
+    - shader_locale: 0
+    - shader_master_label: 0
+    m_Colors:
+    - _AlphaMaskMinMax: {r: 0, g: 1, b: 0, a: 1}
+    - _AlphaMaskPan: {r: 0, g: 0, b: 0, a: 0}
+    - _BumpMapPan: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _GlobalThemeColor0: {r: 1, g: 1, b: 1, a: 1}
+    - _GlobalThemeColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _GlobalThemeColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _GlobalThemeColor3: {r: 1, g: 1, b: 1, a: 1}
+    - _LightDataSDFMapPan: {r: 0, g: 0, b: 0, a: 0}
+    - _LightingAOMapsPan: {r: 0, g: 0, b: 0, a: 0}
+    - _LightingAdditiveAttenCurve: {r: 0, g: 0.3333333, b: 0.6666667, a: 1}
+    - _LightingDetailShadowMapsPan: {r: 0, g: 0, b: 0, a: 0}
+    - _LightingForcedColor: {r: 1, g: 1, b: 1, a: 1}
+    - _LightingShadowMasksPan: {r: 0, g: 0, b: 0, a: 0}
+    - _LightngForcedDirection: {r: 0, g: 0, b: 0, a: 1}
+    - _MainTexPan: {r: 0, g: 0, b: 0, a: 0}
+    - _PolarCenter: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _TwoPassColor: {r: 1, g: 1, b: 1, a: 1}
+    - _UVSettingsOffset0: {r: 0, g: 0, b: 0, a: 0}
+    - _UVSettingsOffset1: {r: 0, g: 0, b: 0, a: 0}
+    - _UVSettingsOffset2: {r: 0, g: 0, b: 0, a: 0}
+    - _UVSettingsOffset3: {r: 0, g: 0, b: 0, a: 0}
+    - _UVSettingsPan0: {r: 0, g: 0, b: 0, a: 0}
+    - _UVSettingsPan1: {r: 0, g: 0, b: 0, a: 0}
+    - _UVSettingsPan2: {r: 0, g: 0, b: 0, a: 0}
+    - _UVSettingsPan3: {r: 0, g: 0, b: 0, a: 0}
+    - _UVSettingsTiling0: {r: 1, g: 1, b: 0, a: 0}
+    - _UVSettingsTiling1: {r: 1, g: 1, b: 0, a: 0}
+    - _UVSettingsTiling2: {r: 1, g: 1, b: 0, a: 0}
+    - _UVSettingsTiling3: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []
