@@ -3131,7 +3131,7 @@ Material:
     - _UVTileDissolveAlpha_Row1_0_ncho: 1
     - _UVTileDissolveAlpha_Row1_0_rober: 0
     - _UVTileDissolveAlpha_Row1_1: 1
-    - _UVTileDissolveAlpha_Row1_1_ncho: 1
+    - _UVTileDissolveAlpha_Row1_1_ncho: 0
     - _UVTileDissolveAlpha_Row1_1_rober: 0
     - _UVTileDissolveAlpha_Row1_2: 0
     - _UVTileDissolveAlpha_Row1_2_ncho: 0
