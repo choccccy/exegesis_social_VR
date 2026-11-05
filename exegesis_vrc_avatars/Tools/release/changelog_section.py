@@ -33,6 +33,8 @@ def main():
     text = "\n".join(body).strip()
     if not text:
         raise SystemExit(f"error: the '## [{version}]' section of {path} is empty")
+    # UTF-8 regardless of platform: Windows defaults to cp1252, which can't encode the names.
+    sys.stdout.reconfigure(encoding="utf-8")
     print(text)
 
 
