@@ -1,0 +1,77 @@
+#T#PS1ModuleProperties
+//ifex _EnablePS1Module==0
+[HideInInspector] m_start_ps1Module (" PS1 Rounding--{reference_property:_EnablePS1Module}", Float) = 0
+[HideInInspector][ThryToggle(POI_PS1_MODULE)]_EnablePS1Module ("Enable", Float) = 0
+[ThryWideEnum(World, 0, Local, 1)]_PS1VertexRoundingSpace ("Rounding Space", Int) = 0
+_PS1VertexRounding ("Rounding Interval", Float) = 0.005
+_PS1PerspectiveCorrectionFactor ("Perspective Correction", Range(0, 1)) = 1
+[HideInInspector] m_end_ps1Module ("", Float) = 0
+//endex
+
+#T#PS1ModuleKeywords
+//ifex _EnablePS1Module==0
+#pragma shader_feature_local POI_PS1_MODULE
+//endex
+
+#T#PS1ModuleVariables
+//ifex _EnablePS1Module==0
+#ifdef POI_PS1_MODULE
+	int _PS1VertexRoundingSpace;
+	float _PS1VertexRounding;
+	float _PS1PerspectiveCorrectionFactor;
+#endif
+//endex
+
+#T#PS1VertexRounding
+//ifex _PS1VertexRounding==0
+#ifdef POI_PS1_MODULE
+    if (_PS1VertexRounding > 0)
+    {
+        float divisionAmount = max(_PS1VertexRounding, 0.0000001);
+
+		float4 position;
+        float3x3 cameraOrientation;
+		if (_PS1VertexRoundingSpace == 0) {
+            position = mul(unity_ObjectToWorld, v.vertex);
+            cameraOrientation = (float3x3)UNITY_MATRIX_V;
+        } else {
+            position = v.vertex;
+            cameraOrientation = mul((float3x3)unity_WorldToObject, (float3x3)UNITY_MATRIX_V);
+        }
+
+        float3 viewPos = mul(cameraOrientation, position.xyz);
+        viewPos.xy = (ceil(viewPos.xy / divisionAmount) * divisionAmount) - divisionAmount * .5;
+        position.xyz = mul(transpose(cameraOrientation), viewPos);
+
+		if (_PS1VertexRoundingSpace == 0) {
+            v.vertex = mul(unity_WorldToObject, position);
+        } else {
+			v.vertex = position;
+        }
+    }
+#endif
+//endex
+
+#T#PS1VertexUV
+//ifex _PS1PerspectiveCorrectionFactor==1
+#ifdef POI_PS1_MODULE
+	if (_PS1PerspectiveCorrectionFactor < 1.0) {
+		// VertexOut o
+		float factor = lerp(o.pos.w / 2, 1.0, _PS1PerspectiveCorrectionFactor);
+		o.uv[0] = o.uv[0] * factor;
+		o.uv[1] = o.uv[1] * factor;
+    }
+#endif
+//endex
+
+#T#PS1FragmentUV
+//ifex _PS1PerspectiveCorrectionFactor==1
+#ifdef POI_PS1_MODULE
+	if (_PS1PerspectiveCorrectionFactor < 1.0) {
+		// VertexOut i
+		float factor = lerp(i.pos.w / 2, 1.0, _PS1PerspectiveCorrectionFactor);
+		i.uv[0] = i.uv[0] / factor;
+		i.uv[1] = i.uv[1] / factor;
+    }
+#endif
+//endex

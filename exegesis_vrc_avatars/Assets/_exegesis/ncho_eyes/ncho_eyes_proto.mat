@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ncho_eyes_proto
+  m_Shader: {fileID: 4800000, guid: 19c6068a5527ca249b79c2fa0b9966c2, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _EmissionMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LedMap:
+        m_Texture: {fileID: 2800000, guid: fc16d7a1cdc599c4d8ebec89ac5b41af, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 1d3fed65939e1434cad8c484d4a9aee3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _DbgLidL: 0.75
+    - _DbgLidR: 0.75
+    - _DbgLinkEyes: 1
+    - _DbgOverride: 0
+    - _DbgSquintL: 0
+    - _DbgSquintR: 0
+    - _DbgTrackingActive: 1
+    - _DbgX: 0
+    - _DbgY: 0
+    - _DebugView: 0
+    - _EmissionStrength: 1
+    - _EyeLidL: 1
+    - _EyeLidR: 1
+    - _EyeSquintL: 0
+    - _EyeSquintR: 0
+    - _EyeTrackingActive: 0
+    - _EyeX: 0
+    - _EyeY: 0
+    - _GazeXDeadzone: 0.25
+    - _GazeYMaxShift: 2
+    - _LidOpenAt: 0.5
+    - _LidStep: 0.1
+    - _SquintFull: 0.4
+    - _SquintLidMax: 0.9
+    - _SquintLidMin: 0.5
+    - _SquintOn: 0.3
+    - _SwapSides: 0
+    - _UpFlipL: 0
+    - _UpFlipR: 1
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0.7187703, g: 0.57075465, b: 1, a: 1}
+  m_BuildTextureStacks: []

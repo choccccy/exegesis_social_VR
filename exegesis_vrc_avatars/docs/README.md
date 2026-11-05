@@ -15,8 +15,15 @@ Project documentation for the exegesis ncho VRChat avatar (Unity 2022.3.22f1, Bi
   the thrusters pitch and roll. Not currently on the avatar.
 - **[accessories.md](accessories.md)** — the accessory slot system: one int per mount point,
   the Poiyomi tile census, the preset layer, and how the RCS visibility gates read it.
+- **[ncho-eyes.md](ncho-eyes.md)** — ncho's LED-chevron eyes: the rotated UV layout, the
+  baked LED map, the prototype shader and its debug/calibration controls.
 - **[animator-generation.md](animator-generation.md)** — the two generator tools, the animator
   invariants they encode, and what a migration to Animator As Code would have to preserve.
+- **[releasing.md](releasing.md)** — tag-triggered `.unitypackage` releases, what the
+  package builder includes, and the Poiyomi must-be-unlocked rule and its pre-commit hook.
+- **[changelog/](changelog/)** — one Keep a Changelog file per released package
+  ([props](changelog/props.md), [exegesis](changelog/exegesis.md)); each version's section
+  becomes its release notes.
 
 `AGENTS.md` at the project root is the tool-agnostic entry point that points here.
 `CLAUDE.md` is a thin file that `@import`s `AGENTS.md` (Claude Code auto-loads

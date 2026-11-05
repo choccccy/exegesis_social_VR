@@ -1,17 +1,12 @@
-1.1.0
+1.1.2
 
 _full_
 BluWizard's Presets/Do Not Open/I'm warning you/You don't wanna do this/Are you sure/You REALLY sure/Well if you insist/Be Pink Do Crimes;c78739937044f7444a903b9da6384727
 BluWizard's Presets/Quick Fixes/Add Fallback Reflection;b41ef0f35458fd34b955621cc18c5ee6
-BluWizard's Presets/Shading/Add Minimal Rim Lighting;9b89d72fda79d0941bb04b64de43fd36
 BluWizard's Presets/Shading/Atlas Toon;cb2abefa29884a74eb4e7e55104cc6bc
 BluWizard's Presets/Shading/Blu's Balanced Wrapped Style;91168e8535b52c74eb09100c5f75a3dc
-BluWizard's Presets/Shading/Blu's MLM Shading Setup v8.0;aeb6b01fa61846148b371ae5dbc59f42
 BluWizard's Presets/Shading/Blu's OYT-Style MLM;85ec9426a92934742b7c468868a3f6d1
 BluWizard's Presets/Shading/Blu's OYT-Style Wrapped;b48ec343048119c468528b4e2cbee119
-BluWizard's Presets/Shading/Blu's Toon Shading Setup v6.0;cee48c4f280d08c44b2ae9008c50a3a9
-BluWizard's Presets/Shading/Blu's Wrapped Shading Setup 7.0;3ab3ffad8a40b2d459913389b2905251
-BluWizard's Presets/Shading/Blu's Wrapped Shading Setup v8.0;6b501b3c3b2784245acfbbbd3cf86dd5
 BluWizard's Presets/Shading/LilToon Flat;4bea0e2832f005942846c02e964fbba2
 BluWizard's Presets/Shading/Mayu Style;91a6967c76257f543a9ab27ded026ea8
 BluWizard's Presets/Shading/Mayu Style v3.5;7ee2868f409e501439bf3ad2749d1273
@@ -86,10 +81,12 @@ AudioLink/Glow/3000W;6a19a992ae69bc54180fe67a2801d2d9
 BluWizard's Presets/Glowy Sweet Spot;73303cfc188768f4480d0c89ecb06854
 Rainbow Stars;ab63f44b70bac8e4ab447c3fb7803125
 
-m_start_FlipbookAudioLink
-10W;67ca07f5ecca1804ea63f70fdfa360f5
-2000W;1b554d513234cef468b0778acdec93c5
-300W;4ccb17d0fa7ada74190025227a9dc06d
+m_start_flipBook
+AudioLink/10W;67ca07f5ecca1804ea63f70fdfa360f5
+AudioLink/2000W;1b554d513234cef468b0778acdec93c5
+AudioLink/300W;4ccb17d0fa7ada74190025227a9dc06d
+Example 1;22d90c2db55caeb4cb66beb25e2c8821
+Example 2;05876963e63ea1d4ca48f7331a07be97
 
 m_start_glitter
 AudioLink / 2000W;6da4ec4deb4ed3d4088216c8ce0aba67
@@ -126,7 +123,8 @@ Volume Bands/12-Band;0b416ffba1a7d97429ff71b7efc9230c
 Volume Bands/4-Band;c616aa2d7967623489243ae874323c90
 Volume Bands/8-Band;be96e40be3814e84fbca071cf6782a66
 Volume Bands/Reset;53395a2a59ff2f148b53eafd66967204
-Oldschool VFD;e521e7368b5839d4d927e507e15593eb
+Antique Incandescent Backlit;e521e7368b5839d4d927e507e15593eb
+Oldschool VFD;34b907ecea29f974aaf32f618e246a5b
 
 m_start_Alpha
 Alpha to Coverage + Dithering;11cc49b1463fe4240ae384b23baf0f67
@@ -142,17 +140,18 @@ Toon Shadow 2;c80772dfa04766b48b39c957e46792c1
 
 m_start_ColorAdjust
 Hue Shift/Continuous Shift;5a0731fb35950a94b8080e2fc98fd21c
-Old Timey;ed36fcd884e1f784c9d913e6fc45bdd7
+Old Timey;f7c0ff5dcacd01b4698ddaef5381d525
 
 m_start_uvDistortion
 Distort 1;c781c4faae2a8e7478eef8c89b376f69
+Distort 2;36090bb300774fa4399a2e41e5dfbae8
 Distort 3;7a50a7b05ade5824585c295d7b29f4fe
 Flow 1;71205da691058794f8d3917649dbb715
 Flow 2;de4d74224d300984e98f1c4340c7e07e
 Flow 3;45b9bd23025ab5c4e801ed2a1737d796
 
 m_start_PoiLightData
-BluWizard's Presets/Balanced Wrapped Light Data;60a9882f22832554bb2f272e4871ef74
+BluWizard's Presets/Blu's Custom;60a9882f22832554bb2f272e4871ef74
 Max Brightness/Add Pass - 1;77ff67845f589134fbb97c874371f1d2
 Max Brightness/Add Pass - 2.5;4b6acbbff7140f247b2a9b6d5366f173
 Max Brightness/Add Pass - Infinite;9d224ea6ad7e12b4498d8ab03ae828cf
@@ -166,13 +165,10 @@ Min Brightness/0 (Correct);26af5cb87deb3ed4c8c2032134d84d5d
 Blu's Custom;0eb1ace2030fc5b4085d0ce62e18d84e
 Teeh Custom;9392d94f15870434facaa649d54973f0
 
-m_start_OutlineAudioLink
-BluWizard's Presets/AudioLinked Outlines;90ff955132540154da999a82a0e1b1cc
-10W;4439ffc714f4ad44ab0bd637620826d7
-250W;ef4b2409808827a48a91627430f3a1dc
-3000W;7b22dce3ff8759040bafb301feb17073
-
 m_OutlineCategory
+AudioLink/10W;4439ffc714f4ad44ab0bd637620826d7
+AudioLink/250W;ef4b2409808827a48a91627430f3a1dc
+AudioLink/3000W;7b22dce3ff8759040bafb301feb17073
 BluWizard's Presets/Blu's Outlines Setup;90ff955132540154da999a82a0e1b1cc
 BluWizard's Presets/Outline Color Change AudioLink;251c18b82cbc2e0428a46c658f397ffe
 Size/CHONK;025c21c8a2dfa3749a45e5a0dd8d2bd3
@@ -181,6 +177,7 @@ Size/Medium;475aad9019b0902419fbf7581a6750d1
 Size/Small;058fbb400267e4440bce13b340c4dc9e
 Gaming PC;2459e25e9dfcdd24c989788c469d3f6c
 HardBlack;f2155471ff9f49243978e4eda9b037de
+Highlight;ead22ddba2f92c442bbf12f377fd3fd2
 MixDark;685864ab40dea3b48844d7c50bbae3d7
 MixLight;bab83c3e18767124186c3aa510563636
 MixMid;5f35334077a58904e986a69b17a8ba73
@@ -245,22 +242,6 @@ Skin/Skin V;bb1f601e2b89c02418873c4e72b2c729
 Skin/Skin VI;c98750e14f8836940bd521c31c5fc01b
 Skin/Skin VII;3c3add4a9e3320949aeb81d5a58ef817
 
-m_start_Refraction
-Gem/Amber;c860e18c2caf11841bc2cfb7998ea5aa
-Gem/Amethyst;f33d94eb1d2b5a8419a44e5ca7d8f110
-Gem/Aquamarine;654e3d8dd52590940868f0be7985c571
-Gem/Citrine;9f77bd5bb72e7a64bbd279cb1bf0690e
-Gem/Diamond;9ee82e29822548f479e974e822ad9d93
-Gem/Emerald;9b4b37e274bfc2c4a971c8a6dfd06d06
-Gem/Garnet;f998a16eb63467b4e88d695a49e88077
-Gem/Peridot;aca670f5b53cd664ab40e06938f36466
-Gem/RoseQuartz;28d009a006c1c5a43b0c5bc26fb204aa
-Gem/Ruby;fb612a49c594ae84c8f4472a5bde1056
-Gem/Sapphire;71dcff5fb629cea4f93fe2028afecfc1
-
-m_start_GrabPassAdvanced
-Tinted;9ee82e29822548f479e974e822ad9d93
-
 m_start_brdf
 Basic/Matte Dielectric;92705ecb59916b34688a053666bb8e06
 Basic/Matte Metal;6cde3f698feb24b489a70c044c6c7b36
@@ -300,8 +281,10 @@ Teeh's Fallback;d8e3c66db574ae04c8efa46fcc233130
 
 m_start_PoiShading
 Add Pass/ToonHard;6ab708189f12c864b872e8df6a2ee79b
+Add Pass/ToonSoft;4c3cdf4c10c2a2d4383c5c6329bf7d0e
 Add Pass/UTS Style;d6d1c75edfd0ec94ab3a549a6bdcef28
-BluWizard's Presets/Balanced Wrapped Shading;60a9882f22832554bb2f272e4871ef74
+BluWizard's Presets/Blu's Custom MLM;de0865589b8a9ad4990de3af3079ba88
+BluWizard's Presets/Blu's Custom Wrapped;60a9882f22832554bb2f272e4871ef74
 "PBR";372d7ee2fdaa3914986be8eb2b0cdd0d
 Anthro Balanced Wrapped;0eb1ace2030fc5b4085d0ce62e18d84e
 
@@ -363,13 +346,12 @@ Fake Lens Glint;52f4359514aca564eba594a02e852d68
 Iridescence;3ad1ae4010aa7124fa46fada6c006deb
 Vibrant Light Spots;90c085369f89a8842b53c054af744f27
 
-m_start_RimAudioLink
-10W;59e992582e0872c4486edd6e6948399b
-250W;29d17db0a4cb270459ef013577be02dd
-3000W;5db7e0ca7bf8eb144ae38ccdfb03c04d
-
 m_start_rim2LightOptions
+AudioLink/10W;59e992582e0872c4486edd6e6948399b
+AudioLink/250W;29d17db0a4cb270459ef013577be02dd
+AudioLink/3000W;5db7e0ca7bf8eb144ae38ccdfb03c04d
 BluWizard's Preset/Bass Wave AudioLink;e28b2e8323c007844a9e03d1bccd9a85
+BluWizard's Presets/Add Minimal Rim;9b89d72fda79d0941bb04b64de43fd36
 RimLight/Medium;cd543b8385a6fc64c9f2a6a132dd5e35
 RimLight/Rich;bcb812225818dc8499854c25e422d5f9
 RimLight/Soft;4695a0bd29dbef449a3e3ed8a034d9af
@@ -385,7 +367,11 @@ Shape/Toon;ca3c16976bcbb8941bdac9151420af93
 Shape/Vague;dc8b5c6210105f244a16ac66c4bf2c9b
 
 m_start_rimLight1Options
+AudioLink/10W;59e992582e0872c4486edd6e6948399b
+AudioLink/250W;29d17db0a4cb270459ef013577be02dd
+AudioLink/3000W;5db7e0ca7bf8eb144ae38ccdfb03c04d
 BluWizard's Preset/Bass Wave AudioLink;e28b2e8323c007844a9e03d1bccd9a85
+BluWizard's Presets/Add Minimal Rim;9b89d72fda79d0941bb04b64de43fd36
 RimLight/Medium;cd543b8385a6fc64c9f2a6a132dd5e35
 RimLight/Rich;bcb812225818dc8499854c25e422d5f9
 RimLight/Soft;4695a0bd29dbef449a3e3ed8a034d9af
@@ -430,10 +416,7 @@ Magic;ad404daa174b1b54e93d3fd35c494644
 Simple;bcab8dd901918cb4eb4acd2d903ce1cb
 Tech;2f77c60633c72274cb06cecda3287280
 
-m_start_dissolveHueShift
-Gaming PC;ac91eb1f4fca8694da6dab0fec5a1bf7
-
-m_start_flipBook
+m_start_flipBook1
 Example 1;22d90c2db55caeb4cb66beb25e2c8821
 Example 2;05876963e63ea1d4ca48f7331a07be97
 
@@ -442,9 +425,6 @@ Hide in both;6377fd56d0d1ebe4b89449c751a61166
 Hide in camera;875f091e17ef9e543b0d724d35217dff
 Hide in mirror;aaf4b3a8db5ab774da2f891e803dd97c
 Only show in camera and mirror;d12af220903388446bd961e8c9ea281b
-
-m_start_internalparallax
-Yellow Grid Demo;c4b62e16ed3cad9479088bae9cfe051b
 
 m_start_pathing
 Example;c4e75bdfe85bdfb42a5bc0a488037569
@@ -467,6 +447,9 @@ Nice.;a3665acad4265154d91456049f7e958e
 m_start_TextPosition
 Example;a3665acad4265154d91456049f7e958e
 
+m_start_TextUTCTime
+Time;a3665acad4265154d91456049f7e958e
+
 m_start_OutlineStencil
 Eyes over hair / Body (RenderQueue must be less than Hair);2d376c758a7e2b242aeb13083a455c9c
 Eyes over hair / Eye (RenderQueue must be less than hair);5cf16c95560282047908bcfff06e446c
@@ -478,3 +461,6 @@ Eyes over hair / Body (RenderQueue must be less than Hair);2d376c758a7e2b242aeb1
 Eyes over hair / Eye (RenderQueue must be less than hair);5cf16c95560282047908bcfff06e446c
 Eyes over hair / Hair (RenderQueue 2000);e174c5d3a58ccc94485ccecee53382be
 Stencilled Outline;d0965c132fc7cd14cbe2fdab2f6c8f27
+
+m_start_OutlineAudioLink
+BluWizard's Presets/AudioLinked Outlines;90ff955132540154da999a82a0e1b1cc

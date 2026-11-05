@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1352.0
+  vrcfuryVersion: 1.1429.0
   somethingIsBroken: 0
   config:
     features: []
@@ -183,6 +183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1462633035059974716}
   - component: {fileID: 3427104346699811010}
+  - component: {fileID: 5001994985698159220}
   - component: {fileID: 4732402115868862166}
   m_Layer: 0
   m_Name: screwdriver_plug
@@ -220,7 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1352.0
+  vrcfuryVersion: 1.1429.0
   somethingIsBroken: 0
   config:
     features: []
@@ -233,7 +234,7 @@ MonoBehaviour:
       type: {class: Toggle, ns: VF.Model.Feature, asm: VRCFury}
       data:
         version: 3
-        name: Equipment/Screwdriver/Plug Mode
+        name: Equipment/Screwdriver/Plug Mode (Deformation)
         state:
           actions:
           - rid: 2589806632127955286
@@ -301,6 +302,101 @@ MonoBehaviour:
         remoteOnly: 0
         obj: {fileID: 1178476195555600000}
         mode: 1
+--- !u!114 &5001994985698159220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196387315939427401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e94e501a2d4c95bff3d5601013d923, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 3
+  unityVersion: 2022.3.22f1
+  vrcfuryVersion: 1.1429.0
+  somethingIsBroken: 0
+  config:
+    features: []
+  content:
+    rid: 361056067433791700
+  references:
+    version: 2
+    RefIds:
+    - rid: 361056067433791700
+      type: {class: Toggle, ns: VF.Model.Feature, asm: VRCFury}
+      data:
+        version: 3
+        name: Equipment/Screwdriver/Plug Mode (Static)
+        state:
+          actions:
+          - rid: 361056067433791701
+          - rid: 361056067433791702
+        saved: 0
+        slider: 0
+        sliderInactiveAtZero: 0
+        securityEnabled: 0
+        defaultOn: 0
+        includeInRest: 0
+        exclusiveOffState: 0
+        enableExclusiveTag: 0
+        exclusiveTag: 
+        resetPhysbones: []
+        hasExitTime: 0
+        enableIcon: 0
+        icon:
+          version: 1
+          fileID: 0
+          guid: 
+          id: 
+          objRef: {fileID: 0}
+        enableDriveGlobalParam: 0
+        driveGlobalParam: 
+        separateLocal: 0
+        localState:
+          actions: []
+        hasTransition: 0
+        transitionStateIn:
+          actions: []
+        transitionStateOut:
+          actions: []
+        transitionTimeIn: 0
+        transitionTimeOut: 0
+        localTransitionStateIn:
+          actions: []
+        localTransitionStateOut:
+          actions: []
+        localTransitionTimeIn: 0
+        localTransitionTimeOut: 0
+        simpleOutTransition: 1
+        defaultSliderValue: 0
+        useGlobalParam: 0
+        globalParam: 
+        holdButton: 0
+        invertRestLogic: 0
+        expandIntoTransition: 1
+    - rid: 361056067433791701
+      type: {class: ObjectToggleAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 1
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        obj: {fileID: 6196387315939427401}
+        mode: 0
+    - rid: 361056067433791702
+      type: {class: ObjectToggleAction, ns: VF.Model.StateAction, asm: VRCFury}
+      data:
+        version: 1
+        desktopActive: 0
+        androidActive: 0
+        localOnly: 0
+        remoteOnly: 0
+        obj: {fileID: 1178476195555600000}
+        mode: 1
 --- !u!114 &4732402115868862166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 10
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1352.0
+  vrcfuryVersion: 1.1429.0
   autoRenderer: 1
   autoPosition: 1
   autoLength: 1
@@ -443,6 +539,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: screwdriver_[evil]
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3d9927d41ae72814dbbcae506fc0d7d2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -482,7 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1352.0
+  vrcfuryVersion: 1.1429.0
   somethingIsBroken: 0
   config:
     features: []
@@ -536,7 +636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1352.0
+  vrcfuryVersion: 1.1429.0
   somethingIsBroken: 0
   config:
     features: []
@@ -620,7 +720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1352.0
+  vrcfuryVersion: 1.1429.0
   somethingIsBroken: 0
   config:
     features: []

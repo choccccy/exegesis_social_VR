@@ -123,13 +123,13 @@
   },
   "locked": {
     "com.vrchat.base": {
-      "version": "3.10.5",
+      "version": "3.10.6",
       "dependencies": {}
     },
     "com.vrchat.avatars": {
-      "version": "3.10.5",
+      "version": "3.10.6",
       "dependencies": {
-        "com.vrchat.base": "3.10.5"
+        "com.vrchat.base": "3.10.6"
       }
     },
     "com.llealloo.audiolink": {
@@ -149,7 +149,7 @@
       }
     },
     "io.github.rurre.pumkinsavatartools": {
-      "version": "1.4.7",
+      "version": "1.5.0-beta.5",
       "dependencies": {}
     },
     "lyuma.av3emulator": {
@@ -169,9 +169,9 @@
       }
     },
     "nadena.dev.modular-avatar": {
-      "version": "1.18.7",
+      "version": "1.19.0-beta.0",
       "dependencies": {
-        "nadena.dev.ndmf": ">=1.14.7 <2.0.0-a"
+        "nadena.dev.ndmf": ">=1.15.0-beta.1 <2.0.0-a"
       }
     },
     "io.github.rurre.editor-screenshot": {
@@ -183,11 +183,11 @@
       "dependencies": {}
     },
     "nadena.dev.ndmf": {
-      "version": "1.14.8",
+      "version": "1.15.0-beta.4",
       "dependencies": {}
     },
     "com.vrcfury.vrcfury": {
-      "version": "1.1429.0",
+      "version": "1.1437.1-beta.1",
       "dependencies": {}
     },
     "adjerry91.vrcft.templates": {
@@ -220,11 +220,11 @@
       }
     },
     "net.bluwizard.utilities": {
-      "version": "0.1.4",
+      "version": "0.2.0",
       "dependencies": {}
     },
     "net.bluwizard.hierarchy": {
-      "version": "1.14.0",
+      "version": "1.14.3",
       "dependencies": {}
     },
     "net.bluwizard.dynfloor": {
@@ -234,17 +234,17 @@
       }
     },
     "net.bluwizard.poipresets": {
-      "version": "2.0.6",
+      "version": "2.1.0",
       "dependencies": {}
     },
     "net.bluwizard.source": {
-      "version": "2.3.3",
+      "version": "2.3.4",
       "dependencies": {}
     },
     "d4rkpl4y3r.d4rkavataroptimizer": {
-      "version": "4.5.4",
+      "version": "4.7.1",
       "dependencies": {
-        "com.vrchat.avatars": ">=3.9.0 <4.0.0-a"
+        "com.vrchat.avatars": ">=3.10.6 <3.11.0-a"
       }
     },
     "dev.hai-vr.animator-as-code.v1": {
@@ -311,11 +311,11 @@
       }
     },
     "dev.hai-vr.resilience.prefabulous.universal": {
-      "version": "2.2.0",
+      "version": "2.3.0-beta.1",
       "dependencies": {}
     },
     "dev.hai-vr.lightbox-viewer": {
-      "version": "2.4.0",
+      "version": "2.5.0-beta.5",
       "dependencies": {}
     },
     "dev.hai-vr.resilience.prefabulous": {

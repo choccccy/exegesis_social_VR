@@ -1,0 +1,25 @@
+{
+    "destinations": [
+        {
+            "matchString": "Poiyomi Pro",
+            "folderPath": "Assets/_PoiyomiShaders/Shaders/11.0/Pro",
+            "enabled": true,
+            "matchType": 2,
+            "versionOverride": ""
+        },
+        {
+            "matchString": "Poiyomi Toon",
+            "folderPath": "Assets/_PoiyomiShaders/Shaders/11.0/Toon",
+            "enabled": true,
+            "matchType": 2,
+            "versionOverride": ""
+        },
+        {
+            "matchString": "",
+            "folderPath": "Assets",
+            "enabled": true,
+            "matchType": 0,
+            "versionOverride": ""
+        }
+    ]
+}

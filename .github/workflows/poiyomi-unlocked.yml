@@ -1,0 +1,14 @@
+# Backstop for the .githooks/pre-commit hook (which only runs on clones that enabled it):
+# no Poiyomi material may be committed locked. See docs/releasing.md.
+name: Poiyomi unlocked
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sh exegesis_vrc_avatars/Tools/ci/check_poiyomi_unlocked.sh --all

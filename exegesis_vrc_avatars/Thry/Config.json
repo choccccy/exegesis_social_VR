@@ -1,9 +1,10 @@
 {
     "lastVersion": {
-        "_stringValue": "2.72.2"
+        "_stringValue": "3.0.0"
     },
     "loggingLevel": 1,
     "default_texture_type": 0,
+    "defaultTexturePreview": 0,
     "showRenderQueue": true,
     "showManualReloadButton": false,
     "showColorspaceWarnings": true,
@@ -12,6 +13,14 @@
     "showStarNextToNonDefaultProperties": true,
     "showAnimatedDotOnHeaders": true,
     "showNotes": true,
+    "staggeringRowColors": false,
+    "useSharedInspectorAppearance": false,
+    "inspectorDarkGray": 0,
+    "inspectorMediumGray": 0,
+    "inspectorLightGray": 0,
+    "inspectorTextSize": 0,
+    "inspectorPropertyHeight": 18,
+    "inspectorHeaderHeight": 22,
     "texturePackerCompressionWithAlphaOverwrite": -1,
     "texturePackerCompressionNoAlphaOverwrite": -1,
     "gradientEditorCompressionOverwrite": -1,
@@ -28,5 +37,6 @@
     "disableUnlockedShaderStrippingOnBuild": false,
     "forceAsyncCompilationPreview": true,
     "fixKeywordsWhenLocking": true,
-    "saveAfterLockUnlock": true
+    "saveAfterLockUnlock": true,
+    "lockedShaderCacheBudgetMB": 2048
 }

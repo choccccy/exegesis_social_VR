@@ -170,6 +170,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -279,6 +280,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -425,6 +427,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -545,7 +548,7 @@ Transform:
   m_GameObject: {fileID: 30661403}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7145405, y: 0.0000000528179, z: 0.000000053946312, w: 0.69959414}
-  m_LocalPosition: {x: 0.6000004, y: 0.20110035, z: 0.0009050369}
+  m_LocalPosition: {x: 0.6000614, y: 0.20109941, z: 0.0009021759}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -566,6 +569,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -706,6 +710,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -1166,6 +1171,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -1308,6 +1314,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -1469,6 +1476,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: chest_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &56357849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,6 +1496,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -1696,6 +1709,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: screwdriver_holster
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!4 &74450068 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2894581514714270023, guid: c7d054404b2a07a4a9e73ea362890c03, type: 3}
@@ -1716,6 +1734,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -1825,6 +1844,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0.5
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -2057,6 +2077,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -2212,6 +2233,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: screwdriver_holster
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1001 &101489676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2301,6 +2327,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -2459,6 +2486,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: chest_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &117097619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2474,6 +2506,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0.5
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -2588,6 +2621,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -2702,6 +2736,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -3554,6 +3589,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -3902,6 +3938,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -4011,6 +4048,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -4120,6 +4158,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -4229,6 +4268,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -4338,6 +4378,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -4457,7 +4498,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 190531825}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.00000004348988, z: -0.000000039316383, w: 1}
+  m_LocalRotation: {x: 0.00000005960465, y: 0.00009401753, z: -0.0000000051765885, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.000000007450581}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4480,6 +4521,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -4726,6 +4768,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: groin_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1001 &196885551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4887,6 +4934,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -5045,6 +5093,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_prox
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &201029685
 GameObject:
   m_ObjectHideFlags: 0
@@ -5093,6 +5146,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -5461,6 +5515,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -5775,6 +5830,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: hips_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &251655463 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7025608788177541372, guid: c7d054404b2a07a4a9e73ea362890c03, type: 3}
@@ -5800,6 +5860,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -5924,6 +5985,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -6033,6 +6095,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -6147,6 +6210,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -6256,6 +6320,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -6385,6 +6450,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -6642,6 +6708,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -6840,6 +6907,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: wing_sensor_upper
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &300640760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6870,6 +6942,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: wing_sensor_lower
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!4 &304077385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4813191431730601328, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -6890,6 +6967,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -7050,6 +7128,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_thigh_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &317943461 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5388603590939981007, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -7070,6 +7153,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -7327,6 +7411,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -7490,6 +7575,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_arm_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &347663423 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4618290252353145058, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -7515,6 +7605,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -9396,7 +9487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -9423,7 +9514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -9451,7 +9542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -9478,7 +9569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -9505,7 +9596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -9572,6 +9663,7 @@ MonoBehaviour:
     eyeMovement:
       confidence: 0.5
       excitement: 0.5
+    eyeGazeMode: 0
     leftEye: {fileID: 0}
     rightEye: {fileID: 0}
     eyesLookingStraight:
@@ -10096,6 +10188,13 @@ MonoBehaviour:
     height: 1.0037359
     position: {x: 0.00000031716937, y: 0.00000023841858, z: -0.000007275561}
     rotation: {x: 0.000000029802319, y: 0.000000029802322, z: -0.00000002980233, w: 1}
+  enableFaceTracking: 0
+  useAllTrackingKeys: 0
+  faceTrackingMeshes: []
+  faceTrackingBlendshapesSetList: []
+  faceTrackingParameterBehaviors: []
+  visemeDampenMode: 0
+  visemeDampenAmount: 0
 --- !u!1 &353121420
 GameObject:
   m_ObjectHideFlags: 0
@@ -10157,6 +10256,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: face_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &360956236
 GameObject:
   m_ObjectHideFlags: 0
@@ -10313,6 +10417,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!4 &366729602 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1536575004205785121, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -10333,6 +10442,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -10447,6 +10557,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -10577,6 +10688,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -10732,6 +10844,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: chest_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &389678976 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5989794594290753106, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
@@ -10752,6 +10869,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -10861,6 +10979,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -10975,6 +11094,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -11176,7 +11296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -11203,7 +11323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -11231,7 +11351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -11258,7 +11378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -11325,6 +11445,7 @@ MonoBehaviour:
     eyeMovement:
       confidence: 0.5
       excitement: 0.5
+    eyeGazeMode: 0
     leftEye: {fileID: 0}
     rightEye: {fileID: 0}
     eyesLookingStraight:
@@ -11829,6 +11950,13 @@ MonoBehaviour:
     height: 0.24999924
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  enableFaceTracking: 0
+  useAllTrackingKeys: 0
+  faceTrackingMeshes: []
+  faceTrackingBlendshapesSetList: []
+  faceTrackingParameterBehaviors: []
+  visemeDampenMode: 0
+  visemeDampenAmount: 0
 --- !u!4 &410007934 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c7d054404b2a07a4a9e73ea362890c03, type: 3}
@@ -11849,6 +11977,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -11958,6 +12087,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -12099,6 +12229,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -12208,6 +12339,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0.5
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -12371,6 +12503,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_arm_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &425280468
 GameObject:
   m_ObjectHideFlags: 0
@@ -12566,6 +12703,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -12729,6 +12867,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &442893843
 GameObject:
   m_ObjectHideFlags: 0
@@ -12891,6 +13034,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -13000,6 +13144,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -13163,6 +13308,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: abdomen_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!4 &468509612 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2817009553896204409, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -13183,6 +13333,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -13292,6 +13443,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -13434,6 +13586,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -13546,6 +13699,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -13660,6 +13814,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -13976,6 +14131,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -14123,6 +14279,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -14278,6 +14435,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: groin_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &526636820
 GameObject:
   m_ObjectHideFlags: 0
@@ -14495,6 +14657,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -14614,6 +14777,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -14723,6 +14887,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -14985,6 +15150,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -15217,6 +15383,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1001 &557436054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16475,6 +16646,7 @@ MonoBehaviour:
     eyeMovement:
       confidence: 0.5
       excitement: 0.5
+    eyeGazeMode: 0
     leftEye: {fileID: 0}
     rightEye: {fileID: 0}
     eyesLookingStraight:
@@ -16999,6 +17171,13 @@ MonoBehaviour:
     height: 1.0037359
     position: {x: 0.00000031716937, y: 0.00000023841858, z: -0.000007275561}
     rotation: {x: 0.000000029802319, y: 0.000000029802322, z: -0.00000002980233, w: 1}
+  enableFaceTracking: 0
+  useAllTrackingKeys: 0
+  faceTrackingMeshes: []
+  faceTrackingBlendshapesSetList: []
+  faceTrackingParameterBehaviors: []
+  visemeDampenMode: 0
+  visemeDampenAmount: 0
 --- !u!4 &557436058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8726815866700363362, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
@@ -17024,6 +17203,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0.5
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -17171,6 +17351,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -17280,6 +17461,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -17394,6 +17576,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -17549,6 +17732,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_thigh_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &578774152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17564,6 +17752,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -17719,6 +17908,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: face_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &593427321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17755,6 +17949,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -17964,6 +18159,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -18051,8 +18247,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 18.45792, y: 55.86763, z: 15.669644}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204354}
@@ -18078,6 +18274,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0.5
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -18456,6 +18653,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &630047205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18471,6 +18673,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -18558,8 +18761,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 2
-  latestValidExecutionGroupIndex: 2
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -5.234192, y: 0.1922631, z: 173.96391}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204354}
@@ -18585,6 +18788,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -18894,6 +19098,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_arm_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &645743486
 GameObject:
   m_ObjectHideFlags: 0
@@ -18997,6 +19206,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -19116,6 +19326,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -19259,6 +19470,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -19428,6 +19640,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -19554,6 +19767,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -19663,6 +19877,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -19834,6 +20049,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -19948,6 +20164,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -20077,6 +20294,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -20274,6 +20492,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -20361,8 +20580,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 0
+  latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -0, y: -0, z: -0}
   WorldUpTransform: {fileID: 1384204305}
@@ -20393,6 +20612,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -20551,6 +20771,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_prox
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &746066000
 GameObject:
   m_ObjectHideFlags: 0
@@ -20615,6 +20840,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: chest_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &753313576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20630,6 +20860,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -20739,6 +20970,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -21065,7 +21297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 10
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   autoRenderer: 0
   autoPosition: 1
   autoLength: 1
@@ -21150,7 +21382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -21614,6 +21846,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -21754,6 +21987,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -21942,6 +22176,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -22420,6 +22655,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -22534,6 +22770,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -22621,8 +22858,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 0
+  latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: 0, y: -0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204311}
@@ -22648,6 +22885,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -22767,6 +23005,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -22876,6 +23115,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -23034,6 +23274,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &849987423
 GameObject:
   m_ObjectHideFlags: 0
@@ -23182,6 +23427,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0
   TargetTransform: {fileID: 1636009397}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -23328,6 +23574,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -23492,6 +23739,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -23650,6 +23898,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &858371973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23665,6 +23918,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -23752,8 +24006,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
-  latestValidExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: 0, y: -0, z: 0}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 648113988}
@@ -23881,6 +24135,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: chest_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!4 &874042452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3941237958259125192, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
@@ -23931,6 +24190,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -24077,7 +24337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 10
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   autoRenderer: 0
   autoPosition: 1
   autoLength: 1
@@ -24162,7 +24422,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -24331,7 +24591,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886642893}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000017881396, y: 0.000000043489884, z: -0.000000039316372, w: 1}
+  m_LocalRotation: {x: -0.00000017881396, y: 0.00007155739, z: -0.000000050694304, w: 1}
   m_LocalPosition: {x: 0.0119999945, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -24354,6 +24614,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -24515,6 +24776,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: hips_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!4 &889533354 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8077321151551758283, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -24791,6 +25057,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -25120,6 +25387,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: groin_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &933379314 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3012942935389596910, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -25140,6 +25412,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0.5
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -25407,6 +25680,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -25718,6 +25992,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0.5
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -25848,6 +26123,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -25935,8 +26211,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774353, y: 0.5496622, z: -6.035858}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204354}
@@ -26343,6 +26619,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -26484,6 +26761,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0
   TargetTransform: {fileID: 1497173637}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -26601,6 +26879,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0.5
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -26764,6 +27043,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -26938,6 +27218,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -27674,6 +27955,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -27824,6 +28106,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -27943,6 +28226,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -28062,6 +28346,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -28204,6 +28489,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -28349,6 +28635,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -28572,6 +28859,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: abdomen_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1001 &1098147249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28654,6 +28946,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -28768,6 +29061,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -28855,8 +29149,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
-  latestValidExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -0, y: 0, z: 0}
   RotationOffset: {x: 0, y: -0, z: -0}
   WorldUpTransform: {fileID: 648113987}
@@ -28887,6 +29181,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -29011,6 +29306,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -29120,6 +29416,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -29288,6 +29585,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1124366611
 GameObject:
   m_ObjectHideFlags: 0
@@ -29357,6 +29659,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -29466,6 +29769,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -29629,6 +29933,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1140431364
 GameObject:
   m_ObjectHideFlags: 0
@@ -29676,6 +29985,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -29790,6 +30100,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -29931,6 +30242,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0
   TargetTransform: {fileID: 1315384645}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -30043,6 +30355,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -30162,6 +30475,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -30320,6 +30634,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1157257823
 GameObject:
   m_ObjectHideFlags: 0
@@ -30384,6 +30703,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1160824569 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6089550506939245247, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -30404,6 +30728,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -30562,6 +30887,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1162167678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30577,6 +30907,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -30686,6 +31017,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -30897,6 +31229,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -31006,6 +31339,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -31148,6 +31482,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -31257,6 +31592,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -31420,6 +31756,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1189382829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31435,6 +31776,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -31544,6 +31886,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -31686,6 +32029,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -31808,6 +32152,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -31922,6 +32267,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -32080,6 +32426,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1196546059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32095,6 +32446,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -32588,11 +32940,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8307270276000867727, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.002403019
+      value: 0.002403011
       objectReference: {fileID: 0}
     - target: {fileID: -8307270276000867727, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.04552046
+      value: 0.04552036
       objectReference: {fileID: 0}
     - target: {fileID: -8307270276000867727, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
@@ -32668,11 +33020,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -6527257364880323550, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000010958826
+      value: 0.00000010959046
       objectReference: {fileID: 0}
     - target: {fileID: -6527257364880323550, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000046917773
+      value: -0.00000004691152
       objectReference: {fileID: 0}
     - target: {fileID: -4849101660731689647, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32680,15 +33032,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4849101660731689647, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000005960465
+      value: -0.0000002980232
       objectReference: {fileID: 0}
     - target: {fileID: -4849101660731689647, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000004470349
+      value: -0.000042751428
       objectReference: {fileID: 0}
     - target: {fileID: -4849101660731689647, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000017881396
+      value: -0.0000001788139
       objectReference: {fileID: 0}
     - target: {fileID: -3225470663099305978, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_IsActive
@@ -32756,19 +33108,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1035595417449107596, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7729395
+      value: 0.7729398
       objectReference: {fileID: 0}
     - target: {fileID: -1035595417449107596, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6344797
+      value: -0.63447934
       objectReference: {fileID: 0}
     - target: {fileID: -1035595417449107596, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1.8762754e-14
+      value: 3.469447e-18
       objectReference: {fileID: 0}
     - target: {fileID: -1035595417449107596, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -7.16095e-15
+      value: -3.6379814e-12
       objectReference: {fileID: 0}
     - target: {fileID: -549813784492251449, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32796,15 +33148,15 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: e2b8c3a806f86054381e05fdd416be81, type: 2}
     - target: {fileID: 845221186938623883, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.052662645
+      value: 0.05266265
       objectReference: {fileID: 0}
     - target: {fileID: 845221186938623883, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0024031107
+      value: 0.0024030947
       objectReference: {fileID: 0}
     - target: {fileID: 845221186938623883, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.04552045
+      value: -0.0455203
       objectReference: {fileID: 0}
     - target: {fileID: 845221186938623883, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
@@ -32832,11 +33184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1183200739923957125, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000092351996
+      value: 0.00000009235373
       objectReference: {fileID: 0}
     - target: {fileID: 1183200739923957125, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000753781
+      value: -0.00000007539711
       objectReference: {fileID: 0}
     - target: {fileID: 1616046567883758866, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32844,15 +33196,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1616046567883758866, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.015740974
+      value: -0.015740719
       objectReference: {fileID: 0}
     - target: {fileID: 1616046567883758866, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0039729
+      value: 0.0039729765
       objectReference: {fileID: 0}
     - target: {fileID: 1616046567883758866, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.05256755
+      value: -0.052567527
       objectReference: {fileID: 0}
     - target: {fileID: 1630794972795428178, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_Materials.Array.size
@@ -32888,19 +33240,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3163819561563719409, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9972129
+      value: 0.99721295
       objectReference: {fileID: 0}
     - target: {fileID: 3163819561563719409, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000022351742
+      value: -0.0000001639128
       objectReference: {fileID: 0}
     - target: {fileID: 3163819561563719409, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.07460892
+      value: -0.07460827
       objectReference: {fileID: 0}
     - target: {fileID: 3163819561563719409, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00000018626453
+      value: -0.00000011920929
       objectReference: {fileID: 0}
     - target: {fileID: 3163819561563719409, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -32928,15 +33280,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3971666718018355533, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00000017508863
+      value: 0.00000020515063
       objectReference: {fileID: 0}
     - target: {fileID: 3971666718018355533, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00000011905817
+      value: 0.00000010402435
       objectReference: {fileID: 0}
     - target: {fileID: 3971666718018355533, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.000000006000637
+      value: -0.000000019511615
       objectReference: {fileID: 0}
     - target: {fileID: 4167280743394806330, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalPosition.z
@@ -32944,19 +33296,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4212736956229450960, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6592688
+      value: 0.65926874
       objectReference: {fileID: 0}
     - target: {fileID: 4212736956229450960, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00000008940699
+      value: -0.00000011920932
       objectReference: {fileID: 0}
     - target: {fileID: 4212736956229450960, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.75190735
+      value: 0.7519074
       objectReference: {fileID: 0}
     - target: {fileID: 4212736956229450960, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000089406996
+      value: 0.0000005662442
       objectReference: {fileID: 0}
     - target: {fileID: 4252831732724292269, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32964,15 +33316,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252831732724292269, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.015740972
+      value: -0.01574065
       objectReference: {fileID: 0}
     - target: {fileID: 4252831732724292269, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.003973118
+      value: -0.0039730393
       objectReference: {fileID: 0}
     - target: {fileID: 4252831732724292269, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.052567545
+      value: 0.05256752
       objectReference: {fileID: 0}
     - target: {fileID: 4430423294705699105, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32980,23 +33332,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4430423294705699105, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000029802322
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4430423294705699105, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
+      value: 0.000000014901161
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430423294705699105, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
+      propertyPath: m_LocalRotation.z
       value: 0.00000008940697
       objectReference: {fileID: 0}
-    - target: {fileID: 4430423294705699105, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.00000005960464
-      objectReference: {fileID: 0}
     - target: {fileID: 4813191431730601328, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4813191431730601328, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00000012852252
+      value: -0.000000230968
       objectReference: {fileID: 0}
     - target: {fileID: 4813191431730601328, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
@@ -33004,7 +33356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4813191431730601328, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000000548125
+      value: 0.0000000054812537
       objectReference: {fileID: 0}
     - target: {fileID: 4942509703399939685, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33032,35 +33384,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6879211132826700984, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.82336944
+      value: 0.82336956
       objectReference: {fileID: 0}
     - target: {fileID: 6879211132826700984, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5675057
+      value: 0.56750566
       objectReference: {fileID: 0}
     - target: {fileID: 6879211132826700984, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -2.882668e-10
+      value: -2.8376215e-10
       objectReference: {fileID: 0}
     - target: {fileID: 6879211132826700984, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.8929196e-11
+      value: -8.00354e-11
       objectReference: {fileID: 0}
     - target: {fileID: 7041064886767609317, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99096113
+      value: 0.9909612
       objectReference: {fileID: 0}
     - target: {fileID: 7041064886767609317, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13414933
+      value: 0.13414893
       objectReference: {fileID: 0}
     - target: {fileID: 7041064886767609317, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000011466206
+      value: -0.000000011459633
       objectReference: {fileID: 0}
     - target: {fileID: 7041064886767609317, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00000007481934
+      value: 0.00000007483049
       objectReference: {fileID: 0}
     - target: {fileID: 7167705562617947389, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33068,15 +33420,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7167705562617947389, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.13389489
+      value: 0.13389494
       objectReference: {fileID: 0}
     - target: {fileID: 7167705562617947389, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.00000011613543
+      value: -0.00000011615337
       objectReference: {fileID: 0}
     - target: {fileID: 7167705562617947389, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000048152464
+      value: 0.000000004819865
       objectReference: {fileID: 0}
     - target: {fileID: 7292771232837771335, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33682,7 +34034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -33709,7 +34061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -33737,7 +34089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -33764,7 +34116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -33791,7 +34143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -33858,6 +34210,7 @@ MonoBehaviour:
     eyeMovement:
       confidence: 0.90000004
       excitement: 0.1
+    eyeGazeMode: 0
     leftEye: {fileID: 0}
     rightEye: {fileID: 0}
     eyesLookingStraight:
@@ -34082,6 +34435,13 @@ MonoBehaviour:
     height: 0.25000134
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  enableFaceTracking: 0
+  useAllTrackingKeys: 0
+  faceTrackingMeshes: []
+  faceTrackingBlendshapesSetList: []
+  faceTrackingParameterBehaviors: []
+  visemeDampenMode: 0
+  visemeDampenAmount: 0
 --- !u!114 &1208706068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34097,6 +34457,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -34451,6 +34812,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -34609,6 +34971,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: hips_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1233773455
 GameObject:
   m_ObjectHideFlags: 0
@@ -34673,6 +35040,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: chest_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!4 &1236941296 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4630738355959412722, guid: c7d054404b2a07a4a9e73ea362890c03, type: 3}
@@ -34747,6 +35119,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -34889,6 +35262,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -35003,6 +35377,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -35117,6 +35492,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -35263,6 +35639,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -35350,8 +35727,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 2
+  latestValidExecutionGroupIndex: 2
   RotationAtRest: {x: -1.7774048, y: -0.5496826, z: 6.035894}
   RotationOffset: {x: 0, y: 0, z: 0}
   WorldUpTransform: {fileID: 1384204354}
@@ -35382,6 +35759,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -35491,6 +35869,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -35600,6 +35979,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -35760,6 +36140,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: chest_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1291939806
 GameObject:
   m_ObjectHideFlags: 0
@@ -35824,6 +36209,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1293274028
 GameObject:
   m_ObjectHideFlags: 0
@@ -36411,6 +36801,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1312236700
 GameObject:
   m_ObjectHideFlags: 0
@@ -36475,6 +36870,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: hips_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1313209240
 GameObject:
   m_ObjectHideFlags: 0
@@ -36679,7 +37079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -36863,6 +37263,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -37120,6 +37521,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -37234,6 +37636,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -37348,6 +37751,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -37503,6 +37907,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_thigh_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1352535143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37518,6 +37927,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -37627,6 +38037,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -37740,7 +38151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -37767,7 +38178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -37795,7 +38206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -37822,7 +38233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -37849,7 +38260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -38093,6 +38504,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: face_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1380885288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38108,6 +38524,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -39425,7 +39842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -39452,7 +39869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -39480,7 +39897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -39507,7 +39924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -39534,7 +39951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -39601,6 +40018,7 @@ MonoBehaviour:
     eyeMovement:
       confidence: 0.90000004
       excitement: 0.1
+    eyeGazeMode: 0
     leftEye: {fileID: 0}
     rightEye: {fileID: 0}
     eyesLookingStraight:
@@ -40105,6 +40523,13 @@ MonoBehaviour:
     height: 0.2500008
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  enableFaceTracking: 0
+  useAllTrackingKeys: 0
+  faceTrackingMeshes: []
+  faceTrackingBlendshapesSetList: []
+  faceTrackingParameterBehaviors: []
+  visemeDampenMode: 0
+  visemeDampenAmount: 0
 --- !u!1 &1391720050
 GameObject:
   m_ObjectHideFlags: 0
@@ -41155,7 +41580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -41183,7 +41608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -41210,7 +41635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -41237,7 +41662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -41304,6 +41729,7 @@ MonoBehaviour:
     eyeMovement:
       confidence: 0.90000004
       excitement: 0.1
+    eyeGazeMode: 0
     leftEye: {fileID: 0}
     rightEye: {fileID: 0}
     eyesLookingStraight:
@@ -41808,6 +42234,13 @@ MonoBehaviour:
     height: 0.25000134
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  enableFaceTracking: 0
+  useAllTrackingKeys: 0
+  faceTrackingMeshes: []
+  faceTrackingBlendshapesSetList: []
+  faceTrackingParameterBehaviors: []
+  visemeDampenMode: 0
+  visemeDampenAmount: 0
 --- !u!114 &1396905963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41822,7 +42255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -42096,6 +42529,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -42205,6 +42639,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -42347,6 +42782,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -42461,6 +42897,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -42587,6 +43024,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -42696,6 +43134,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -43649,7 +44088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -43676,7 +44115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -43703,7 +44142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -43770,6 +44209,7 @@ MonoBehaviour:
     eyeMovement:
       confidence: 0.90000004
       excitement: 0.1
+    eyeGazeMode: 0
     leftEye: {fileID: 0}
     rightEye: {fileID: 0}
     eyesLookingStraight:
@@ -44172,6 +44612,13 @@ MonoBehaviour:
     height: 0.25000134
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  enableFaceTracking: 0
+  useAllTrackingKeys: 0
+  faceTrackingMeshes: []
+  faceTrackingBlendshapesSetList: []
+  faceTrackingParameterBehaviors: []
+  visemeDampenMode: 0
+  visemeDampenAmount: 0
 --- !u!114 &1434597398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44187,6 +44634,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -44316,6 +44764,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -44695,6 +45144,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -44853,6 +45303,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_thigh_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1464169324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44868,6 +45323,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -45026,6 +45482,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1491715977
 GameObject:
   m_ObjectHideFlags: 0
@@ -45194,8 +45655,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1493121922}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.4839273, y: -0.51609874, z: -0.5134082, w: 0.485663}
-  m_LocalPosition: {x: 3.8735266, y: 6.502057, z: -0.114673615}
+  m_LocalRotation: {x: -0.49075487, y: -0.5096163, z: -0.5068786, w: 0.49246824}
+  m_LocalPosition: {x: 3.8678427, y: 6.502024, z: -0.122704506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -45217,6 +45678,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -45339,6 +45801,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -45426,8 +45889,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 1
-  latestValidExecutionGroupIndex: 1
+  cachedExecutionGroupIndex: 0
+  latestValidExecutionGroupIndex: 0
   RotationAtRest: {x: -0, y: 0, z: 0}
   RotationOffset: {x: 0, y: -0, z: 0}
   WorldUpTransform: {fileID: 1831474644}
@@ -45457,7 +45920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -45671,6 +46134,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_thigh_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1500675434
 GameObject:
   m_ObjectHideFlags: 0
@@ -45732,6 +46200,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_thigh_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1506112453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45747,6 +46220,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -45856,6 +46330,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -45998,6 +46473,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -46159,6 +46635,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_arm_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1514190945
 GameObject:
   m_ObjectHideFlags: 0
@@ -46206,6 +46687,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -46323,6 +46805,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -46432,6 +46915,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -46551,6 +47035,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -46670,6 +47155,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -46794,6 +47280,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -46908,6 +47395,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -47066,6 +47554,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: chest_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1552934814
 GameObject:
   m_ObjectHideFlags: 0
@@ -47114,6 +47607,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -47228,6 +47722,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -47391,6 +47886,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: abdomen_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1569686428 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7669733125013037342, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -47411,6 +47911,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -47525,6 +48026,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -47683,6 +48185,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: abdomen_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1576346895
 GameObject:
   m_ObjectHideFlags: 0
@@ -47730,6 +48237,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -47844,6 +48352,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -47963,6 +48472,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -48121,6 +48631,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_prox
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1599585505 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5329823815071034451, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
@@ -48141,6 +48656,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -48255,6 +48771,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -48396,6 +48913,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -48508,6 +49026,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -48781,7 +49300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -48915,6 +49434,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1001 &1641631722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49076,6 +49600,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -49524,6 +50049,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: abdomen_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1001 &1650304319
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49649,6 +50179,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -49965,6 +50496,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: screwdriver_holster
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1688663131 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2872896749685198713, guid: 54d2f7b340169df42bd20a76151781f5, type: 3}
@@ -49985,6 +50521,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -50094,6 +50631,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -50241,6 +50779,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -50385,6 +50924,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -50529,6 +51069,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -50638,6 +51179,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -50879,6 +51421,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1716629964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50894,6 +51441,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -51035,6 +51583,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -51177,6 +51726,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -51604,6 +52154,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -51713,6 +52264,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -51855,6 +52407,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -51964,6 +52517,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -52119,6 +52673,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: abdomen_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1756973295
 GameObject:
   m_ObjectHideFlags: 0
@@ -52167,6 +52726,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -52413,6 +52973,7 @@ MonoBehaviour:
   IsActive: 0
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -52521,7 +53082,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -52619,7 +53180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -52736,6 +53297,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 0
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -52853,6 +53415,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -53069,6 +53632,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -53209,6 +53773,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -53399,6 +53964,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -53562,6 +54128,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_arm_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1810287276
 GameObject:
   m_ObjectHideFlags: 0
@@ -53623,6 +54194,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: abdomen_panels_tool
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1812776431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53638,6 +54214,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -53870,6 +54447,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -54027,6 +54605,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: wing_sensor_upper
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1817390453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54057,6 +54640,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: wing_sensor_lower
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1822853736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54072,6 +54660,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -54191,6 +54780,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -54278,8 +54868,8 @@ MonoBehaviour:
       ParentRotationOffset: {x: 0, y: 0, z: 0}
     totalLength: 1
     overflowList: []
-  cachedExecutionGroupIndex: 0
-  latestValidExecutionGroupIndex: 0
+  cachedExecutionGroupIndex: 1
+  latestValidExecutionGroupIndex: 1
   RotationAtRest: {x: -0, y: 0, z: -0}
   RotationOffset: {x: -0, y: -0, z: -0}
   WorldUpTransform: {fileID: 1493484011}
@@ -54305,6 +54895,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -54586,6 +55177,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1863332892 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -54605,7 +55201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -54633,7 +55229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -54660,7 +55256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -54687,7 +55283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 3
   unityVersion: 2022.3.22f1
-  vrcfuryVersion: 1.1429.0
+  vrcfuryVersion: 1.1437.1-beta.1
   somethingIsBroken: 0
   config:
     features: []
@@ -54771,6 +55367,7 @@ MonoBehaviour:
     eyeMovement:
       confidence: 0.90000004
       excitement: 0.1
+    eyeGazeMode: 0
     leftEye: {fileID: 0}
     rightEye: {fileID: 0}
     eyesLookingStraight:
@@ -55101,6 +55698,13 @@ MonoBehaviour:
     height: 0.2499999
     position: {x: 0, y: 0, z: 0}
     rotation: {x: 0, y: 0, z: 0, w: 1}
+  enableFaceTracking: 0
+  useAllTrackingKeys: 0
+  faceTrackingMeshes: []
+  faceTrackingBlendshapesSetList: []
+  faceTrackingParameterBehaviors: []
+  visemeDampenMode: 0
+  visemeDampenAmount: 0
 --- !u!4 &1863332901 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -55121,6 +55725,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -55279,6 +55884,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!114 &1880932374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55294,6 +55904,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -55408,6 +56019,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -55596,6 +56208,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -55710,6 +56323,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -56002,6 +56616,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -56165,6 +56780,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: head_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!4 &1928829839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4729192012943722864, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -58256,6 +58876,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -58497,6 +59118,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: right_arm_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &1956196730 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -223132167285262397, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -58522,6 +59148,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -58636,6 +59263,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -58781,6 +59409,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -58901,7 +59530,7 @@ Transform:
   m_GameObject: {fileID: 1983323257}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7145406, y: -0.000000052817896, z: -0.000000053946305, w: 0.699594}
-  m_LocalPosition: {x: -0.6000004, y: 0.20110035, z: 0.0009050369}
+  m_LocalPosition: {x: -0.5999193, y: 0.20109846, z: 0.0009021759}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -58922,6 +59551,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -59165,6 +59795,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: abdomen_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &2000464851
 GameObject:
   m_ObjectHideFlags: 0
@@ -59337,6 +59972,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -59500,6 +60136,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: left_leg_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!4 &2015748469 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2646110910385600759, guid: 3e93575d2aa020a45bece62fef9ffc12, type: 3}
@@ -59672,6 +60313,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -60001,6 +60643,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -60164,6 +60807,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: body_prox
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1001 &2040712863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60253,6 +60901,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -60400,6 +61049,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -60641,6 +61291,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -60755,6 +61406,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -61198,6 +61850,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -61356,6 +62009,11 @@ MonoBehaviour:
   receiverType: 0
   parameter: hips_touch
   minVelocity: 0.05
+  writeToMaterials: 0
+  writeToMaterialsContactTags: 0
+  separateShaderParameter: 
+  shaderTargetRenderers: []
+  advancedParameters: 0
 --- !u!1 &2106911319
 GameObject:
   m_ObjectHideFlags: 0
@@ -61405,6 +62063,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -61604,6 +62263,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -61756,6 +62416,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -61898,6 +62559,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -62012,6 +62674,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0
@@ -62166,6 +62829,7 @@ MonoBehaviour:
   IsActive: 1
   GlobalWeight: 1
   TargetTransform: {fileID: 0}
+  SmoothingFactor: 0
   SolveInLocalSpace: 0
   FreezeToWorld: 0
   RebakeOffsetsWhenUnfrozen: 0

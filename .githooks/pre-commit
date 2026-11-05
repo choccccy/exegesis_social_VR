@@ -1,0 +1,3 @@
+#!/bin/sh
+# Enable once per clone:  git config core.hooksPath .githooks
+exec sh "$(git rev-parse --show-toplevel)/exegesis_vrc_avatars/Tools/ci/check_poiyomi_unlocked.sh" --staged

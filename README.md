@@ -30,8 +30,15 @@
 
 # VRChat props
 
-[README.md](props/README.md)
-[Download](https://github.com/choccccy/exegesis_social_VR/releases/tag/props-v1.1.0)
+[README.md](exegesis_vrc_avatars/Assets/_exegesis/props/README.md)
+[Download](https://github.com/choccccy/exegesis_social_VR/releases?q=props-v&expanded=true)
+
+# Downloads
+
+[Releases](https://github.com/choccccy/exegesis_social_VR/releases) carry two `.unitypackage`s:
+
+- `exegesis_vX.Y.Z.unitypackage`: everything in `Assets/_exegesis/` (avatars, props, shaders, tools), plus TheCodeWarrior's PS1 Poiyomi module
+- `exegesis_props_vX.Y.Z.unitypackage`: just the props
 
 # Development Setup
 
@@ -42,7 +49,24 @@ To make sure that we're respecting Poiyomi Shaders' [Terms of Service](https://w
 
 This can be done fairly trivially by right-clicking the `Assets/_exegesis/` folder (or just the background when in the `Assets/` folder) and clicking `Thry > Materials > Unlock Folder`.
 
-`_PoiyomiShaders/` and any `OptimizedShaders/` folders are already in the .gitignore, so they simply won't be committed.
+`_PoiyomiShaders/`, `_LockedShaderCache/` and any `OptimizedShaders/` folders are already in the .gitignore, so they simply won't be committed.
+
+This is enforced: a pre-commit hook refuses locked materials (enable it once per clone with `git config core.hooksPath .githooks`), and CI checks every push.
+
+### Releasing
+Push a tag and GitHub Actions builds the `.unitypackage` and publishes the release:
+
+- `props-vX.Y.Z`: the props
+- `exegesis-vX.Y.Z`: all of `Assets/_exegesis/`
+
+In short:
+
+1. Unlock Poiyomi (`Thry > Materials > Unlock Folder` on `Assets/_exegesis/`) and save
+2. Move the changelog's `[Unreleased]` entries under the new version ([props](exegesis_vrc_avatars/docs/changelog/props.md), [exegesis](exegesis_vrc_avatars/docs/changelog/exegesis.md)); they become the release notes. Update the requirements in the package's README if needed
+3. Commit and push everything that should ship; only committed files are packaged
+4. `git tag props-v1.2.0 && git push origin props-v1.2.0`
+
+The full checklist, and what to do if a release fails, are in [docs/releasing.md](exegesis_vrc_avatars/docs/releasing.md).
 
 ## Requirements
 
@@ -50,16 +74,20 @@ Hard requirements for opening and working on this project. You can and probably 
 
 - [Unity 2022.3.22f1](https://unity.com/releases/editor/whats-new/2022.3.22) ([VRChat recommended version](https://creators.vrchat.com/sdk/upgrade/current-unity-version/))
 - [ALCOM](https://vrc-get.anatawa12.com/alcom/) (preferred) or [VRChat Creator Companion](https://vcc.docs.vrchat.com/#download-it)
-- [Poiyomi Pro v9.3](https://www.poiyomi.com/download#poiyomi-pro)
+- [VRChat Avatars SDK 3.10.6](https://creators.vrchat.com/sdk/)
+- [Poiyomi Pro 11.0.27](https://www.poiyomi.com/download#poiyomi-pro) (ships the 9.3 and 10.0 shaders some materials still use)
+- [TheCodeWarrior](https://github.com/thecodewarrior)'s [PS1 module for Poiyomi](https://discord.com/channels/550477546958094348/553319525387599910/1555713076618334228) ([thecodewarrior.dev](https://thecodewarrior.dev/); included in this repo at `Assets/Editor/Poi_PS1/`, redistributed with permission; it must be enabled as a Poiyomi module)
+- [VRCFury 1.1437](https://vrcfury.com/download)
+- [Animator As Code V1](https://docs.hai-vr.dev/docs/products/animator-as-code/install) and Animator As Code V1 - VRChat (the generator tools won't compile without them)
 - [FinalIK 1.9](http://root-motion.com/#final-ik) (1.9 is no longer publically available) or [VRLabs](https://vrlabs.dev)' [FinalIK stub](https://github.com/VRLabs/Final-IK-Stub)
-- [VRCFury 1.1279.0](https://vrcfury.com/download)
-<!-- add Animator As Code and GoGoLoco, when they become requirements, here -->
-<!-- - [Animator As Code V1](https://docs.hai-vr.dev/docs/products/animator-as-code/install) -->
-<!-- - [GoGoLoco](https://gogoloco.net/) -->
+- [GoGoLoco](https://gogoloco.net/)
+- [AudioLink](https://audiolink.dev/)
+- [NDMF](https://modular-avatar.nadena.dev/)
+- [Av3Emulator](https://github.com/lyuma/Av3Emulator)
 
 ### Recommended ALCOM/VCC repositories
 
-- **Poiyomi's [Poiyomi Pro v9.3](https://www.poiyomi.com/download#vcc-version)**
+- **Poiyomi's [Poiyomi Pro](https://www.poiyomi.com/download#vcc-version)**
 - **VRLabs' [FinalIK stub](https://github.com/VRLabs/Final-IK-Stub)**
 - **Senky's [VRCFury](https://vrcfury.com/download)**
 - **Haï's [Animator As Code V1](https://docs.hai-vr.dev/docs/products/animator-as-code/install)**
@@ -87,7 +115,7 @@ Hard requirements for opening and working on this project. You can and probably 
 
 ## Setup
 
-1. Clone the repository
+1. Clone the repository, then enable the hooks: `git config core.hooksPath .githooks`
 2. Add the project to ALCOM/VCC
 3. Install your choice of [ALCOM/VCC repositories](#recommended-alcomvcc-repositories)
 4. Open the project. this will take a long time on first boot, as Unity is generating a bunch of files for the first time

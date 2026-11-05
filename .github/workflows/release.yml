@@ -1,0 +1,80 @@
+# Push a tag to publish a release:
+#   props-vX.Y.Z     -> exegesis_props_vX.Y.Z.unitypackage  (the screwdriver props)
+#   exegesis-vX.Y.Z  -> exegesis_vX.Y.Z.unitypackage        (everything in Assets/_exegesis)
+# Built from committed files only, without Unity. See exegesis_vrc_avatars/docs/releasing.md.
+name: Release
+
+on:
+  push:
+    tags:
+      - 'props-v*'
+      - 'exegesis-v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: exegesis_vrc_avatars
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refuse locked Poiyomi materials
+        run: sh Tools/ci/check_poiyomi_unlocked.sh --all
+
+      - name: Pick package
+        id: pick
+        run: |
+          tag="${GITHUB_REF_NAME}"
+          case "$tag" in
+            props-v*)
+              version="${tag#props-v}"
+              # Poi_PS1 is a third-party Poiyomi module we have permission to redistribute.
+              echo "roots=--root Assets/_exegesis/props/screwdriver --root Assets/_exegesis/props/README.md --root Assets/Editor/Poi_PS1" >> "$GITHUB_OUTPUT"
+              echo "file=exegesis_props_v${version}.unitypackage" >> "$GITHUB_OUTPUT"
+              echo "title=Props v${version}" >> "$GITHUB_OUTPUT"
+              echo "notes=Assets/_exegesis/props/README.md" >> "$GITHUB_OUTPUT"
+              echo "changelog=docs/changelog/props.md" >> "$GITHUB_OUTPUT"
+              ;;
+            exegesis-v*)
+              version="${tag#exegesis-v}"
+              # Poi_PS1 is a third-party Poiyomi module we have permission to redistribute.
+              echo "roots=--root Assets/_exegesis --root Assets/Editor/Poi_PS1" >> "$GITHUB_OUTPUT"
+              echo "file=exegesis_v${version}.unitypackage" >> "$GITHUB_OUTPUT"
+              echo "title=Exegesis v${version}" >> "$GITHUB_OUTPUT"
+              echo "notes=Assets/_exegesis/README.md" >> "$GITHUB_OUTPUT"
+              echo "changelog=docs/changelog/exegesis.md" >> "$GITHUB_OUTPUT"
+              ;;
+          esac
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+
+      # Fails (before building anything) if the changelog has no section for this version.
+      - name: Changelog entry
+        run: python3 Tools/release/changelog_section.py "${{ steps.pick.outputs.changelog }}" "${{ steps.pick.outputs.version }}" > "$RUNNER_TEMP/changes.md"
+
+      - name: Build .unitypackage
+        run: python3 Tools/release/build_unitypackage.py ${{ steps.pick.outputs.roots }} --out "${{ steps.pick.outputs.file }}"
+
+      # Changelog section first, then the package README for requirements and installation.
+      # The README's License section links a relative path that breaks on a release page.
+      - name: Release notes
+        run: |
+          {
+            echo "## Changes in v${{ steps.pick.outputs.version }}"
+            echo
+            cat "$RUNNER_TEMP/changes.md"
+            echo
+            echo "---"
+            sed '/^## License/,$d' "${{ steps.pick.outputs.notes }}"
+          } > "$RUNNER_TEMP/notes.md"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" "${{ steps.pick.outputs.file }}" \
+            --title "${{ steps.pick.outputs.title }}" \
+            --notes-file "$RUNNER_TEMP/notes.md"
