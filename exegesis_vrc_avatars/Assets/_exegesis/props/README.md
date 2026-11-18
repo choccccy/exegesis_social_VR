@@ -18,7 +18,7 @@ The evil screwdriver features SPS.
 
 ## Installation
 1. Download the package and drag into your unity *Project* tab
-2. Enable the PS1 module (`Assets/Editor/Poi_PS1/`) in Poiyomi's module settings, so Poiyomi rebuilds its shaders with it
+2. Enable the PS1 module (`Assets/Editor/Poi_PS1/`): in Unity, open *Poi > Installed Modules*, tick **PS1**, and click **Apply & Rebuild Shaders**
 3. From the *Project* tab, Drag your screwdriver of choice into the *Scene* tab
 4. In the *Scene* tab, move the screwdriver into the palm of your avatar's right hand
 5. In the *Heirarchy* tab, drag the screwdriver into your avatar

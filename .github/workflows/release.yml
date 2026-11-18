@@ -15,12 +15,12 @@ permissions:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     defaults:
       run:
         working-directory: exegesis_vrc_avatars
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Refuse locked Poiyomi materials
         run: sh Tools/ci/check_poiyomi_unlocked.sh --all

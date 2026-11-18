@@ -40,4 +40,4 @@ contract list is in [hud-shader.md](hud-shader.md).
 ## Where to look next
 
 - [hud-shader.md](hud-shader.md) — the custom HUD shader (current focus of work).
-- [testing.md](testing.md) — the regression test suite and headless workflow.
+- [testing.md](testing.md) — the regression test suite, headless workflow, and clean-room install test.

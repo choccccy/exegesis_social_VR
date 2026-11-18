@@ -1,10 +1,10 @@
-// NchoSlotSetup only exists when the VRChat SDK does, and a rebuild needs both tools.
+// FxBuilder only exists when the VRChat SDK does, since the slot tool needs it.
 #if VRC_SDK_VRCSDK3
 
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Exegesis.Ncho;
+using Exegesis.Fx;
 using Exegesis.Shared;
 using NUnit.Framework;
 using UnityEditor;
@@ -29,9 +29,13 @@ namespace Exegesis.RcsThruster.Tests
     ///   - a generator that is not idempotent, which is the property that makes re-running the
     ///     tools the normal way to apply a change.
     ///
+    /// It runs once per controller in FxControllers. lemaitre_fx and obi-me_fx began as copies
+    /// of ncho_fx and only ncho's was ever rebuilt, so theirs drifted with nothing noticing; a
+    /// per-controller case is what stops that happening again.
+    ///
     /// When it fails after a deliberate generator change, the fix is to run
-    /// Tools > Exegesis > Build ncho Slot Layers then Build RCS Animator Layers, in that order,
-    /// and commit the resulting controller - not to relax this test.
+    /// Tools > Exegesis > Build FX Controllers and commit the resulting controllers - not to
+    /// relax this test.
     /// </summary>
     public class GeneratorIdempotenceTests
     {
@@ -57,26 +61,24 @@ namespace Exegesis.RcsThruster.Tests
             if (AssetDatabase.IsValidFolder(Scratch)) AssetDatabase.DeleteAsset(Scratch);
         }
 
-        [Test]
-        public void RebuildingTheCommittedController_ReproducesIt()
-        {
-            var committed = ControllerSnapshotBaseline.LoadController();
-            Assert.IsNotNull(committed,
-                $"No AnimatorController at {ControllerSnapshotBaseline.ControllerPath}.");
+        private static IEnumerable<FxController> AllControllers => FxControllers.All;
 
-            var rebuiltPath = $"{Scratch}/rebuilt.controller";
+        [TestCaseSource(nameof(AllControllers))]
+        public void RebuildingTheCommittedController_ReproducesIt(FxController fx)
+        {
+            var committed = ControllerSnapshotBaseline.LoadController(fx);
+            Assert.IsNotNull(committed, $"No AnimatorController at {fx.ControllerPath}.");
+
+            var rebuiltPath = $"{Scratch}/rebuilt_{fx.Name}.controller";
             Assert.IsTrue(
-                AssetDatabase.CopyAsset(ControllerSnapshotBaseline.ControllerPath, rebuiltPath),
+                AssetDatabase.CopyAsset(fx.ControllerPath, rebuiltPath),
                 "Could not copy the committed controller into the scratch folder.");
             AssetDatabase.ImportAsset(rebuiltPath, ImportAssetOptions.ForceSynchronousImport);
 
             var rebuilt = AssetDatabase.LoadAssetAtPath<AnimatorController>(rebuiltPath);
             Assert.IsNotNull(rebuilt, "The scratch copy did not load.");
 
-            // Slots first: that tool declares the ints the RCS group layers condition on, which
-            // is what the menu priorities encode.
-            NchoSlotSetup.Build(rebuilt);
-            RcsAnimatorSetup.Build(rebuilt);
+            FxBuilder.Build(rebuilt);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.ImportAsset(rebuiltPath,
@@ -91,18 +93,16 @@ namespace Exegesis.RcsThruster.Tests
 
             if (expected == actual) return;
 
-            var dir = Path.Combine(Path.GetTempPath(), "rcs_controller_diff");
-            Directory.CreateDirectory(dir);
-            File.WriteAllText(Path.Combine(dir, "committed.snapshot.txt"), expected);
-            File.WriteAllText(Path.Combine(dir, "rebuilt.snapshot.txt"), actual);
+            var dir = DumpForInspection($"{fx.Name}_committed", expected, $"{fx.Name}_rebuilt", actual);
 
             Assert.Fail(
-                "Rebuilding the committed controller did not reproduce it. Either a generated " +
-                "layer has been hand-edited, or a generator changed and was never re-run.\n\n" +
+                $"{fx.Name}: rebuilding the committed controller did not reproduce it. Either a " +
+                "generated layer has been hand-edited, or a generator changed and was never " +
+                "re-run.\n\n" +
                 SnapshotDiff.Describe(expected, actual) +
                 $"\n\nFull snapshots written to {dir}. '-' is the committed asset, '+' is the " +
-                "fresh build. Fix by running Tools > Exegesis > Build ncho Slot Layers then " +
-                "Build RCS Animator Layers and committing the result.");
+                "fresh build. Fix by running Tools > Exegesis > Build FX Controllers and " +
+                "committing the result.");
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace Exegesis.RcsThruster.Tests
         public void RebuildingTwice_DoesNotAccumulateSubAssets()
         {
             var path = $"{Scratch}/accumulate.controller";
-            Assert.IsTrue(AssetDatabase.CopyAsset(ControllerSnapshotBaseline.ControllerPath, path),
+            Assert.IsTrue(AssetDatabase.CopyAsset(FxControllers.Ncho.ControllerPath, path),
                           "Could not copy the committed controller into the scratch folder.");
 
             int first = BuildAndCountSubAssets(path);
@@ -210,21 +210,21 @@ namespace Exegesis.RcsThruster.Tests
         }
 
         /// <summary>
-        /// A fresh copy of the committed controller with both generators run over it.
+        /// A fresh copy of ncho's committed controller with the full build run over it. These
+        /// single-controller tests check properties of the generators, not of any one avatar,
+        /// so one controller is enough.
         /// </summary>
         private static AnimatorController BuildIntoScratch(string name)
         {
             var path = $"{Scratch}/{name}.controller";
-            Assert.IsTrue(AssetDatabase.CopyAsset(ControllerSnapshotBaseline.ControllerPath, path),
+            Assert.IsTrue(AssetDatabase.CopyAsset(FxControllers.Ncho.ControllerPath, path),
                           $"Could not copy the committed controller to {path}.");
             AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
 
             var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(path);
             Assert.IsNotNull(controller, $"Copy at {path} did not load.");
 
-            // Slots first: that tool declares the ints the RCS group layers condition on.
-            NchoSlotSetup.Build(controller);
-            RcsAnimatorSetup.Build(controller);
+            FxBuilder.Build(controller);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.ImportAsset(path,
@@ -248,8 +248,7 @@ namespace Exegesis.RcsThruster.Tests
             var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(controllerPath);
             Assert.IsNotNull(controller, $"Controller at {controllerPath} did not load.");
 
-            NchoSlotSetup.Build(controller);
-            RcsAnimatorSetup.Build(controller);
+            FxBuilder.Build(controller);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.ImportAsset(controllerPath,

@@ -6,7 +6,8 @@
         "UnityEditor.TestRunner",
         "Exegesis.Shared.Editor",
         "Exegesis.RcsThruster.Editor",
-        "Exegesis.Ncho.Editor"
+        "Exegesis.Ncho.Editor",
+        "Exegesis.Fx.Editor"
     ],
     "includePlatforms": [
         "Editor"

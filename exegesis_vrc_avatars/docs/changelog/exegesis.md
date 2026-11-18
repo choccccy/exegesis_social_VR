@@ -10,6 +10,16 @@ workflow copies a version's section into its GitHub release; see [releasing.md](
 
 ## [Unreleased]
 
+### Fixed
+- ncho's *Vertex Rounding* toggle no longer references a submenu that doesn't exist.
+- ncho's *Blushie* menu entry no longer references an icon that was never committed; it has no
+  icon for now.
+- The `exegesis` scene's AudioLink player no longer points at a local video that isn't in the
+  package; it's back on AudioLink's default YouTube URL.
+- The `exegesis` scene no longer references a skybox material that doesn't exist.
+- The README's PS1 install step names the actual Poiyomi menu (*Poi > Installed Modules*), and
+  no longer claims the PS1 effects are missing without it.
+
 ## [1.0.0] - 2026-11-05
 
 ### Added

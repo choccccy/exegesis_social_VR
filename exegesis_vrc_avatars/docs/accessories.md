@@ -1,8 +1,8 @@
 # Accessories and slots
 
 How ncho's wearable hardware is selected, hidden and shown. Built by
-`Tools > Exegesis > Build ncho Slot Layers`
-(`Assets/_exegesis/ncho/Editor/NchoSlotSetup.cs`).
+`Tools > Exegesis > Build FX Controllers`, which runs
+`Assets/_exegesis/ncho/Editor/NchoSlotSetup.cs` for every avatar.
 
 ## The idea: one int per mount point
 
@@ -205,9 +205,9 @@ Note the asymmetry, because it is the point: the back gate asks *"is anything wo
 thigh gate asks *"is this specific member worn"*. A bool per accessory could express the first
 only as an OR that every new accessory had to be added to, and the second not at all.
 
-> **Run order matters.** `Build ncho Slot Layers` first — it declares the ints — then
-> `Build RCS Animator Layers`. `SlotParameterTests` fails with both menu paths in its message
-> if either half is missing.
+> **Run order matters.** The slot tool has to run first, because it declares the ints. `FxBuilder`
+> encodes that order, so `Tools > Exegesis > Build FX Controllers` always gets it right.
+> `SlotParameterTests` fails if either half is missing.
 
 ### The `rcs` / wings decoupling
 

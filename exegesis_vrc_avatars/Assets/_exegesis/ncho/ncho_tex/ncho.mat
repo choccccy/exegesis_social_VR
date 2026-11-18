@@ -4142,7 +4142,7 @@ Material:
     - m_modifierCategory: 0
     - m_raymarchingCategory: 0
     - m_renderingCategory: 0
-    - m_specialFXCategory: 0
+    - m_specialFXCategory: 1
     - m_start_ALDecalSpectrum: 0
     - m_start_ALVolumeColor: 0
     - m_start_Alpha: 0
@@ -4163,7 +4163,7 @@ Material:
     - m_start_DepthBulge: 0
     - m_start_DetailOptions: 0
     - m_start_DistortionAudioLink: 0
-    - m_start_EmissionSection: 0
+    - m_start_EmissionSection: 1
     - m_start_FXProximityColor: 0
     - m_start_FlipbookSection: 0
     - m_start_GlobalMask: 0
@@ -4243,7 +4243,7 @@ Material:
     - m_start_emission1Options: 0
     - m_start_emission2Options: 0
     - m_start_emission3Options: 0
-    - m_start_emissionOptions: 0
+    - m_start_emissionOptions: 1
     - m_start_flipBook: 0
     - m_start_flipBook1: 0
     - m_start_glitter: 0
@@ -4283,7 +4283,7 @@ Material:
     - m_start_videoEffects: 0
     - m_start_voronoi: 0
     - m_thirdpartyCategory: 0
-    - m_vertexCategory: 1
+    - m_vertexCategory: 0
     - s_end_ALAlpha: 0
     - s_end_ALDecalAudioModsOptions: 0
     - s_end_ALDecalClippingOptions: 0

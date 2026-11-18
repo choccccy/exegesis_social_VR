@@ -1,5 +1,5 @@
 controller
-  parameters (82)
+  parameters (84)
     [0] "IsLocal" type=Bool default=False
     [1] "Voice" type=Float default=0.000000
     [2] "GestureLeft" type=Int default=0
@@ -82,6 +82,8 @@ controller
     [79] "back_slot" type=Int default=1
     [80] "thigh_slot" type=Int default=1
     [81] "loadout" type=Int default=0
+    [82] "wing_sensor_lower" type=Bool default=False
+    [83] "wing_sensor_upper" type=Bool default=False
   layers (66)
     [0] "base"
       defaultWeight=0.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
@@ -390,7 +392,7 @@ controller
             timeParameter="heat" timeParameterActive=True
             mirror=True mirrorParameter="" mirrorParameterActive=False
             iKOnFeet=False tag=""
-            motion clip "vent_glow"
+            motion clip "ncho_heat_glow"
               frameRate=60.000000 wrapMode=Default legacy=False
               floatCurves (14) objectCurves (0)
               contentHash=4e9f66ab98cd2cd37853ef47e1c6c6db
@@ -989,7 +991,7 @@ controller
             timeParameter="" timeParameterActive=False
             mirror=False mirrorParameter="" mirrorParameterActive=False
             iKOnFeet=False tag=""
-            motion clip "eyes_neutral"
+            motion clip "[ncho]_eyes_neutral"
               frameRate=60.000000 wrapMode=Default legacy=False
               floatCurves (8) objectCurves (0)
               contentHash=9ad1d52c667feee7bbe473e6e2b70ed9
@@ -1070,8 +1072,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "voice"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=d25c36b8588958f33aabfe1f81137912
+              floatCurves (2) objectCurves (0)
+              contentHash=39c2eade3b4dd1996bf80d7890ad41c2
             behaviours (0)
             transitions (3)
               [0] -> state "eyes_closed"
@@ -1593,8 +1595,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_neutral"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (32) objectCurves (0)
-              contentHash=c332b0b5923fc8c04173eb8b16d7d751
+              floatCurves (41) objectCurves (0)
+              contentHash=ba8e89e3db416ae0d747997ab33e1b91
             behaviours (0)
             transitions (0)
         subStateMachines (0)
@@ -1615,8 +1617,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[props]_neutral"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (20) objectCurves (0)
-              contentHash=29062a997a6f5000c9e60df9fe29074f
+              floatCurves (21) objectCurves (0)
+              contentHash=f257ac2f7b6bb8d49cc449e42b22089b
             behaviours (0)
             transitions (0)
         subStateMachines (0)
@@ -1656,8 +1658,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_face_off"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=a64613a2243affdb3c1577355cfc8ed3
+              floatCurves (2) objectCurves (0)
+              contentHash=309ab44a2374c71f260825d9af6a26bc
             behaviours (0)
             transitions (1)
               [0] -> state "empty"
@@ -1703,8 +1705,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_chest_off"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=23f1fa01239a3bed6476b43c13940d31
+              floatCurves (2) objectCurves (0)
+              contentHash=cbec87914ae71ea0aa9f0accb50a0305
             behaviours (0)
             transitions (1)
               [0] -> state "empty"
@@ -1750,8 +1752,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_abdomen_off"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (2) objectCurves (0)
-              contentHash=5947b2304e7aa1d02739161b32e7087c
+              floatCurves (3) objectCurves (0)
+              contentHash=5bc6feed764ebbd4b145877f0755a624
             behaviours (0)
             transitions (1)
               [0] -> state "empty"
@@ -1797,8 +1799,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_groin_off"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=c87992043cf240585d4951f2e2d91c51
+              floatCurves (2) objectCurves (0)
+              contentHash=379764ac2a1e67fb1a5e4da3b2d61eed
             behaviours (0)
             transitions (1)
               [0] -> state "empty"
@@ -1844,8 +1846,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_left_arm_off"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=469bb021434a0bc6edc2825675419126
+              floatCurves (2) objectCurves (0)
+              contentHash=bb7c4007e90a5835115b55ca9e318737
             behaviours (0)
             transitions (1)
               [0] -> state "empty"
@@ -1891,8 +1893,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_right_arm_off"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=d0fb71d123faf3559ded87b2a674ce45
+              floatCurves (2) objectCurves (0)
+              contentHash=a79b5bca1daba850514a7370dcdff267
             behaviours (0)
             transitions (1)
               [0] -> state "empty"
@@ -1938,8 +1940,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_left_thigh_off"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=1768d0240c73fd45cfad11ca87427040
+              floatCurves (2) objectCurves (0)
+              contentHash=8463e61e6cdceeb69179352c4453e72d
             behaviours (0)
             transitions (1)
               [0] -> state "empty"
@@ -1985,8 +1987,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_right_thigh_off"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=89bff7f6522eec99f66f321006b38f83
+              floatCurves (2) objectCurves (0)
+              contentHash=b94ddda6d9eca24eba5983d0b4970a22
             behaviours (0)
             transitions (1)
               [0] -> state "empty"
@@ -2032,8 +2034,8 @@ controller
             iKOnFeet=False tag=""
             motion clip "[panels]_pouches_off"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=4791f493e406208dd5d2541ffcb47b39
+              floatCurves (2) objectCurves (0)
+              contentHash=e15221d723d9174bd6b52e48e47d1ac4
             behaviours (0)
             transitions (1)
               [0] -> state "empty"
@@ -2147,12 +2149,12 @@ controller
     [32] "wing_deploy"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "wing_deploy"
-        defaultState="empty"
+        defaultState="wings_down"
         behaviours (0)
         entryTransitions (0)
         anyStateTransitions (0)
-        states (2)
-          state "empty"
+        states (3)
+          state "wings_down"
             writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
@@ -2164,13 +2166,22 @@ controller
               floatCurves (1) objectCurves (0)
               contentHash=f46b8671f54d768b1430f8942938a1a3
             behaviours (0)
-            transitions (1)
+            transitions (2)
               [0] -> state "[props]_wings_deployed"
                 duration=0.500000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
                 interruptionSource=None orderedInterruption=True canTransitionToSelf=True
                 mute=False solo=False isExit=False
-                conditions (1)
+                conditions (3)
                   [0] "wings_deployed" If 0.000000
+                  [1] "wing_sensor_lower" IfNot 0.000000
+                  [2] "wing_sensor_upper" IfNot 0.000000
+              [1] -> state "[props]_wings_up"
+                duration=0.500000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (2)
+                  [0] "wing_sensor_lower" If 0.000000
+                  [1] "wing_sensor_upper" IfNot 0.000000
           state "[props]_wings_deployed"
             writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
@@ -2180,16 +2191,56 @@ controller
             iKOnFeet=False tag=""
             motion clip "[props]_wings_deployed"
               frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (3) objectCurves (0)
-              contentHash=12d6fae488a2f677b95b87e2a63fecaa
+              floatCurves (4) objectCurves (0)
+              contentHash=1c1ad68cd6ec94aa7ab17d962d4791de
             behaviours (0)
-            transitions (1)
-              [0] -> state "empty"
+            transitions (3)
+              [0] -> state "wings_down"
                 duration=0.500000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
                 interruptionSource=None orderedInterruption=True canTransitionToSelf=True
                 mute=False solo=False isExit=False
                 conditions (1)
                   [0] "wings_deployed" IfNot 0.000000
+              [1] -> state "[props]_wings_up"
+                duration=0.500000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (2)
+                  [0] "wing_sensor_lower" If 0.000000
+                  [1] "wing_sensor_upper" IfNot 0.000000
+              [2] -> state "wings_down"
+                duration=0.500000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "wing_sensor_upper" If 0.000000
+          state "[props]_wings_up"
+            writeDefaultValues=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "[props]_wings_up"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (4) objectCurves (0)
+              contentHash=5232ad94e281162bdb6cb7a0b4f5cad2
+            behaviours (0)
+            transitions (2)
+              [0] -> state "[props]_wings_deployed"
+                duration=0.500000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (3)
+                  [0] "wings_deployed" If 0.000000
+                  [1] "wing_sensor_lower" IfNot 0.000000
+                  [2] "wing_sensor_upper" IfNot 0.000000
+              [1] -> state "wings_down"
+                duration=0.500000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "wing_sensor_lower" IfNot 0.000000
         subStateMachines (0)
     [33] "panel_tool_control"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none

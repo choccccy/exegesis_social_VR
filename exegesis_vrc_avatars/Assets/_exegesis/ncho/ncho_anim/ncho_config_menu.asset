@@ -31,7 +31,7 @@ MonoBehaviour:
       name: vertex_rounding
     value: 1
     style: 0
-    subMenu: {fileID: 11400000, guid: 74ceb8dc2083f8d4ea60037db289c917, type: 2}
+    subMenu: {fileID: 0}
     subParameters:
     - name: vertex_rounding
     labels: []

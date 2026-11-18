@@ -117,11 +117,8 @@ namespace Exegesis.RcsThruster.Tests
             var sb = new StringBuilder("The accessory-slot migration is not fully applied:\n");
             foreach (var p in problems) sb.AppendLine("  - " + p);
             sb.AppendLine();
-            sb.AppendLine("Fix by running BOTH generators, in this order:");
-            sb.AppendLine("  1. Tools > Exegesis > Build ncho Slot Layers");
-            sb.AppendLine("  2. Tools > Exegesis > Build RCS Animator Layers");
-            sb.AppendLine("Order matters: the RCS group layers condition on the slot ints, which");
-            sb.AppendLine("the first tool declares. See docs/accessories.md.");
+            sb.AppendLine("Fix by running Tools > Exegesis > Build FX Controllers, which runs both");
+            sb.AppendLine("generators in the right order over every avatar. See docs/accessories.md.");
             Assert.Fail(sb.ToString());
         }
 
@@ -210,7 +207,7 @@ namespace Exegesis.RcsThruster.Tests
             {
                 var layer = Layer(c, layerName);
                 if (layer == null)
-                    Assert.Ignore($"'{layerName}' missing; run Build ncho Slot Layers.");
+                    Assert.Ignore($"'{layerName}' missing; run Build FX Controllers.");
 
                 var ts = Transitions(layer).ToArray();
                 if (ts.Length == 0)
@@ -263,7 +260,7 @@ namespace Exegesis.RcsThruster.Tests
             {
                 var layer = Layer(c, layerName);
                 if (layer == null)
-                    Assert.Ignore($"'{layerName}' missing; run Build ncho Slot Layers.");
+                    Assert.Ignore($"'{layerName}' missing; run Build FX Controllers.");
 
                 var members = layer.stateMachine.states
                     .Select(s => s.state)
@@ -311,7 +308,7 @@ namespace Exegesis.RcsThruster.Tests
             {
                 var layer = Layer(c, layerName);
                 if (layer == null)
-                    Assert.Ignore($"'{layerName}' missing; run Build ncho Slot Layers.");
+                    Assert.Ignore($"'{layerName}' missing; run Build FX Controllers.");
 
                 var sm = layer.stateMachine;
                 Assert.IsNotNull(sm, $"'{layerName}' has no state machine.");

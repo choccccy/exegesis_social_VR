@@ -40,8 +40,9 @@ namespace Exegesis.RcsThruster
     /// </summary>
     public static class RcsAnimatorSetup
     {
-        public const string DefaultControllerPath =
-            "Assets/_exegesis/ncho/ncho_anim/ncho_fx.controller";
+        // Only the Debug menu items below use this; they poke a single avatar on purpose.
+        // Real builds go through FxBuilder, which covers every controller in FxControllers.
+        private static string DefaultControllerPath => FxControllers.Ncho.ControllerPath;
 
         // Renderers carrying thrusters.mat in material slot [1].
         private static readonly string[] RendererPaths = { "Body", "Props" };
@@ -126,24 +127,13 @@ namespace Exegesis.RcsThruster
             ("rcs_imu_zn", "_RCS_ImuDeflect.z", -1f),
         };
 
-        // Priority 2: sits directly under Build ncho Slot Layers, which must be run first.
-        [MenuItem("Tools/Exegesis/Build RCS Animator Layers", false, 2)]
-        private static void BuildFromMenu()
-        {
-            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(DefaultControllerPath);
-            if (controller == null)
-            {
-                EditorUtility.DisplayDialog("RCS setup",
-                    $"Could not load the FX controller at:\n{DefaultControllerPath}", "OK");
-                return;
-            }
-
-            Build(controller);
-        }
+        // No menu item of its own. Run Tools > Exegesis > Build FX Controllers (Exegesis.Fx.FxBuilder),
+        // which runs the slot tool first - it declares the ints the group layers condition on -
+        // and builds every avatar's controller, not just ncho's.
 
         /// <summary>
-        /// Rebuilds every rcs_* layer in the given controller. The menu item passes the
-        /// committed controller; the tests pass a scratch copy.
+        /// Rebuilds every rcs_* layer in the given controller. FxBuilder passes each committed
+        /// controller; the tests pass a scratch copy.
         /// </summary>
         public static void Build(AnimatorController controller)
         {
@@ -219,7 +209,7 @@ namespace Exegesis.RcsThruster
             Debug.Log($"{LogPrefix} Added " + LayerForceVel + " writing _RCS_Vel.z = 0.5 from a " +
                       "plain clip. Enter play mode and read the 'vel' column in the RCS Test " +
                       "Driver. 0.500 means blend trees are the problem; 0.000 means _RCS_Vel " +
-                      "cannot be reached at all. Re-run Build RCS Animator Layers to remove.");
+                      "cannot be reached at all. Re-run Build FX Controllers to remove.");
         }
 
         private const string LayerTreeProbe = "rcs_debug_treeprobe";
@@ -269,8 +259,8 @@ namespace Exegesis.RcsThruster
             Debug.Log($"{LogPrefix} Added " + LayerTreeProbe + ": a 1D tree with one child " +
                       "writing _RCS_Vel.z = 0.7 regardless of the blend parameter. Enter play " +
                       "mode with _DebugView 4. Blue means blend trees work and VelocityZ is the " +
-                      "problem; no blue means blend trees do not deliver. Re-run Build RCS " +
-                      "Animator Layers to remove.");
+                      "problem; no blue means blend trees do not deliver. Re-run Build FX " +
+                      "Controllers to remove.");
         }
 
         // ------------------------------------------------------------------ params
@@ -623,7 +613,7 @@ namespace Exegesis.RcsThruster
                            "curves: " + string.Join(", ", empty) + ". A state playing an empty " +
                            "clip writes nothing, so with Write Defaults off the property keeps " +
                            "its material value - a gate meant to force 0 will hold whatever the " +
-                           "material ships. Re-run Tools > Exegesis > Build RCS Animator Layers.");
+                           "material ships. Re-run Tools > Exegesis > Build FX Controllers.");
         }
     }
 }

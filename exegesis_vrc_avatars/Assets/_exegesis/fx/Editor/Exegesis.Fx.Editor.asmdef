@@ -1,0 +1,20 @@
+{
+    "name": "Exegesis.Fx.Editor",
+    "rootNamespace": "Exegesis.Fx",
+    "references": [
+        "Exegesis.Shared.Editor",
+        "Exegesis.RcsThruster.Editor",
+        "Exegesis.Ncho.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -36,7 +36,7 @@ namespace Exegesis.Ncho
     /// hidden values. That is what makes "bare" free: it needs no clip and no state.
     ///
     /// Idempotent, like RcsAnimatorSetup: it deletes and rebuilds anything named slot_*.
-    /// Menu: Tools > Exegesis > Build ncho Slot Layers.
+    /// Run through Tools > Exegesis > Build FX Controllers (Exegesis.Fx.FxBuilder).
     ///
     /// Layers, states, transitions and drivers are built with Animator As Code. Four things are
     /// NOT, and each is documented where it appears: parameter declaration (AAC matches by name
@@ -51,8 +51,6 @@ namespace Exegesis.Ncho
     /// </summary>
     public static class NchoSlotSetup
     {
-        public const string DefaultControllerPath =
-            "Assets/_exegesis/ncho/ncho_anim/ncho_fx.controller";
         private const string AnimDir = "Assets/_exegesis/ncho/ncho_anim";
 
         // A clip that animates one irrelevant property on a GameObject called "Empty" that
@@ -226,25 +224,13 @@ namespace Exegesis.Ncho
             },
         };
 
-        // Priority 1 puts this ABOVE Build RCS Animator Layers, which is the order the two
-        // must actually be run in - this tool declares the slot ints those layers condition on.
-        [MenuItem("Tools/Exegesis/Build ncho Slot Layers", false, 1)]
-        private static void BuildFromMenu()
-        {
-            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(DefaultControllerPath);
-            if (controller == null)
-            {
-                EditorUtility.DisplayDialog("ncho slots",
-                    $"Could not load the FX controller at:\n{DefaultControllerPath}", "OK");
-                return;
-            }
-
-            Build(controller);
-        }
+        // No menu item of its own. Run Tools > Exegesis > Build FX Controllers (Exegesis.Fx.FxBuilder),
+        // which runs this BEFORE the RCS tool - this tool declares the slot ints those layers
+        // condition on - and does so for every avatar's controller, not just ncho's.
 
         /// <summary>
         /// Rebuilds every slot_* layer in the given controller, removes the hand-built layers it
-        /// replaced, and decouples wing_deploy from `rcs`. The menu item passes the committed
+        /// replaced, and decouples wing_deploy from `rcs`. FxBuilder passes each committed
         /// controller; the tests pass a scratch copy.
         /// </summary>
         public static void Build(AnimatorController controller)
@@ -285,9 +271,7 @@ namespace Exegesis.Ncho
                       $"{AssetDatabase.GetAssetPath(controller)}. " +
                       $"Removed {legacyRemoved} legacy accessory layer(s). " +
                       $"wing_deploy: dropped {wings.Transitions} '{MasterParam}' transition(s) and " +
-                      $"{wings.Conditions} '{MasterParam}' condition(s).\n" +
-                      "Re-run Tools > Exegesis > Build RCS Animator Layers after this, so the " +
-                      "rcs_group_* layers pick up the slot ints.");
+                      $"{wings.Conditions} '{MasterParam}' condition(s).");
         }
 
         /// <summary>

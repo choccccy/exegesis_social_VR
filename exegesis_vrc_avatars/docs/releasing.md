@@ -83,6 +83,16 @@ if a new package shows up there, add it to the READMEs. Run locally, it can name
 each GUID belongs to; in CI third-party code isn't present, so everything shows as unknown.
 It also warns about references to `_exegesis` files that aren't committed.
 
+The external list doubles as a check. Every entry should be a dependency the user installs:
+`Packages/...`, `Assets/_PoiyomiShaders`, `Assets/Plugins` (FinalIK or its stub). A loose
+`Assets/` path that isn't a dependency's folder (a stray `.fbx`, a video) is a file that will
+**not** ship, so whatever references it imports broken. Fix the reference before tagging.
+`unknown (missing, or built-in)` entries reference nothing even in this project; they were
+already broken here, so they aren't install holes, but they're worth a look.
+
+To check a package imports cleanly into a fresh project, see
+[testing.md ▸ Clean-room install test](testing.md#clean-room-install-test).
+
 ## What the builder follows
 
 `Tools/release/build_unitypackage.py` mirrors Export Package's *Include dependencies*, with

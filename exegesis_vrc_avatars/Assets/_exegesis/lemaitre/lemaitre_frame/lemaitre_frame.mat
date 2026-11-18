@@ -38,12 +38,13 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2450
   stringTagMap:
-    OriginalKeywords: AUTO_EXPOSURE BSSBLOOMFOGTYPE_HEIGHT MOCHIE_PBR POI_ANISOTROPICS
-      POI_AUDIOLINK POI_BACKFACE POI_GLOBALMASK_TEXTURES POI_LTCGI POI_UZUMORE VIGNETTE_MASKED
-      _EMISSION _LIGHTINGMODE_REALISTIC _RIM2STYLE_POIYOMI _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ
+    OriginalKeywords: AUTO_EXPOSURE MOCHIE_PBR POI_ANISOTROPICS POI_AUDIOLINK POI_BACKFACE
+      POI_GLOBALMASK_TEXTURES POI_LTCGI PROP_EMISSIONMASK PROP_EMISSIONMASK1 PROP_EMISSIONMASK2
+      PROP_EMISSIONMASK3 PROP_GLOBALMASKTEXTURE3 PROP_MAINTEX VIGNETTE_MASKED _EMISSION
+      _LIGHTINGMODE_REALISTIC _RIM2STYLE_POIYOMI _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ
       _STYLIZEDREFLECTIONMODE_UNITYCHAN
     OriginalShader: .poiyomi/Poiyomi Pro
-    OriginalShaderGUID: a24c7f2b5aa9f75478a3abf1a4afc345
+    OriginalShaderGUID: 57f087a000b2c1687ba083ae4f8854de
     RenderType: Opaque
     _AnisoColorMap_texPack_a_channel: 4
     _AnisoColorMap_texPack_a_fallback: 1
@@ -1936,6 +1937,7 @@ Material:
     - _EnableMirrorOptions: 0
     - _EnableOutlines: 0
     - _EnableOutlinesRenderFeature: 0
+    - _EnablePS1Module: 0
     - _EnablePathRemapping: 0
     - _EnablePathing: 0
     - _EnableRim2Lighting: 0
@@ -2993,6 +2995,9 @@ Material:
     - _PPPosterization: 0
     - _PPPosterizationAmount: 4
     - _PPSaturation: 1
+    - _PS1PerspectiveCorrectionFactor: 1
+    - _PS1VertexRounding: 0.005
+    - _PS1VertexRoundingSpace: 0
     - _PanoUseBothEyes: 1
     - _ParallaxAnisotropic: 1
     - _ParallaxAnisotropyScale: 1
@@ -4090,6 +4095,7 @@ Material:
     - m_end_poiContactShadows: 0
     - m_end_poiSSAO: 0
     - m_end_postprocess: 0
+    - m_end_ps1Module: 0
     - m_end_reflectionRim: 0
     - m_end_rim1LightOptions: 0
     - m_end_rim2LightOptions: 0
@@ -4234,6 +4240,7 @@ Material:
     - m_start_poiContactShadows: 0
     - m_start_poiSSAO: 0
     - m_start_postprocess: 0
+    - m_start_ps1Module: 0
     - m_start_reflectionRim: 0
     - m_start_rim2LightOptions: 0
     - m_start_rimLight1Options: 0

@@ -1,12 +1,13 @@
 # Testing
 
-Three EditMode suites, all run together from the same Test Runner or the same headless
+Four EditMode suites, all run together from the same Test Runner or the same headless
 invocation:
 
 | Suite | Assembly | Covers |
 |---|---|---|
 | HUD shader | `Exegesis.HudShader.Tests.Editor` | the HUD shader — compile, material state, golden images |
 | RCS thruster | `Exegesis.RcsThruster.Tests.Editor` | the RCS shader, **and the generated animator layers** |
+| Callouts | `Exegesis.Callout.Tests.Editor` | the status-callout shader, rendered on the real `ncho.fbx`: screen-space size, the look-at billboard (faces the camera position, matches roll), depth push vs. walls, Centered vs. Callout layout, pixel-art sampling, mirrors (simulated planar mirror, `_VRChatMirrorMode`), two-eye stereo (default Card mode: against the projected shared card; Match HUD mode: same view direction in both eyes), the stereo-instanced compile, and the `ncho_callouts` mesh contract. See [callouts.md](callouts.md) |
 | — | — | see [Animator generation tests](#animator-generation-tests) below |
 
 Most of this page is about the HUD suite, which came first. The animator tests are the
@@ -49,8 +50,8 @@ time. See [animator-generation.md](animator-generation.md) for what each invaria
 |---|---|
 | `SlotParameterTests.cs` | Slot layers exist, slot ints are typed `Int`, gates use `Equals`/`NotEqual` only, the 0.25 s fade with `hasFixedDuration`, swaps route through `idle`, Write Defaults off, no two members share a value. |
 | `GeneratedClipTests.cs` | Every generated clip writes at least one curve, and each `_GroupEnable` gate pair drives its component to both 0 and 1 on **both** `Body` and `Props`. |
-| `ControllerSnapshotTests.cs` | The committed controller matches its golden snapshot — **and** that the snapshot itself can detect each of 17 specific breakages. |
-| `GeneratorIdempotenceTests.cs` | Rebuilding the committed controller reproduces it exactly, and rebuilding twice does not grow the file. |
+| `ControllerSnapshotTests.cs` | Each committed FX controller matches its golden snapshot (one case per avatar in `FxControllers`), **and** the snapshot itself can detect each of 17 specific breakages. |
+| `GeneratorIdempotenceTests.cs` | Rebuilding each committed controller reproduces it exactly (one case per avatar), and rebuilding twice does not grow the file. |
 
 ### The controller snapshot
 
@@ -61,12 +62,14 @@ field including interruption settings, conditions with their modes, blend trees 
 node positions, GUIDs and the random suffix Animator As Code puts on generated asset names —
 each exclusion is commented in the source with its reason.
 
-The committed baseline is `Tests/Editor/Baselines/ncho_fx.snapshot.txt`, written in *Compact*
-detail: clip curve data is hashed rather than inlined, because the controller references over
+There is one committed baseline per FX controller, `Tests/Editor/Baselines/<avatar>_fx.snapshot.txt`,
+for every entry in `FxControllers` (ncho, lemaitre, obi-me). A missing baseline **fails** rather than
+being ignored: a controller with no baseline is how lemaitre and obi-me drifted unnoticed. Baselines are
+written in *Compact* detail: clip curve data is hashed rather than inlined, because the controller references over
 a hundred clips and a baseline nobody can read is a baseline nobody reviews. A changed
 keyframe still fails — `CompactDetail_StillNoticesAChangedKeyframe` pins that.
 
-Re-bless with `Tools > Exegesis > Debug > Capture Controller Snapshot Baseline`, or headlessly
+Re-bless with `Tools > Exegesis > Debug > Capture Controller Snapshot Baselines` (all of them), or headlessly
 by setting `EXEGESIS_CAPTURE_SNAPSHOT=1`. It is deliberately **not** wired to the
 `HUD_CAPTURE_BASELINES` variable the run script's `-Capture` switch sets: the golden-image
 suites share that one, and re-blessing the controller as a side effect of recapturing a render
@@ -178,6 +181,74 @@ writes their `.meta`, then quits (fork-aware wait, same as the test runner).
 already has open (it would fail on the lock). So it covers the **clone** (never opened in
 the Editor) and **MAIN only while its Editor is closed**. While the Editor holds MAIN,
 that Editor is the only thing that can refresh MAIN — focus it or hit `Assets > Refresh`.
+
+## Clean-room install test
+
+Checks that a release `.unitypackage` imports cleanly into a fresh project that has **only the
+README requirements**. That covers what the regression suites can't: a README missing a
+requirement, a reference to a file that doesn't ship, a step that doesn't work. Run it before
+tagging a release that adds dependencies or moves assets. Safe while the Editor is open; it never
+touches this project.
+
+Script: [`Tools/install-test/run_install_test.ps1`](../Tools/install-test/run_install_test.ps1).
+
+```powershell
+# build the package to test (or download a published one with: gh release download <tag>)
+python Tools/release/build_unitypackage.py --root Assets/_exegesis --root Assets/Editor/Poi_PS1 --out $env:TEMP\exegesis.unitypackage
+
+# full package against the main README's requirements, plus the PS1 install step
+powershell Tools/install-test/run_install_test.ps1 -Package $env:TEMP\exegesis.unitypackage -EnablePS1
+
+# props package against only the props README's requirements (its own baseline via -Name)
+powershell Tools/install-test/run_install_test.ps1 -Package <props>.unitypackage `
+    -Name exegesis_install_test_props -FinalIkPackage "" `
+    -VpmPackages com.vrchat.core.vpm-resolver,com.vrchat.base,com.vrchat.avatars,com.vrcfury.vrcfury
+```
+
+What it does:
+
+1. **Deps baseline** (`<dev>/exegesis_install_test_deps_baseline`, built once, `-RebuildDeps` to
+   redo): the VCC *Avatar* template, the README's VPM packages copied from this project's
+   `Packages/` as embedded packages (what VCC/ALCOM does), then Poi Pro 11.0.27 and the VRLabs
+   FinalIK stub by `-importPackage` from `~/Downloads`. It must compile with zero errors, or the
+   test setup itself is broken. Note the packages are this project's installed versions, which
+   meet the README minimums but aren't exactly them.
+2. **Test project** (`<dev>/exegesis_install_test`), mirrored fresh from the baseline each run.
+3. **Import + check.** [`checker/InstallCheck.cs`](../Tools/install-test/checker/InstallCheck.cs)
+   reports, for everything under `Assets/_exegesis` and `Assets/Editor/Poi_PS1`:
+   - every `guid:` that resolves to nothing
+   - materials on a missing or error shader
+   - missing scripts and missing prefabs, in every prefab and every scene
+   - the avatars found in each scene
+4. **`-EnablePS1`**: [`poi_step/`](../Tools/install-test/poi_step/InstallCheckPs1Step.cs) does README
+   step *Poi > Installed Modules > PS1 > Apply & Rebuild Shaders*. It lists the PS1 materials
+   before (all `MISS`) and after (all `OK`).
+
+Output (report and every Unity log) goes to `<dev>/exegesis_install_test_out/`. Reading the
+report: an unresolved GUID that also resolves to nothing in *this* project was already broken
+here (the release preview lists these as `unknown`). That's a bug, but not an install hole. One
+that resolves here but not there is a hole: a missing requirement, or a file that doesn't ship.
+
+**Negative control.** A checker that finds nothing has to be shown it *can* find something.
+Run once with a dependency left out (e.g. `-Name exegesis_install_test_negctl` with VRCFury dropped
+from `-VpmPackages`). It must report missing scripts on the screwdrivers, `rober_sps` and the
+avatars. Done 2026-11; it did.
+
+Gotchas specific to this setup:
+
+- **Use the VCC template, not `Unity -createProject`.** The bare project has no
+  `com.unity.test-framework`, and the VRChat SDK's own tests then fail to compile with NUnit errors.
+- **A compile error silently skips `-importPackage` and `-executeMethod`.** Batchmode still exits
+  normally and nothing is imported. The script fails on any `error CS` in a log for this reason.
+- **The FinalIK stub needs a second load.** It ships its scripts as `*.no` and an installer that
+  renames them on the next domain load.
+- **Poi's `ModularShadersGeneratorWindow.RebuildShaders` does nothing in batchmode.** It defers
+  through `EditorApplication.delayCall`, which never fires before `-quit`. Call
+  `ShaderGenerator.GenerateShader` directly, as Poi's Modules Toggles does.
+- **Deleting packages from a project with a built `Library/`** gives a burst of `CS2001` (source
+  file not found) on the next open. It's harmless and clears on the following open. Build a
+  separate baseline (`-Name`) instead of trimming one.
+- Each test project is ~2-3 GB with its `Library/`. Delete `<dev>/exegesis_install_test*` when done.
 
 ## Gotchas learned the hard way (don't rediscover these)
 

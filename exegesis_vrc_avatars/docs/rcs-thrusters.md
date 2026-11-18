@@ -156,7 +156,7 @@ only has to produce the lag, which a blend tree does natively.
 | `RCSThruster.shader` | Properties + a single additive pass. |
 | `RCS_core.cginc` | Allocation maths, throttle curve, emission composite. |
 | `Editor/RCSThrusterInspector.cs` | `ShaderGUI`, grouped in tuning order. |
-| `Editor/RcsAnimatorSetup.cs` | Builds the FX layers. `Tools > Exegesis > Build RCS Animator Layers`. |
+| `Editor/RcsAnimatorSetup.cs` | Builds the FX layers. Run via `Tools > Exegesis > Build FX Controllers`. |
 | `Editor/RcsTestDriver.cs` | Physically wiggles the avatar for testing. Drives only — see footgun 3. |
 | `Tests/Editor/` | Compile, material-contract, generated-clip and golden-image tests. |
 
@@ -463,14 +463,15 @@ rename.
 
 ## FX layers
 
-Built by `Tools > Exegesis > Build RCS Animator Layers`, which is idempotent: it deletes and
+Built by `Tools > Exegesis > Build FX Controllers` (which runs `RcsAnimatorSetup` for every
+avatar), and idempotent: it deletes and
 rebuilds every layer whose name starts `rcs_`, and sweeps the sub-assets that leaves orphaned.
 Teardown matches on that **prefix**, not a name list — an earlier rename left an orphan layer
 behind because its old name was no longer in the list. Prefer re-running the tool over
 hand-editing; the controller has far too many layers to edit safely by hand, and
 `GeneratorIdempotenceTests` fails if the committed asset stops matching a fresh build.
 
-The generated clips are **sub-assets of `ncho_fx.controller`**, not files. They used to be 38
+The generated clips are **sub-assets of each FX controller**, not files. They used to be 38
 `.anim` files in `ncho_anim/rcs_generated/`; that folder is gone. See
 [animator-generation.md](animator-generation.md).
 
@@ -484,9 +485,9 @@ The generated clips are **sub-assets of `ncho_fx.controller`**, not files. They 
 | `rcs_group_wings` | `_GroupEnable.y`, from `wings_deployed` |
 | `rcs_group_thighs` | `_GroupEnable.z`, from `thigh_slot` |
 
-The group layers read parameters that a **different** tool declares, so when rebuilding both,
-run `Build ncho Slot Layers` first — see [accessories.md](accessories.md).
-`SlotParameterTests` fails with both menu paths in its message if either half is missing.
+The group layers read parameters that a **different** tool declares, so the slot tool has to
+run first. `FxBuilder` encodes that order; see [accessories.md](accessories.md).
+`SlotParameterTests` fails if either half is missing.
 
 Two Unity behaviours make this compact:
 

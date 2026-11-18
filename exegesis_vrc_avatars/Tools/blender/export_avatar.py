@@ -32,11 +32,12 @@ Source blends live at the *git root* (../source), not inside the Unity project.
 
 import argparse
 import json
+import math
 import os
 import sys
 
 import bpy
-from mathutils import Matrix
+from mathutils import Matrix, Vector
 
 # Tools/blender/ -> exegesis_vrc_avatars -> git root
 UNITY_PROJECT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
@@ -52,6 +53,15 @@ CHARACTERS = {
         'armature': 'Armature',
         'out': 'exegesis_vrc_avatars/Assets/_exegesis/ncho/ncho.fbx',
         'ctrl_rig': 'ncho_ctrl',
+        # (bone, aims at): mutually tracking pairs. Their Damped Tracks are gated by
+        # use_ctrl_rig, so with the switch at 0 they would freeze un-aimed (~11 deg off).
+        # aim_pistons() re-derives them. Same pairs as bind_ctrl_rig.py.
+        'pistons': [('piston_shaft.L', 'piston_sleeve.L'), ('piston_sleeve.L', 'piston_shaft.L'),
+                    ('piston_shaft.R', 'piston_sleeve.R'), ('piston_sleeve.R', 'piston_shaft.R')],
+        # object: exported edge length (BU). Callout quads are authored at an editable size;
+        # the shader reads each vertex as its tooltip's anchor, so they must ship ~1 mm.
+        # shrink_quads() does it in memory (docs/callouts.md ▸ Mesh).
+        'shrink_quads': {'ncho_callouts': 0.001},
     },
     'obi-me': {
         'blend': 'source/obi-me/obi-me.blend',
@@ -185,9 +195,129 @@ def restore_pose(character, armature):
     return 'pose already matches the golden export stance (%d bones)' % len(want)
 
 
+def aim_pistons(armature, pairs):
+    """Re-derive the pistons' Damped Track (Y axis at the partner's head) with the rig switched off.
+
+    The export runs with use_ctrl_rig = 0, which also zeroes the piston Damped Tracks: they share
+    that switch. The pistons aren't in the golden pose, so restore_pose leaves them at identity,
+    and without this they export un-aimed. Each piston's head depends only on its parent
+    (Chest / Hips_fix), never on its partner, so solving every target first and then applying is
+    exact and has no dependency cycle. Returns a note."""
+    for bone, target in pairs:
+        chain = [p.name for p in armature.pose.bones[bone].parent_recursive]
+        if target in chain:
+            raise SystemExit('piston %s is a descendant of its target %s; aim is not well-defined'
+                             % (bone, target))
+    bpy.context.view_layer.update()
+    solved = []
+    for bone, target in pairs:
+        pb = armature.pose.bones[bone]
+        head = pb.head.copy()
+        current = pb.matrix.copy()
+        y_axis = current.to_3x3() @ Vector((0.0, 1.0, 0.0))
+        rotation = y_axis.rotation_difference(armature.pose.bones[target].head - head)
+        solved.append((pb, Matrix.Translation(head) @ rotation.to_matrix().to_4x4()
+                       @ Matrix.Translation(-head) @ current))
+    for pb, matrix in solved:
+        pb.matrix = matrix
+    # Writing pose matrices from Python does not re-evaluate the pose; tag it, or every value
+    # read back below is stale (rigging.md: "Setting a custom property ... does not re-evaluate").
+    armature.update_tag()
+    bpy.context.view_layer.update()
+    bpy.context.evaluated_depsgraph_get().update()
+    worst = 0.0
+    for bone, target in pairs:
+        pb = armature.pose.bones[bone]
+        worst = max(worst, math.degrees((pb.tail - pb.head).angle(armature.pose.bones[target].head - pb.head)))
+    if worst > 0.01:
+        raise SystemExit('piston aim self-check failed: %.4f deg off' % worst)
+    return 'pistons aimed (%d bones, worst %.5f deg)' % (len(pairs), worst)
+
+
+def _posed_face_centres(obj):
+    """Each face's evaluated (skinned, posed) world-space centre and corner spread."""
+    evaluated = obj.evaluated_get(bpy.context.evaluated_depsgraph_get())
+    mesh = evaluated.to_mesh()
+    try:
+        out = []
+        for poly in mesh.polygons:
+            corners = [evaluated.matrix_world @ mesh.vertices[i].co for i in poly.vertices]
+            centre = sum(corners, Vector()) / len(corners)
+            out.append((centre, max((c - centre).length for c in corners)))
+        return out
+    finally:
+        evaluated.to_mesh_clear()
+
+
+def shrink_quads(name, edge):
+    """Scale every face of `name` about its own centre to `edge` long, in memory. Returns a note.
+
+    Each face is weighted to a single bone, so scaling it about its rest-space centre leaves its
+    posed centre where it was. Self-checks exactly that, and that every face collapsed."""
+    obj = bpy.data.objects.get(name)
+    if obj is None or obj.type != 'MESH':
+        raise SystemExit('shrink_quads: mesh %r not found' % name)
+    before = _posed_face_centres(obj)
+    mesh = obj.data
+    for poly in mesh.polygons:
+        verts = [mesh.vertices[i] for i in poly.vertices]
+        centre = sum((v.co for v in verts), Vector()) / len(verts)
+        size = (verts[0].co - verts[1].co).length
+        if size <= 0.0:
+            raise SystemExit('shrink_quads: %s face %d is degenerate' % (name, poly.index))
+        for v in verts:
+            v.co = centre + (v.co - centre) * (edge / size)
+    mesh.update()
+    obj.update_tag()
+    bpy.context.view_layer.update()
+    after = _posed_face_centres(obj)
+    moved = max((a[0] - b[0]).length for a, b in zip(after, before))
+    spread = max(a[1] for a in after)
+    if moved > 1e-4 or spread > edge:
+        raise SystemExit('shrink_quads self-check failed on %s: centres moved %.6g, spread %.6g'
+                         % (name, moved, spread))
+    return 'shrunk %d faces of %s to %g (centres moved <= %.2g)' % (len(after), name, edge, moved)
+
+
+def include_collection(collection):
+    """Un-exclude `collection` and every ancestor in the active view layer. Returns their names."""
+    def find(layer_collection, chain):
+        if layer_collection.collection == collection:
+            return chain + [layer_collection]
+        for child in layer_collection.children:
+            found = find(child, chain + [layer_collection])
+            if found:
+                return found
+        return None
+
+    chain = find(bpy.context.view_layer.layer_collection, []) or []
+    changed = []
+    for layer_collection in chain:
+        if layer_collection.exclude:
+            layer_collection.exclude = False
+            changed.append(layer_collection.name)
+    if changed:
+        bpy.context.view_layer.update()
+    return changed
+
+
 def prepare(config, character, rest=False):
     """Put the file in its canonical export state and select the export scope."""
     notes = []
+
+    collection = bpy.data.collections.get(config['collection'])
+    if collection is None:
+        raise SystemExit('export collection %r not found in %s'
+                         % (config['collection'], bpy.data.filepath))
+
+    # An excluded collection (its checkbox unticked in the outliner) takes its objects out of the
+    # view layer entirely: select_set() then raises, and nothing in it is evaluated, so the pose
+    # steps below would read stale matrices. ncho.blend has been saved with ncho_all excluded.
+    # Re-include the export collection and its ancestors in memory, FIRST; this script never
+    # saves the file.
+    included = include_collection(collection)
+    if included:
+        notes.append('temporarily re-included excluded collections: %s' % ', '.join(included))
 
     # Phase 1 forward-compatibility: the control rig drives the game armature
     # through constraints whose influence is driven by this one property.
@@ -206,12 +336,12 @@ def prepare(config, character, rest=False):
     else:
         armature.data.pose_position = 'POSE'
         notes.append(restore_pose(character, armature))
+        if config.get('pistons'):
+            notes.append(aim_pistons(armature, config['pistons']))
     bpy.context.view_layer.update()
 
-    collection = bpy.data.collections.get(config['collection'])
-    if collection is None:
-        raise SystemExit('export collection %r not found in %s'
-                         % (config['collection'], bpy.data.filepath))
+    for name, edge in config.get('shrink_quads', {}).items():
+        notes.append(shrink_quads(name, edge))
 
     for obj in bpy.data.objects:
         obj.select_set(False) if obj.name in bpy.context.view_layer.objects else None

@@ -27,10 +27,10 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
   stringTagMap:
-    OriginalKeywords: AUTO_EXPOSURE MOCHIE_PBR POI_LTCGI VIGNETTE_MASKED _LIGHTINGMODE_REALISTIC
+    OriginalKeywords: MOCHIE_PBR POI_LTCGI PROP_MAINTEX VIGNETTE_MASKED _LIGHTINGMODE_REALISTIC
       _RIM2STYLE_POIYOMI _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ _STYLIZEDREFLECTIONMODE_UNITYCHAN
-    OriginalShader: .poiyomi/Old Versions/10.0/Poiyomi Toon
-    OriginalShaderGUID: e9f30272e2d12c945851329f504df73d
+    OriginalShader: .poiyomi/Poiyomi Toon
+    OriginalShaderGUID: 1f5101c921ac040249ec82dc99b45ea6
     RenderType: Opaque
     _MochieMetallicMaps_texPack_a_channel: 4
     _MochieMetallicMaps_texPack_a_fallback: 1

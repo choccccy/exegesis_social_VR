@@ -6,8 +6,9 @@ tooling that keeps that contract from breaking silently.
 Source blends live at the **git root**, not in the Unity project:
 `source/ncho/ncho.blend`, `source/obi-me/obi-me.blend`. Authored in **Blender 5.2.1 LTS**.
 
-> **`source/` is not in git.** Nothing here is recoverable with `git checkout`. Back a blend
-> up before running anything that writes to it. Every script in `Tools/blender/` is a dry run
+> **`source/` is tracked in git, but only as of its last commit.** Uncommitted work in a blend
+> is not recoverable with `git checkout`. Back a blend up before running anything that writes
+> to it. Every script in `Tools/blender/` is a dry run
 > unless you pass `--save`.
 
 ## The contract
@@ -154,6 +155,23 @@ blender --background --factory-startup source/ncho/ncho.blend \
 python Tools/blender/check_rig_contract.py
 ```
 
+**On this machine, headless Blender (5.2.3) dies at startup** with
+`Failed to replace function free in module ucrtbase.dll` (exit `0xC0000409`), even for
+`--version`. oneTBB's allocator can't patch this Windows build's `ucrtbase.dll`. Set
+`TBB_MALLOC_DISABLE_REPLACEMENT=1` in the environment first.
+
+The same crash happens to the **app** (every build tried, 5.1–5.3, Steam and blender.org),
+because the October 2026 Windows update changed `ucrtbase.dll` to 10.0.26100.9711. The variable is
+now set for the user account (`setx TBB_MALLOC_DISABLE_REPLACEMENT 1`), so GUI launches work
+too. Launchers only pick it up after a restart (fully exit Steam). Once a Blender release ships
+a fixed oneTBB, remove it with `reg delete HKCU\Environment /v TBB_MALLOC_DISABLE_REPLACEMENT /f`.
+Add-ons used on the `.blend` files: [blender-addons.md](blender-addons.md).
+
+`ncho.blend` has been saved with `ncho_all` **excluded** from the view layer (outliner
+checkbox off), which takes `Body` out of the view layer. `export_avatar.py` re-includes the
+export collection and its parents in memory; it never saves the file. Verified IDENTICAL
+against an export of the same file with the collection included by hand.
+
 Only three exporter settings differ from Blender's defaults, and each was verified by
 reproducing the committed FBX exactly: `apply_scale_options='FBX_SCALE_ALL'`,
 `add_leaf_bones=False`, `use_selection=True`. Everything else is default on purpose.
@@ -238,6 +256,25 @@ dragged every render file onto the control rig's rest stance.
 Verified: with the full rig and binding present, the export still compares
 IDENTICAL to the committed FBX on objects, hierarchy, bone transforms,
 topology, weights, `GlobalSettings` and shape keys.
+
+**Setting the switch to 0 also turns off the 4 piston aims.** They share the switch. The pistons
+aren't in the golden pose either, so `restore_pose` leaves them at identity, and they exported
+**10.8–12.3° un-aimed**. That's visible: 164 piston vertices moved up to 0.159 units in the bind
+pose. (It surfaced once `ncho.blend` had been saved with the switch at 1 for render work; the
+exporter forces 0 either way.) `export_avatar.py` now re-derives them in `aim_pistons()`
+after the pose restore: Y axis at the partner's head. That's exact, because each piston's
+head depends only on its parent (`Chest` / `Hips_fix`), never on its partner. A self-check
+fails the export if any piston misses by more than 0.01°. Verified against the committed FBX:
+0.00° miss on both sides, and the piston vertices match.
+
+**The exporter also edits one mesh, in memory:** `shrink_quads` collapses `ncho_callouts`'
+editable 0.5 BU quads to 0.001 BU about their own centres (docs/callouts.md ▸ Mesh). So the FBX
+is **not** a straight dump of the `.blend`. `compare_fbx.py` doesn't compare vertex positions,
+so it won't flag this either way.
+
+`compare_fbx.py` reports a rotation difference as the largest per-axis **Euler** delta, so
+174.77° vs −174.56° prints as "differs by 349.3" when the real difference is about 10.7°.
+Measure the aim, or the vertices, before believing a large number there.
 
 **Setting a custom property from Python does not re-evaluate the drivers that
 read it.** Tag the depsgraph (`obj.update_tag()`, then

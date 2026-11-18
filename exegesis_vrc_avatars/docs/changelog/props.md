@@ -15,6 +15,7 @@ workflow copies a version's section into its GitHub release; see [releasing.md](
 - The screwdriver material moved to Poiyomi 11 Toon.
 - Requirements: Poiyomi 11.0.27, VRCFury 1.1437, VRChat Avatars SDK 3.10.6.
 - Packages are now built and released automatically from tags.
+- The README's PS1 install step names the actual Poiyomi menu (*Poi > Installed Modules*).
 
 ## [1.1.1] - 2026-10-15
 

@@ -340,6 +340,11 @@
    "path": "Armature/Hips/Spine/Chest/shoulder.R/upper_arm.R/forearm.R/hand.R",
    "type": "LimbNode"
   },
+  "ncho_callouts": {
+   "parent": null,
+   "path": "ncho_callouts",
+   "type": "Mesh"
+  },
   "pack_f_index.01.L": {
    "parent": "pack_hand.L",
    "path": "Armature/Hips/Spine/Chest/arm_pack_root/pack_upper_arm.L/pack_forearm.L/pack_hand.L/pack_f_index.01.L",
@@ -681,6 +686,7 @@
   "Armature",
   "Body",
   "Props",
+  "ncho_callouts",
   "Hips",
   "Spine",
   "Chest",

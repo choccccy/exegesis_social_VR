@@ -32,7 +32,7 @@ Get these through [ALCOM](https://vrc-get.anatawa12.com/alcom/) or the [VRChat C
 ## Installation
 1. Install the requirements
 2. Download the package and drag it into your Unity *Project* tab
-3. Enable the PS1 module (`Assets/Editor/Poi_PS1/`) in Poiyomi's module settings, so Poiyomi rebuilds its shaders with it; without it the PS1 effects on ncho, Lemaître and obi-me are missing
+3. Enable the PS1 module (`Assets/Editor/Poi_PS1/`): in Unity, open *Poi > Installed Modules*, tick **PS1**, and click **Apply & Rebuild Shaders**
 4. Open `Assets/_exegesis/exegesis.unity`; the avatars are set up in that scene
 
 ## License

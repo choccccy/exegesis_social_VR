@@ -5,9 +5,12 @@ Project documentation for the exegesis ncho VRChat avatar (Unity 2022.3.22f1, Bi
 - **[project.md](project.md)** — repo layout, Unity/render pipeline, VRChat property
   contract, and the "check the lockfile before headless Unity" rule. Start here.
 - **[testing.md](testing.md)** — the HUD shader regression test suite: EditMode +
-  golden-image tests, the headless-clone workflow, and hard-won gotchas.
+  golden-image tests, the headless-clone workflow, the clean-room install test for release
+  packages, and hard-won gotchas.
 - **[hud-shader.md](hud-shader.md)** — HUD shader architecture, render model,
   animation-contract properties, cleanup targets, and the IR/radar roadmap.
+- **[callouts.md](callouts.md)** — status callouts: constant on-screen-size labels anchored
+  to bones, one material for all of them; the `_CalloutOn*` contract and the mesh/UV contract.
 - **[rcs-thrusters.md](rcs-thrusters.md)** — the RCS thruster shader: the in-shader
   allocation, the vertex-colour channel budget, the FX layers, and a **Footguns** section
   that is worth reading before touching any of it.
@@ -19,6 +22,8 @@ Project documentation for the exegesis ncho VRChat avatar (Unity 2022.3.22f1, Bi
   baked LED map, the prototype shader and its debug/calibration controls.
 - **[animator-generation.md](animator-generation.md)** — the two generator tools, the animator
   invariants they encode, and what a migration to Animator As Code would have to preserve.
+- **[blender-addons.md](blender-addons.md)**: the Blender add-ons used on the `.blend`
+  sources, where to get them, and how to bring them forward after a Blender upgrade.
 - **[releasing.md](releasing.md)** — tag-triggered `.unitypackage` releases, what the
   package builder includes, and the Poiyomi must-be-unlocked rule and its pre-commit hook.
 - **[changelog/](changelog/)** — one Keep a Changelog file per released package

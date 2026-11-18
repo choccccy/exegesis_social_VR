@@ -26,7 +26,7 @@ MonoBehaviour:
     - name: 
     labels: []
   - name: Blushie
-    icon: {fileID: 2800000, guid: 322df2e1530b5cf4d980bb58d7fdf19d, type: 3}
+    icon: {fileID: 0}
     type: 102
     parameter:
       name: blushie

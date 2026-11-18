@@ -422,25 +422,31 @@ namespace Exegesis.RcsThruster.Tests
 
         // -------------------------------------------------------------------- the baseline
 
-        [Test]
-        public void CommittedController_MatchesGolden()
+        private static IEnumerable<FxController> AllControllers => FxControllers.All;
+
+        /// <summary>
+        /// One case per avatar. A missing baseline FAILS rather than being ignored: an ignored
+        /// test reads as fine in a summary, and a controller with no baseline is exactly how
+        /// lemaitre_fx and obi-me_fx drifted unnoticed in the first place.
+        /// </summary>
+        [TestCaseSource(nameof(AllControllers))]
+        public void CommittedController_MatchesGolden(FxController fx)
         {
-            var controller = ControllerSnapshotBaseline.LoadController();
-            Assert.IsNotNull(controller,
-                $"No AnimatorController at {ControllerSnapshotBaseline.ControllerPath}.");
+            var controller = ControllerSnapshotBaseline.LoadController(fx);
+            Assert.IsNotNull(controller, $"No AnimatorController at {fx.ControllerPath}.");
 
             if (ControllerSnapshotBaseline.CaptureRequested)
             {
-                ControllerSnapshotBaseline.Capture();
-                Assert.Ignore("Capture mode: rewrote the controller snapshot baseline. Review " +
-                              "the diff, then run again without capture to assert against it.");
+                ControllerSnapshotBaseline.Capture(fx);
+                Assert.Ignore($"Capture mode: rewrote {fx.BaselineAssetPath}. Review the diff, " +
+                              "then run again without capture to assert against it.");
             }
 
-            var baselinePath = ControllerSnapshotBaseline.BaselineFullPath;
-            if (!File.Exists(baselinePath))
-                Assert.Ignore($"No baseline at {ControllerSnapshotBaseline.BaselineAssetPath}. " +
-                              "Capture one with Tools > Exegesis > Debug > Capture Controller " +
-                              "Snapshot Baseline.");
+            var baselinePath = ControllerSnapshotBaseline.BaselineFullPath(fx);
+            Assert.IsTrue(File.Exists(baselinePath),
+                $"No baseline at {fx.BaselineAssetPath}. Every controller in FxControllers needs " +
+                "one. Capture with Tools > Exegesis > Debug > Capture Controller Snapshot " +
+                "Baselines, or headlessly with EXEGESIS_CAPTURE_SNAPSHOT=1.");
 
             var expected = ControllerSnapshotBaseline.Normalize(File.ReadAllText(baselinePath));
             var actual = ControllerSnapshotBaseline.Normalize(
@@ -448,10 +454,11 @@ namespace Exegesis.RcsThruster.Tests
 
             if (expected == actual) return;
 
-            Assert.Fail("The committed controller no longer matches its snapshot baseline.\n\n" +
+            Assert.Fail($"{fx.Name}: the committed controller no longer matches its snapshot " +
+                        "baseline.\n\n" +
                         SnapshotDiff.Describe(expected, actual) +
                         "\n\nIf this change was intended, re-bless with Tools > Exegesis > Debug " +
-                        "> Capture Controller Snapshot Baseline. If it was not, something " +
+                        "> Capture Controller Snapshot Baselines. If it was not, something " +
                         "changed the controller that should not have - the baseline covers the " +
                         "hand-built layers as well as the generated ones.");
         }

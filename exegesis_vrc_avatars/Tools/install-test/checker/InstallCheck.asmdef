@@ -1,0 +1,6 @@
+{
+    "name": "InstallCheck.Editor",
+    "includePlatforms": ["Editor"],
+    "references": [],
+    "autoReferenced": false
+}
