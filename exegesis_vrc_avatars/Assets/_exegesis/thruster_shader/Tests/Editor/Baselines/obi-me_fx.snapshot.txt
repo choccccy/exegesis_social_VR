@@ -3436,7 +3436,265 @@ controller
                 conditions (1)
                   [0] "eyeshadow" IfNot 0.000000
         subStateMachines (0)
-    [49] "slot_back"
+    [49] "manipulator_L"
+      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
+      stateMachine "manipulator_L"
+        defaultState="empty"
+        behaviours (0)
+        entryTransitions (0)
+        anyStateTransitions (0)
+        states (2)
+          state "[obi-me]_manipulator_close_L"
+            writeDefaultValues=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="GestureLeftWeight" timeParameterActive=True
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "[obi-me]_manipulator_close_L"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (24) objectCurves (0)
+              contentHash=e26689096651c68f88555daf7768523f
+            behaviours (0)
+            transitions (1)
+              [0] -> state "empty"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "GestureLeft" NotEqual 1.000000
+          state "empty"
+            writeDefaultValues=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "_Empty"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (1) objectCurves (0)
+              contentHash=f46b8671f54d768b1430f8942938a1a3
+            behaviours (0)
+            transitions (1)
+              [0] -> state "[obi-me]_manipulator_close_L"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "GestureLeft" Equals 1.000000
+        subStateMachines (0)
+    [50] "manipulator_R"
+      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
+      stateMachine "manipulator_R"
+        defaultState="empty"
+        behaviours (0)
+        entryTransitions (0)
+        anyStateTransitions (0)
+        states (2)
+          state "[obi-me]_manipulator_close_R"
+            writeDefaultValues=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="GestureRightWeight" timeParameterActive=True
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "[obi-me]_manipulator_close_R"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (24) objectCurves (0)
+              contentHash=29144a0387f123ab96ff7e106241d945
+            behaviours (0)
+            transitions (1)
+              [0] -> state "empty"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "GestureRight" NotEqual 1.000000
+          state "empty"
+            writeDefaultValues=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "_Empty"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (1) objectCurves (0)
+              contentHash=f46b8671f54d768b1430f8942938a1a3
+            behaviours (0)
+            transitions (1)
+              [0] -> state "[obi-me]_manipulator_close_R"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "GestureRight" Equals 1.000000
+        subStateMachines (0)
+    [51] "lock_manipulators_neutral"
+      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
+      stateMachine "lock_manipulators_neutral"
+        defaultState="[obi-me]_unlock_big_manipulators"
+        behaviours (0)
+        entryTransitions (0)
+        anyStateTransitions (0)
+        states (1)
+          state "[obi-me]_unlock_big_manipulators"
+            writeDefaultValues=True
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "[obi-me]_unlock_big_manipulators"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (4) objectCurves (0)
+              contentHash=25f1a233ead97ddf2c5a12120c553bb6
+            behaviours (0)
+            transitions (0)
+        subStateMachines (0)
+    [52] "lock_manipulator_L"
+      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
+      stateMachine "lock_manipulator_L"
+        defaultState="empty"
+        behaviours (0)
+        entryTransitions (0)
+        anyStateTransitions (0)
+        states (2)
+          state "empty"
+            writeDefaultValues=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "_Empty"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (1) objectCurves (0)
+              contentHash=f46b8671f54d768b1430f8942938a1a3
+            behaviours (0)
+            transitions (1)
+              [0] -> state "[obi-me]_lock_big_manipulator_L"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "lock_manipulator_L" If 0.000000
+          state "[obi-me]_lock_big_manipulator_L"
+            writeDefaultValues=True
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "[obi-me]_lock_big_manipulator_L"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (2) objectCurves (0)
+              contentHash=322985481449b4e07b520fbc6ac0b07e
+            behaviours (0)
+            transitions (1)
+              [0] -> state "empty"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "lock_manipulator_L" IfNot 0.000000
+        subStateMachines (0)
+    [53] "lock_manipulator_R"
+      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
+      stateMachine "lock_manipulator_R"
+        defaultState="empty"
+        behaviours (0)
+        entryTransitions (0)
+        anyStateTransitions (0)
+        states (2)
+          state "empty"
+            writeDefaultValues=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "_Empty"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (1) objectCurves (0)
+              contentHash=f46b8671f54d768b1430f8942938a1a3
+            behaviours (0)
+            transitions (1)
+              [0] -> state "[obi-me]_lock_big_manipulator_R"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "lock_manipulator_R" If 0.000000
+          state "[obi-me]_lock_big_manipulator_R"
+            writeDefaultValues=True
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "[obi-me]_lock_big_manipulator_R"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (2) objectCurves (0)
+              contentHash=99a0c84c399e308050f5ddcd4fb6cb3e
+            behaviours (0)
+            transitions (1)
+              [0] -> state "empty"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "lock_manipulator_R" IfNot 0.000000
+        subStateMachines (0)
+    [54] "lower_head_cam"
+      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
+      stateMachine "lower_head_cam"
+        defaultState="[obi-me]_upper_body"
+        behaviours (0)
+        entryTransitions (0)
+        anyStateTransitions (0)
+        states (2)
+          state "[obi-me]_upper_body"
+            writeDefaultValues=True
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "[obi-me]_upper_body"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (1) objectCurves (0)
+              contentHash=3eab08c952ba898098555cb1032bc333
+            behaviours (0)
+            transitions (1)
+              [0] -> state "[obi-me]_lower_body"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (2)
+                  [0] "lower_body" If 0.000000
+                  [1] "IsLocal" If 0.000000
+          state "[obi-me]_lower_body"
+            writeDefaultValues=True
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "[obi-me]_lower_body"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (1) objectCurves (0)
+              contentHash=12017a2bfd338e6c4238f110b215fc30
+            behaviours (0)
+            transitions (1)
+              [0] -> state "[obi-me]_upper_body"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "lower_body" IfNot 0.000000
+        subStateMachines (0)
+    [55] "slot_back"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "slot_back"
         defaultState="idle"
@@ -3508,7 +3766,7 @@ controller
                 conditions (1)
                   [0] "back_slot" NotEqual 2.000000
         subStateMachines (0)
-    [50] "slot_thigh"
+    [56] "slot_thigh"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "slot_thigh"
         defaultState="idle"
@@ -3580,7 +3838,7 @@ controller
                 conditions (1)
                   [0] "thigh_slot" NotEqual 2.000000
         subStateMachines (0)
-    [51] "slot_loadout"
+    [57] "slot_loadout"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "slot_loadout"
         defaultState="idle"
@@ -3903,7 +4161,7 @@ controller
                 conditions (1)
                   [0] "loadout" NotEqual 3.000000
         subStateMachines (0)
-    [52] "rcs_smooth"
+    [58] "rcs_smooth"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_smooth"
         defaultState="smooth"
@@ -4054,7 +4312,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [53] "rcs_pub_Velx"
+    [59] "rcs_pub_Velx"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_pub_Velx"
         defaultState="publish"
@@ -4087,7 +4345,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [54] "rcs_pub_VelSmoothedx"
+    [60] "rcs_pub_VelSmoothedx"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_pub_VelSmoothedx"
         defaultState="publish"
@@ -4120,7 +4378,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [55] "rcs_pub_Vely"
+    [61] "rcs_pub_Vely"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_pub_Vely"
         defaultState="publish"
@@ -4153,7 +4411,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [56] "rcs_pub_VelSmoothedy"
+    [62] "rcs_pub_VelSmoothedy"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_pub_VelSmoothedy"
         defaultState="publish"
@@ -4186,7 +4444,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [57] "rcs_pub_Velz"
+    [63] "rcs_pub_Velz"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_pub_Velz"
         defaultState="publish"
@@ -4219,7 +4477,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [58] "rcs_pub_VelSmoothedz"
+    [64] "rcs_pub_VelSmoothedz"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_pub_VelSmoothedz"
         defaultState="publish"
@@ -4252,7 +4510,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [59] "rcs_pub_AngVely"
+    [65] "rcs_pub_AngVely"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_pub_AngVely"
         defaultState="publish"
@@ -4285,7 +4543,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [60] "rcs_pub_AngVelSmoothedy"
+    [66] "rcs_pub_AngVelSmoothedy"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_pub_AngVelSmoothedy"
         defaultState="publish"
@@ -4318,7 +4576,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [61] "rcs_imu"
+    [67] "rcs_imu"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_imu"
         defaultState="imu"
@@ -4366,7 +4624,7 @@ controller
             behaviours (0)
             transitions (0)
         subStateMachines (0)
-    [62] "rcs_master"
+    [68] "rcs_master"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_master"
         defaultState="rcs_on"
@@ -4413,7 +4671,7 @@ controller
                 conditions (1)
                   [0] "rcs" IfNot 0.000000
         subStateMachines (0)
-    [63] "rcs_group_packs"
+    [69] "rcs_group_packs"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_group_packs"
         defaultState="packs_stowed"
@@ -4460,7 +4718,7 @@ controller
                 conditions (1)
                   [0] "back_slot" Equals 0.000000
         subStateMachines (0)
-    [64] "rcs_group_wings"
+    [70] "rcs_group_wings"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_group_wings"
         defaultState="wings_stowed"
@@ -4507,7 +4765,7 @@ controller
                 conditions (1)
                   [0] "wings_deployed" IfNot 0.000000
         subStateMachines (0)
-    [65] "rcs_group_thighs"
+    [71] "rcs_group_thighs"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
       stateMachine "rcs_group_thighs"
         defaultState="thighs_stowed"
@@ -4553,262 +4811,4 @@ controller
                 mute=False solo=False isExit=False
                 conditions (1)
                   [0] "thigh_slot" NotEqual 2.000000
-        subStateMachines (0)
-    [66] "manipulator_L"
-      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
-      stateMachine "manipulator_L"
-        defaultState="empty"
-        behaviours (0)
-        entryTransitions (0)
-        anyStateTransitions (0)
-        states (2)
-          state "[obi-me]_manipulator_close_L"
-            writeDefaultValues=False
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="GestureLeftWeight" timeParameterActive=True
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "[obi-me]_manipulator_close_L"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (24) objectCurves (0)
-              contentHash=e26689096651c68f88555daf7768523f
-            behaviours (0)
-            transitions (1)
-              [0] -> state "empty"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (1)
-                  [0] "GestureLeft" NotEqual 1.000000
-          state "empty"
-            writeDefaultValues=False
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="" timeParameterActive=False
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "_Empty"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=f46b8671f54d768b1430f8942938a1a3
-            behaviours (0)
-            transitions (1)
-              [0] -> state "[obi-me]_manipulator_close_L"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (1)
-                  [0] "GestureLeft" Equals 1.000000
-        subStateMachines (0)
-    [67] "manipulator_R"
-      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
-      stateMachine "manipulator_R"
-        defaultState="empty"
-        behaviours (0)
-        entryTransitions (0)
-        anyStateTransitions (0)
-        states (2)
-          state "[obi-me]_manipulator_close_R"
-            writeDefaultValues=False
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="GestureRightWeight" timeParameterActive=True
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "[obi-me]_manipulator_close_R"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (24) objectCurves (0)
-              contentHash=29144a0387f123ab96ff7e106241d945
-            behaviours (0)
-            transitions (1)
-              [0] -> state "empty"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (1)
-                  [0] "GestureRight" NotEqual 1.000000
-          state "empty"
-            writeDefaultValues=False
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="" timeParameterActive=False
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "_Empty"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=f46b8671f54d768b1430f8942938a1a3
-            behaviours (0)
-            transitions (1)
-              [0] -> state "[obi-me]_manipulator_close_R"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (1)
-                  [0] "GestureRight" Equals 1.000000
-        subStateMachines (0)
-    [68] "lock_manipulators_neutral"
-      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
-      stateMachine "lock_manipulators_neutral"
-        defaultState="[obi-me]_unlock_big_manipulators"
-        behaviours (0)
-        entryTransitions (0)
-        anyStateTransitions (0)
-        states (1)
-          state "[obi-me]_unlock_big_manipulators"
-            writeDefaultValues=True
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="" timeParameterActive=False
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "[obi-me]_unlock_big_manipulators"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (4) objectCurves (0)
-              contentHash=25f1a233ead97ddf2c5a12120c553bb6
-            behaviours (0)
-            transitions (0)
-        subStateMachines (0)
-    [69] "lock_manipulator_L"
-      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
-      stateMachine "lock_manipulator_L"
-        defaultState="empty"
-        behaviours (0)
-        entryTransitions (0)
-        anyStateTransitions (0)
-        states (2)
-          state "empty"
-            writeDefaultValues=False
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="" timeParameterActive=False
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "_Empty"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=f46b8671f54d768b1430f8942938a1a3
-            behaviours (0)
-            transitions (1)
-              [0] -> state "[obi-me]_lock_big_manipulator_L"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (1)
-                  [0] "lock_manipulator_L" If 0.000000
-          state "[obi-me]_lock_big_manipulator_L"
-            writeDefaultValues=True
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="" timeParameterActive=False
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "[obi-me]_lock_big_manipulator_L"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (2) objectCurves (0)
-              contentHash=322985481449b4e07b520fbc6ac0b07e
-            behaviours (0)
-            transitions (1)
-              [0] -> state "empty"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (1)
-                  [0] "lock_manipulator_L" IfNot 0.000000
-        subStateMachines (0)
-    [70] "lock_manipulator_R"
-      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
-      stateMachine "lock_manipulator_R"
-        defaultState="empty"
-        behaviours (0)
-        entryTransitions (0)
-        anyStateTransitions (0)
-        states (2)
-          state "empty"
-            writeDefaultValues=False
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="" timeParameterActive=False
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "_Empty"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=f46b8671f54d768b1430f8942938a1a3
-            behaviours (0)
-            transitions (1)
-              [0] -> state "[obi-me]_lock_big_manipulator_R"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (1)
-                  [0] "lock_manipulator_R" If 0.000000
-          state "[obi-me]_lock_big_manipulator_R"
-            writeDefaultValues=True
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="" timeParameterActive=False
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "[obi-me]_lock_big_manipulator_R"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (2) objectCurves (0)
-              contentHash=99a0c84c399e308050f5ddcd4fb6cb3e
-            behaviours (0)
-            transitions (1)
-              [0] -> state "empty"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (1)
-                  [0] "lock_manipulator_R" IfNot 0.000000
-        subStateMachines (0)
-    [71] "lower_head_cam"
-      defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
-      stateMachine "lower_head_cam"
-        defaultState="[obi-me]_upper_body"
-        behaviours (0)
-        entryTransitions (0)
-        anyStateTransitions (0)
-        states (2)
-          state "[obi-me]_upper_body"
-            writeDefaultValues=True
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="" timeParameterActive=False
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "[obi-me]_upper_body"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=3eab08c952ba898098555cb1032bc333
-            behaviours (0)
-            transitions (1)
-              [0] -> state "[obi-me]_lower_body"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (2)
-                  [0] "lower_body" If 0.000000
-                  [1] "IsLocal" If 0.000000
-          state "[obi-me]_lower_body"
-            writeDefaultValues=True
-            speed=1.000000 speedParameter="" speedParameterActive=False
-            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
-            timeParameter="" timeParameterActive=False
-            mirror=False mirrorParameter="" mirrorParameterActive=False
-            iKOnFeet=False tag=""
-            motion clip "[obi-me]_lower_body"
-              frameRate=60.000000 wrapMode=Default legacy=False
-              floatCurves (1) objectCurves (0)
-              contentHash=12017a2bfd338e6c4238f110b215fc30
-            behaviours (0)
-            transitions (1)
-              [0] -> state "[obi-me]_upper_body"
-                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
-                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=False
-                conditions (1)
-                  [0] "lower_body" IfNot 0.000000
         subStateMachines (0)
