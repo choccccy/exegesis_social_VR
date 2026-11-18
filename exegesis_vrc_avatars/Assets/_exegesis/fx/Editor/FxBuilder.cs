@@ -39,16 +39,28 @@ namespace Exegesis.Fx
         private const string LogPrefix = "[fx]";
 
         /// <summary>
-        /// Builds every generated layer into one controller. The tests call this on a scratch
-        /// copy; the menu item calls it on each committed controller.
+        /// Builds every generated layer into one controller, configured for the avatar `fx`
+        /// describes. The tests call this on a scratch copy; the menu item calls it on each
+        /// committed controller.
         /// </summary>
-        public static void Build(AnimatorController controller)
+        public static void Build(AnimatorController controller, FxController fx)
         {
             if (controller == null) throw new ArgumentNullException(nameof(controller));
+            if (fx == null) throw new ArgumentNullException(nameof(fx));
+
+            // Hand-built layers now written as code, from the avatar's definition. Each keeps
+            // its original position in the controller.
+            PortedLayers.Build(controller, Avatars.For(fx));
 
             // Slots first: that tool declares the ints the RCS group layers condition on.
             NchoSlotSetup.Build(controller);
             RcsAnimatorSetup.Build(controller);
+
+            // Last, so it covers every generator's clips. Without it the saved bytes depend on
+            // whether anything happened to read the clips before the next save.
+            AnimatorAssets.SyncEditorCurves(controller);
+            EditorUtility.SetDirty(controller);
+            AssetDatabase.SaveAssets();
         }
 
         /// <summary>
@@ -71,7 +83,7 @@ namespace Exegesis.Fx
                 }
 
                 Debug.Log($"{LogPrefix} {fx.Name}: building {fx.ControllerPath}");
-                Build(controller);
+                Build(controller, fx);
             }
 
             AssetDatabase.SaveAssets();

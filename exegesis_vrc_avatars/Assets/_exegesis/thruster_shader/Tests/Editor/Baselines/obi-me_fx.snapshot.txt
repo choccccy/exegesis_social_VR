@@ -3539,7 +3539,7 @@ controller
         anyStateTransitions (0)
         states (1)
           state "[obi-me]_unlock_big_manipulators"
-            writeDefaultValues=True
+            writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
             timeParameter="" timeParameterActive=False
@@ -3580,7 +3580,7 @@ controller
                 conditions (1)
                   [0] "lock_manipulator_L" If 0.000000
           state "[obi-me]_lock_big_manipulator_L"
-            writeDefaultValues=True
+            writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
             timeParameter="" timeParameterActive=False
@@ -3627,7 +3627,7 @@ controller
                 conditions (1)
                   [0] "lock_manipulator_R" If 0.000000
           state "[obi-me]_lock_big_manipulator_R"
-            writeDefaultValues=True
+            writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
             timeParameter="" timeParameterActive=False
@@ -3655,7 +3655,7 @@ controller
         anyStateTransitions (0)
         states (2)
           state "[obi-me]_upper_body"
-            writeDefaultValues=True
+            writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
             timeParameter="" timeParameterActive=False
@@ -3675,7 +3675,7 @@ controller
                   [0] "lower_body" If 0.000000
                   [1] "IsLocal" If 0.000000
           state "[obi-me]_lower_body"
-            writeDefaultValues=True
+            writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
             timeParameter="" timeParameterActive=False

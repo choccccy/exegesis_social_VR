@@ -15,6 +15,9 @@ namespace Exegesis.Shared
 
         public string BaselineAssetPath { get; }
 
+        // What the builder generates for an avatar lives in its AvatarDefinition
+        // (Exegesis.Fx, fx/Editor/Avatars), not here: this assembly has no AAC and no SDK.
+
         public FxController(string name, string controllerPath)
         {
             Name = name;

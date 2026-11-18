@@ -2,6 +2,8 @@
     "name": "Exegesis.Fx.Editor",
     "rootNamespace": "Exegesis.Fx",
     "references": [
+        "AnimatorAsCode.V1",
+        "Exegesis.Aac.Editor",
         "Exegesis.Shared.Editor",
         "Exegesis.RcsThruster.Editor",
         "Exegesis.Ncho.Editor"

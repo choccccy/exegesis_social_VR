@@ -94,7 +94,7 @@ controller
         anyStateTransitions (0)
         states (1)
           state "[lemaitre]_core_transparent 0"
-            writeDefaultValues=True
+            writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
             timeParameter="" timeParameterActive=False

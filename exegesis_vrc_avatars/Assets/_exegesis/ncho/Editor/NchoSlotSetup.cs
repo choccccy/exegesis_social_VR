@@ -38,11 +38,14 @@ namespace Exegesis.Ncho
     /// Idempotent, like RcsAnimatorSetup: it deletes and rebuilds anything named slot_*.
     /// Run through Tools > Exegesis > Build FX Controllers (Exegesis.Fx.FxBuilder).
     ///
-    /// Layers, states, transitions and drivers are built with Animator As Code. Four things are
+    /// Layers, states, transitions and drivers are built with Animator As Code. Three things are
     /// NOT, and each is documented where it appears: parameter declaration (AAC matches by name
     /// only and will leave a wrongly-typed parameter alone), layer teardown (AAC's clear-in-place
-    /// leaks the sub-assets it detaches), the wing_deploy surgery (not expressible in AAC at
-    /// all), and sub-asset cleanup.
+    /// leaks the sub-assets it detaches), and sub-asset cleanup.
+    ///
+    /// It used to also strip `rcs` out of the hand-built wing_deploy layer on every build.
+    /// wing_deploy is now generated (CommonLayers.WingDeploy in Exegesis.Fx) without that condition, so
+    /// the surgery is gone.
     ///
     /// Deliberately a separate assembly from Exegesis.RcsThruster.Editor. This one needs the
     /// SDK for VRCAvatarParameterDriver, and docs/rcs-thrusters.md records why the shader
@@ -113,9 +116,6 @@ namespace Exegesis.Ncho
         {
             "thruster_backpack", "arm_backpack", "thigh_hard-cases", "thigh_thrusters",
         };
-
-        private const string WingLayer = "wing_deploy";
-        private const string MasterParam = "rcs";
 
         private struct Member
         {
@@ -229,9 +229,9 @@ namespace Exegesis.Ncho
         // condition on - and does so for every avatar's controller, not just ncho's.
 
         /// <summary>
-        /// Rebuilds every slot_* layer in the given controller, removes the hand-built layers it
-        /// replaced, and decouples wing_deploy from `rcs`. FxBuilder passes each committed
-        /// controller; the tests pass a scratch copy.
+        /// Rebuilds every slot_* layer in the given controller and removes the hand-built layers
+        /// it replaced. FxBuilder passes each committed controller; the tests pass a scratch
+        /// copy.
         /// </summary>
         public static void Build(AnimatorController controller)
         {
@@ -252,8 +252,6 @@ namespace Exegesis.Ncho
             foreach (var slot in Slots) BuildSlotLayer(aac, controller, slot);
             BuildLoadoutLayer(aac, controller);
 
-            var wings = DecoupleWingsFromRcs(controller);
-
             // AAC creates one throwaway empty clip per layer as the default motion for its
             // states. Every state here overrides it, so they end up unreferenced; the sweep is
             // what stops them piling up in the committed asset.
@@ -269,9 +267,7 @@ namespace Exegesis.Ncho
                 l => l.name != null && l.name.StartsWith(LayerPrefix));
             Debug.Log($"{LogPrefix} Rebuilt {slotLayers} '{LayerPrefix}*' layers in " +
                       $"{AssetDatabase.GetAssetPath(controller)}. " +
-                      $"Removed {legacyRemoved} legacy accessory layer(s). " +
-                      $"wing_deploy: dropped {wings.Transitions} '{MasterParam}' transition(s) and " +
-                      $"{wings.Conditions} '{MasterParam}' condition(s).");
+                      $"Removed {legacyRemoved} legacy accessory layer(s).");
         }
 
         /// <summary>
@@ -488,75 +484,6 @@ namespace Exegesis.Ncho
             }
 
             layer.StateMachine.WithDefaultState(idle);
-        }
-
-        // ------------------------------------------------------------------- wings
-
-        /// <summary>
-        /// Removes `rcs` from the hand-built wing_deploy layer so the wings answer to
-        /// wings_deployed alone.
-        ///
-        /// Why: rcs defaults to 1 and is not saved, so it was 1 on every load, and
-        /// wing_deploy entered its deployed state on `wings_deployed OR rcs`. The wings were
-        /// therefore always physically out - while rcs_group_wings gates the wing PLUMES on
-        /// wings_deployed alone, which defaults to 0. Wings out, plumes silent, every load.
-        ///
-        /// The dangerous part, and the reason this is code rather than a hand edit: a
-        /// transition whose conditions are all removed is ALWAYS TRUE. Stripping `rcs` from
-        /// the standalone `If rcs` entry transition would leave an unconditional transition
-        /// into the deployed state, which is strictly worse than the bug being fixed. So a
-        /// transition that ends up with no conditions is deleted outright, and only
-        /// transitions with other conditions surviving are edited in place.
-        ///
-        /// Stays hand-written: this edits a layer NEITHER tool owns, and AAC has no vocabulary
-        /// for "modify what is already there" - everything it touches, it rebuilds.
-        /// </summary>
-        private static (int Transitions, int Conditions) DecoupleWingsFromRcs(AnimatorController c)
-        {
-            var layer = c.layers.FirstOrDefault(l => l.name == WingLayer);
-            if (layer == null || layer.stateMachine == null)
-            {
-                Debug.LogWarning($"{LogPrefix} Layer '{WingLayer}' not found; skipped decoupling " +
-                                 $"'{MasterParam}' from the wings.");
-                return (0, 0);
-            }
-
-            int transitions = 0, conditions = 0;
-            var sm = layer.stateMachine;
-
-            foreach (var t in sm.anyStateTransitions.ToArray())
-            {
-                var r = StripParam(t, MasterParam);
-                if (r == Strip.Deleted) { sm.RemoveAnyStateTransition(t); transitions++; }
-                else if (r == Strip.Edited) conditions++;
-            }
-
-            foreach (var child in sm.states)
-            {
-                var state = child.state;
-                if (state == null) continue;
-
-                foreach (var t in state.transitions.ToArray())
-                {
-                    var r = StripParam(t, MasterParam);
-                    if (r == Strip.Deleted) { state.RemoveTransition(t); transitions++; }
-                    else if (r == Strip.Edited) conditions++;
-                }
-            }
-
-            return (transitions, conditions);
-        }
-
-        private enum Strip { Untouched, Edited, Deleted }
-
-        private static Strip StripParam(AnimatorStateTransition t, string param)
-        {
-            var kept = t.conditions.Where(x => x.parameter != param).ToArray();
-            if (kept.Length == t.conditions.Length) return Strip.Untouched;
-            if (kept.Length == 0) return Strip.Deleted;
-
-            t.conditions = kept;
-            return Strip.Edited;
         }
     }
 }

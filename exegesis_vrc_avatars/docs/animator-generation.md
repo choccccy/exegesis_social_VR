@@ -48,27 +48,88 @@ first build, so the first rebuild's diff can be reviewed rather than just accept
 
 ### Layer order
 
-The generators delete their layers and append fresh ones, so generated layers always end up
-**after** every hand-built layer. Layer order matters in FX: when two layers write the same
+The slot and RCS generators delete their layers and append fresh ones, so those layers always
+end up **after** every hand-built layer. Ported layers are different: each one is put back at
+the index the hand-built original had (`ExegesisAac.MoveLayer`), because a port must not change
+behaviour. Layer order matters in FX: when two layers write the same
 property, the lower one wins. Today the generated layers only write `Body`/`Props` material
 properties and their own animator parameters, and no hand-built layer touches those, so the
 order makes no difference to behaviour. This is how obi-me's first build moved its six
 hand-built manipulator / head-cam layers above the generated block with no behavioural change.
 Once the builder owns a whole controller, layer order becomes explicit in code.
 
-## The two generators
+## The generators
 
 | Tool | Owns | Assembly |
 |---|---|---|
+| Tool | Owns | Assembly |
+|---|---|---|
+| `PortedLayers.cs` + the avatar definitions | every layer listed in an `AvatarDefinition` | `Exegesis.Fx.Editor` |
 | `NchoSlotSetup.cs` | every layer named `slot_*` | `Exegesis.Ncho.Editor` |
 | `RcsAnimatorSetup.cs` | every layer named `rcs_*` | `Exegesis.RcsThruster.Editor` |
 
-Neither has a menu item of its own any more; both run through the builder.
+None has a menu item of its own; all run through the builder, in the order above.
 
-**Slots run first, then RCS.** The slot tool declares the `back_slot` / `thigh_slot` ints that
-the RCS group layers condition on. `FxBuilder.Build` encodes that order. Everything else in each
-controller — panels, face, tail, `props_neutral`, `wing_deploy` — is still hand-built and must
-not be touched by either tool, with one deliberate exception noted below.
+**Slots run before RCS.** The slot tool declares the `back_slot` / `thigh_slot` ints that the
+RCS group layers condition on. `FxBuilder.Build` encodes that order. Whatever is left in each
+controller is still hand-built (see the table below) and must not be touched by any tool, with
+one deliberate exception noted further down.
+
+### Avatar definitions and ported layers
+
+A **ported layer** is a hand-built layer that is now written as code. Each avatar has a
+definition in `Assets/_exegesis/fx/Editor/Avatars/`, which lists its ported layers in controller
+order, so the file reads like the Animator window's layer list:
+
+| File | What's in it |
+|---|---|
+| `NchoAvatar.cs`, `LemaitreAvatar.cs`, `ObiMeAvatar.cs` | One avatar each: its layer list, plus any layers only it has (obi-me's manipulators, for example) |
+| `CommonLayers.cs` | Layers more than one avatar has. Where avatars differ, the difference is an argument (a clip, a speed) |
+| `Clips.cs` | Clip paths by folder |
+| `../LayerSpec.cs` | The data model: states, transitions in evaluation order, default state. Also the two common shapes, `Shapes.Neutral` and `Shapes.Toggle` |
+| `../PortedLayers.cs` | Turns specs into layers with AAC |
+
+A layer reads like this:
+
+```csharp
+new LayerSpec("HUD")
+    .State("HUD_off", Clips.Hud("HUD_off"))
+    .State("HUD_on", Clips.Hud("HUD_on"))
+    .Go("HUD_off", "HUD_on", 0f, If("IsLocal"), If("hud"))
+    .Go("HUD_on", "HUD_off", 0f, IfNot("IsLocal"))
+    .Go("HUD_on", "HUD_off", 0f, IfNot("hud"))
+    .Default("HUD_off");
+```
+
+To change a ported layer, edit its spec and run the builder. **Don't edit it in the Animator
+window**, because the next build replaces it.
+
+**Rules for porting.** The controller snapshot must not change: the port reproduces the original
+exactly (state order, transition order, durations, even `exitTime` where `hasExitTime` is off)
+and keeps its layer index. `PortedLayers` handles the index by noting where every ported layer
+was, removing them, building them, and reinserting in ascending index order. Behaviour changes
+come afterwards, as their own reviewable diff. The one exception so far was approved in
+advance: Write Defaults (see the invariant below).
+
+Before touching the controller, `PortedLayers` validates every spec: missing clips, unknown
+states, duplicate names, a missing default state. If anything is wrong it changes nothing and
+logs why. `AvatarDefinitionTests` reports the same problems as test failures.
+
+**What's ported (per avatar, about 40 layers):** `base`, every `*_neutral` baseline,
+`vent_glow`, `water_level`, `overlay_open`, `batt_indicator`, the panel `*_off` layers (obi-me:
+`cage_off`, `bells_off`), `pouches`, `hard-case_mounts`, `arm_hard-cases`, `wing_deploy`,
+`vertex_rounding`, `audiolink`, `floor_collider`, `HUD`, `transponder`, the eight `*_touch`
+layers, `eyeshadow`, and obi-me's manipulator and head-cam layers.
+
+**Still hand-built:** `blink`, `tool_holstering`, `blushie`, the heat system (`heat_radiation`,
+`talking_heat_add`, `heat_integral`, `prox_heat_add`, `evil_heat_add`, `batt_control`), `eyes`,
+`ears`, `tail_state`, `panel_tool_control`.
+
+`wing_deploy` answers to `wings_deployed` and never to `rcs` (see
+[accessories.md](accessories.md#the-rcs--wings-decoupling)). That used to be enforced by
+surgery on the hand-built layer at every build; now the condition is simply never written, and
+`WingDeployTests` guards it. ncho's version has the contact-sensor "wings up" state; lemaitre's
+and obi-me's are stowed / deployed only.
 
 Two assemblies on purpose: `NchoSlotSetup` needs the VRChat SDK for `VRCAvatarParameterDriver`,
 and the shader tooling must not take an SDK dependency — a version bump would otherwise break
@@ -92,20 +153,12 @@ because its old name was no longer in the list the teardown consulted.
 
 ### The one exception to "owns only its prefix"
 
-`NchoSlotSetup` also, deliberately:
+`NchoSlotSetup` also, deliberately, **deletes** the four hand-built layers it replaced
+(`thruster_backpack`, `arm_pack`, `thigh_hard-cases`, `thigh_thrusters`). This is one-way and
+logged, and their clips are kept and reused.
 
-- **deletes** the four hand-built layers it replaced (`thruster_backpack`, `arm_pack`,
-  `thigh_hard-cases`, `thigh_thrusters`) — one-way, and their clips are retained and reused;
-- **edits** the hand-built `wing_deploy` layer to strip `rcs` from its conditions.
-
-Both are logged. The `wing_deploy` edit is code rather than a hand edit for one reason: **a
-transition whose conditions are all removed is always true.** Stripping `rcs` from the
-standalone `If rcs` entry transition would leave an unconditional path into the deployed state —
-strictly worse than the bug being fixed. The tool deletes a transition left with no conditions
-and only edits in place when other conditions survive.
-
-This stays hand-written. AAC has no vocabulary for "modify what is already there"; everything it
-touches, it rebuilds.
+It used to also edit the hand-built `wing_deploy` layer in place to strip `rcs`. That is gone:
+`wing_deploy` is generated now (see Ported layers).
 
 ## The invariants
 
@@ -127,7 +180,13 @@ Two consequences that have each cost real time:
   through to `props_neutral`'s hidden values. This is why slots have no state for 0.
 
 `ExegesisDefaultsProvider` passes `writeDefaults: false` to AAC, which applies it to every state
-it creates.
+it creates. `LayerSpec` deliberately has no option to turn it on. `WriteDefaultsTests` checks
+every state in every controller, hand-built ones included. → `WriteDefaultsTests`
+
+Until the November 2026 ports this wasn't actually true everywhere. lemaitre's `base` state and
+five obi-me states (`lock_manipulators_neutral`, `lock_manipulator_L/R`, both `lower_head_cam`
+states) were ON. They were switched off when those layers moved to code, and still need
+checking in game.
 
 ### Every generated clip writes something
 

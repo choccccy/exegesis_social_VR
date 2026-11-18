@@ -174,6 +174,27 @@ namespace Exegesis.Aac
             return removed;
         }
 
+        /// <summary>
+        /// Moves the named layer to the given index, shifting the others along.
+        ///
+        /// For ported hand-built layers. AAC only ever appends (the teardown above makes sure
+        /// of that), but layer order is behaviour - a later layer wins a conflicting property -
+        /// so a port has to put its layer back exactly where the hand-built one was. Safe only
+        /// while nothing addresses layers by index; the controllers have no synced layers and
+        /// no layer-control behaviours.
+        /// </summary>
+        public static void MoveLayer(AnimatorController controller, string name, int index)
+        {
+            var layers = new System.Collections.Generic.List<AnimatorControllerLayer>(controller.layers);
+            int from = layers.FindIndex(l => l.name == name);
+            if (from < 0 || from == index) return;
+
+            var layer = layers[from];
+            layers.RemoveAt(from);
+            layers.Insert(System.Math.Min(index, layers.Count), layer);
+            controller.layers = layers.ToArray();
+        }
+
         private static void DestroyStateMachine(AnimatorStateMachine sm)
         {
             if (sm == null) return;

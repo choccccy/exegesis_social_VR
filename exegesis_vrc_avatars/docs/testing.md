@@ -51,7 +51,10 @@ time. See [animator-generation.md](animator-generation.md) for what each invaria
 | `SlotParameterTests.cs` | Slot layers exist, slot ints are typed `Int`, gates use `Equals`/`NotEqual` only, the 0.25 s fade with `hasFixedDuration`, swaps route through `idle`, Write Defaults off, no two members share a value. |
 | `GeneratedClipTests.cs` | Every generated clip writes at least one curve, and each `_GroupEnable` gate pair drives its component to both 0 and 1 on **both** `Body` and `Props`. |
 | `ControllerSnapshotTests.cs` | Each committed FX controller matches its golden snapshot (one case per avatar in `FxControllers`), **and** the snapshot itself can detect each of 17 specific breakages. |
-| `GeneratorIdempotenceTests.cs` | Rebuilding each committed controller reproduces it exactly (one case per avatar), and rebuilding twice does not grow the file. |
+| `GeneratorIdempotenceTests.cs` | Rebuilding each committed controller reproduces it exactly (one case per avatar), rebuilding twice does not grow the file, and a fresh build saves generated clips with their editor curves written out (so the file doesn't change the next time anything saves it). |
+| `WingDeployTests.cs` | No avatar's `wing_deploy` conditions on `rcs`, which would deploy the wings on every load with their plumes off. |
+| `WriteDefaultsTests.cs` | Every state in every FX controller is Write Defaults OFF, hand-built layers included. |
+| `AvatarDefinitionTests.cs` | Every controller has an avatar definition, and every layer spec in it is valid (clips exist, states and default resolve, no duplicate names). |
 
 ### The controller snapshot
 

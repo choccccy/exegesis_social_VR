@@ -78,7 +78,7 @@ namespace Exegesis.RcsThruster.Tests
             var rebuilt = AssetDatabase.LoadAssetAtPath<AnimatorController>(rebuiltPath);
             Assert.IsNotNull(rebuilt, "The scratch copy did not load.");
 
-            FxBuilder.Build(rebuilt);
+            FxBuilder.Build(rebuilt, fx);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.ImportAsset(rebuiltPath,
@@ -173,6 +173,41 @@ namespace Exegesis.RcsThruster.Tests
         }
 
         /// <summary>
+        /// A fresh build saves every generated clip with its editor curves written out.
+        ///
+        /// Reads the saved file as text on purpose. Once anything reads a clip through the
+        /// editor APIs, Unity fills its editor curves in memory, so an in-memory check would
+        /// pass while the file on disk still had them empty. That is exactly the gap that made
+        /// the committed controllers flip between two forms depending on whether anything
+        /// happened to save them after the build. See AnimatorAssets.SyncEditorCurves.
+        ///
+        /// Mirrors the menu item exactly - build, save, read the file - so that nothing the test
+        /// does after the build can be what writes the curves out.
+        /// </summary>
+        [Test]
+        public void FreshBuild_SavesGeneratedClipsWithEditorCurves()
+        {
+            var path = $"{Scratch}/editor_curves.controller";
+            Assert.IsTrue(AssetDatabase.CopyAsset(FxControllers.Ncho.ControllerPath, path),
+                          $"Could not copy the committed controller to {path}.");
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(path);
+            Assert.IsNotNull(controller, $"Copy at {path} did not load.");
+
+            FxBuilder.Build(controller, FxControllers.Ncho);
+            AssetDatabase.SaveAssets();
+
+            var text = File.ReadAllText(path);
+
+            int empty = text.Split('\n').Count(l => l.TrimEnd('\r') == "  m_EditorCurves: []");
+
+            Assert.AreEqual(0, empty,
+                $"{empty} generated clip(s) were saved with empty editor curves. The committed " +
+                "controller will then churn the next time anything saves it. FxBuilder.Build " +
+                "must end with AnimatorAssets.SyncEditorCurves.");
+        }
+
+        /// <summary>
         /// Every generated curve binds either an Animator parameter at the empty path, or a
         /// material property on one of the two renderers carrying thrusters.mat.
         ///
@@ -224,7 +259,7 @@ namespace Exegesis.RcsThruster.Tests
             var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(path);
             Assert.IsNotNull(controller, $"Copy at {path} did not load.");
 
-            FxBuilder.Build(controller);
+            FxBuilder.Build(controller, FxControllers.Ncho);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.ImportAsset(path,
@@ -248,7 +283,7 @@ namespace Exegesis.RcsThruster.Tests
             var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(controllerPath);
             Assert.IsNotNull(controller, $"Controller at {controllerPath} did not load.");
 
-            FxBuilder.Build(controller);
+            FxBuilder.Build(controller, FxControllers.Ncho);
 
             AssetDatabase.SaveAssets();
             AssetDatabase.ImportAsset(controllerPath,

@@ -216,11 +216,14 @@ defaults to 1 and is not saved, it was 1 on every load, so the wings were **alwa
 deployed** — while `rcs_group_wings` gates the wing plumes on `wings_deployed` alone, which
 defaults to 0. Wings out, plumes silent, every load.
 
-The tool removes `rcs` from that layer. The subtle part, and the reason it is code rather than a
-hand edit: **a transition whose conditions are all removed is always true.** Stripping `rcs`
-from the standalone `If rcs` entry transition would leave an unconditional transition into the
-deployed state — strictly worse than the bug. So a transition left with no conditions is deleted
-outright, and only transitions with other conditions surviving are edited in place.
+The fix was first applied as surgery: the slot tool stripped `rcs` from the hand-built layer at
+every build. `wing_deploy` is now generated (`CommonLayers.WingDeploy` in `Exegesis.Fx`, see
+[animator-generation.md](animator-generation.md#ported-layers)) and simply never writes an `rcs`
+condition. `WingDeployTests` fails if one ever comes back.
+
+If you hand-edit a transition like this anywhere else, remember the trap the surgery had to
+handle: **a transition whose conditions are all removed is always true.** Stripping the only
+condition from a transition doesn't disable it; it makes it unconditional.
 
 `wings_deployed` also gained the menu control it never had.
 

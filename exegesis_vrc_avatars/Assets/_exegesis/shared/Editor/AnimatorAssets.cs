@@ -94,6 +94,45 @@ namespace Exegesis.Shared
         }
 
         /// <summary>
+        /// Writes each generated clip's editor curves explicitly, so a fresh build saves the
+        /// same bytes that any later save would.
+        ///
+        /// Animator As Code writes curves with AnimationClip.SetCurve, which fills only the
+        /// runtime curves (m_FloatCurves). A clip's editor curves (m_EditorCurves) are a second
+        /// copy that Unity fills lazily, in memory, the first time anything reads the clip
+        /// through the editor APIs: the Animation window, a snapshot, a test. Filling them does
+        /// not dirty the asset, so a fresh build saves them empty - and then the next save of
+        /// the controller for ANY reason, such as touching a hand-built layer in the Animator
+        /// window, writes them out populated. Behaviour is identical either way; the diff is
+        /// not. Every generated clip flipped back and forth depending on what happened after
+        /// the build rather than on what the build did.
+        ///
+        /// Populated is the state everything converges to, so the build produces it directly.
+        /// Only clips stored inside the controller file are touched: hand-authored .anim
+        /// clips are not the build's to rewrite.
+        /// </summary>
+        public static int SyncEditorCurves(AnimatorController controller)
+        {
+            var controllerPath = AssetDatabase.GetAssetPath(controller);
+            int synced = 0;
+
+            foreach (var clip in ClipsReachableFrom(controller, ""))
+            {
+                if (AssetDatabase.GetAssetPath(clip) != controllerPath) continue;
+
+                var bindings = AnimationUtility.GetCurveBindings(clip);
+                if (bindings.Length == 0) continue;
+
+                var curves = bindings.Select(b => AnimationUtility.GetEditorCurve(clip, b)).ToArray();
+                AnimationUtility.SetEditorCurves(clip, bindings, curves);
+                EditorUtility.SetDirty(clip);
+                synced++;
+            }
+
+            return synced;
+        }
+
+        /// <summary>
         /// Every distinct AnimationClip reachable from the layers whose name starts with the
         /// given prefix, including clips nested inside blend trees.
         ///
