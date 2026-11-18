@@ -139,10 +139,10 @@ The fade happens downstream when the slot layers react to the ints it writes.
 > multiplies the finished throttle, so giving those transitions a duration would fade plume
 > brightness in step — see [rcs-thrusters.md](rcs-thrusters.md) ▸ Visibility groups.
 
-The tool also removes the four hand-built layers it replaces (`thruster_backpack`, `arm_pack`,
-`thigh_hard-cases`, `thigh_thrusters`). Their clips are ordinary asset files, reused unchanged
-by the new states, so nothing is lost — but the layer removal is one-way, so rely on git rather
-than on re-running the tool.
+The slots replaced four hand-built layers (`thruster_backpack`, `arm_pack`, `thigh_hard-cases`,
+`thigh_thrusters`) and the four bools they rode on. The layers are gone, their clips are reused
+unchanged by the slot states, and the bools were removed in November 2026 (see
+`CommonParameters.Retired`).
 
 ### Presets, and the bug not to copy
 
@@ -218,7 +218,7 @@ defaults to 0. Wings out, plumes silent, every load.
 
 The fix was first applied as surgery: the slot tool stripped `rcs` from the hand-built layer at
 every build. `wing_deploy` is now generated (`CommonLayers.WingDeploy` in `Exegesis.Fx`, see
-[animator-generation.md](animator-generation.md#ported-layers)) and simply never writes an `rcs`
+[animator-generation.md](animator-generation.md#notes-on-particular-layers)) and simply never writes an `rcs`
 condition. `WingDeployTests` fails if one ever comes back.
 
 If you hand-edit a transition like this anywhere else, remember the trap the surgery had to
@@ -248,17 +248,18 @@ believes is a `Bool` never matches, so a half-retyped parameter leaves layers si
    `[props]_neutral.anim` as **1** if it is not already there.
 3. Add a `Props(<value>, "<name>")` entry to the slot's `Members` table in `NchoSlotSetup.cs`,
    using a **new** value. Transitions and the fade are wired for you.
-4. Add a Toggle to the slot's submenu with that value.
-5. Re-run both generators, in order.
+4. Add a Toggle with that value to the slot's submenu: `back` or `thighs` in
+   `NchoAvatar.Expressions()` (`fx/Editor/Avatars/NchoAvatar.cs`).
+5. Run `Tools > Exegesis > Build FX Controllers`, then the test loop in
+   [working-on-the-animators.md](working-on-the-animators.md#the-loop).
 6. If it carries thrusters, paint the plume vertex green for a group and extend the RCS gate —
    see [rcs-thrusters.md](rcs-thrusters.md).
 
-A whole new mount point additionally needs a new int in `ncho_params.asset`, a new `Slot` entry,
-and a submenu.
+A whole new mount point additionally needs a new int in the expression parameters
+(`CommonExpressions.Parameters`), a new `Slot` entry, and a submenu in the avatar's `Expressions()`.
 
 ## Known dead entries
 
-Found while surveying, left alone: `ncho_config_menu` has a `snub` control with an empty
-parameter and a `Page 2 (snub)` submenu pointing at `fileID: 0`, plus a Toggle on
-`vertex_rounding` that also carries a `subMenu` guid and a `subParameters` entry (malformed but
-harmless). `ncho_tail_menu` duplicates the `Tail in Hand` control that the gear menu also has.
+The menus have a few placeholders, kept as they were: Config's parameterless `snub` toggle and
+empty `Page 2 (snub)` submenu, and Vertex Rounding's leftover sub-parameter. The full list is in
+[animator-generation.md ▸ Expression parameters and menus](animator-generation.md#expression-parameters-and-menus).

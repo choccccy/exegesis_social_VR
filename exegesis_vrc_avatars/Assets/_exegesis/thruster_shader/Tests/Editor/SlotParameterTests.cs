@@ -103,6 +103,11 @@ namespace Exegesis.RcsThruster.Tests
 
             foreach (var retired in RetiredParams)
             {
+                // Removed outright in November 2026, once the expression parameters and menus
+                // were generated and confirmed not to reference them either.
+                if (c.parameters.Any(p => p.name == retired))
+                    problems.Add($"retired parameter '{retired}' is declared again.");
+
                 var users = c.layers
                     .Where(l => Transitions(l).Any(t => t.conditions.Any(x => x.parameter == retired)))
                     .Select(l => l.name)

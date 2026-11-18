@@ -38,9 +38,9 @@ Shader "Exegesis/ncho LED Eyes (proto)"
         [Enum(Off,0,Chevron,1,Blink Off Frame,2,Face Vertical,3,Lit Mask,4)] _DebugView ("Debug View", Float) = 0
 
         [Header(Calibration)]
-        [ToggleUI] _SwapSides ("Swap Sides (texture-left is ncho right)", Float) = 0
-        [ToggleUI] _UpFlipL ("Flip Up Direction  Left", Float) = 0
-        [ToggleUI] _UpFlipR ("Flip Up Direction  Right", Float) = 1
+        [ToggleUI] _SwapSides ("Swap Sides (off = texture-left half is ncho right)", Float) = 0
+        [ToggleUI] _UpFlipTexL ("Flip Up Direction  texture-left half (ncho right)", Float) = 0
+        [ToggleUI] _UpFlipTexR ("Flip Up Direction  texture-right half (ncho left)", Float) = 1
         _GazeXDeadzone ("Gaze X Deadzone", Range(0, 1)) = 0.25
         _GazeYMaxShift ("Gaze Y Max Shift (texels, 2 per LED)", Range(0, 8)) = 2
 
@@ -76,7 +76,7 @@ Shader "Exegesis/ncho LED Eyes (proto)"
 
             float _EyeLidL, _EyeLidR, _EyeSquintL, _EyeSquintR, _EyeX, _EyeY, _EyeTrackingActive;
             float _DbgOverride, _DbgLinkEyes, _DbgLidL, _DbgSquintL, _DbgLidR, _DbgSquintR, _DbgX, _DbgY, _DbgTrackingActive, _DebugView;
-            float _SwapSides, _UpFlipL, _UpFlipR, _GazeXDeadzone, _GazeYMaxShift;
+            float _SwapSides, _UpFlipTexL, _UpFlipTexR, _GazeXDeadzone, _GazeYMaxShift;
             float _LidOpenAt, _LidStep, _SquintOn, _SquintFull;
 
             struct appdata { float4 vertex : POSITION; float3 normal : NORMAL; float2 uv : TEXCOORD0; };
@@ -116,7 +116,7 @@ Shader "Exegesis/ncho LED Eyes (proto)"
             NchoEyeSettings GatherSettings()
             {
                 NchoEyeSettings s;
-                s.swapSides = _SwapSides; s.upFlipL = _UpFlipL; s.upFlipR = _UpFlipR;
+                s.swapSides = _SwapSides; s.upFlipTexL = _UpFlipTexL; s.upFlipTexR = _UpFlipTexR;
                 s.gazeXDeadzone = _GazeXDeadzone; s.gazeYMaxShift = _GazeYMaxShift;
                 s.lidOpenAt = _LidOpenAt; s.lidStep = _LidStep;
                 s.squintOn = _SquintOn; s.squintFull = _SquintFull;

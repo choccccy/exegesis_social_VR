@@ -106,6 +106,35 @@ namespace Exegesis.RcsThruster.Tests
         }
 
         /// <summary>
+        /// The builder empties the controller and puts back only what code declares, so a layer
+        /// or parameter added by hand in the Animator window would vanish on the next build. It
+        /// must refuse instead, naming what it found, and leave the controller exactly as it was.
+        /// </summary>
+        [TestCase("layer")]
+        [TestCase("parameter")]
+        public void Build_RefusesAndChangesNothing_WhenTheControllerHasSomethingUndeclared(string what)
+        {
+            var path = $"{Scratch}/undeclared_{what}.controller";
+            Assert.IsTrue(AssetDatabase.CopyAsset(FxControllers.Ncho.ControllerPath, path),
+                          $"Could not copy the committed controller to {path}.");
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+            var controller = AssetDatabase.LoadAssetAtPath<AnimatorController>(path);
+
+            const string name = "added_in_the_animator_window";
+            if (what == "layer") controller.AddLayer(name);
+            else controller.AddParameter(name, AnimatorControllerParameterType.Bool);
+
+            var before = ControllerSnapshot.Of(controller, ControllerSnapshot.Detail.Compact);
+
+            var e = Assert.Throws<System.InvalidOperationException>(
+                () => FxBuilder.Build(controller, FxControllers.Ncho));
+            StringAssert.Contains(name, e.Message, "The refusal should name what it found.");
+
+            Assert.AreEqual(before, ControllerSnapshot.Of(controller, ControllerSnapshot.Detail.Compact),
+                            "The builder changed the controller even though it refused to build.");
+        }
+
+        /// <summary>
         /// Rebuilding must not grow the controller file.
         ///
         /// This is the one failure ControllerSnapshot cannot see, and it is worth being explicit

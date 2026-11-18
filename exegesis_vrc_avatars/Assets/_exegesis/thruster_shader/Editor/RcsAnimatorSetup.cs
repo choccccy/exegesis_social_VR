@@ -13,9 +13,9 @@ namespace Exegesis.RcsThruster
     /// Builds the RCS layers into ncho_fx.controller.
     ///
     /// This is a script rather than hand-edited YAML because the controller carries dozens of
-    /// layers; surgery on that by hand is how GUIDs get mangled. It is also idempotent - it
-    /// deletes and rebuilds anything named rcs_* - so it can be re-run after tweaking the
-    /// constants below.
+    /// layers; surgery on that by hand is how GUIDs get mangled. The builder empties the
+    /// controller before every run, so re-running it is how a change to the constants below
+    /// is applied.
     ///
     /// What it creates:
     ///   rcs_smooth     - exponential lag copies of the built-in locomotion params
@@ -100,9 +100,9 @@ namespace Exegesis.RcsThruster
         private const string SuffixGroupWings = "group_wings";
         private const string SuffixGroupThighs = "group_thighs";
 
-        // Teardown matches on PREFIX, not an explicit list. An earlier rename left the
-        // old layer orphaned in the controller because its name was no longer in the
-        // list that the teardown consulted - prefix matching makes renames safe.
+        // Every layer this tool makes, the debug probes included, starts with this. The builder
+        // treats the prefix as this tool's: such layers may exist before a build and are not
+        // declared by any avatar.
         private const string LayerPrefix = "rcs_";
 
         // Namespaces the sub-assets AAC creates. Must differ from the slot tool's key.
@@ -132,15 +132,21 @@ namespace Exegesis.RcsThruster
         // and builds every avatar's controller, not just ncho's.
 
         /// <summary>
-        /// Rebuilds every rcs_* layer in the given controller. FxBuilder passes each committed
-        /// controller; the tests pass a scratch copy.
+        /// The parameters this tool declares. FxBuilder uses the list to tell them apart from
+        /// parameters nobody declares.
+        /// </summary>
+        public static IEnumerable<string> ParameterNames =>
+            new[] { "RCS_One", "RCS_Lag", "RCS_LagInv" }
+                .Concat(Axes.Select(a => Smoothed(a.Param)))
+                .Concat(ImuAxes.Select(a => a.Param))
+                .Append(MasterParam);
+
+        /// <summary>
+        /// Appends the rcs_* layers and declares their parameters. FxBuilder calls this on a
+        /// controller it has just emptied, after the avatar's layers and the slot tool's.
         /// </summary>
         public static void Build(AnimatorController controller)
         {
-            // Teardown BEFORE AAC sees the controller, so AAC always appends a new layer rather
-            // than clearing an existing one - the clearing path detaches states and transitions
-            // without destroying them and leaks them into the committed file.
-            ExegesisAac.RemoveLayersByPrefix(controller, LayerPrefix);
             EnsureParameters(controller);
 
             var aac = ExegesisAac.Create(controller, SystemName, AssetKey);
@@ -187,7 +193,7 @@ namespace Exegesis.RcsThruster
         ///                              fault is the binding or something clobbering it,
         ///                              and blend trees were never the issue.
         ///
-        /// A normal rebuild removes it, since teardown matches the rcs_ prefix.
+        /// The next Build FX Controllers removes it, since every build starts from empty.
         /// </summary>
         [MenuItem("Tools/Exegesis/Debug/RCS - Add Forced Velocity Layer", false, 101)]
         private static void AddForcedVelocityLayer()
@@ -286,7 +292,9 @@ namespace Exegesis.RcsThruster
             foreach (var (param, _, _) in ImuAxes)
                 AnimatorParameters.EnsureFloat(c, param, 0f);
 
-            AnimatorParameters.Ensure(c, MasterParam, AnimatorControllerParameterType.Bool, LogPrefix);
+            // Defaults ON, and is not saved, so this is its value on every load. Declaring it
+            // without the default made it OFF once the builder started from an empty controller.
+            AnimatorParameters.EnsureBool(c, MasterParam, true, LogPrefix);
 
             // The group layers condition on these, and a transition referencing a parameter
             // the controller does not declare is not a valid animator. Ensuring them means
@@ -594,10 +602,8 @@ namespace Exegesis.RcsThruster
             if (string.IsNullOrEmpty(path)) return;
 
             // Reload the controller from disk so this inspects what was SERIALIZED, not what
-            // the in-memory objects believe. Scoped to clips the rcs_* layers actually
-            // reference: ncho_fx also carries two orphaned clips from an old duplication, one
-            // of them legitimately empty, and auditing every clip in the file would report that
-            // as a failure on every single build.
+            // the in-memory objects believe. Scoped to clips the rcs_* layers actually reference
+            // (see AnimatorAssets.ClipsReachableFrom for why not every clip in the file).
             var reloaded = AssetDatabase.LoadAssetAtPath<AnimatorController>(path);
             if (reloaded == null) return;
 

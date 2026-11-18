@@ -125,36 +125,26 @@ namespace Exegesis.Aac
         }
 
         /// <summary>
-        /// Removes every layer whose name starts with the given prefix, destroying the
-        /// sub-assets it owned.
+        /// Empties the controller: every layer (and the sub-assets it owned) and every
+        /// parameter. The asset itself survives, so its GUID - which the avatar descriptors
+        /// reference - never changes.
         ///
-        /// Run BEFORE handing the controller to AAC, so AAC always takes its append-a-new-layer
-        /// path rather than its clear-an-existing-one path. The latter empties a layer by
-        /// assigning empty arrays over its states and transitions, which detaches those objects
-        /// without destroying them and leaks them into the committed file.
-        ///
-        /// Matching is on PREFIX, not an explicit list of names. An earlier rename in this
-        /// project left a layer orphaned in the controller because its old name was no longer in
-        /// the list the teardown consulted.
+        /// The builder starts every build from here. That is what makes the code the whole
+        /// controller: nothing survives a build unless code puts it back. It also keeps AAC on
+        /// its append-a-new-layer path; its clear-an-existing-layer path assigns empty arrays
+        /// over states and transitions, which detaches them without destroying them and leaks
+        /// them into the committed file.
         /// </summary>
-        public static void RemoveLayersByPrefix(AnimatorController controller, string prefix)
+        public static void ClearController(AnimatorController controller)
         {
-            var keep = new System.Collections.Generic.List<AnimatorControllerLayer>();
-            foreach (var layer in controller.layers)
-            {
-                if (layer.name == null || !layer.name.StartsWith(prefix))
-                {
-                    keep.Add(layer);
-                    continue;
-                }
-                DestroyStateMachine(layer.stateMachine);
-            }
-            controller.layers = keep.ToArray();
+            foreach (var layer in controller.layers) DestroyStateMachine(layer.stateMachine);
+            controller.layers = new AnimatorControllerLayer[0];
+            controller.parameters = new AnimatorControllerParameter[0];
         }
 
         /// <summary>
-        /// Removes layers by exact name, returning how many went. Used for hand-built layers a
-        /// generator has replaced - a one-way migration that is a no-op after the first run.
+        /// Removes layers by exact name, returning how many went. The RCS debug menus use it to
+        /// replace their probe layer.
         /// </summary>
         public static int RemoveLayersByName(AnimatorController controller, string[] names)
         {
@@ -172,27 +162,6 @@ namespace Exegesis.Aac
             }
             controller.layers = keep.ToArray();
             return removed;
-        }
-
-        /// <summary>
-        /// Moves the named layer to the given index, shifting the others along.
-        ///
-        /// For ported hand-built layers. AAC only ever appends (the teardown above makes sure
-        /// of that), but layer order is behaviour - a later layer wins a conflicting property -
-        /// so a port has to put its layer back exactly where the hand-built one was. Safe only
-        /// while nothing addresses layers by index; the controllers have no synced layers and
-        /// no layer-control behaviours.
-        /// </summary>
-        public static void MoveLayer(AnimatorController controller, string name, int index)
-        {
-            var layers = new System.Collections.Generic.List<AnimatorControllerLayer>(controller.layers);
-            int from = layers.FindIndex(l => l.name == name);
-            if (from < 0 || from == index) return;
-
-            var layer = layers[from];
-            layers.RemoveAt(from);
-            layers.Insert(System.Math.Min(index, layers.Count), layer);
-            controller.layers = layers.ToArray();
         }
 
         private static void DestroyStateMachine(AnimatorStateMachine sm)

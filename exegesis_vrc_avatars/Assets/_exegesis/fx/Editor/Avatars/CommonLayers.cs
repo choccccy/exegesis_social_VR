@@ -11,7 +11,7 @@ namespace Exegesis.Fx
     ///
     /// Every method returns a fresh LayerSpec, so an avatar can't mutate another's layers.
     /// </summary>
-    public static class CommonLayers
+    public static partial class CommonLayers
     {
         private const float Fade = 0.25f;
 
@@ -192,11 +192,10 @@ namespace Exegesis.Fx
                 .Go("transponder_on", "transponder_off", 0f, IfNot("transponder"))
                 .Default("transponder_off");
 
-        /// <param name="speed">lemaitre's plays at 100; the others at 1.</param>
-        public static LayerSpec Eyeshadow(float speed = 1f) =>
+        public static LayerSpec Eyeshadow() =>
             Toggle("eyeshadow", "eyeshadow", 0f,
-                   whenTrue: S("[ncho]_eyeshadow_on", Clips.Ncho("[ncho]_eyeshadow_on"), speed),
-                   whenFalse: S("[ncho]_eyeshadow_off", Clips.Ncho("[ncho]_eyeshadow_off"), speed),
+                   whenTrue: S("[ncho]_eyeshadow_on", Clips.Ncho("[ncho]_eyeshadow_on")),
+                   whenFalse: S("[ncho]_eyeshadow_off", Clips.Ncho("[ncho]_eyeshadow_off")),
                    trueFirst: false, startTrue: false);
 
         // ------------------------------------------------------------------ touch

@@ -3,6 +3,7 @@
     "rootNamespace": "Exegesis.Fx",
     "references": [
         "AnimatorAsCode.V1",
+        "AnimatorAsCode.V1.VRChat",
         "Exegesis.Aac.Editor",
         "Exegesis.Shared.Editor",
         "Exegesis.RcsThruster.Editor",

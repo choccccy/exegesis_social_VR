@@ -54,7 +54,8 @@ time. See [animator-generation.md](animator-generation.md) for what each invaria
 | `GeneratorIdempotenceTests.cs` | Rebuilding each committed controller reproduces it exactly (one case per avatar), rebuilding twice does not grow the file, and a fresh build saves generated clips with their editor curves written out (so the file doesn't change the next time anything saves it). |
 | `WingDeployTests.cs` | No avatar's `wing_deploy` conditions on `rcs`, which would deploy the wings on every load with their plumes off. |
 | `WriteDefaultsTests.cs` | Every state in every FX controller is Write Defaults OFF, hand-built layers included. |
-| `AvatarDefinitionTests.cs` | Every controller has an avatar definition, and every layer spec in it is valid (clips exist, states and default resolve, no duplicate names). |
+| `AvatarDefinitionTests.cs` | Every controller has an avatar definition, and it is valid: clips exist, states and defaults resolve, no duplicate names, every parameter a layer or menu uses is declared with the right type, and no retired parameter is declared. |
+| `ExpressionTests.cs` | Each avatar's committed expression parameters and menus are exactly what its definition generates, every expression parameter exists on the FX controller with the right type, and shared menus agree. |
 
 ### The controller snapshot
 
@@ -78,9 +79,9 @@ by setting `EXEGESIS_CAPTURE_SNAPSHOT=1`. It is deliberately **not** wired to th
 suites share that one, and re-blessing the controller as a side effect of recapturing a render
 would be silent, since a rewritten baseline never fails.
 
-Re-bless *deliberately*. The baseline covers the hand-built layers too, so a diff after an
-intentional hand edit is expected — but a diff after only touching the generators means
-something moved that should not have.
+Re-bless *deliberately*. Every layer is generated now, so a baseline diff should come only from
+a change you made to a layer's code, and should contain only that change. Anything else in the
+diff means something moved that should not have.
 
 ### The negative control
 

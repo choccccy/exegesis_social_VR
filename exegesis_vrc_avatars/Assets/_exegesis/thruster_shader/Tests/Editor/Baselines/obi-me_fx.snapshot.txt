@@ -1,5 +1,5 @@
 controller
-  parameters (89)
+  parameters (85)
     [0] "IsLocal" type=Bool default=False
     [1] "Voice" type=Float default=0.000000
     [2] "GestureLeft" type=Int default=0
@@ -63,32 +63,28 @@ controller
     [60] "eyeshadow" type=Bool default=False
     [61] "ab_wire_Stretch" type=Float default=0.000000
     [62] "hard-case_mounts" type=Bool default=True
-    [63] "thigh_hard-cases" type=Bool default=True
-    [64] "arm_hard-cases" type=Bool default=False
-    [65] "thruster_backpack" type=Bool default=True
-    [66] "wings_deployed" type=Bool default=False
-    [67] "thigh_thrusters" type=Bool default=False
-    [68] "arm_backpack" type=Bool default=False
-    [69] "RCS_One" type=Float default=1.000000
-    [70] "RCS_Lag" type=Float default=0.850000
-    [71] "RCS_LagInv" type=Float default=0.150000
-    [72] "VelocityX_smoothed" type=Float default=0.000000
-    [73] "VelocityY_smoothed" type=Float default=0.000000
-    [74] "VelocityZ_smoothed" type=Float default=0.000000
-    [75] "AngularY_smoothed" type=Float default=0.000000
-    [76] "rcs_imu_xp" type=Float default=0.000000
-    [77] "rcs_imu_xn" type=Float default=0.000000
-    [78] "rcs_imu_zp" type=Float default=0.000000
-    [79] "rcs_imu_zn" type=Float default=0.000000
-    [80] "rcs" type=Bool default=True
-    [81] "back_slot" type=Int default=1
-    [82] "thigh_slot" type=Int default=1
-    [83] "loadout" type=Int default=0
-    [84] "lock_manipulator_L" type=Bool default=False
-    [85] "lock_manipulator_R" type=Bool default=False
-    [86] "lower_body" type=Bool default=False
-    [87] "cage" type=Bool default=False
-    [88] "bells" type=Bool default=False
+    [63] "arm_hard-cases" type=Bool default=False
+    [64] "wings_deployed" type=Bool default=False
+    [65] "lock_manipulator_L" type=Bool default=False
+    [66] "lock_manipulator_R" type=Bool default=False
+    [67] "lower_body" type=Bool default=False
+    [68] "cage" type=Bool default=False
+    [69] "bells" type=Bool default=False
+    [70] "back_slot" type=Int default=1
+    [71] "thigh_slot" type=Int default=1
+    [72] "loadout" type=Int default=0
+    [73] "RCS_One" type=Float default=1.000000
+    [74] "RCS_Lag" type=Float default=0.850000
+    [75] "RCS_LagInv" type=Float default=0.150000
+    [76] "VelocityX_smoothed" type=Float default=0.000000
+    [77] "VelocityY_smoothed" type=Float default=0.000000
+    [78] "VelocityZ_smoothed" type=Float default=0.000000
+    [79] "AngularY_smoothed" type=Float default=0.000000
+    [80] "rcs_imu_xp" type=Float default=0.000000
+    [81] "rcs_imu_xn" type=Float default=0.000000
+    [82] "rcs_imu_zp" type=Float default=0.000000
+    [83] "rcs_imu_zn" type=Float default=0.000000
+    [84] "rcs" type=Bool default=True
   layers (72)
     [0] "base"
       defaultWeight=0.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
@@ -148,7 +144,7 @@ controller
                 conditions (0)
           state "[ncho]_slutty_eyes"
             writeDefaultValues=False
-            speed=1.000000 speedParameter="Voice" speedParameterActive=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
             timeParameter="FT/v2/EyeSquint" timeParameterActive=True
             mirror=False mirrorParameter="" mirrorParameterActive=False
@@ -180,7 +176,7 @@ controller
         behaviours (0)
         entryTransitions (0)
         anyStateTransitions (0)
-        states (4)
+        states (6)
           state "empty"
             writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
@@ -232,12 +228,31 @@ controller
               contentHash=d98a160113e6728359b39acec5627a8a
             behaviours (0)
             transitions (1)
-              [0] -> Exit
+              [0] -> state "screwdriver_returned"
                 duration=0.000000 offset=0.000000 exitTime=6.000000 hasExitTime=True hasFixedDuration=True
                 interruptionSource=None orderedInterruption=True canTransitionToSelf=True
-                mute=False solo=False isExit=True
+                mute=False solo=False isExit=False
                 conditions (0)
           state "screwdriver_grabbed"
+            writeDefaultValues=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "screwdriver_grabbed"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (2) objectCurves (0)
+              contentHash=4906563a71d8835d4e47f1135091aef6
+            behaviours (0)
+            transitions (1)
+              [0] -> state "screwdriver_held"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "screwdriver_holster" IfNot 0.000000
+          state "screwdriver_held"
             writeDefaultValues=False
             speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
@@ -256,6 +271,25 @@ controller
                 mute=False solo=False isExit=False
                 conditions (1)
                   [0] "screwdriver_holster" If 0.000000
+          state "screwdriver_returned"
+            writeDefaultValues=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
+            cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
+            timeParameter="" timeParameterActive=False
+            mirror=False mirrorParameter="" mirrorParameterActive=False
+            iKOnFeet=False tag=""
+            motion clip "_Empty"
+              frameRate=60.000000 wrapMode=Default legacy=False
+              floatCurves (1) objectCurves (0)
+              contentHash=f46b8671f54d768b1430f8942938a1a3
+            behaviours (0)
+            transitions (1)
+              [0] -> state "empty"
+                duration=0.000000 offset=0.000000 exitTime=0.000000 hasExitTime=False hasFixedDuration=True
+                interruptionSource=None orderedInterruption=True canTransitionToSelf=True
+                mute=False solo=False isExit=False
+                conditions (1)
+                  [0] "screwdriver_holster" IfNot 0.000000
         subStateMachines (0)
     [3] "glyphs_neutral"
       defaultWeight=1.000000 blendingMode=Override ikPass=False syncedLayerIndex=-1 syncedLayerAffectsTiming=False mask=none
@@ -1070,7 +1104,7 @@ controller
                   [1] "head_touch" IfNot 0.000000
           state "voice"
             writeDefaultValues=False
-            speed=1.000000 speedParameter="Voice" speedParameterActive=False
+            speed=1.000000 speedParameter="" speedParameterActive=False
             cycleOffset=0.000000 cycleOffsetParameter="" cycleOffsetParameterActive=False
             timeParameter="Voice" timeParameterActive=True
             mirror=False mirrorParameter="" mirrorParameterActive=False

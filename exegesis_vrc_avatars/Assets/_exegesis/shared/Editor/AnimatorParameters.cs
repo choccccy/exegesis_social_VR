@@ -82,6 +82,36 @@ namespace Exegesis.Shared
         /// default; a parameter of some other type is retyped and DOES take the given default,
         /// because whatever value it held meant something else entirely.
         /// </summary>
+        /// <summary>
+        /// Like EnsureInt, for a bool. The default only applies when the parameter is added (or
+        /// its type corrected); an existing bool keeps its default.
+        /// </summary>
+        public static void EnsureBool(AnimatorController c, string name, bool defaultValue,
+                                      string logPrefix)
+        {
+            var ps = c.parameters;
+            for (int i = 0; i < ps.Length; i++)
+            {
+                if (ps[i].name != name) continue;
+                if (ps[i].type == AnimatorControllerParameterType.Bool) return;
+
+                Debug.LogWarning($"{logPrefix} '{name}' was declared {ps[i].type} on the " +
+                                 "controller; correcting to Bool. Any transition conditioning on " +
+                                 "it as the old type is now inert - check it.");
+                ps[i].type = AnimatorControllerParameterType.Bool;
+                ps[i].defaultBool = defaultValue;
+                c.parameters = ps;
+                return;
+            }
+
+            c.AddParameter(new AnimatorControllerParameter
+            {
+                name = name,
+                type = AnimatorControllerParameterType.Bool,
+                defaultBool = defaultValue,
+            });
+        }
+
         public static void EnsureInt(AnimatorController c, string name, int defaultValue,
                                      string logPrefix)
         {

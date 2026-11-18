@@ -27,6 +27,10 @@ A **VRChat avatar** Unity project. The avatar is "ncho".
   `com.unity.test-framework`). EditMode/PlayMode NUnit tests work.
 - Run tests in the Editor: `Window > General > Test Runner`. Run headless:
   `Tools/headless-tests/run_headless_tests.ps1` (details in [testing.md](testing.md)).
+- **The FX controllers, expression parameters and menus are generated from code.** Build them
+  with `Tools > Exegesis > Build FX Controllers` (headless:
+  `-executeMethod Exegesis.Fx.FxBuilder.BuildAllFromCommandLine`). Never edit them in Unity;
+  see [working-on-the-animators.md](working-on-the-animators.md).
 
 ## VRChat: material properties are a public contract
 
@@ -39,5 +43,8 @@ contract list is in [hud-shader.md](hud-shader.md).
 
 ## Where to look next
 
+- [working-on-the-animators.md](working-on-the-animators.md) — how to change avatar behaviour:
+  layers, parameters, menus. Start here for anything animator-related.
+- [animator-generation.md](animator-generation.md) — the design reference behind it.
 - [hud-shader.md](hud-shader.md) — the custom HUD shader (current focus of work).
 - [testing.md](testing.md) — the regression test suite, headless workflow, and clean-room install test.

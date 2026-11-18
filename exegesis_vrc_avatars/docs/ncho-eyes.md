@@ -15,7 +15,7 @@ machines.
 
 | Input (VRCFT) | Effect |
 |---|---|
-| `v2/EyeX` (combined) | Forward lights only the **front** chevron on each side. Looking to ncho's **own left** (X > +deadzone, per in-editor testing; to be confirmed with live VRCFT) swaps the left side to its **rear** chevron, and the right stays front. Looking right mirrors this. The result is effectively binary. |
+| `v2/EyeX` (combined) | Forward lights only the **front** chevron on each side. Looking to ncho's **own left** (X < −deadzone, VRCFT's sign convention; to be confirmed with live tracking) swaps the left side to its **rear** chevron, and the right stays front. Looking right mirrors this. The result is effectively binary. |
 | `v2/EyeY` (combined) | Moves the blink window along the strip by `round(Y × maxShift)` texel columns (2 per LED): up shifts the lit pixels up, down shifts them down. Columns shifted in from past the end are dark. This stays readable when the eye is nearly closed. |
 | `v2/EyeLidLeft/Right`, `v2/EyeSquintLeft/Right` | Per-eye blink. This reproduces the old spritesheet frames exactly; see below. |
 | `EyeTrackingActive` | False gives **neutral static**: front chevrons, open, no shift, no blink. |
@@ -48,8 +48,11 @@ vertically:
 - **Texture down = face forward.** In each texture half, the chevron lower in the texture is the
   **front** one. Rear chevrons span rows 82–88 and front ones rows 86–92 (top-down rows). Their
   row bands overlap, so a row split cannot separate them; that is why the LED map exists.
+- **The texture-left half is ncho's _right_ side**, and the texture-right half is ncho's left
+  (verified in the editor; "left" always means ncho's own left).
 - **Texture horizontal = face vertical.** The direction is mirrored per side and can't be read
-  from the PNGs. That's what the `Flip Up Direction` calibration toggles are for.
+  from the PNGs. That's what the `Flip Up Direction` calibration toggles are for. They are set
+  per **texture half**, not per ncho side, so toggling *Swap Sides* never flips gaze Y.
 - Each LED is **2 texels wide × 1 tall**, even-aligned. There are 144 LED texels, 36 per chevron.
 - **The blink is a 1-D profile along the strip.** A texel's off frame depends only on its
   **texel** column within its chevron, never its row: the blink is an eyelid window closing
@@ -104,8 +107,9 @@ Material sections:
   - **Blink Off Frame**.
   - **Face Vertical**: green = up.
   - **Lit Mask**.
-- **Calibration**: *Swap Sides* (whether the texture-left half is ncho's right; off is correct), *Flip Up Direction* per side, gaze-X deadzone, and gaze-Y max shift
-  (in texels).
+- **Calibration**: *Swap Sides* (off = texture-left half is ncho's right, which is correct),
+  *Flip Up Direction* per texture half (`_UpFlipTexL` 0, `_UpFlipTexR` 1), gaze-X deadzone,
+  and gaze-Y max shift (in texels).
 - **Blink tuning**: thresholds. The defaults match the old FX layer.
 
 ### Testing it

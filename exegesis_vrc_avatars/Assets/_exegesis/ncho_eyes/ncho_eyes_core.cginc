@@ -10,14 +10,16 @@ struct NchoEyeInputs
 {
     float lidL, lidR;         // VRCFT v2/EyeLidLeft/Right: 0 closed, 0.75 neutral, 1 wide
     float squintL, squintR;   // VRCFT v2/EyeSquintLeft/Right: 0..1
-    float gazeX, gazeY;       // VRCFT v2/EyeX/EyeY: -1..1 (positive X = toward ncho's left, per in-editor testing)
+    float gazeX, gazeY;       // VRCFT v2/EyeX/EyeY: -1..1 (negative X = looking toward ncho's left)
     float trackingActive;     // VRCFT EyeTrackingActive: 0 => neutral static
 };
 
 struct NchoEyeSettings
 {
-    float swapSides;          // 0: texture-left half is ncho's left. 1: swapped.
-    float upFlipL, upFlipR;   // 0: face-up is toward the chevron's texture-right end. 1: toward texture-left.
+    float swapSides;          // 0: texture-left half is ncho's RIGHT (verified in editor). 1: swapped.
+    // Per TEXTURE half (a UV-layout fact, so Swap Sides never affects it).
+    // 0: face-up is toward the chevron's texture-right end. 1: toward texture-left.
+    float upFlipTexL, upFlipTexR;
     float gazeXDeadzone;
     float gazeYMaxShift;      // texel columns the blink window moves at |gazeY| = 1 (an LED is 2)
     float lidOpenAt, lidStep;
@@ -45,12 +47,12 @@ NchoEyeLed NchoEyeDecodeTexel(float4 t, NchoEyeSettings s)
     led.isLed = r > 0;
     led.chevronId = max(r - 1, 0);
     bool texLeft = led.chevronId < 2;
-    led.isNchoLeft = (s.swapSides > 0.5) ? !texLeft : texLeft;
+    led.isNchoLeft = (s.swapSides > 0.5) ? texLeft : !texLeft;
     led.isFront = (led.chevronId & 1) == 1;
     led.offFrame = NchoEyeDecode(t.g);
     led.fromTexLeft = NchoEyeDecode(t.b) - 1;
     led.fromTexRight = NchoEyeDecode(t.a) - 1;
-    float upFlip = led.isNchoLeft ? s.upFlipL : s.upFlipR;
+    float upFlip = texLeft ? s.upFlipTexL : s.upFlipTexR;
     led.bottomIsTexLeft = upFlip < 0.5;
     return led;
 }
@@ -84,8 +86,8 @@ bool NchoEyeLit(NchoEyeLed led, NchoEyeInputs i, NchoEyeSettings s, Texture2D<fl
     if (!led.isLed) return false;
     if (i.trackingActive < 0.5) return led.isFront;
 
-    // Gaze X: the side being looked toward swaps to its rear chevron.
-    bool wantRear = led.isNchoLeft ? (i.gazeX > s.gazeXDeadzone) : (i.gazeX < -s.gazeXDeadzone);
+    // Gaze X: the side being looked toward swaps to its rear chevron (VRCFT: -X = looking left).
+    bool wantRear = led.isNchoLeft ? (i.gazeX < -s.gazeXDeadzone) : (i.gazeX > s.gazeXDeadzone);
     if (led.isFront == wantRear) return false;
 
     // Gaze Y moves the blink window along the strip: this LED shows the open/closed state of

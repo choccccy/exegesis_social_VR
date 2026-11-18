@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Exegesis.Shared;
 using static Exegesis.Fx.Cond;
 using static Exegesis.Fx.CommonLayers;
@@ -14,23 +15,81 @@ namespace Exegesis.Fx
     /// </summary>
     public static class ObiMeAvatar
     {
-        public static AvatarDefinition Define() => new AvatarDefinition(FxControllers.ObiMe, Layers());
+        public static AvatarDefinition Define() => new AvatarDefinition(FxControllers.ObiMe, Layers(), Parameters(), Expressions());
+
+        /// <summary>obi-me heats and cools at roughly half to three quarters of ncho's rates.</summary>
+        private static HeatRates Rates => new HeatRates
+        {
+            SlowRadiate = -0.0025f, FastRadiate = -0.005f,
+            Talking = 0.005f, Evil = 0.015f, Proximity = 0.02f, Internal = 0.03f,
+        };
+
+        private static IEnumerable<ParamSpec> Parameters() =>
+            CommonParameters.BuiltIns(gestureWeights: true)
+                .Concat(CommonParameters.FaceTracking())
+                .Concat(CommonParameters.Body())
+                .Concat(new[]
+                {
+                    ParamSpec.Bool("lock_manipulator_L"),
+                    ParamSpec.Bool("lock_manipulator_R"),
+                    ParamSpec.Bool("lower_body"),
+                    ParamSpec.Bool("cage"),
+                    ParamSpec.Bool("bells"),
+                });
+
+        private static ExpressionsSpec Expressions()
+        {
+            var gear = new MenuSpec("Assets/_exegesis/obi-me/obi-me_gear_menu.asset")
+                .Toggle("Lower Head View", "lower_body")
+                .Toggle("Lock LEFT Manipulator", "lock_manipulator_L")
+                .Toggle("Lock RIGHT Manipulator", "lock_manipulator_R");
+
+            var panels = new MenuSpec("Assets/_exegesis/obi-me/obi-me_panels_menu.asset", CommonExpressions.NchoParams)
+                .Toggle("Cage", "cage")
+                .Toggle("Thruster Bells", "bells")
+                .Toggle("Chest Panels", "chest_panels")
+                .Toggle("Groin Panels", "groin_panels");
+
+            var main = new MenuSpec("Assets/_exegesis/obi-me/obi-me_main_menu.asset", CommonExpressions.NchoParams)
+                .SubMenu("Equipment", gear, Icons.Equipment)
+                .Toggle("RCS", "rcs")
+                .SubMenu("Panels", panels, Icons.Panels)
+                .SubMenu("Config", CommonExpressions.Config(), Icons.Config)
+                .SubMenu("Expression", CommonExpressions.Expression(), Icons.Expression);
+
+            return new ExpressionsSpec("Assets/_exegesis/obi-me/obi-me_params.asset",
+                CommonExpressions.Parameters().Concat(new[]
+                {
+                    ExpressionParam.Bool("lock_manipulator_L"),
+                    ExpressionParam.Bool("lock_manipulator_R"),
+                    ExpressionParam.Bool("lower_body", saved: true),
+                    ExpressionParam.Bool("cage", true, saved: true),
+                    ExpressionParam.Bool("bells", true, saved: true),
+                }),
+                main);
+        }
 
         private static IEnumerable<LayerSpec> Layers()
         {
             yield return Base();
-            // blink, tool_holstering: hand-built
+            yield return Blink("blink", Clips.ObiMe("[obi-me]_blink"));
+            yield return ToolHolstering();
             yield return GlyphsNeutral();
-            // blushie: hand-built
+            yield return Blushie();
             yield return VentGlow(Clips.ObiMe("obi-me_heat_glow"));
-            // heat system: hand-built
+            yield return HeatRadiation(Rates);
+            yield return TalkingHeatAdd(Rates);
+            yield return HeatIntegral();
+            yield return ProxHeatAdd(Rates);
+            yield return EvilHeatAdd(Rates);
             yield return EyesNeutral(Clips.Ncho("[ncho]_eyes_neutral"));
-            // eyes: hand-built
+            yield return Eyes();
             yield return OverlayOpen();
-            // batt_control: hand-built
+            yield return BattControl();
             yield return BattIndicator();
             yield return WaterLevel();
-            // ears, tail_state: hand-built
+            yield return Ears();
+            yield return TailState();
             yield return PanelsNeutral(Clips.ObiMe("[obi-me]_panels_neutral"));
             yield return PropsNeutral();
             yield return PanelOff("cage_off", "cage", "[obi-me]_cage_off", Clips.ObiMe("[obi-me]_cage_off"));
@@ -45,7 +104,7 @@ namespace Exegesis.Fx
             yield return HardCaseMounts();
             yield return ArmHardCases();
             yield return WingDeploy();
-            // panel_tool_control: hand-built
+            yield return PanelToolControl();
             yield return VertexRounding();
             yield return Audiolink();
             yield return FloorCollider();

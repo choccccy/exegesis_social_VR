@@ -61,7 +61,8 @@ _StatusBar0Fill _StatusBar1Fill _StatusBar2Fill _Overlay2Enabled
 
 The other ~140 properties are free to reorganize/rename. Related VRC params:
 `hud` (on/off, toggles the GameObject's active state, not a shader prop) and the
-`*_touch` bools in `ncho_params.asset` / `ncho_main_menu.asset`.
+`*_touch` bools in the expression parameters (`CommonExpressions.Parameters`, generated into
+`ncho_params.asset`).
 
 ## Usage in the project
 
@@ -103,6 +104,6 @@ avatars). PC-focused. Gated off in mirrors (`isInMirror()`) and the VRChat camer
 
 Step 1 (cleanup) and Step 2 (sensor scanner) are done and pinned. Possible follow-ups: tune
 the look after in-headset play (which modes, colors, thresholds); wire the VRChat expression
-menu/params/animator to toggle the scanner + modes (touches `ncho_params.asset`,
-`ncho_main_menu.asset`, `ncho_fx.controller`); optionally convert runtime feature branches to
+menu/params/animator to toggle the scanner + modes (all generated from the avatar definitions
+in `fx/Editor/Avatars`; see animator-generation.md); optionally convert runtime feature branches to
 `shader_feature` keywords for a leaner variant.

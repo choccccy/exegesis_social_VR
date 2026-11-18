@@ -20,11 +20,7 @@ namespace Exegesis.RcsThruster.Tests
         {
             var avatar = Avatars.For(fx);
 
-            var problems = avatar.Layers.SelectMany(l => l.Problems()).ToList();
-            problems.AddRange(avatar.Layers.GroupBy(l => l.Name).Where(g => g.Count() > 1)
-                                    .Select(g => $"layer '{g.Key}' is defined {g.Count()} times."));
-
-            CollectionAssert.IsEmpty(problems, $"{fx.Name}'s AvatarDefinition has problems.");
+            CollectionAssert.IsEmpty(avatar.Problems().ToList(), $"{fx.Name}'s AvatarDefinition has problems.");
         }
 
         [Test]

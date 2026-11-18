@@ -35,17 +35,16 @@ namespace Exegesis.Ncho
     /// sitting in `idle` writes nothing at all, so its tiles fall through to props_neutral's
     /// hidden values. That is what makes "bare" free: it needs no clip and no state.
     ///
-    /// Idempotent, like RcsAnimatorSetup: it deletes and rebuilds anything named slot_*.
-    /// Run through Tools > Exegesis > Build FX Controllers (Exegesis.Fx.FxBuilder).
+    /// Run through Tools > Exegesis > Build FX Controllers (Exegesis.Fx.FxBuilder), which
+    /// empties the controller first, so this only ever appends.
     ///
-    /// Layers, states, transitions and drivers are built with Animator As Code. Three things are
+    /// Layers, states, transitions and drivers are built with Animator As Code. Two things are
     /// NOT, and each is documented where it appears: parameter declaration (AAC matches by name
-    /// only and will leave a wrongly-typed parameter alone), layer teardown (AAC's clear-in-place
-    /// leaks the sub-assets it detaches), and sub-asset cleanup.
+    /// only and will leave a wrongly-typed parameter alone) and sub-asset cleanup.
     ///
-    /// It used to also strip `rcs` out of the hand-built wing_deploy layer on every build.
-    /// wing_deploy is now generated (CommonLayers.WingDeploy in Exegesis.Fx) without that condition, so
-    /// the surgery is gone.
+    /// It used to also tear down its own layers, remove the four hand-built layers the slots
+    /// replaced, and strip `rcs` out of the hand-built wing_deploy layer. The builder emptying
+    /// the controller made all three unnecessary.
     ///
     /// Deliberately a separate assembly from Exegesis.RcsThruster.Editor. This one needs the
     /// SDK for VRCAvatarParameterDriver, and docs/rcs-thrusters.md records why the shader
@@ -100,22 +99,6 @@ namespace Exegesis.Ncho
         /// flip the flag and silently reinterpret every duration set afterwards.
         /// </summary>
         private const float FadeSeconds = 0.25f;
-
-        // Hand-built layers this tool REPLACES. Removed by exact name, once - after that the
-        // removal is a no-op. Their clips are ordinary asset files and are reused by the new
-        // slot states, so nothing is lost; only the layers and their states go.
-        private static readonly string[] LegacyLayers =
-        {
-            "thruster_backpack", "arm_pack", "thigh_hard-cases", "thigh_thrusters",
-        };
-
-        // The bools those layers rode on. Retired in favour of the slot ints; the tool
-        // reports whether anything still references them rather than deleting them, since a
-        // parameter another layer depends on must not vanish silently.
-        private static readonly string[] RetiredParams =
-        {
-            "thruster_backpack", "arm_backpack", "thigh_hard-cases", "thigh_thrusters",
-        };
 
         private struct Member
         {
@@ -229,21 +212,19 @@ namespace Exegesis.Ncho
         // condition on - and does so for every avatar's controller, not just ncho's.
 
         /// <summary>
-        /// Rebuilds every slot_* layer in the given controller and removes the hand-built layers
-        /// it replaced. FxBuilder passes each committed controller; the tests pass a scratch
-        /// copy.
+        /// The parameters this tool declares. FxBuilder uses the list to tell them apart from
+        /// parameters nobody declares.
+        /// </summary>
+        public static IEnumerable<string> ParameterNames =>
+            Slots.Select(s => s.Param).Append(LoadoutParam);
+
+        /// <summary>
+        /// Appends the slot_* layers and declares their parameters. FxBuilder calls this on a
+        /// controller it has just emptied and given the avatar's own parameters and layers.
         /// </summary>
         public static void Build(AnimatorController controller)
         {
             if (!ClipsExist()) return;
-
-            // Teardown BEFORE AAC sees the controller, so AAC always takes its
-            // append-a-new-layer path. Its alternative, clearing a layer that already exists,
-            // empties the state machine by assigning empty arrays over states and transitions -
-            // which detaches those sub-assets without destroying them, and they accumulate in
-            // the committed file on every rebuild.
-            ExegesisAac.RemoveLayersByPrefix(controller, LayerPrefix);
-            int legacyRemoved = ExegesisAac.RemoveLayersByName(controller, LegacyLayers);
 
             EnsureParameters(controller);
 
@@ -261,13 +242,10 @@ namespace Exegesis.Ncho
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 
-            ReportRetiredParams(controller);
-
             int slotLayers = controller.layers.Count(
                 l => l.name != null && l.name.StartsWith(LayerPrefix));
-            Debug.Log($"{LogPrefix} Rebuilt {slotLayers} '{LayerPrefix}*' layers in " +
-                      $"{AssetDatabase.GetAssetPath(controller)}. " +
-                      $"Removed {legacyRemoved} legacy accessory layer(s).");
+            Debug.Log($"{LogPrefix} Built {slotLayers} '{LayerPrefix}*' layers in " +
+                      $"{AssetDatabase.GetAssetPath(controller)}.");
         }
 
         /// <summary>
@@ -278,16 +256,7 @@ namespace Exegesis.Ncho
         /// </summary>
         private static bool ClipsExist()
         {
-            var missing = new List<string>();
-
-            if (AssetDatabase.LoadAssetAtPath<AnimationClip>(EmptyClipPath) == null)
-                missing.Add(EmptyClipPath);
-
-            foreach (var slot in Slots)
-                foreach (var m in slot.Members)
-                    if (AssetDatabase.LoadAssetAtPath<AnimationClip>(m.ClipPath) == null)
-                        missing.Add(m.ClipPath);
-
+            var missing = MissingClips().ToList();
             if (missing.Count == 0) return true;
 
             Debug.LogError($"{LogPrefix} Aborted - these clips are missing:\n  " +
@@ -296,6 +265,21 @@ namespace Exegesis.Ncho
                            "indistinguishable from the accessory being stowed, so this fails " +
                            "loudly instead.");
             return false;
+        }
+
+        /// <summary>
+        /// Every clip the slot layers play that does not exist. FxBuilder checks this before it
+        /// empties the controller, so a missing clip stops the build with nothing changed.
+        /// </summary>
+        public static IEnumerable<string> MissingClips()
+        {
+            if (AssetDatabase.LoadAssetAtPath<AnimationClip>(EmptyClipPath) == null)
+                yield return EmptyClipPath;
+
+            foreach (var slot in Slots)
+                foreach (var m in slot.Members)
+                    if (AssetDatabase.LoadAssetAtPath<AnimationClip>(m.ClipPath) == null)
+                        yield return m.ClipPath;
         }
 
         // --------------------------------------------------------------- parameters
@@ -314,64 +298,6 @@ namespace Exegesis.Ncho
             // Not saved and not synced as an expression parameter: the driver runs locally
             // and the slot ints it writes are what replicate. See docs/accessories.md.
             AnimatorParameters.EnsureInt(c, LoadoutParam, 0, LogPrefix);
-        }
-
-        /// <summary>
-        /// Reports whether the retired bools are still referenced anywhere. Deliberately does
-        /// not delete them: removing a parameter that some other layer still conditions on
-        /// would break that layer, and this tool cannot know every consumer.
-        /// </summary>
-        private static void ReportRetiredParams(AnimatorController c)
-        {
-            var declared = RetiredParams.Where(p => c.parameters.Any(q => q.name == p)).ToArray();
-            if (declared.Length == 0) return;
-
-            var stillUsed = new List<string>();
-            foreach (var p in declared)
-                if (ReferencingLayers(c, p).Any())
-                    stillUsed.Add($"{p} (used by {string.Join(", ", ReferencingLayers(c, p))})");
-
-            if (stillUsed.Count > 0)
-            {
-                Debug.LogWarning($"{LogPrefix} Retired parameters are still referenced by layers " +
-                                 "this tool does not own:\n  " + string.Join("\n  ", stillUsed) +
-                                 "\nMigrate or delete those layers before removing the parameters.");
-                return;
-            }
-
-            Debug.Log($"{LogPrefix} These retired parameters are now unreferenced and safe to " +
-                      "delete from the controller and from ncho_params.asset:\n  " +
-                      string.Join("\n  ", declared));
-        }
-
-        private static IEnumerable<string> ReferencingLayers(AnimatorController c, string param)
-        {
-            foreach (var layer in c.layers)
-            {
-                if (layer.stateMachine == null) continue;
-                if (StateMachineUses(layer.stateMachine, param)) yield return layer.name;
-            }
-        }
-
-        private static bool StateMachineUses(AnimatorStateMachine sm, string param)
-        {
-            foreach (var t in sm.anyStateTransitions)
-                if (t.conditions.Any(x => x.parameter == param)) return true;
-            foreach (var t in sm.entryTransitions)
-                if (t.conditions.Any(x => x.parameter == param)) return true;
-
-            foreach (var child in sm.states)
-            {
-                if (child.state == null) continue;
-                foreach (var t in child.state.transitions)
-                    if (t.conditions.Any(x => x.parameter == param)) return true;
-            }
-
-            foreach (var child in sm.stateMachines)
-                if (child.stateMachine != null && StateMachineUses(child.stateMachine, param))
-                    return true;
-
-            return false;
         }
 
         // ------------------------------------------------------------------- layers

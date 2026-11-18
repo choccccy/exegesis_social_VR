@@ -8,7 +8,7 @@ namespace Exegesis.Fx
 {
     /// <summary>
     /// One FX layer, written as code: its states, its transitions in evaluation order, and its
-    /// default state. PortedLayers turns these into real layers with Animator As Code.
+    /// default state. AvatarLayers turns these into real layers with Animator As Code.
     ///
     /// Written fluently so a layer reads top to bottom like the Animator window would show it:
     /// <code>
@@ -71,6 +71,28 @@ namespace Exegesis.Fx
             return this;
         }
 
+        /// <summary>
+        /// A transition to the state machine's Exit, which re-enters at the default state. Used
+        /// for one-shot states: do something, then fall back to the start.
+        /// </summary>
+        public LayerSpec Exit(string from, float duration, params Cond[] when)
+        {
+            Transitions.Add(new TransitionSpec(from, null, duration, when));
+            return this;
+        }
+
+        /// <summary>
+        /// Gives the last state a VRChat parameter driver, which runs once when the state is
+        /// entered.
+        /// </summary>
+        /// <param name="localOnly">Runs only for the wearer. The heat system uses this, and its
+        /// result then syncs.</param>
+        public LayerSpec Drives(bool localOnly, params Drive[] drives)
+        {
+            States[States.Count - 1].Driver = new DriverSpec(localOnly, drives);
+            return this;
+        }
+
         /// <summary>Makes the last transition's duration normalized rather than in seconds.</summary>
         public LayerSpec NotFixedDuration()
         {
@@ -115,7 +137,8 @@ namespace Exegesis.Fx
             foreach (var t in Transitions)
             {
                 if (!names.Contains(t.From)) yield return $"{Name}: transition from unknown state '{t.From}'.";
-                if (!names.Contains(t.To)) yield return $"{Name}: transition to unknown state '{t.To}'.";
+                if (t.To != null && !names.Contains(t.To))
+                    yield return $"{Name}: transition to unknown state '{t.To}'.";
             }
 
             if (States.Count > 0 && DefaultState == null)
@@ -133,6 +156,9 @@ namespace Exegesis.Fx
         public bool Mirror { get; }
         public string MotionTime { get; }
 
+        /// <summary>The state's parameter driver, if it has one.</summary>
+        public DriverSpec Driver { get; set; }
+
         public StateSpec(string name, string clipPath, float speed = 1f,
                          bool mirror = false, string motionTime = null)
         {
@@ -144,9 +170,44 @@ namespace Exegesis.Fx
         }
     }
 
+    public sealed class DriverSpec
+    {
+        public bool LocalOnly { get; }
+        public Drive[] Drives { get; }
+
+        public DriverSpec(bool localOnly, Drive[] drives)
+        {
+            LocalOnly = localOnly;
+            Drives = drives;
+        }
+    }
+
+    public enum DriveOp { Set, Add }
+
+    /// <summary>One parameter a driver changes. Set assigns; Add adds (negative to subtract).</summary>
+    public readonly struct Drive
+    {
+        public DriveOp Op { get; }
+        public string Param { get; }
+        public float Value { get; }
+
+        private Drive(DriveOp op, string param, float value)
+        {
+            Op = op;
+            Param = param;
+            Value = value;
+        }
+
+        public static Drive Set(string param, float value) => new Drive(DriveOp.Set, param, value);
+        public static Drive Set(string param, bool value) => new Drive(DriveOp.Set, param, value ? 1f : 0f);
+        public static Drive Add(string param, float value) => new Drive(DriveOp.Add, param, value);
+    }
+
     public sealed class TransitionSpec
     {
         public string From { get; }
+
+        /// <summary>The destination state, or null for the state machine's Exit.</summary>
         public string To { get; }
         public float Duration { get; }
         public Cond[] Conditions { get; }

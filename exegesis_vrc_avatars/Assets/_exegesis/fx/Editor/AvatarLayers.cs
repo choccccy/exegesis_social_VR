@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using AnimatorAsCode.V1;
+#if VRC_SDK_VRCSDK3
+using AnimatorAsCode.V1.VRC;
+#endif
 using Exegesis.Aac;
 using Exegesis.Shared;
 using UnityEditor;
@@ -10,61 +13,28 @@ using UnityEngine;
 namespace Exegesis.Fx
 {
     /// <summary>
-    /// Builds an avatar's ported layers - hand-built layers that are now written as code in its
-    /// AvatarDefinition - into its FX controller, with Animator As Code.
-    ///
-    /// Each layer goes back exactly where the hand-built one was. Layer order is behaviour (a
-    /// later layer wins a conflicting property), and until the builder owns the whole controller
-    /// and declares the order itself, a port must not move anything. So: note every ported
-    /// layer's index, remove them all, build them all (AAC appends), then reinsert in ascending
-    /// index order - each insert lands at its original index because every layer before it is
-    /// already back in place.
+    /// Builds an avatar's layers, as its AvatarDefinition lists them, into its FX controller
+    /// with Animator As Code. FxBuilder calls this on a controller it has just emptied, so each
+    /// layer is appended and they land in exactly the order listed.
     /// </summary>
-    public static class PortedLayers
+    public static class AvatarLayers
     {
-        private const string LogPrefix = "[ported]";
+        private const string LogPrefix = "[avatar]";
 
         /// <summary>
-        /// Returns false, having touched nothing, if any spec has a problem (see
-        /// LayerSpec.Problems). Validation runs first precisely so a bad spec cannot leave the
-        /// controller half rebuilt.
+        /// Appends every layer. Assumes the definition has been validated
+        /// (AvatarDefinition.Problems) and the controller emptied - FxBuilder does both.
         /// </summary>
-        public static bool Build(AnimatorController controller, AvatarDefinition avatar)
+        public static void Build(AnimatorController controller, AvatarDefinition avatar)
         {
-            var specs = avatar.Layers;
-
-            var problems = specs.SelectMany(s => s.Problems()).ToList();
-            problems.AddRange(specs.GroupBy(s => s.Name).Where(g => g.Count() > 1)
-                                   .Select(g => $"layer '{g.Key}' is defined {g.Count()} times."));
-            if (problems.Count > 0)
-            {
-                Debug.LogError($"{LogPrefix} {avatar.Fx.Name}: aborted, nothing was changed:\n  " +
-                               string.Join("\n  ", problems));
-                return false;
-            }
-
-            var layers = controller.layers;
-            var originalIndex = specs.ToDictionary(
-                s => s.Name, s => System.Array.FindIndex(layers, l => l.name == s.Name));
-
-            ExegesisAac.RemoveLayersByName(controller, specs.Select(s => s.Name).ToArray());
-
-            foreach (var spec in specs) BuildLayer(controller, spec);
-
-            foreach (var spec in specs.Where(s => originalIndex[s.Name] >= 0)
-                                      .OrderBy(s => originalIndex[s.Name]))
-                ExegesisAac.MoveLayer(controller, spec.Name, originalIndex[spec.Name]);
-
-            foreach (var spec in specs.Where(s => originalIndex[s.Name] < 0))
-                Debug.LogWarning($"{LogPrefix} {avatar.Fx.Name}: had no '{spec.Name}' layer; appended one.");
+            foreach (var spec in avatar.Layers) BuildLayer(controller, spec);
 
             // AAC's throwaway default-motion clip per layer is unreferenced once every state
             // has its own motion.
             AnimatorAssets.SweepUnreachableSubAssets(controller, LogPrefix);
             EditorUtility.SetDirty(controller);
 
-            Debug.Log($"{LogPrefix} {avatar.Fx.Name}: built {specs.Count} ported layer(s).");
-            return true;
+            Debug.Log($"{LogPrefix} {avatar.Fx.Name}: built {avatar.Layers.Count} layer(s).");
         }
 
         private static void BuildLayer(AnimatorController controller, LayerSpec spec)
@@ -82,13 +52,16 @@ namespace Exegesis.Fx
                 if (s.Speed != 1f) state.WithSpeedSetTo(s.Speed);
                 if (s.MotionTime != null) state.WithMotionTime(layer.FloatParameter(s.MotionTime));
                 if (s.Mirror) state.State.mirror = true;
+                if (s.Driver != null) AddDriver(state, s.Driver, spec.Name);
 
                 states[s.Name] = state;
             }
 
             foreach (var t in spec.Transitions)
             {
-                var transition = states[t.From].TransitionsTo(states[t.To]);
+                var transition = t.To == null
+                    ? states[t.From].Exits()
+                    : states[t.From].TransitionsTo(states[t.To]);
 
                 // Set directly rather than through AAC's helpers so every field is stated,
                 // including the ones that only matter for matching the original exactly
@@ -110,6 +83,47 @@ namespace Exegesis.Fx
 
             if (spec.DefaultState != null)
                 layer.StateMachine.WithDefaultState(states[spec.DefaultState]);
+        }
+
+        /// <summary>
+        /// Every field of every driven parameter is written out, not left to the SDK's defaults.
+        /// The SDK defaults valueMax and chance to 1; the hand-built drivers have 0. Neither
+        /// field is read by Set or Add, so it makes no difference in game, but it does in the
+        /// snapshot, and a port is proven by an empty snapshot diff.
+        /// </summary>
+        private static void AddDriver(AacFlState state, DriverSpec spec, string layerName)
+        {
+#if VRC_SDK_VRCSDK3
+            state.Driving(d =>
+            {
+                d.Driver.localOnly = spec.LocalOnly;
+                d.Driver.debugString = "";
+                foreach (var drive in spec.Drives)
+                {
+                    d.Driver.parameters.Add(new VRC.SDKBase.VRC_AvatarParameterDriver.Parameter
+                    {
+                        type = drive.Op == DriveOp.Set
+                            ? VRC.SDKBase.VRC_AvatarParameterDriver.ChangeType.Set
+                            : VRC.SDKBase.VRC_AvatarParameterDriver.ChangeType.Add,
+                        name = drive.Param,
+                        source = "",
+                        value = drive.Value,
+                        valueMin = 0f,
+                        valueMax = 0f,
+                        chance = 0f,
+                        preventRepeats = false,
+                        convertRange = false,
+                        sourceMin = 0f,
+                        sourceMax = 0f,
+                        destMin = 0f,
+                        destMax = 0f,
+                    });
+                }
+            });
+#else
+            throw new System.InvalidOperationException(
+                $"Layer '{layerName}' has a parameter driver, which needs the VRChat SDK.");
+#endif
         }
 
         private static IAacFlCondition ToAac(AacFlLayer layer, Cond c)

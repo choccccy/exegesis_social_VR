@@ -44,15 +44,15 @@ Material:
     - _DbgSquintL: 0
     - _DbgSquintR: 0
     - _DbgTrackingActive: 1
-    - _DbgX: 0
-    - _DbgY: 0
+    - _DbgX: -1
+    - _DbgY: 1
     - _DebugView: 0
     - _EmissionStrength: 1
     - _EyeLidL: 1
     - _EyeLidR: 1
     - _EyeSquintL: 0
     - _EyeSquintR: 0
-    - _EyeTrackingActive: 0
+    - _EyeTrackingActive: 1
     - _EyeX: 0
     - _EyeY: 0
     - _GazeXDeadzone: 0.25
@@ -64,8 +64,8 @@ Material:
     - _SquintLidMin: 0.5
     - _SquintOn: 0.3
     - _SwapSides: 0
-    - _UpFlipL: 0
-    - _UpFlipR: 1
+    - _UpFlipTexL: 0
+    - _UpFlipTexR: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.7187703, g: 0.57075465, b: 1, a: 1}

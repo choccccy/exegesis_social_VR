@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Exegesis.Aac;
 using Exegesis.Ncho;
 using Exegesis.RcsThruster;
 using Exegesis.Shared;
@@ -16,11 +17,18 @@ namespace Exegesis.Fx
     /// <summary>
     /// The one entry point that builds the avatars' FX controllers.
     ///
-    /// Today it runs the two existing generators, slots then RCS, over every controller in
-    /// FxControllers. The goal is for it to own each controller outright: every layer generated
-    /// from code, nothing edited in the Animator window. Hand-built layers move into it one
-    /// family at a time, each proven against the controller snapshot baseline before the
-    /// hand-built original is deleted. See docs/animator-generation.md.
+    /// Every build starts from an EMPTY controller and puts back exactly what code declares:
+    ///   1. the avatar's parameters (AvatarDefinition.Parameters),
+    ///   2. the avatar's layers, in order (AvatarDefinition.Layers),
+    ///   3. the slot tool's layers and parameters,
+    ///   4. the RCS tool's layers and parameters.
+    /// So the code is the whole controller. The asset is emptied rather than replaced, so its
+    /// GUID, which the avatar descriptors reference, never changes. See
+    /// docs/animator-generation.md.
+    ///
+    /// Before emptying anything it refuses to build if the controller holds a layer or
+    /// parameter that no code declares, because building would delete it. That is the one
+    /// way work could be lost: a layer added in the Animator window.
     ///
     /// Why one entry point rather than one menu item per generator:
     ///   - The ORDER is part of the contract. NchoSlotSetup declares the slot ints the
@@ -39,20 +47,30 @@ namespace Exegesis.Fx
         private const string LogPrefix = "[fx]";
 
         /// <summary>
-        /// Builds every generated layer into one controller, configured for the avatar `fx`
-        /// describes. The tests call this on a scratch copy; the menu item calls it on each
-        /// committed controller.
+        /// Rebuilds one controller from empty, as the avatar `fx` names is defined. The tests
+        /// call this on a scratch copy; the menu item calls it on each committed controller.
+        ///
+        /// Throws, having changed nothing, if the definition has problems or the controller
+        /// holds anything undeclared. Throwing rather than logging is deliberate: a test that
+        /// builds a scratch copy must fail, not compare an unbuilt copy and pass.
         /// </summary>
         public static void Build(AnimatorController controller, FxController fx)
         {
             if (controller == null) throw new ArgumentNullException(nameof(controller));
             if (fx == null) throw new ArgumentNullException(nameof(fx));
 
-            // Hand-built layers now written as code, from the avatar's definition. Each keeps
-            // its original position in the controller.
-            PortedLayers.Build(controller, Avatars.For(fx));
+            var avatar = Avatars.For(fx);
+            var problems = Preflight(controller, avatar).ToList();
+            if (problems.Count > 0)
+                throw new InvalidOperationException(
+                    $"{LogPrefix} {fx.Name}: not built, nothing was changed:\n  " + string.Join("\n  ", problems));
 
-            // Slots first: that tool declares the ints the RCS group layers condition on.
+            ExegesisAac.ClearController(controller);
+            controller.parameters = avatar.Parameters.Select(p => p.ToUnity()).ToArray();
+
+            AvatarLayers.Build(controller, avatar);
+
+            // Slots before RCS: that tool declares the ints the RCS group layers condition on.
             NchoSlotSetup.Build(controller);
             RcsAnimatorSetup.Build(controller);
 
@@ -64,13 +82,66 @@ namespace Exegesis.Fx
         }
 
         /// <summary>
-        /// Builds every controller in FxControllers. Returns the ones that could not be loaded,
-        /// so callers can fail loudly rather than skip an avatar - skipping one silently is the
-        /// exact failure this class exists to prevent.
+        /// What would stop a build. Checked before the controller is touched.
+        /// </summary>
+        private static IEnumerable<string> Preflight(AnimatorController controller, AvatarDefinition avatar)
+        {
+            foreach (var p in avatar.Problems()) yield return p;
+            foreach (var clip in NchoSlotSetup.MissingClips()) yield return $"slot tool: missing clip {clip}";
+
+            var layers = new HashSet<string>(avatar.Layers.Select(l => l.Name));
+            foreach (var l in controller.layers)
+            {
+                // The slot and RCS tools own their prefixes, debug probes included.
+                if (layers.Contains(l.name) || l.name.StartsWith("slot_") || l.name.StartsWith("rcs_")) continue;
+                yield return $"layer '{l.name}' is in the controller but no code declares it. Building " +
+                             "would delete it. If it was added in the Animator window, write it as a " +
+                             $"LayerSpec in {avatar.Fx.Name}'s definition (fx/Editor/Avatars) instead.";
+            }
+
+            var parameters = new HashSet<string>(avatar.Parameters.Select(p => p.Name)
+                .Concat(NchoSlotSetup.ParameterNames)
+                .Concat(RcsAnimatorSetup.ParameterNames)
+                .Concat(CommonParameters.Retired));
+            foreach (var p in controller.parameters)
+            {
+                if (parameters.Contains(p.name)) continue;
+                yield return $"parameter '{p.name}' is in the controller but no code declares it. " +
+                             $"Building would delete it. Add it to {avatar.Fx.Name}'s parameters.";
+            }
+        }
+
+        /// <summary>
+        /// Writes the avatar's expression parameters and menus. Runs after its controller is
+        /// built, because it checks every expression parameter against the controller's
+        /// declarations: an expression parameter the animator does not declare (or declares
+        /// with another type) syncs and saves a value nothing ever reads.
+        ///
+        /// Throws, having written nothing, on any problem - including a shared menu (Config,
+        /// Expression, Panels) that two avatars describe differently.
+        /// </summary>
+        public static void BuildExpressions(AnimatorController controller, FxController fx)
+        {
+            var avatar = Avatars.For(fx);
+            var problems = ExpressionsBuilder.Problems(avatar, controller)
+                .Concat(ExpressionsBuilder.SharedMenuConflicts(Avatars.All))
+                .ToList();
+            if (problems.Count > 0)
+                throw new InvalidOperationException(
+                    $"{LogPrefix} {fx.Name}: expressions not written, nothing was changed:\n  " +
+                    string.Join("\n  ", problems));
+
+            ExpressionsBuilder.Build(avatar.Expressions, fx.Name);
+        }
+
+        /// <summary>
+        /// Builds every controller in FxControllers, and each avatar's expressions. Returns the ones that failed - could not be
+        /// loaded, or refused to build - so callers can fail loudly rather than skip an avatar.
+        /// Skipping one silently is the exact failure this class exists to prevent.
         /// </summary>
         public static List<FxController> BuildAll(IEnumerable<FxController> controllers = null)
         {
-            var missing = new List<FxController>();
+            var failed = new List<FxController>();
 
             foreach (var fx in controllers ?? FxControllers.All)
             {
@@ -78,16 +149,25 @@ namespace Exegesis.Fx
                 if (controller == null)
                 {
                     Debug.LogError($"{LogPrefix} {fx.Name}: no AnimatorController at {fx.ControllerPath}.");
-                    missing.Add(fx);
+                    failed.Add(fx);
                     continue;
                 }
 
                 Debug.Log($"{LogPrefix} {fx.Name}: building {fx.ControllerPath}");
-                Build(controller, fx);
+                try
+                {
+                    Build(controller, fx);
+                    BuildExpressions(controller, fx);
+                }
+                catch (InvalidOperationException e)
+                {
+                    Debug.LogError(e.Message);
+                    failed.Add(fx);
+                }
             }
 
             AssetDatabase.SaveAssets();
-            return missing;
+            return failed;
         }
 
         // Priority 0: the top of Tools > Exegesis, since it is now the only build entry point.
@@ -103,7 +183,7 @@ namespace Exegesis.Fx
             }
 
             EditorUtility.DisplayDialog("Build FX Controllers",
-                "Could not load:\n" +
+                "These were not built (the Console says why):\n" +
                 string.Join("\n", missing.Select(m => $"{m.Name}: {m.ControllerPath}")) +
                 "\n\nThe others were built.", "OK");
         }

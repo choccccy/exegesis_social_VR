@@ -102,8 +102,8 @@ namespace Exegesis.Shared
         /// copy that Unity fills lazily, in memory, the first time anything reads the clip
         /// through the editor APIs: the Animation window, a snapshot, a test. Filling them does
         /// not dirty the asset, so a fresh build saves them empty - and then the next save of
-        /// the controller for ANY reason, such as touching a hand-built layer in the Animator
-        /// window, writes them out populated. Behaviour is identical either way; the diff is
+        /// the controller for ANY reason, such as someone inspecting it in the Animator window and
+        /// saving, writes them out populated. Behaviour is identical either way; the diff is
         /// not. Every generated clip flipped back and forth depending on what happened after
         /// the build rather than on what the build did.
         ///
@@ -137,10 +137,11 @@ namespace Exegesis.Shared
         /// given prefix, including clips nested inside blend trees.
         ///
         /// Scoped by reachability rather than by "every clip sub-asset of the controller",
-        /// which is a distinction with teeth: ncho_fx carries two orphaned clips left behind by
-        /// an old duplicate-the-controller operation ("Copied from ncho_fx/..."), one of which
-        /// legitimately has no curves. Auditing every clip in the file would report that as a
-        /// generation failure forever.
+        /// which is a distinction with teeth: the controllers once carried orphaned clips left by
+        /// an old duplicate-the-controller operation ("Copied from ncho_fx/..."), one of them
+        /// legitimately empty, and auditing every clip in the file reported that as a generation
+        /// failure. The build's sweep has since removed them; the scoping stays so no stray
+        /// sub-asset can pass for one again.
         /// </summary>
         public static IEnumerable<AnimationClip> ClipsReachableFrom(AnimatorController controller,
                                                                     string layerPrefix)

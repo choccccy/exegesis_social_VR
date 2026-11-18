@@ -463,13 +463,11 @@ rename.
 
 ## FX layers
 
-Built by `Tools > Exegesis > Build FX Controllers` (which runs `RcsAnimatorSetup` for every
-avatar), and idempotent: it deletes and
-rebuilds every layer whose name starts `rcs_`, and sweeps the sub-assets that leaves orphaned.
-Teardown matches on that **prefix**, not a name list — an earlier rename left an orphan layer
-behind because its old name was no longer in the list. Prefer re-running the tool over
-hand-editing; the controller has far too many layers to edit safely by hand, and
-`GeneratorIdempotenceTests` fails if the committed asset stops matching a fresh build.
+Built by `Tools > Exegesis > Build FX Controllers`, which rebuilds every avatar's controller
+from empty and runs `RcsAnimatorSetup` last, so the `rcs_*` layers sit at the bottom. To change
+the thrusters, edit `RcsAnimatorSetup.cs` and rebuild. Never edit the controller by hand:
+`GeneratorIdempotenceTests` fails if the committed asset stops matching a fresh build. The
+workflow is in [working-on-the-animators.md](working-on-the-animators.md).
 
 The generated clips are **sub-assets of each FX controller**, not files. They used to be 38
 `.anim` files in `ncho_anim/rcs_generated/`; that folder is gone. See
